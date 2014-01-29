@@ -15,6 +15,7 @@
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/font-awesome.css">
     <link href="google-code-prettify/prettify.css" type="text/css" rel="stylesheet">
     <!--<base href="/">--><base href=".">
@@ -29,6 +30,7 @@
   </head>
 
   <body>
+
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
@@ -100,15 +102,15 @@
 
     <div role="main" class="container">
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-4" id="why-angulardart">
           <h2>Why AngularDart?</h2>
           <p>AngularDart brings the proven Angular philosophy of testable, succinct web development to Dart.</p>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4" id="angularjs-plus-dart">
           <h2>AngularJS + Dart</h2>
           <p>Designed for Dart: use classes, annotations, and more. Build apps that scale.</p>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4" id="future-ready">
           <h2>Future-ready</h2>
           <p>AngularDart embraces modern web platform features, starting with Shadow DOM and Web Components.</p>
         </div>
@@ -117,13 +119,43 @@
       <hr class="shield" />
 
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6" id="getting-started">
           <h3>Getting Started</h3>
           <p>Lorem vestibulum. Donec ac ante nulla. Aenean interdum hendrerit enim vel cursus. Vestibulum fermentum sed erat sed ornare. Sed id sagittis ipsuma, vel eleifend ligula. Donec rhoncus sapien vitae pretium fermentum.</p>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6" id="documentation">
           <h3>Documentation</h3>
           <p>Lorem vestibulum. Donec ac ante nulla. Aenean interdum hendrerit enim vel cursus. Vestibulum fermentum sed erat sed ornare. Sed id sagittis ipsuma, vel eleifend ligula. Donec rhoncus sapien vitae pretium fermentum.</p>
+        </div>
+      </div><!-- /.row -->
+
+      <hr />
+
+      <div class="row">
+        <div class="col-md-12" id="news">
+          <h3>News & Updates</h3>
+          <ul>
+            <li class="stackoverflow">
+              <time datetime="2009-11-13">26 Jan 2014</time>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam volutpat quam id velit tristique condimentum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. <a href="#">more »</a></p>
+            </li>
+            <li class="twitter">
+              <time datetime="2009-11-13">26 Jan 2014</time>
+              <p><a href="#">@bradlygreen</a> New Dart Editor dev channel release with automatic toJson/fromJson, Angular support, and more! <a href="#">https://plus.google.com/+dartlang/posts/XbjvN5QVpn9</a> … <a href="#">#dartlang</a></p>
+            </li>
+            <li class="rss">
+              <time datetime="2009-11-13">26 Jan 2014</time>
+              <p>Making the cloud more accessible with Chrome and Android <a href="#">more »</a></p>
+            </li>
+            <li class="release">
+              <time datetime="2009-11-13">26 Jan 2014</time>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam volutpat quam id velit tristique condimentum. <a href="#">more »</a></p>
+            </li>
+            <li class="google_plus">
+              <time datetime="2009-11-13">26 Jan 2014</time>
+              <p><a href="#">Brad Green:</a> All videos from <a href="#">#ngconf</a> now available on YouTube <a href="#">http://www.youtube.com/user/ngconfvideos?feature=watch!</a> <a href="#">more »</a></p>
+            </li>
+          </ul>
         </div>
       </div><!-- /.row -->
     </div><!-- /main.container -->
@@ -136,8 +168,11 @@
              MIT License</a>. Documentation licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.
           </p>
         </div>
-        <div class="col-md-4">
-          Social icons
+        <div class="col-md-4 align-right">
+          <a href="#"><i class="fa fa-google-plus"></i></a>
+          <a href="#"><i class="fa fa-twitter"></i></a>
+          <a href="#"><i class="fa fa-github"></i></a>
+          <a href="#"><i class="fa fa-rss"></i></a>
         </div>
       </div><!-- .row -->
     </footer>
