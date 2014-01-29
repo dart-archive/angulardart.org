@@ -28,148 +28,131 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.min.js"></script>
   </head>
 
-<body>
-
-  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-    <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="/">
-          <img class="AngularDart-small" src="img/AngularDART-sml.png" style="height: 20px; display: block;">
-        </a>
-      </div>
-
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <form class="navbar-form navbar-right" role="search">
-          <div class="form-group">
-            <input type="text" class="form-control" placeholder="Search">
-          </div>
-        </form>
-        <ul class="nav navbar-nav navbar-right">
-          <li class="active"><a href="#">Home</a></li>
-          <li><a href="/demo.html">Intro</a></li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Learn <b class="caret"></b></a>
-            <ul class="dropdown-menu">
-              <li><a href="/demo.html">Intro to AngularDart</a></li>
-              <li><a href="https://github.com/angular/angular.dart.tutorial/wiki">Tutorial</a></li>
-              <li><a href="https://github.com/dart-lang/dart_by_example#angular-dart">Examples</a></li>
-              <li><a href="https://www.dartlang.org/events/2014/flight-school/">Find a Flight School Event</a></li>
-            </ul>
-          </li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Develop <b class="caret"></b></a>
-            <ul class="dropdown-menu">
-              <li><a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/">API Reference</a></li>
-              <li><a href="http://stackoverflow.com/questions/tagged/angular-dart">Q&A (Stack Overflow)</a></li>
-            </ul>
-          </li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Discuss<b class="caret"></b></a>
-            <ul class="dropdown-menu">
-              <li><a href="http://blog.angulardart.org">Blog</a></li>
-              <li><a href="http://groups.google.com/group/angular-dart">Mailing List</a></li>
-              <li><a href="https://twitter.com/#!/angulardart">Twitter</a></li>
-              <li><a href="https://plus.google.com/109866369054280216564">Google+</a></li>
-              <li><a href="https://github.com/angular/angular.dart">GitHub</a></li>
-              <li><a href="https://github.com/angular/angular.dart/issues">Issue Tracker</a></li>
-            </ul>
-          </li>
-        </ul><!-- /.nav -->
-      </div><!-- /.navbar-collapse -->
-    </div><!-- /.container -->
-  </nav><!-- /.navbar -->
-
-  <div class="jumbotron">
-    <div class="container">
-      <h1>Hai</h1>
-    </div><!-- /.container -->
-  </div><!-- /.jumbotron -->
-
-  <div role="main" class="container">
-
-      <div class="row" style="padding-top: 80px;">
-          <div class="span12">
-              <div class="hero-unit" style="height: 250px;">
-                  <div class="center">
-                      <img class="AngularDART-large" src="img/AngularDART-large.png">
-                  </div>
-                  <div class="center">
-                      <h1>A web framework for Dart!</h1>
-                  </div>
-                  <div class="center">
-
-                      <a class="btn btn-large btn-primary" href="/demo.html">
-                          See it in Action
-                      </a>
-                      <span class="spacer"></span>
-
-                      <a class="btn btn-large " href="https://github.com/angular/angular.dart.tutorial/wiki">
-                          Get Started: Try the tutorial
-                      </a>
-                  </div>
-              </div>
-          </div>
-      </div>
-
-      <div class="row first">
-          <div class="span4">
-              <h1>Why AngularDart?</h1>
-              <p>
-                  AngularDart brings the proven Angular philosophy of testable, succinct web development to Dart.
-              </p>
-          </div>
-          <div class="span4">
-              <h1>Angular + Dart</h1>
-              <p>
-                  Designed for Dart: use classes, annotations, and more. Build apps that scale.
-              </p>
-          </div>
-          <div class="span4">
-              <h1>Future-proof</h1>
-              <p>
-                  AngularDart embraces modern web platform features, starting with Shadow DOM and Web Components.
-              </p>
-          </div>
-      </div>
-      <div class="spacer"></div>
-  </div>
-
-  <footer class="footer">
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
       <div class="container">
-          <p class="pull-right"><a href="#" target="_self">Back to top</a></p>
-          <p>Super-powered by Google  ©2010-2013</p>
-          <p>Code licensed under the
-              <a href="https://github.com/angular/angular.js/blob/master/LICENSE" target="_blank">The
-                  MIT License</a>. Documentation licensed under <a
-                      href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">
+            <img class="AngularDart-small" src="img/AngularDART-sml.png" style="height: 20px; display: block;">
+          </a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <form class="navbar-form navbar-right" role="search">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Search">
+            </div>
+          </form>
+
+          <ul class="nav navbar-nav navbar-right">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="/demo.html">Intro</a></li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Learn <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="/demo.html">Intro to AngularDart</a></li>
+                <li><a href="https://github.com/angular/angular.dart.tutorial/wiki">Tutorial</a></li>
+                <li><a href="https://github.com/dart-lang/dart_by_example#angular-dart">Examples</a></li>
+                <li><a href="https://www.dartlang.org/events/2014/flight-school/">Find a Flight School Event</a></li>
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Develop <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/">API Reference</a></li>
+                <li><a href="http://stackoverflow.com/questions/tagged/angular-dart">Q&A (Stack Overflow)</a></li>
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Discuss<b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="http://blog.angulardart.org">Blog</a></li>
+                <li><a href="http://groups.google.com/group/angular-dart">Mailing List</a></li>
+                <li><a href="https://twitter.com/#!/angulardart">Twitter</a></li>
+                <li><a href="https://plus.google.com/109866369054280216564">Google+</a></li>
+                <li><a href="https://github.com/angular/angular.dart">GitHub</a></li>
+                <li><a href="https://github.com/angular/angular.dart/issues">Issue Tracker</a></li>
+              </ul>
+            </li>
+          </ul><!-- /.nav -->
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container -->
+    </nav><!-- /.navbar -->
+
+    <div class="jumbotron">
+      <div class="container">
+        <h1>AngularDart</h1>
+        <h3>A Web Framework for <i class="icon icon-dart"></i> Dart</h3>
+        <a class="btn btn-primary btn-lg" role="button">See it in action</a>
+        <a class="btn btn-primary btn-lg" role="button">Try AngularDart</a>
+        <p>Not what you're looking for? Learn more about <a href="http://www.angularjs.org" target="_new">AngularJS »</a></p>
+      </div><!-- /.container -->
+    </div><!-- /.jumbotron -->
+
+    <div role="main" class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <h2>Why AngularDart?</h2>
+          <p>AngularDart brings the proven Angular philosophy of testable, succinct web development to Dart.</p>
+        </div>
+        <div class="col-md-4">
+          <h2>AngularJS + Dart</h2>
+          <p>Designed for Dart: use classes, annotations, and more. Build apps that scale.</p>
+        </div>
+        <div class="col-md-4">
+          <h2>Future-Proof</h2>
+          <p>AngularDart embraces modern web platform features, starting with Shadow DOM and Web Components.</p>
+        </div>
+      </div><!-- /.row -->
+
+      <hr class="shield" />
+
+      <div class="row">
+        <div class="col-md-6">
+          <h3>Getting Started</h3>
+          <p>Lorem vestibulum. Donec ac ante nulla. Aenean interdum hendrerit enim vel cursus. Vestibulum fermentum sed erat sed ornare. Sed id sagittis ipsuma, vel eleifend ligula. Donec rhoncus sapien vitae pretium fermentum.</p>
+        </div>
+        <div class="col-md-6">
+          <h3>Documentation</h3>
+          <p>Lorem vestibulum. Donec ac ante nulla. Aenean interdum hendrerit enim vel cursus. Vestibulum fermentum sed erat sed ornare. Sed id sagittis ipsuma, vel eleifend ligula. Donec rhoncus sapien vitae pretium fermentum.</p>
+        </div>
+      </div><!-- /.row -->
+    </div><!-- /main.container -->
+
+    <footer class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <p>Super-powered by Google  ©2010-2013<br />
+             Code licensed under <a href="https://github.com/angular/angular.js/blob/master/LICENSE" target="_new">The
+             MIT License</a>. Documentation licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.
           </p>
-      </div>
-  </footer>
+        </div>
+        <div class="col-md-4">
+          Social icons
+        </div>
+      </div><!-- .row -->
+    </footer>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script>
-      $().dropdown();
-  </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
 
-
-  <!--Analytics -->
     <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-        ga('create', 'UA-8594346-12', 'angulardart.org');
-        ga('send', 'pageview');
-    </script>
- <!--end Analytics-->
-
-</body>
+      ga('create', 'UA-8594346-12', 'angulardart.org');
+      ga('send', 'pageview');
+    </script><!-- /Analytics-->
+  </body>
 </html>
