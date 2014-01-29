@@ -15,8 +15,6 @@
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/base.css" >
-    <link rel="stylesheet" href="css/docs.css" >
     <link rel="stylesheet" href="css/font-awesome.css">
     <link href="google-code-prettify/prettify.css" type="text/css" rel="stylesheet">
     <!--<base href="/">--><base href=".">
@@ -31,68 +29,67 @@
   </head>
 
 <body>
-  <header class="header">
 
-      <div class="navbar navbar-fixed-top">
-          <div class="navbar-inner">
-              <div class="container">
-                  <a class="brand" href="/" style="padding-top: 6px; padding-bottom: 0px;">
-                      <img class="AngularDart-small" src="img/AngularDART-sml.png">
-                  </a>
-                  <ul class="nav">
-                      <li class="divider-vertical"></li>
-                      <li class="active"><a href="/"><i class="icon-home icon-white"></i> Home</a></li>
-                      <li class="divider-vertical"></li>
-                      <li><a href="/demo.html"> Intro</a></li>
-                      <li class="divider-vertical"></li>
-                      <li class="dropdown">
-                          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                              <i class="icon-eye-open icon-white"></i> Learn <b class="caret"></b>
-                          </a>
-                          <ul class="dropdown-menu">
-                              <li><a href="/demo.html">Intro to AngularDart</a></li>
-                              <li><a href="https://github.com/angular/angular.dart.tutorial/wiki">Tutorial</a></li>
-                              <li><a href="https://github.com/dart-lang/dart_by_example#angular-dart">Examples</a></li>
-                              <li><a href="https://www.dartlang.org/events/2014/flight-school/">Find a Flight School Event</a></li>
-
-                          </ul>
-                      </li>
-                      <li class="divider-vertical"></li>
-                      <li class="dropdown">
-                          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                              <i class="icon-book icon-white"></i> Develop <b class="caret"></b>
-                          </a>
-                          <ul class="dropdown-menu">
-                              <li><a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/">API Reference</a></li>
-                              <li><a href="http://stackoverflow.com/questions/tagged/angular-dart">Q&A (Stack Overflow)</a></li>
-                          </ul>
-                      </li>
-                      <li class="divider-vertical"></li>
-                      <li class="dropdown">
-                          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                              <i class="icon-comment icon-white"></i> Discuss <b class="caret"></b>
-                          </a>
-                          <ul class="dropdown-menu">
-                              <li><a href="http://blog.angulardart.org">Blog</a></li>
-                              <li><a href="http://groups.google.com/group/angular-dart">Mailing List</a></li>
-                              <li class="divider"></li>
-                              <li><a href="https://twitter.com/#!/angulardart">Twitter</a></li>
-                              <li><a href="https://plus.google.com/109866369054280216564">Google+</a></li>
-                              <li class="divider"></li>
-                              <li><a href="https://github.com/angular/angular.dart">GitHub</a></li>
-                              <li><a href="https://github.com/angular/angular.dart/issues">Issue Tracker</a></li>
-                          </ul>
-                      </li>
-                      <li class="divider-vertical"></li>
-                  </ul>
-                  <form class="navbar-search pull-right" method="GET" action="https://www.google.com/search">
-                      <input type="text" name="as_q" class="search-query" placeholder="Search">
-                      <input type="hidden" name="as_sitesearch" value="angulardart.org">
-                  </form>
-              </div>
-          </div>
+  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">
+          <img class="AngularDart-small" src="img/AngularDART-sml.png" style="height: 20px; display: block;">
+        </a>
       </div>
-  </header>
+
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <form class="navbar-form navbar-right" role="search">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Search">
+          </div>
+        </form>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="active"><a href="#">Home</a></li>
+          <li><a href="/demo.html">Intro</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Learn <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><a href="/demo.html">Intro to AngularDart</a></li>
+              <li><a href="https://github.com/angular/angular.dart.tutorial/wiki">Tutorial</a></li>
+              <li><a href="https://github.com/dart-lang/dart_by_example#angular-dart">Examples</a></li>
+              <li><a href="https://www.dartlang.org/events/2014/flight-school/">Find a Flight School Event</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Develop <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/">API Reference</a></li>
+              <li><a href="http://stackoverflow.com/questions/tagged/angular-dart">Q&A (Stack Overflow)</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Discuss<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><a href="http://blog.angulardart.org">Blog</a></li>
+              <li><a href="http://groups.google.com/group/angular-dart">Mailing List</a></li>
+              <li><a href="https://twitter.com/#!/angulardart">Twitter</a></li>
+              <li><a href="https://plus.google.com/109866369054280216564">Google+</a></li>
+              <li><a href="https://github.com/angular/angular.dart">GitHub</a></li>
+              <li><a href="https://github.com/angular/angular.dart/issues">Issue Tracker</a></li>
+            </ul>
+          </li>
+        </ul><!-- /.nav -->
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container -->
+  </nav><!-- /.navbar -->
+
+  <div class="jumbotron">
+    <div class="container">
+      <h1>Hai</h1>
+    </div><!-- /.container -->
+  </div><!-- /.jumbotron -->
 
   <div role="main" class="container">
 
