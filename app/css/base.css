@@ -1,11 +1,70 @@
-.align-right {
-  text-align: right;
-}
+/* -------------------------------------
+  Global Styling
+  ------------------------------------- */
 
-.align-left {
-  text-align: left;
-}
+  /* ---- Default Alignment ---- */
+  body {
+    overflow: hidden;
+  }
 
-.align-center {
-  text-align: center;
-}
+  .align-right {
+    text-align: right;
+  }
+
+  .align-left {
+    text-align: left;
+  }
+
+  .align-center {
+    text-align: center;
+  }
+
+  /* Buttons */
+  .btn {
+
+  }
+
+/* -------------------------------------
+  Header
+  ------------------------------------- */
+
+  #header {
+
+  }
+
+  /* ---- Menu ---- */
+  #header nav {
+
+  }
+
+  /* ---- Jumbotron ---- */
+  #header .jumbotron {
+
+  }
+
+/* -------------------------------------
+  Body
+  ------------------------------------- */
+
+  /* ---- Home Sections ---- */
+  #why-angulardart { }
+  #angularjs-plus-dart { }
+  #future-ready { }
+  #getting-started { }
+  #documentation { }
+
+  /* ---- News & Updates Section ---- */
+  #news { }
+
+
+/* -------------------------------------
+  Footer
+  ------------------------------------- */
+
+  footer {
+
+  }
+
+  footer #social {
+
+  }
