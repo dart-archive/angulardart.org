@@ -38,6 +38,20 @@
     text-decoration: none;
   }
 
+  /* ---- Line Breaks ---- */
+
+  hr.shield {
+    text-align: center;
+    margin: 35px 0 45px;
+  }
+
+  hr.shield:after {
+    content: url('../img/shield_rule.png');
+    color: #999;
+    position: relative;
+    top: -28px;
+  }
+
   /* ---- Default Alignment ---- */
   .align-right {
     text-align: right;
@@ -218,6 +232,10 @@
     line-height: 1.5em;
   }
 
+  .secondary {
+    padding-bottom: 20px;
+  }
+
   .secondary h3 {
     border-bottom: 5px;
     font-weight: normal;
@@ -229,15 +247,11 @@
     padding-left: 15px;
   }
 
-  #why-angulardart { }
-
-  #angularjs-plus-dart { }
-
-  #future-ready { }
-
-  #getting-started { }
-
-  #documentation { }
+  #angularjs-plus-dart h2 {
+    overflow: hidden;
+    text-indent: -10000px;
+    background: url('../img/logo_angular_plus_dart.png') center no-repeat;
+  }
 
   /* ---- News & Updates Section ---- */
   #news { }
@@ -284,9 +298,21 @@
   ------------------------------------- */
 
   footer {
-    background: #000;
-    color: #fff;
-    padding: 55px 0 15px;
+    background: #333;
+    color: #efefef;
+    padding: 35px 0 15px;
+    position: relative;
+    margin-top: 40px;
+  }
+
+  footer:after {
+    content: url('../img/shield_footer.png');
+    color: #999;
+    position: absolute;
+    top: 0;
+    margin-top: -26px;
+    left: 50%;
+    margin-left: -26px;
   }
 
   footer a {
