@@ -39,7 +39,6 @@
   }
 
   /* ---- Line Breaks ---- */
-
   hr.shield {
     text-align: center;
     margin: 35px 0 45px;
@@ -50,6 +49,10 @@
     color: #999;
     position: relative;
     top: -28px;
+  }
+
+  hr.invisible {
+    border-color: transparent;
   }
 
   /* ---- Default Alignment ---- */
@@ -150,8 +153,8 @@
 
   #header nav .navbar-brand {
     padding: 0;
-    height: 36px;
-    width: 180px;
+    height: 34px;
+    width: 170px;
     background: url('../img/logo.png') no-repeat;
     background-size: cover;
     text-indent: -10000px;
@@ -167,7 +170,7 @@
     text-align: center;
     background: transparent;
     background: url('../img/grunge.png') bottom repeat-x;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
   }
 
   #header .jumbotron .btn {
@@ -188,16 +191,16 @@
     font-size: 38px;
     padding: 3px 0;
     margin: 20px 0 25px;
-    border-top: 1px solid #fff;
-    border-bottom: 1px solid #fff;
+    border-bottom: 1px solid rgba(255,255,255,0.8);
+    border-top: 1px solid rgba(255,255,255,0.8);
   }
 
   #header .jumbotron h3 .inner {
     display: block;
     width: 95%;
     margin: 0 auto;
-    border-top: 1px solid #fff;
-    border-bottom: 1px solid #fff;
+    border-top: 1px solid rgba(255,255,255,0.5);
+    border-bottom: 1px solid rgba(255,255,255,0.5);
     padding: 10px 0;
   }
 
@@ -222,7 +225,7 @@
   }
 
   .primary h2 {
-    border-bottom: 8px solid #f2f2f2;
+    border-bottom: 5px solid #f2f2f2;
     margin-bottom: 10px;
     padding-bottom: 15px;
   }
@@ -239,7 +242,7 @@
   .secondary h3 {
     border-bottom: 5px;
     font-weight: normal;
-    margin: 5px 0 15px;
+    margin: 0 0 15px;
   }
 
   .secondary p {
@@ -247,14 +250,23 @@
     padding-left: 15px;
   }
 
+  .secondary a.more {
+    padding-left: 25px;
+  }
+
   #angularjs-plus-dart h2 {
     overflow: hidden;
     text-indent: -10000px;
     background: url('../img/logo_angular_plus_dart.png') center no-repeat;
+    margin-top: 5px;
+    padding-bottom: 30px;
   }
 
   /* ---- News & Updates Section ---- */
-  #news { }
+  #news h3 {
+    font-weight: normal;
+    margin: 15px 0 20px;
+  }
 
   #news ul {
     padding: 0;
