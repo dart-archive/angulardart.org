@@ -13,6 +13,7 @@
   body {
     font-family: 'Source Sans Pro', sans-serif;
     font-weight: 300;
+    font-size: 15px;
   }
 
   /* ---- Headlines ---- */
@@ -86,11 +87,9 @@
 
   #header {
     background-image: -webkit-linear-gradient(45deg, #eaeaea 0%, #eaeaea 50%, #f2f2f2 50%);
-    /*
-    background-image: -moz-linear-gradient(45deg, #eaeaea 0%, #eaeaea 49%, #f2f2f2 51%);
-    background-image: -o-linear-gradient(45deg, #eaeaea 0%, #eaeaea 49%, #f2f2f2 51%);
-    background-image: linear-gradient(45deg, #eaeaea 0%, #eaeaea 49%, #f2f2f2 51%);
-    */
+    background-image: -moz-linear-gradient(45deg, #eaeaea 0%, #eaeaea 50%, #f2f2f2 50%);
+    background-image: -o-linear-gradient(45deg, #eaeaea 0%, #eaeaea 50%, #f2f2f2 50%);
+    background-image: linear-gradient(45deg, #eaeaea 0%, #eaeaea 50%, #f2f2f2 50%);
   }
 
   /* ---- Menu ---- */
@@ -98,11 +97,61 @@
     background: rgba(255,255,255,0.9);
   }
 
+  /* ---- Logo ---- */
+  #header nav .navbar-header {
+    position: relative;
+  }
+
+  #header nav .navbar-brand {
+    padding: 0;
+    height: 36px;
+    width: 180px;
+    background: url('../img/logo.png') no-repeat;
+    background-size: cover;
+    text-indent: -10000px;
+    overflow: hidden;
+    margin: 7px 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
   /* ---- Jumbotron ---- */
   #header .jumbotron {
     text-align: center;
     background: transparent;
     background: url('../img/grunge.png') bottom repeat-x;
+  }
+
+  #header .jumbotron .btn {
+    margin: 0 5px;
+  }
+
+  #header .jumbotron h1 {
+    overflow: hidden;
+    text-indent: -10000px;
+    width: 100%;
+    background: url('../img/logo.png') center no-repeat;
+    background-size: contain;
+    line-height: 175%;
+    margin: 5% 0 0;
+  }
+
+  #header .jumbotron h3 {
+    font-size: 40px;
+    padding: 15px 0;
+    margin: 10px 0;
+  }
+
+  #header .jumbotron h3 .icon:before {
+    content: url('../img/logo_dart.png');
+    margin-right: 5px;
+  }
+
+  #header .jumbotron p {
+    font-size: 14px;
+    font-weight: 400;
+    margin-top: 10px;
   }
 
 /* -------------------------------------
@@ -163,8 +212,28 @@
   footer {
     background: #000;
     color: #fff;
+    padding: 55px 0 15px;
   }
 
-  footer #social {
-
+  footer a {
+    color: #fff;
   }
+
+  footer a i {
+    font-size: 24px;
+    padding: 5px;
+  }
+
+/* -------------------------------------
+  Mobile Layouts
+  ------------------------------------- */
+
+  /*
+  @media (min-width: 768px) {
+    #header nav .navbar-brand {
+      width: 135px;
+      height: 30px;
+      margin: 10px 0;
+    }
+  }
+  */
