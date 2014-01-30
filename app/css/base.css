@@ -171,6 +171,7 @@
     background: transparent;
     background: url('../img/grunge.png') bottom repeat-x;
     margin-bottom: 15px;
+    position: relative;
   }
 
   #header .jumbotron .btn {
@@ -213,6 +214,16 @@
     font-size: 14px;
     font-weight: 400;
     margin: 15px 0 0;
+  }
+
+  #header .jumbotron a.banner {
+    position: absolute;
+    right: 0;
+    top: 50px;
+    padding: 30px 100px;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    display: none;
   }
 
 /* -------------------------------------
