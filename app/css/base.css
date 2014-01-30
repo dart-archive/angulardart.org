@@ -258,6 +258,7 @@
     overflow: hidden;
     text-indent: -10000px;
     background: url('../img/logo_angular_plus_dart.png') center no-repeat;
+    background-size: contain;
     margin-top: 5px;
     padding-bottom: 30px;
   }
@@ -265,7 +266,7 @@
   /* ---- News & Updates Section ---- */
   #news h3 {
     font-weight: normal;
-    margin: 15px 0 20px;
+    margin: 15px 0 15px;
   }
 
   #news ul {
@@ -275,14 +276,26 @@
 
   #news ul li {
     clear: both;
+    margin-bottom: 20px;
+    position: relative;
+    padding-left: 45px;
   }
 
   #news ul li:before {
     font-family: FontAwesome;
     font-size: 20px;
     float: left;
-    padding: 10px;
-    margin-right: 10px;
+    color: #a6110a;
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin-top: 7px;
+    padding: 5px;
+    border: 1px solid #a6110a;
+    border-radius: 25px;
+    width: 32px;
+    height: 32px;
+    text-align: center;
   }
 
   #news ul li.stackoverflow:before {
