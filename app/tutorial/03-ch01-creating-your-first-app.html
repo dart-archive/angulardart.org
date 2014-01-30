@@ -27,7 +27,7 @@
 
   <h3 id="running-the-sample-app">Running the sample app</h3>
   <p>The code for this chapter is in the <em>
-<a href="https://github.com/angular/angular.dart.tutorial/tree/master/Chapter_01">Chapter 01</a></em>
+<a href="https://github.com/angular/angular.dart.tutorial/tree/master/Chapter_01">Chapter_01</a></em>
 directory of the
 <a href="https://github.com/angular/angular.dart.tutorial/archive/master.zip">angular.dart.tutorial download</a>.
 View it in Dart Editor by using <strong>File &gt; Open Existing Folder…</strong>
@@ -52,7 +52,7 @@ to open the <strong>Chapter_01</strong> directory. </p>
 
   <h3 id="making-angular-libraries-available-to-your-app">Making Angular libraries available to your app</h3>
   <p>Dart makes dependencies available to the application through the <strong>pubspec.yaml</strong> file. Here’s the minimal pubspec.yaml file for this sample:</p>
-<pre>
+<pre class="prettyprint">
 yaml
 name: angular_dart_demo
 version: 0.0.1
@@ -81,14 +81,14 @@ dependencies:
 
         <p>First, let’s look at <strong>index.html</strong>. Notice the addition of the <code>ng-app</code> directive to the <code>&lt;html&gt;</code> element:</p>
 
-        <pre>&lt;html ng-app&gt;
+        <pre class="prettyprint">&lt;html ng-app&gt;
 </pre>
 
         <p>The <code>ng-app</code> directive tells Angular which element is the root element of the application. Anything inside of this element is part of the page template managed by Angular. Unless you have a reason for Angular to manage only part of the app, we recommend putting the <code>ng-app</code> directive on the <code>&lt;html&gt;</code> element because it is the outermost tag.</p>
 
         <p>Next, let’s look at the two script tags at the end. </p>
 
-        <pre>
+        <pre class="prettyprint">
 &lt;script type="application/dart" src="main.dart"&gt;&lt;/script&gt;
 &lt;script type="text/javascript" src="packages/browser/dart.js"&gt;&lt;/script&gt;
 </pre>
@@ -99,7 +99,7 @@ dependencies:
 
         <p>Now let’s look at <strong>main.dart</strong>:</p>
 
-        <pre>import 'package:angular/angular.dart';
+        <pre class="prettyprint">import 'package:angular/angular.dart';
 main() =&gt; ngBootstrap();
         </pre>
 
@@ -115,7 +115,7 @@ main() =&gt; ngBootstrap();
 
         <h4 id="model">Model</h4>
         <p>In our Hello World example, the “name” property is the model. It appears in two places in the view: where it’s set (in the input element) and where it’s displayed (in the curly braces, or “mustache”).</p>
-<pre>&lt;h3&gt;Hello {{name}}!&lt;/h3&gt;
+<pre class="prettyprint">&lt;h3&gt;Hello {{name}}!&lt;/h3&gt;
 Name: &lt;input type="text" ng-model="name"&gt;</pre>
 
 
@@ -133,16 +133,16 @@ Name: &lt;input type="text" ng-model="name"&gt;</pre>
         </ul>
 
         <p>Here’s an example of a simple expression:
-<pre>{{ 1 + 2 }}</pre>
+<pre class="prettyprint">{{ 1 + 2 }}</pre>
 
         <p>Here’s another:
-    <pre>{{ 'foo' + 'bar'}}</pre>
+    <pre class="prettyprint">{{ 'foo' + 'bar'}}</pre>
         <p>These expressions would display as <strong>3</strong> and <strong>foobar</strong>, respectively.</p>
 
         <h3 id="mustache-syntax-and-data-binding-in-hello-world">Mustache syntax and data binding in Hello World</h3>
 
         <p>Here’s how the Hello World app uses the mustache syntax to bind to the model (“name”) and display the model in the view.</p>
-<pre>&lt;h3&gt;Hello {{name}}!&lt;/h3&gt;
+<pre class="prettyprint">&lt;h3&gt;Hello {{name}}!&lt;/h3&gt;
 Name: &lt;input type="text" ng-model="name"&gt;</pre>
 
         <p>Notice that the input element has the <a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/angular.directive/NgModel.html"><code>ng-model</code></a> directive, which looks like an HTML attribute. The following chapters go into more detail about directives. For now, just be aware that Angular has a construct called directives that extend HTML syntax and can control the view.</p>
