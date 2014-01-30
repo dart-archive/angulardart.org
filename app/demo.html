@@ -1,315 +1,351 @@
-<!doctype html>
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
-<head>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="Description"
           content="AngularDart is a framework for building web-apps in DART.
                  Declarative templates with data-binding, MVW, MVVM, MVC, dependency injection and great
                  testability story!">
-    <title>AngularDart — Superheroic MVW Framework for Dart</title>
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/docs.css">
+
+    <title>AngularDart — Superheroic MVW Framework for Dart</title>
+
+    <!-- Stylesheets -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/font-awesome.css">
     <link href="google-code-prettify/prettify.css" type="text/css" rel="stylesheet">
+
+
     <!--<base href="/">--><base href=".">
 
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.min.js"></script>
-</head>
-<body>
-<header class="header">
+  </head>
 
-    <div class="navbar navbar-fixed-top">
-        <div class="navbar-inner">
-            <div class="container">
-                <a class="brand" href="/" style="padding-top: 6px; padding-bottom: 0px;">
-                    <img class="AngularDart-small" src="img/AngularDART-sml.png">
-                </a>
-                <ul class="nav">
-                    <li class="divider-vertical"></li>
-                    <li><a href="/"><i class="icon-home icon-white"></i> Home</a></li>
-                    <li class="divider-vertical"></li>
-                    <li class="active"><a href="/demo.html"> Intro</a></li>
-                    <li class="divider-vertical"></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="icon-eye-open icon-white"></i> Learn <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="https://github.com/angular/angular.dart.tutorial/wiki">Tutorial</a></li>
-                            <li><a href="https://github.com/dart-lang/dart_by_example#angular-dart">Examples</a></li>
-                            <li><a href="https://www.dartlang.org/events/2014/flight-school/">Find a Flight School Event</a></li>
+  <body>
+    <div id="header">
+      <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">AngularDart</a>
+          </div>
 
-                        </ul>
-                    </li>
-                    <li class="divider-vertical"></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="icon-book icon-white"></i> Develop <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/">API Reference</a></li>
-                            <li><a href="http://stackoverflow.com/questions/tagged/angular-dart">Q&A (Stack Overflow)</a></li>
-                        </ul>
-                    </li>
-                    <li class="divider-vertical"></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="icon-comment icon-white"></i> Discuss <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="http://blog.angulardart.org">Blog</a></li>
-                            <li><a href="http://groups.google.com/group/angular-dart">Mailing List</a></li>
-                            <li class="divider"></li>
-                            <li><a href="https://twitter.com/#!/angulardart">Twitter</a></li>
-                            <li><a href="https://plus.google.com/109866369054280216564">Google+</a></li>
-                            <li class="divider"></li>
-                            <li><a href="https://github.com/angular/angular.dart">GitHub</a></li>
-                            <li><a href="https://github.com/angular/angular.dart/issues">Issue Tracker</a></li>
-                        </ul>
-                    </li>
-                    <li class="divider-vertical"></li>
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <form class="navbar-form navbar-right" role="search">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Search">
+              </div>
+            </form>
+
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="#">Home</a></li>
+              <li class="active"><a href="/demo.html">Intro</a></li>
+
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Learn <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="/demo.html">Intro to AngularDart</a></li>
+                  <li><a href="https://github.com/angular/angular.dart.tutorial/wiki">Tutorial</a></li>
+                  <li><a href="https://github.com/dart-lang/dart_by_example#angular-dart">Examples</a></li>
+                  <li><a href="https://www.dartlang.org/events/2014/flight-school/">Find a Flight School Event</a></li>
                 </ul>
-                <form class="navbar-search pull-right" method="GET" action="https://www.google.com/search">
-                    <input type="text" name="as_q" class="search-query" placeholder="Search">
-                    <input type="hidden" name="as_sitesearch" value="angulardart.org">
-                </form>
-            </div>
-        </div>
-    </div>
-</header>
-<div role="main" class="container">
-<h1 id="the-basics">The Basics</h1>
-<div class="row example">
-    <div class="span8 app-source" app-source="hello.html hello.dart"
-         annotate="hello.annotation"></div>
-    <div class="span4">
-        <span hint></span>
-        <span class="pull-right" js-fiddle="hello.html" style="display: none;"></span>
-        <div class="tabs-spacer"></div>
-        <div class="well" ng-non-bindable>
-            <div class="angular-dart-example" id="hello-app">
-                <label>Name:</label>
-                <input type="text" ng-model="yourName" placeholder="Enter a name here">
-                <hr>
-                <h1>Hello {{yourName}}!</h1>
-            </div>
-        </div>
-    </div>
-</div>
+              </li>
 
-<h1 id="add-some-control">Structure Your Code</h1>
-<div class="row">
-    <div class="span4">
-        <h3>Data Binding</h3>
-        <p>
-            Data binding automatically updates the view whenever the model changes, and updates the model whenever the
-            view changes. Eliminate DOM manipulation from your list of worries. Awesome!
-        </p>
-    </div>
-    <div class="span4">
-        <h3>Controllers</h3>
-        <p>
-            In AngularDart, controller classes let you express application behavior in a clean readable form without the
-            usual boilerplate of updating the DOM, registering callbacks, or watching model changes.
-        </p>
-    </div>
-    <div class="span4">
-        <h3>Models</h3>
-        <p>
-            Models are just plain Dart classes. There is no need to inherit from proprietary types, or to wrap the model
-            in accessor methods. Code is easy to test, maintain, and reuse.
-        </p>
-    </div>
-</div>
-<div class=" row example">
-    <div class="span8 app-source" app-source="todo.html todo.dart todo.css"
-         annotate="todo.annotation"></div>
-    <div class="span4">
-        <span hint></span>
-        <span class="pull-right" js-fiddle="todo.html todo.dart todo.css"
-              style="display: none;"></span>
-        <div class="tabs-spacer"></div>
-        <div class="well" ng-non-bindable>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Develop <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/">API Reference</a></li>
+                  <li><a href="http://stackoverflow.com/questions/tagged/angular-dart">Q&amp;A (Stack Overflow)</a></li>
+                </ul>
+              </li>
+
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Discuss<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="http://blog.angulardart.org">Blog</a></li>
+                  <li><a href="http://groups.google.com/group/angular-dart">Mailing List</a></li>
+                  <li><a href="https://twitter.com/#!/angulardart">Twitter</a></li>
+                  <li><a href="https://plus.google.com/109866369054280216564">Google+</a></li>
+                  <li><a href="https://github.com/angular/angular.dart">GitHub</a></li>
+                  <li><a href="https://github.com/angular/angular.dart/issues">Issue Tracker</a></li>
+                </ul>
+              </li>
+            </ul><!-- /.nav -->
+          </div><!-- /.navbar-collapse -->
+        </div><!-- /.container -->
+      </nav><!-- /.navbar -->
+
+      <div class="breadcrumbs">
+        <div class="container">
+          <ol class="breadcrumb">
+            <li><a href="/">Home</a></li>
+            <li class="active"><a href="/demo.html">Intro</a></li>
+          </ol><!-- /.breadcrumb -->
+        </div><!-- /.container -->
+      </div><!-- /.breadcrumbs -->
+
+    </div><!-- /#header -->
+
+    <div role="main" class="container">
+      <h1 id="the-basics">The Basics</h1>
+      <div class="row example">
+        <div class="span8 app-source" app-source="hello.html hello.dart"
+             annotate="hello.annotation"></div>
+        <div class="col-md-12">
+          <span hint></span>
+          <span class="pull-right" js-fiddle="hello.html" style="display: none;"></span>
+          <div class="tabs-spacer"></div>
+          <div class="well" ng-non-bindable>
+            <div class="angular-dart-example" id="hello-app">
+              <label>Name:</label>
+              <input type="text" ng-model="yourName" placeholder="Enter a name here">
+              <hr>
+              <h1>Hello {{yourName}}!</h1>
+            </div><!-- /#hello-app -->
+          </div><!-- .well -->
+        </div><!-- .col-md-4 -->
+      </div><!-- .row -->
+
+      <hr class="shield" />
+
+      <h1 id="add-some-control">Structure Your Code</h1>
+      <div class="row">
+        <div class="col-md-4">
+          <h3>Data Binding</h3>
+          <p>
+              Data binding automatically updates the view whenever the model changes, and updates the model whenever the
+              view changes. Eliminate DOM manipulation from your list of worries. Awesome!
+          </p>
+        </div>
+        <div class="col-md-4">
+          <h3>Controllers</h3>
+          <p>
+              In AngularDart, controller classes let you express application behavior in a clean readable form without the
+              usual boilerplate of updating the DOM, registering callbacks, or watching model changes.
+          </p>
+        </div>
+        <div class="col-md-4">
+          <h3>Models</h3>
+          <p>
+              Models are just plain Dart classes. There is no need to inherit from proprietary types, or to wrap the model
+              in accessor methods. Code is easy to test, maintain, and reuse.
+          </p>
+        </div><!-- /.col-md-4 -->
+      </div><!-- /.row -->
+
+      <div class=" row example">
+        <div class="span8 app-source" app-source="todo.html todo.dart todo.css"
+             annotate="todo.annotation"></div>
+        <div class="col-md-12">
+          <span hint></span>
+          <span class="pull-right" js-fiddle="todo.html todo.dart todo.css"
+                style="display: none;"></span>
+          <div class="tabs-spacer"></div>
+          <div class="well" ng-non-bindable>
             <h2>Todo</h2>
             <div class="angular-dart-example" todo-list id="todo-app">
-                <span>{{TodoCtrl.remaining()}} of {{TodoCtrl.todos.length}} remaining</span>
-                [ <a href="" ng-click="TodoCtrl.archive()">archive</a> ]
-                <ul class="unstyled">
-                    <li ng-repeat="todo in TodoCtrl.todos">
-                        <input type="checkbox" ng-model="todo.done">
-                        <span class="done-{{todo.done}}">{{todo.text}}</span>
-                    </li>
-                </ul>
-                <form ng-submit="TodoCtrl.addTodo()">
-                    <input type="text" ng-model="TodoCtrl.todoText"  size="30"
-                           placeholder="add new todo here">
-                    <input class="btn-primary" type="submit" value="add">
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal hide fade" style="display: none;" id="videoModal">
-    <div class="modal-header">
-        <a class="close" data-dismiss="modal">×</a>
-        <h3>Build Single-Page Apps</h3>
-    </div>
-    <div class="modal-body">
-    </div>
-</div>
+              <span>{{TodoCtrl.remaining()}} of {{TodoCtrl.todos.length}} remaining</span>
+              [ <a href="" ng-click="TodoCtrl.archive()">archive</a> ]
+              <ul class="unstyled">
+                <li ng-repeat="todo in TodoCtrl.todos">
+                  <input type="checkbox" ng-model="todo.done">
+                  <span class="done-{{todo.done}}">{{todo.text}}</span>
+                </li>
+              </ul>
+              <form ng-submit="TodoCtrl.addTodo()">
+                <input type="text" ng-model="TodoCtrl.todoText"  size="30"
+                       placeholder="add new todo here">
+                <input class="btn-primary" type="submit" value="add">
+              </form>
+            </div><!-- /.angular-dart-example -->
+          </div><!-- /.well -->
+        </div><!-- /.col-md-4 -->
+      </div><!-- /.row -->
 
-<h1 id="wire-up-a-backend">Wire up a Backend</h1>
-<div class="row">
-    <div class="span4">
-        <h3>Deep Linking</h3>
-        <p>
+      <div class="modal hide fade" style="display: none;" id="videoModal">
+        <div class="modal-header">
+          <a class="close" data-dismiss="modal">×</a>
+          <h3>Build Single-Page Apps</h3>
+        </div><!-- /.modal-header -->
+        <div class="modal-body">
+        </div><!-- /.modal-body -->
+      </div><!-- /.modal -->
+
+      <hr class="shield" />
+
+      <h1 id="wire-up-a-backend">Wire up a Backend</h1>
+      <div class="row">
+        <div class="col-md-4">
+          <h3>Deep Linking</h3>
+          <p>
             A deep link reflects where the user is in the app, this is useful so users can bookmark and email links to
             locations within apps. Round trip apps get this automatically, but AJAX apps by their nature do not.
             AngularDart combines the benefits of deep linking with desktop app-like behavior.
-        </p>
-    </div>
-    <div class="span4">
-        <h3>Form Validation</h3>
-        <p>
+          </p>
+        </div>
+        <div class="col-md-4">
+          <h3>Form Validation</h3>
+          <p>
             Use built-in validators and avoid imperative code. Write less, go have beer sooner.
-        </p>
-    </div>
-    <div class="span4">
-        <h3>Connect to RESTful Services</h3>
-        <p>
+          </p>
+        </div>
+        <div class="col-md-4">
+          <h3>Connect to RESTful Services</h3>
+          <p>
             Dart's high-level implementation of HttpRequest makes server communication easy. With AngularDart, you also
             get testability, interceptors, and mocks for the HttpRequest object. Effortlessly build data transformations
             right into your HTTP stack.
-        </p>
-    </div>
-</div>
+          </p>
+        </div>
+      </div>
 
-   <div class=" row example">
-     <div class="span8 app-source" app-source="classlist.html classlist.dart classlist.css" annotate="classlist.annotation"></div>
-     <div class="span4">
-       <span hint></span>
-       <span class="pull-right"  resource="resource" module="classlist"></span>
-         <div class="tabs-spacer"></div>
-         <div class="well" ng-non-bindable>
-             <h2>Classlist</h2>
-             <div class="angular-dart-example" id="classlist-app">
-                 <div classlist-controller>
-               <div class="well">
-                   <div ng-repeat="student in ctrl.students">
-                       <div>
-                           <label>
-                               <input type="checkbox" ng-model="student['selected']">
-                               {{student['name']}}
-                           </label>
-                       </div>
-                   </div>
-               </div>
+     <div class=" row example">
+      <div class="span8 app-source" app-source="classlist.html classlist.dart classlist.css" annotate="classlist.annotation"></div>
+      <div class="col-md-12">
+        <span hint></span>
+        <span class="pull-right"  resource="resource" module="classlist"></span>
+        <div class="tabs-spacer"></div>
+        <div class="well" ng-non-bindable>
+          <h2>Classlist</h2>
+          <div class="angular-dart-example" id="classlist-app">
+            <div classlist-controller>
+              <div class="well">
+                <div ng-repeat="student in ctrl.students">
+                  <div>
+                    <label>
+                      <input type="checkbox" ng-model="student['selected']">
+                      {{student['name']}}
+                    </label>
+                  </div>
+                 </div><!-- /.ng-repeat -->
+                </div><!-- /.well -->
 
-               <h5>Selected fruit</h5>
-               <div ng-repeat="student in ctrl.selectedStudents">
-                   {{student['name']}}
-               </div>
-       </div>
-             </div>
-         </div>
-    </div>
-   </div>
+                <h5>Selected fruit</h5>
+                <div ng-repeat="student in ctrl.selectedStudents">
+                  {{student['name']}}
+                </div><!-- /.ng-repeat -->
+              </div><!-- /claslist-controller -->
+            </div><!-- /#classlist-app -->
+          </div><!-- /.well -->
+        </div><!-- /.col-md-4 -->
+      </div><!-- /.row -->
 
+      <hr class="shield" />
 
-
-<h1 id="create-components">Embrace the Modern Web</h1>
-<div class="row">
-    <div class="span4">
-        <h3>Modern Web Standards</h3>
-        <p>
-            AngularDart components are built with the Shadow DOM for real encapsulation of styles and structure.
-            Encapsulate views, behaviors, and actions within reusable, nestable components.
-        </p>
-    </div>
-    <div class="span4">
-        <h3>It's Just HTML</h3>
-        <p>
+      <h1 id="create-components">Embrace the Modern Web</h1>
+      <div class="row">
+        <div class="col-md-4">
+          <h3>Modern Web Standards</h3>
+          <p>
+              AngularDart components are built with the Shadow DOM for real encapsulation of styles and structure.
+              Encapsulate views, behaviors, and actions within reusable, nestable components.
+          </p>
+        </div><!-- /.col-md-4 -->
+        <div class="col-md-4">
+          <h3>It's Just HTML</h3>
+          <p>
             Add behavior to HTML elements. Create and use custom attributes and elements for code that's easy to
             understand at a glance.
-        </p>
-    </div>
-    <div class="span4">
+          </p>
+        </div>
+        <div class="col-md-4">
 
-    </div>
-</div>
-<div class-"row example">TODO: Add code for example illustrating component use?</div>
-<!-- <div class=" row example">
-   <div class="span8 app-source" app-source="tabs.html components.js app.js" annotate="tabs.annotation" module="app"></div>
-   <div class="span4">
-     <span hint></span>
-     <span class="pull-right" js-fiddle="tabs.html components.js app.js" module="app"></span>
-     <div class="tabs-spacer"></div>
-     <h4>Locale: US</h4>
-       <div class="well" ng-non-bindable>
-       <h2>Todo</h2>
-       <div class="angular-dart-example" todo-list id="tabs-app">
-         <span>{{TodoCtrl.remaining()}} of {{TodoCtrl.todos.length}} remaining</span>
-         [ <a href="" ng-click="TodoCtrl.archive()">archive</a> ]
-         <ul class="unstyled">
-           <li ng-repeat="todo in TodoCtrl.todos">
-             <input type="checkbox" ng-model="todo.done">
-             <span class="done-{{todo.done}}">{{todo.text}}</span>
-           </li>
-         </ul>
-         <form ng-submit="TodoCtrl.addTodo()">
-           <input type="text" ng-model="TodoCtrl.todoText"  size="30"
-                  placeholder="add new todo here">
-           <input class="btn-primary" type="submit" value="add">
-         </form>
-       </div>
-     </div>
-     <div class="tabs-spacer"></div>
-     <h4>Locale: SK</h4>
-     <div class="well"></div>
-   </div>
- </div> -->
+        </div><!-- /.col-md-4 -->
+      </div><!-- /.row -->
+      <div class-"row example">TODO: Add code for example illustrating component use?</div>
 
-<h1 id="embed-and-inject">Design Scalable Apps</h1>
-<div class="row">
-    <div class="span4">
-        <h3>Injectable</h3>
-        <p>
+      <!-- <div class=" row example">
+         <div class="span8 app-source" app-source="tabs.html components.js app.js" annotate="tabs.annotation" module="app"></div>
+         <div class="col-md-12">
+           <span hint></span>
+           <span class="pull-right" js-fiddle="tabs.html components.js app.js" module="app"></span>
+           <div class="tabs-spacer"></div>
+           <h4>Locale: US</h4>
+             <div class="well" ng-non-bindable>
+             <h2>Todo</h2>
+             <div class="angular-dart-example" todo-list id="tabs-app">
+               <span>{{TodoCtrl.remaining()}} of {{TodoCtrl.todos.length}} remaining</span>
+               [ <a href="" ng-click="TodoCtrl.archive()">archive</a> ]
+               <ul class="unstyled">
+                 <li ng-repeat="todo in TodoCtrl.todos">
+                   <input type="checkbox" ng-model="todo.done">
+                   <span class="done-{{todo.done}}">{{todo.text}}</span>
+                 </li>
+               </ul>
+               <form ng-submit="TodoCtrl.addTodo()">
+                 <input type="text" ng-model="TodoCtrl.todoText"  size="30"
+                        placeholder="add new todo here">
+                 <input class="btn-primary" type="submit" value="add">
+               </form>
+             </div>
+           </div>
+           <div class="tabs-spacer"></div>
+           <h4>Locale: SK</h4>
+           <div class="well"></div>
+         </div>
+       </div> -->
+
+      <hr class="shield" />
+
+      <h1 id="embed-and-inject">Design Scalable Apps</h1>
+      <div class="row">
+        <div class="col-md-4">
+          <h3>Injectable</h3>
+          <p>
             Write single-purpose components and services, and use Dependency Injection to wire up your app. Apps are
             more testable; components are more reusable.
-        </p>
-    </div>
-    <div class="span4">
-        <h3>Testable</h3>
-        <p>
+          </p>
+        </div><!-- /.col-md-4 -->
+        <div class="col-md-4">
+          <h3>Testable</h3>
+          <p>
             Single-purpose components and Dependency Injection make applications easy to test. Unit tests are built into
             the framework.
-        </p>
-    </div>
-    <div class="span4">
-        <h3>Reusable</h3>
-        <p>
+          </p>
+        </div><!-- /.col-md-4 -->
+        <div class="col-md-4">
+          <h3>Reusable</h3>
+          <p>
             Develop a large application without large application pain. Easily share components and code using Dart's
             package manager.
-        </p>
-    </div>
-</div>
-<div class="spacer"></div>
-</div>
+          </p>
+        </div><!-- /.col-md-4 -->
+      </div><!-- /.row -->
+    </div><!-- /.container -->
 
-<footer class="footer">
-    <div class="container">
-        <p class="pull-right"><a href="#" target="_self">Back to top</a></p>
-        <p>Super-powered by Google  ©2010-2013</p>
-        <p>Code licensed under the
-            <a href="https://github.com/angular/angular.js/blob/master/LICENSE" target="_blank">The
-                MIT License</a>. Documentation licensed under <a
-                    href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.
-        </p>
-    </div>
-</footer>
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8">
+            <p>Super-powered by Google  ©2010-2013<br />
+              Code licensed under <a href="https://github.com/angular/angular.js/blob/master/LICENSE" target="_blank">The
+              MIT License</a>. Documentation licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.
+            </p>
+          </div>
+          <div class="col-md-4 align-right">
+            <a href="#"><i class="fa fa-google-plus"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-github"></i></a>
+            <a href="#"><i class="fa fa-rss"></i></a>
+          </div>
+        </div><!-- /.row -->
+      </div><!-- /.container -->
+    </footer>
 
 <!-- JavaScript at the bottom for fast page loading -->
 <!-- end scripts -->
