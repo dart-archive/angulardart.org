@@ -45,3 +45,8 @@ handlers:
   static_files: app/index.html
   upload: app/index\.html
   mime_type: text/html; charset=utf-8
+
+- url: /tutorial(/.*\.html)
+  static_files: app/tutorial\1
+  upload: app/tutorial/.*\.html
+  mime_type: text/html; charset=utf-8
