@@ -12,8 +12,9 @@
 
   body {
     font-family: 'Source Sans Pro', sans-serif;
-    font-weight: 300;
-    font-size: 15px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.5em;
   }
 
   /* ---- Headlines ---- */
@@ -94,7 +95,38 @@
 
   /* ---- Menu ---- */
   #header nav.navbar-default {
-    background: rgba(255,255,255,0.9);
+    background: rgba(255,255,255,0.8);
+  }
+
+  #header nav.navbar-default li a {
+    font-weight: 400;
+    font-size: 14px;
+    color: #444;
+  }
+
+  #header nav.navbar-default li.active a {
+    color: #a6120d;
+  }
+
+  #header nav.navbar-default li a:hover,
+  #header nav.navbar-default li.active a:hover,
+  #header nav.navbar-default li.dropdown.open > a {
+    color: #dd1b16;
+  }
+
+  #header nav.navbar-default li.active a,
+  #header nav.navbar-default li.dropdown.open a {
+    background: transparent;
+  }
+
+  #header nav.navbar-default .navbar-form {
+    margin-left: 15px;
+  }
+
+  #header nav.navbar-default .dropdown-menu {
+    border: none;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 10px 12px rgba(0,0,0,.05);
   }
 
   /* ---- Logo ---- */
@@ -121,6 +153,7 @@
     text-align: center;
     background: transparent;
     background: url('../img/grunge.png') bottom repeat-x;
+    margin-bottom: 10px;
   }
 
   #header .jumbotron .btn {
@@ -134,13 +167,24 @@
     background: url('../img/logo.png') center no-repeat;
     background-size: contain;
     line-height: 175%;
-    margin: 5% 0 0;
+    margin: 3% 0 10px;
   }
 
   #header .jumbotron h3 {
-    font-size: 40px;
-    padding: 15px 0;
-    margin: 10px 0;
+    font-size: 38px;
+    padding: 3px 0;
+    margin: 20px 0 25px;
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+  }
+
+  #header .jumbotron h3 .inner {
+    display: block;
+    width: 95%;
+    margin: 0 auto;
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+    padding: 10px 0;
   }
 
   #header .jumbotron h3 .icon:before {
@@ -151,7 +195,7 @@
   #header .jumbotron p {
     font-size: 14px;
     font-weight: 400;
-    margin-top: 10px;
+    margin: 15px 0 0;
   }
 
 /* -------------------------------------
@@ -159,10 +203,40 @@
   ------------------------------------- */
 
   /* ---- Home Sections ---- */
+  .primary {
+    text-align: center;
+  }
+
+  .primary h2 {
+    border-bottom: 8px solid #f2f2f2;
+    margin-bottom: 10px;
+    padding-bottom: 15px;
+  }
+
+  .primary p {
+    font-size: 15px;
+    line-height: 1.5em;
+  }
+
+  .secondary h3 {
+    border-bottom: 5px;
+    font-weight: normal;
+    margin: 5px 0 15px;
+  }
+
+  .secondary p {
+    border-left: 8px solid #f2f2f2;
+    padding-left: 15px;
+  }
+
   #why-angulardart { }
+
   #angularjs-plus-dart { }
+
   #future-ready { }
+
   #getting-started { }
+
   #documentation { }
 
   /* ---- News & Updates Section ---- */
