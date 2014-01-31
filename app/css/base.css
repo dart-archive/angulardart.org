@@ -231,10 +231,13 @@
     position: absolute;
     right: 0;
     top: 50px;
-    padding: 30px 100px;
-    -webkit-transform: rotate(45deg);
-    transform: rotate(45deg);
-    display: none;
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    text-indent: -10000px;
+    background: url('../img/banner.png') no-repeat;
+    background-size: contain;
+    text-align: left;
   }
 
   /* ---- Breadcrumbs ---- */
