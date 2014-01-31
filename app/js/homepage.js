@@ -419,7 +419,9 @@ angular.module('homepage', [])
         });
 
       $('[rel=popover]').
-        popover().
+        popover(
+          {trigger: 'hover'}
+          ).
         pulse();
       startPulse();
     });
