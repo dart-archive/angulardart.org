@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="Description"
+          content="AngularDart is a framework for building web-apps in DART.
+                 Declarative templates with data-binding, MVW, MVVM, MVC, dependency injection and great
+                 testability story!">
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+
+    <title>AngularDart Tutorial: Production Deployment</title>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../css/base.css">
+    <link href="../google-code-prettify/prettify.css" type="text/css" rel="stylesheet">
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/base.css">
+
+
+
+    <!--<base href="/">--><base href=".">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.min.js"></script>
+</head>
+
+<body>
+<div id="header">
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">AngularDart</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <form class="navbar-form navbar-right" role="search">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                    </div>
+                </form>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/demo.html">Intro</a></li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Learn <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/demo.html">Intro to AngularDart</a></li>
+                            <li class="active"><a href="/tutorial/">Tutorial</a></li>
+                            <li><a href="https://github.com/dart-lang/dart_by_example#angular-dart">Examples</a></li>
+                            <li><a href="https://www.dartlang.org/events/2014/flight-school/">Find a Flight School Event</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Develop <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/">API Reference</a></li>
+                            <li><a href="http://stackoverflow.com/questions/tagged/angular-dart">Q&amp;A (Stack Overflow)</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Discuss<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="http://blog.angulardart.org">Blog</a></li>
+                            <li><a href="http://groups.google.com/group/angular-dart">Mailing List</a></li>
+                            <li><a href="https://twitter.com/#!/angulardart">Twitter</a></li>
+                            <li><a href="https://plus.google.com/109866369054280216564">Google+</a></li>
+                            <li><a href="https://github.com/angular/angular.dart">GitHub</a></li>
+                            <li><a href="https://github.com/angular/angular.dart/issues">Issue Tracker</a></li>
+                        </ul>
+                    </li>
+                </ul><!-- /.nav -->
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container -->
+    </nav><!-- /.navbar -->
+
+    <div class="breadcrumbs">
+        <div class="container">
+            <ol class="breadcrumb">
+                <li><a href="/">Home</a></li>
+                <li><a href="/tutorial/index.html">Tutorial</a></li>
+                <li class="active"><a href="09-ch07-deploying-your-app.html">Production Deployment</a></li>
+            </ol><!-- /.breadcrumb -->
+        </div><!-- /.container -->
+    </div><!-- /.breadcrumbs -->
+
+</div><!-- /#header -->
+
+<div role="main" class="container">
+
+  <h1 id="angulardart-tutorial-production-deployment">Production Deployment</h1>
+
+  <h2 id="running-the-sample-app">Running the Sample App</h2>
+
+  <p>Before running the app, make sure you run the code generators (see below for
+more info) like so:</p>
+
+<pre class="prettyprint">
+dart -c bin/generator.dart
+</pre>
+
+  <p>You can then run the app in Dart Editor:
+Right-click <strong>Chapter_07/web/index.html</strong>, and choose <strong>Run as JavaScript</strong>.</p>
+
+  <p>After the app is compiled to JavaScript,
+the app should appear in your default browser.
+You can copy the app’s URL into any other browser you’d like to test.</p>
+
+  <h2 id="overview">Overview</h2>
+
+  <p>When deploying your app in production you need to make sure that:</p>
+
+  <ol>
+    <li>compiled (<a href="https://www.dartlang.org/docs/dart-up-and-running/contents/ch04-tools-dart2js.html">dart2js</a>) output is small</li>
+    <li>application performs as well in JavaScript as it does in Dart VM</li>
+    <li>application runs not only in Chrome, but other supported modern browsers</li>
+  </ol>
+
+  <p>AngularDart and di heavily rely on <a href="https://api.dartlang.org/docs/channels/stable/latest/dart_mirrors.html">dart:mirrors</a> APIs.
+Mirrors allow AngularDart to provide super fast developer friendly edit-refresh
+cycle, without needing to run slow compilers and code generators.
+However, mirrors come at a cost:</p>
+
+  <ol>
+    <li>use of mirrors disables very important optimizations performed by
+<a href="https://www.dartlang.org/docs/dart-up-and-running/contents/ch04-tools-dart2js.html">dart2js</a> compiler, such as tree-shaking, which allows removal
+of unused code from the output, resulting in very large JavaScript file.</li>
+    <li>mirrors are much slower compared to static Dart code, which might not be
+an issue for smaller/medium applications, but in larger apps might become
+noticeable. Dart team is constantly working on improving performance of
+mirrors, so long-term it’s not a problem, but in short-term it’s something
+you might need to think about.</li>
+  </ol>
+
+  <p>Here we will provide some tip on these subjects.</p>
+
+  <h2 id="managing-compiled-code-size">Managing Compiled Code Size</h2>
+
+  <h3 id="minification">Minification</h3>
+
+  <p>dart2js allows you to minify the resulting JavaScript, which:</p>
+
+  <ul>
+    <li>removes unnecessary whitespace</li>
+    <li>shortens the class and field names</li>
+  </ul>
+
+  <p>Minification can reduce your resulting JavaScript by 2-3x.</p>
+
+  <p>All you need to do is run <code>pub build</code>, which has minification turned on
+by default.</p>
+
+<pre class="prettyprint">
+cd your_app
+pub build
+</pre>
+
+  <h3 id="mirrorsused"><code>@MirrorsUsed</code></h3>
+
+  <p>To help manage the code size of applications that use mirrors, Dart provides a
+<a href="https://api.dartlang.org/docs/channels/stable/latest/dart_mirrors/MirrorsUsed.html"><code>@MirrorsUsed</code></a> annotation. This annotation tells the dart2js
+compiler which targets (classes, libraries, annotations, etc.) are being
+reflected on. This way dart2js can skip all the unused stuff thus radically
+reducing the output size.</p>
+
+  <p><code>@MirrorsUsed</code> is often hard to get right as it really depends on how/if
+you use code generation (discussed later in “Optimizing Runtime Performance”
+chapter). Assuming you do use code generation (as we do in this chapter) and
+are using angular &gt;=0.9.5, your annotation could look like this:</p>
+
+<pre class="prettyprint">
+@MirrorsUsed(
+    override: '*'
+)
+import 'dart:mirrors';
+</pre>
+
+  <p>If you classes are not annotated by <code>@Ng...</code> and are used in expressions,
+you will need to add the classes (or their libraries) to your application’s
+<code>@MirrorsUsed</code> annotation.</p>
+
+  <p>(The @MirrorsUsed code for this app used to be much longer, but as of 0.9.5,
+Angular has default definitions that
+include the APIs you’re likely to need.)</p>
+
+  <h4 id="debugging">Debugging</h4>
+
+  <p>If it happens that you have misconfigured <code>@MirrorsUsed</code>, you will likely
+be seeing errors like “Cannot find class for: Foo” or your
+directives/components/controllers will be ignored when running in JavaScript.
+Usually, the easiest fix is to just add that class (or the whole library)
+to <code>@MirrorsUsed.targets</code>.</p>
+
+  <p>It’s much easier to debug <code>@MirrorsUsed</code> while working with unminified 
+dart2js output, as you’ll be able to see unminified class/field names and
+be able to much easier identify what is missing.</p>
+
+  <h2 id="optimizing-runtime-performance">Optimizing Runtime Performance</h2>
+
+  <p>Currently there are two code generators: di and AngularDart Parser generators.</p>
+
+  <h3 id="di-code-generator">di Code Generator</h3>
+
+  <p>di.dart Injector uses dart:mirrors APIs for retrieving types of constructor
+parameters and invoking the constructor to create new instances. The generator
+generates static code for creating new instances and resolving dependencies.</p>
+
+  <p>You can find an example of how to use the di generator in
+<code>bin/generator.dart</code> file.</p>
+
+  <h4 id="discovering-instantiable-types">Discovering Instantiable Types</h4>
+
+  <p>Ideally, types that are instantiated by the injector should be extracted from
+the module definitions, however currently di modules are dynamically defined
+and are mutable, making them very hard (impossible in some cases) to analyze
+statically.</p>
+
+  <p>The generator has to rely on some guidance from the user to mark classes that
+injector has to instantiate. There are two ways of doing this: @Injectables
+or custom class annotation.</p>
+
+  <p><code>@Injectables</code> is an annotation provided by the di package which can be
+applied on a library definition with a list of types that the generator
+should process.</p>
+
+<pre class="prettyprint">
+@Injectables(const [
+    MyService
+])
+library my_service_librarry;
+
+import 'package:di/annotations.dart';
+
+class MyService {
+  // ...
+}
+</pre>
+
+  <p><code>@Injectables</code> annotation should be mainly used with classes that are out of
+your control (ex. you can’t modify the source code – third party library).
+In all other cases it’s preferable to use custom class annotation(s).</p>
+
+  <p>You can define your own custom class annotations</p>
+
+  <pre class="prettyprint">
+library injectable;
+
+/**
+ * An annotation specifying that the annotated class will be instantiated by
+ * di Injector and type factory code generator should include it in its output.
+ */
+class InjectableService {
+  const InjectableService();
+}
+      </pre>
+
+  <p>and apply them on classes that you need to be instantiated by the injector.</p>
+
+<pre class="prettyprint">
+@InjectableService()
+class QueryService {
+  // ...
+}
+</pre>
+
+  <p>You can then then configure generator to look for those annotations.</p>
+
+  <p>When configuring the generator with the custom annotation you need to pass
+a fully qualified class name (including the library prefix). In case of the
+above example the fully qualified name of Service annotation would be
+<code>injectable.InjectableService</code>.</p>
+
+  <h3 id="angulardart-parser-generator">AngularDart Parser Generator</h3>
+
+  <p>AngularDart Parser Generator extracts all expressions from your application
+and then compiles them into Dart, so at runtime it doesn’t have to parse those
+expressions and while invoking the expressions it uses pre-generated code to
+access fields and methods, so it doesn’t have to use mirrors.</p>
+
+  <p>There are many places in the application where expressions can be used:</p>
+
+  <ol>
+    <li>HTML template attributes</li>
+    <li>mustaches  {{ }} (technically a directive)</li>
+    <li>custom syntax directives like ng-repeat</li>
+    <li>component/directive attribute mappings</li>
+    <li>programmatic calls to Scope.$eval, Scope.$watch/$watchCollection,
+Parser.call, etc.</li>
+  </ol>
+
+  <p>It’s not always trivial to tell if element attribute in HTML template contains
+an expression or just a string value.</p>
+
+  <p>Expression extractor has to:</p>
+
+  <ol>
+    <li>find all component/directive definitions in the source code and extract
+their metadata (NgAnnotations, field attribute mapping annotations)</li>
+    <li>statically “compile” all the templates to identify all directives and
+extract all attributes and mustaches that contain expressions</li>
+  </ol>
+
+  <p>Sometimes directives with attributes mapped with @ spec can subsequently call
+<code>Scope.$eval</code> on the string value of the attribute. In those cases directive
+can tell expression extractor that attribute value is used in this way via
+<code>exportExpressionAttrs</code> property on <code>NgDirective</code>/<code>NgComponent</code> annotation. Ex:</p>
+
+<pre class="prettyprint">
+@NgComponent(
+  selector: ‘foo’
+  exportExpressionAttrs: ‘bar’
+)
+class FooComponent implement NgAttachAware {
+  @NgAttr(‘bar’)
+  String bar;
+  Scope scope;
+
+  FooComponent(Scope this.scope);
+
+  attach() {
+   scope.$watch(bar, _barChanged);
+  }
+
+  _barChanged(val) {}
+}
+</pre>
+
+  <p>Similarly, if directive programmatically evaluates an expression it can tell
+expression extractor which expressions it evaluates:</p>
+
+<pre class="prettyprint">
+@NgDirective(
+  selector: 'foo'
+  exportExpressions: '1 + 3'
+)
+class FooDirective {
+  FooComponent(Scope scope) {
+    _showResult(scope.$eval('1 + 2'));
+  }
+}
+</pre>
+
+  <p>You can find an example of how to use the parser generator in
+<code>bin/generator.dart</code> file.</p>
+
+  <h3 id="code-generators-and-development-mode">Code Generators and Development Mode</h3>
+
+  <p>You should not be using code generators during development, as they are slow
+and can significanly degrade productivity. Instead, during development it’s
+better to use dynamic versions of di Injector and Parser and use generators
+only for testing and production.</p>
+
+  <p>In <code>web/main.dart</code> you can see <code>initializer-prod.dart</code> file being
+imported, which has <code>initializer-dev.dart</code> counterpart. Switching between
+those two file will allow you to switch between prod and dev modes. You will
+need to run the generator script before using the prod mode.</p>
+
+  <p>It is highly recommended that you automate (via a script or a flag on the
+server) the prod/dev mode switching to minimize the chance of dev mode being
+released into production.</p>
+
+  <h2 id="cross-browser-support">Cross-browser Support</h2>
+
+  <p>Angular components use <a href="http://www.html5rocks.com/en/tutorials/webcomponents/shadowdom/">Shadow DOM</a>, but unfortunately it’s not
+natively supported in all modern browsers, so you would need to use a
+<a href="http://pub.dartlang.org/packages/shadow_dom">polyfill</a>.</p>
+
+  <p>Include the script tag before any other script tags:</p>
+
+<pre class="prettyprint">
+&lt;script src="packages/shadow_dom/shadow_dom.min.js"&gt;&lt;/script&gt;
+</pre>
+
+  <p>or the debug version:</p>
+
+<pre class="prettyprint">
+&lt;script src="packages/shadow_dom/shadow_dom.debug.js"&gt;&lt;/script&gt;
+</pre>
+
+  <p><strong>NOTE:</strong> Using the polyfill has <a href="https://github.com/polymer/ShadowDOM#known-limitations">some limitations</a>,
+so make sure you are aware of those limitations before you start using it.</p>
+
+  <table>
+      <tbody>
+      <tr>
+          <td><a href="index.html">Tutorial Overview</a></td>
+          <td><a href="07-ch05-filter-service.html">Prev</a></td>
+      </tr>
+      </tbody>
+  </table>
+</div>
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <p>Super-powered by Google  ©2010-2013<br />
+                    Code licensed under <a href="https://github.com/angular/angular.js/blob/master/LICENSE" target="_blank">The
+                        MIT License</a>. Documentation licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.
+                </p>
+            </div>
+            <div class="col-md-4 align-right">
+                <a href="#"><i class="fa fa-google-plus"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-github"></i></a>
+                <a href="#"><i class="fa fa-rss"></i></a>
+            </div>
+        </div><!-- /.row -->
+    </div><!-- /.container -->
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-8594346-12', 'angulardart.org');
+    ga('send', 'pageview');
+</script><!-- /Analytics-->
+
+</body>
