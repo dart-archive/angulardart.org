@@ -8,11 +8,11 @@ packages:
   angular:
     description: angular
     source: hosted
-    version: "0.9.5"
+    version: "0.9.5+2"
   angularfire:
     description:
       ref: dart
-      resolved-ref: e48a7a62a06b538e117b18e9afab0d10b3fc4d52
+      resolved-ref: c733dc1e3e3a24311d73b61d4a5fb43791d2da6d
       url: "https://github.com/firebase/angularFire"
     source: git
     version: "0.1.0"
@@ -64,6 +64,10 @@ packages:
     description: route_hierarchical
     source: hosted
     version: "0.4.10"
+  shadow_dom:
+    description: shadow_dom
+    source: hosted
+    version: "0.9.1"
   source_maps:
     description: source_maps
     source: hosted

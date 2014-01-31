@@ -38,7 +38,7 @@ class FirebaseResultsAdapter {
   FirebaseAdapter _results;
 
   FirebaseResultsAdapter() {
-    this._results = new AngularFire(fb);
+    this._results = new AngularFire().create(fb);
   }
 
   getResults() {
