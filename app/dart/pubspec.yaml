@@ -1,0 +1,14 @@
+name: angular_dart_demo
+version: 0.0.1
+dependencies:
+  angular: any
+  browser: any
+  js: any
+  firebase: 0.1.0
+  angularfire:
+    git:
+      url: https://github.com/firebase/angularFire
+      ref: dart
+
+dev_dependencies:
+  unittest: any

@@ -1,0 +1,257 @@
+<div class="col-md-4" xmlns="http://www.w3.org/1999/html">
+  <div class="bs-docs-sidebar hidden-print affix-top">
+
+<ol class="toc nav bs-sidenav" id="markdown-toc">
+  <li><a href="#the-code">The code</a></li>
+  <li><a href="#introducing-filters">Introducing filters</a>    <ol>
+      <li><a href="#built-in-filters">Built in filters</a></li>
+      <li><a href="#custom-filters">Custom filters</a></li>
+      <li><a href="#filter-chaining">Filter chaining</a></li>
+    </ol>
+  </li>
+  <li><a href="#introducing-the-httphttpciangularjsorgviewdartjobangulardart-masterjavadocangularcoredomhttphtml-service">Introducing the <a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/angular.core.dom/Http.html"><code>Http</code></a> service</a></li>
+  <li><a href="#angular-features">Angular features</a></li>
+  <li><a href="#explore-more">Explore more</a></li>
+</ol>
+
+  </div>
+</div>
+<div class="col-md-8">
+  <p><!-- Start of content -->
+	</p>
+
+  <h1 id="angulardart-tutorial-introducing-filters-and-services">AngularDart Tutorial: Introducing Filters and Services</h1>
+
+  <p>In this chapter, we will add two features to our app. First, we will get the recipe data from a service instead of hardcoding mock data into the app. Second, we will look at another handy tool in Angular’s toolbox - filters. When you’re finished, you will be able to use built in filters as well as create your own custom filters. You will also be able to read data from a server-side service like a real app.</p>
+
+  <h3 id="the-code">The code</h3>
+  <p><a href="https://github.com/angular/angular.dart.tutorial/tree/master/Chapter_05">Here is the code</a> for the next version of our Recipe Book app. Run the code in Dart Editor. Notice the text box and checkboxes at the top of the app. You can use these inputs to control which recipes are shown in the list. Start typing into the filter box and watch the list of visible recipes shrink to match your search criteria. Next, limit your results further by checking a few categories to limit to. Try using both filters together by typing in a search criteria and also limiting based on category. Lastly, clear the filters by pressing the “Clear Filters” button, and watch all your results re-appear.</p>
+
+  <h3 id="introducing-filters">Introducing filters</h3>
+  <p>Filters let you change how your model data is displayed in the view without changing the model data itself. They do things like allow you to show parts of the model data, or display data in a particular format. You can also use Angular’s custom filters feature to create your own filters to do anything you want.</p>
+
+  <h4 id="built-in-filters">Built in filters</h4>
+  <p>Angular has some built in filters that provide some handy functionality. Here is a list of all the currently implemented <a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/angular.filter.html">AngularDart filters</a></p>
+
+  <p>These are pretty self explanatory. The <code>CurrencyFilter</code> formats numbers like money. The <code>DateFilter</code> formats dates. The <code>UppercaseFilter</code> and <code>LowercaseFilters</code> do what you would expect. The <code>LimitToFilter</code> limits the number of results for a list model object that will appear in the view.</p>
+
+  <p>In our app, we use the <a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/angular.filter/FilterFilter.html"><code>FilterFilter</code></a>. Like the <code>LimitToFilter</code>, the <code>FilterFilter</code> also limits the number of list model objects that will appear in the view. It chooses which items to display based on whether or not they satisfy the filter criteria.</p>
+
+  <p>Here is how we use the <code>FilterFilter</code>.</p>
+
+  <p>First, we created a text input box and bound it through <code>ng-model</code> to a property called <code>nameFilterString</code>. As the user types into the text input box, it updates the model object’s <code>nameFilterString</code> property.
+<pre class="prettyprint">
+&lt;input id="name-filter" type="text" 
+  ng-model="ctrl.nameFilterString"
+  value=" "&gt;&lt;/input&gt;
+</pre>
+
+  <p>Next, we pipe the <code>ng-repeat</code> criteria through the filter, and tell the filter to use <code>ctrl.nameFilterString</code> as the property to check.
+    <pre class="prettyprint">
+    &lt;ul&gt;
+        &lt;li class="pointer"
+            ng-repeat="recipe in ctrl.recipes | filter:{name:ctrl.nameFilterString}"&gt;
+        …
+        &lt;/li&gt;
+    &lt;/ul&gt;
+</pre>
+  <p>Lastly, we create a property on our <code>RecipeBookController</code> to store the <code>nameFilterString</code> property for the input.
+<pre class="prettyprint">
+String nameFilterString = "";
+</pre>
+
+  <p>That’s all you need to start filtering your results.</p>
+
+  <h4 id="custom-filters">Custom filters</h4>
+  <p>Built in filters are nice, but what if you want to do something more specific. In our app, we also want to be able to reduce the number of recipes shown to those in a particular category. For this, we write a custom filter called <code>CategoryFilter</code>.</p>
+
+  <p>A custom filter in Angular is simply a Dart class that declares a <code>call</code> method with at least one argument:</p>
+
+    <pre class="prettyprint">
+call(valueToFilter, optArg1, ..., optArgN);
+</pre>
+
+  <p>The first argument is the incoming model object to be filtered; in our case, it will be the recipe list. The remaining (0 or more) optional arguments (named <code>optArgi</code> above)  serve as input from the view, and they will be applied in some way to the <code>valueToFilter</code> to perform the filtering. In our case, as will be explained below, we need only one optional parameter to let us weed out recipes from the incoming list that we don’t want to display.</p>
+
+  <p>The <code>call</code> method should return the filtered value. In our case, it is a new recipe list that is a subset of the incoming recipe list.</p>
+
+  <p>Here is the call method from our <code>CategoryFilter</code>:</p>
+
+<pre class="prettyprint">
+call(recipeList, filterMap) {
+  if (recipeList is List &amp;&amp; filterMap is Map) {
+    // If there is nothing checked, treat it as "everything is checked"
+    bool nothingChecked = filterMap.values.every((isChecked) =&gt; !isChecked);
+    if (nothingChecked) {
+      return recipeList.toList();
+    }
+    return recipeList.where((i) =&gt; filterMap[i.category] == true).toList();
+  }
+}
+</pre>
+
+  <p>The <code>filterMap</code> parameter deserves some further explanation. It’s the data that comes in off of the checkbox inputs. We will talk a little bit more about how checkboxes work in Angular in the next section.</p>
+
+  <p>Next, annotate the class to publish it as a filter:
+<pre class="prettyprint">
+@NgFilter(name: 'categoryfilter')
+</pre>
+  <p>Add the new class to the bootstrapping code:
+<pre class="prettyprint">
+  var module = new MyAppModule()
+    ...
+    ..type(CategoryFilter)
+</pre>
+
+  <p>and then use it from the view:</p>
+
+<pre class="prettyprint">
+&lt;div&gt;
+    &lt;label>Filter recipes by category
+        &lt;span ng-repeat="category in ctrl.categories"&gt;
+          &lt;input type="checkbox"
+                 ng-model="ctrl.categoryFilterMap[category]">{{category}}
+        &lt;/span&gt;
+    &lt;/label&gt;
+&lt;/div&gt;
+ </pre>
+
+  <p>Our view creates a checkbox input and label for each category. Angular stores each checkbox value as a boolean - true if checked, or false if not checked.</p>
+
+  <p>To create the checkboxes, we added a new piece of data to our app - a list of categories. We use the <code>ng-repeat</code> Directive to iterate through the list and create a checkbox and label for each category. Inputs in Angular are bound to a model object with the <code>ng-model</code> Directive. Here, we bind to a map called <code>categoryFilterMap</code>. The map’s keys are the category names, and the values are true or false depending on whether or not they’re checked.</p>
+
+  <p>Next, we plug the custom filter in the same way we would plug in a built in filter:
+<pre class="prettyprint">
+&lt;li class="pointer"
+    ng-repeat="recipe in ctrl.recipes | categoryfilter:ctrl.categoryFilterMap"&gt;
+</pre>
+  <h4 id="filter-chaining">Filter chaining</h4>
+  <p>Our app uses a feature called filter chaining to apply more than one filter to the same view element. Below, we see the <code>ng-repeat</code> Directive has three filters separated by pipes. This is how Angular applies multiple filters to a single <code>ng-repeat</code>.</p>
+
+ <pre class="prettyprint">
+&lt;li class="pointer"
+    ng-repeat="recipe in ctrl.recipes | orderBy:'name' | filter:{name:ctrl.nameFilterString} | categoryfilter:ctrl.categoryFilterMap"&gt;
+</pre>
+
+  <h3 id="introducing-the-httphttpciangularjsorgviewdartjobangulardart-masterjavadocangularcoredomhttphtml-service">Introducing the <a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/angular.core.dom/Http.html"><code>Http</code></a> service</h3>
+
+  <p>Our last example had the data hard coded in the app. In reality, you’d request data from a server side service. Angular provides a built in service called the <code>Http</code> Service that handles making HTTP requests to the server. First lets look at the two new files we’ve added to the project: recipes.json and categories.json. These contain data that’s been serialized as a JSON string. We will use the <code>Http</code> service to make an HTTP request to the web server to fetch this data. Let’s look at how to do this.</p>
+
+  <p>First, we declare a property on the <code>RecipeBookController</code> class. Ours is called <code>_http</code>. The <code>Http</code> service is part of the core Angular package, so you don’t need to import anything new. Next, look at the <code>RecipeBookController</code>’s constructor. We’ve added a parameter and assigned it to the <code>_http</code> property. Angular instantiates the <code>RecipeBookController</code> class using Dependency Injection. In the main method, you set up the injector with your app’s module where you included the code to construct a <code>RecipeBookController</code>. The call to <code>ngBootstrap</code> includes the <code>AngularModule</code>, which contains injection rules for all of Angular’s core features, including the <code>Http</code> service.</p>
+
+<pre class="prettyprint">
+class RecipeBookController {
+  Http _http;
+  ...
+
+  RecipeBookController(this._http) {
+    _loadData();
+  }
+</pre>
+
+<pre class="prettyprint">
+class MyAppModule extends Module {
+  MyAppModule() {
+    type(RecipeBookController);
+    ...
+</pre>
+
+<pre class="prettyprint">
+main() {
+  ngBootstrap(module: new MyAppModule());
+}
+</pre>
+  <p>Next, let’s look at how to use the <code>Http</code> service to fetch data from the server. Look at the changes we made to the <code>_loadData</code> method. Here is the new code:</p>
+
+<pre class="prettyprint">
+void _loadData() {
+  recipesLoaded = false;
+
+  _http.get('recipes.json')
+    .then((HttpResponse response) {
+      for (Map recipe in response.data) {
+        recipes.add(new Recipe.fromJsonMap(recipe));
+      }
+      recipesLoaded = true;
+    },
+    onError: (Object obj) {
+      recipesLoaded = false;
+      loadingMessage = ERROR_MESSAGE;
+    });
+...
+</pre>
+
+  <p>Let’s look more closely at the call to the <code>Http</code> service:</p>
+
+<pre class="prettyprint">
+_http.get()
+  .then(...)
+</pre>
+
+  <p>The <code>Http</code> <code>get</code> method returns a <a href="http://api.dartlang.org/docs/releases/latest/dart_async/Future.html">Dart Future</a>. A Future is the promise of a value sometime in the future. It is the core of <a href="https://www.dartlang.org/docs/dart-up-and-running/contents/ch03.html#ch03-asynchronous-programming">asynchronous programming in Dart</a>. Once the Future is complete, the <code>then()</code> method is invoked to process the response. <code>then()</code> takes two arguments, both functions. The first function is invoked when the Future is complete, and is used to process the data returned from the Future. The second optional argument is a function that will be invoked in the event that an error was returned from the call.</p>
+
+<pre class="prettyprint">
+future.then((value) { 
+        useValue(value); 
+    },
+    onError: (error) {
+        handleError(error);
+    }
+);
+</pre>
+
+  <p>The important thing to understand from this example is that Futures are asynchronous. Your app code will proceed while the data is loading from the server side. If you are connecting to a very slow service, it is possible that the app will finish loading before the data has been returned. The view should be prepared for this. In our case, we need two pieces of data before the app is useful:</p>
+
+<pre class="prettyprint">
+List categories = [];
+List&lt;Recipe&gt; recipes = [];
+</pre>
+
+  <p>Until the future has returned, your recipe book contains an empty list of recipes and an empty list of categories. Any part of your view that uses or displays recipes or categories will see an empty list. If you don’t want empty spots displaying on the app, you can surround portions of your view with statements that display a “Loading…” message until the data is ready.</p>
+
+  <p>In our app, we keep track of whether we have enough data to load the app by storing the load state for recipes and categories and conditionally displaying a load message, or the whole view, depending on whether the app is done loading enough data to be useful.</p>
+
+<pre class="prettyprint">
+&lt;div ng-if="!ctrl.recipesLoaded || !ctrl.categoriesLoaded"&gt;
+    {{ctrl.message}}
+&lt;/div&gt;
+&lt;div ng-if="ctrl.recipesLoaded &amp;&amp; ctrl.categoriesLoaded"&gt;
+...
+</pre>
+
+  <p>You can see the “Loading…” feature work by simulating a really slow loading data source. Put a breakpoint inside one of the then closures in the <code>_loadData</code> method and load the app. Notice that while you’re stopped at the breakpoint, your app shows the  “Loading…” message. Now get out of the breakpoint and notice that your app’s real view pops into place. Also notice that we changed the loaded state from false to true inside the asynchronous part of <code>_loadData</code> (inside the then() call). If we’d put it at the end of the <code>_loadData</code> method outside of the asynchronous call, it would evaluate regardless of the state of the Future.</p>
+
+  <h3 id="angular-features">Angular features</h3>
+  <h4><a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/angular.directive/NgCloakDirective.html"><code>ng-cloak</code></a></h4>
+<p>You probably noticed that in previous examples, when you first loaded your app, you briefly saw curly braces like <code>{{someVar}}</code> before your app “popped” into place, and the correct values appeared. The <code>ng-cloak</code> Directive combined with some CSS rules that you add to your app’s main CSS file allow you to avoid this blink. The blink happens between the time your HTML loads and Angular is bootstrapped and has compiled the DOM and has substituted in the real values for the uncompiled DOM values. While Angular is compiling the DOM, you can hide the page (or sections of it) by using <code>ng-cloak</code>:</p>
+<pre class="prettyprint">
+&lt;body class=”ng-cloak”&gt;
+</pre>
+or
+<pre class="prettyprint">
+&lt;body ng-cloak&gt;
+</pre>
+The CSS rule causes the view  to be hidden:
+<pre class="prettyprint">
+[ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+   display: none !important;
+}
+</pre>
+
+  <p>Once Angular is finished compiling the DOM, it secretly removes the <code>ng-cloak</code> class or Directive from the DOM and allows your app to be visible.</p>
+
+  <h3 id="explore-more">Explore more</h3>
+  <p>Now it’s your turn to add a feature to the app. Pretend you’re cooking for a large party, and create a filter that will multiply all the amounts in the recipes.</p>
+
+  <p><strong>Hint:</strong> You’ll have to change the recipe model to include a more full featured “Ingredient” field that contains an amount, and then possibly a unit, and finally, an item name. Next, add a “multiplier” input that will allow the user to double, triple, or quadruple the recipe. Lastly, write a custom filter that multiplies each amount by the number specified in the multiplier input. If your code fails with the error “5 $digest() iterations reached”, then read <a href="http://stackoverflow.com/questions/21322969/angulardart-custom-filter-call-method-required-to-be-idempotent">this explanation on StackOverflow</a>.</p>
+
+  <table>
+    <tbody>
+      <tr>
+        <td><a href="00-home.html">Home</a></td>
+        <td><a href="06-ch04-directive.html">Prev</a></td>
+        <td><a href="08-ch06-view.html">Next</a></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
