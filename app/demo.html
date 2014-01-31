@@ -527,16 +527,6 @@ class BackendAppRouter implements RouteInitializer {
           enter: view('./list.html')
         )
       ..addRoute(
-          name: 'status',
-          path: '/status/:status',
-          enter: view('./list.html')
-        )
-      ..addRoute(
-          name: 'topic',
-          path: '/topic/:topic',
-          enter: view('./list.html')
-        )
-      ..addRoute(
           name: 'new',
           path: '/new',
           enter: view('./new.html')
@@ -546,38 +536,17 @@ class BackendAppRouter implements RouteInitializer {
 
 @NgInjectableService()
 class FirebaseResultsAdapter {
+  static const String BASE = 'https://angular-dart-homepage.firebaseio.com/';
+  Firebase fb = new Firebase(BASE);
 
-  //FirebaseAdapter _results;
-  Scope _rootScope;
+  FirebaseAdapter _results;
 
-  FirebaseResultsAdapter(Scope this._rootScope) {
-    //Firebase ref = new Firebase("https://dart.firebaseio-demo.com/test");
-    //this._results = new AngularFire().create(ref);
+  FirebaseResultsAdapter() {
+    this._results = new AngularFire(fb);
   }
 
   getResults() {
-    //return this.results;
-    var results = this._rootScope['results'];
-    if(results == null) {
-      results = this._rootScope['results'] = this.populateResults();
-    }
-    return results;
-  }
-
-  populateResults() {
-    List mockResults = [
-      ['webserver', 'functional'],
-      ['coffee', 'offline'],
-      ['db', 'functional'],
-      ['billing', 'crashing']
-    ];
-
-    List results = [];
-    mockResults.forEach((result) {
-      results.add(new SystemEntry(result[0], result[1]));
-    });
-
-    return results;
+    return _results;
   }
 }
 
@@ -592,15 +561,7 @@ class SystemPanelCtrl {
 
   SystemPanelCtrl(RouteProvider routeProvider, Scope this.scope, FirebaseResultsAdapter adapter) {
     Map params = routeProvider.parameters;
-
-    this.results = adapter.getResults();
-    if(params.containsKey("topic")) {
-      this.results = this.results.where((item) => item.topicKey == params["topic"]);
-      this.filterOn = true;
-    } else if(params.containsKey("status")) {
-      this.results = this.results.where((item) => item.statusKey == params["status"]);
-      this.filterOn = true;
-    }
+    this.results = adapter.getResults().values;
   }
 }
 
@@ -630,8 +591,13 @@ class SystemEntry {
     this.status = SystemEntry.statusValues()[this.statusKey];
   }
 
-  save() {
-
+  export() {
+    return {
+      'topicKey' : this.topicKey,
+      'topic' : this.topic,
+      'statusKey' : this.statusKey,
+      'status' : this.status
+    };
   }
 }
 
@@ -670,13 +636,11 @@ class NewEntryFormCtrl {
   }
 
   submit() {
-    this._results.add(new SystemEntry(this.topicKey, this.statusKey));
+    SystemEntry entry = new SystemEntry(this.topicKey, this.statusKey);
+    print(entry.export());
+    this._results.add(entry.export());
     this._router.gotoUrl('home');
   }
-}
-
-main() {
-  ngBootstrap(module: new BackendAppModule());
 }
     </script>
     <script type="text/ng-template" id="index.html">
@@ -689,13 +653,10 @@ main() {
     <script type="text/ng-template" id="list.html">
 <div system-panel>
   <h2>Website Uptime Status</h2>
-  <div ng-if="panel.filterOn">
-    <a href="/">Clear Filter</a>
-  </div>
   <div ng-repeat="entry in panel.results ">
     {{ $index + 1 }}:
-      <a ng-href="/topic/{{ entry.topicKey }}">{{ entry.topic }}</a> -
-      <a ng-href="/status/{{ entry.statusKey }}">{{ entry.status }}</a>
+      {{ entry.$value.topic }} -
+      {{ entry.$value.status }}
   </div>
 </div>
     </script>
