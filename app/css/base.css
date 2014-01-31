@@ -3,7 +3,7 @@
   ------------------------------------- */
 
   /* ---- Fonts ---- */
-  @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Roboto:400,300,500,700);
+  @import url(//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Roboto:400,300,500,700);
 
   html {
     text-rendering: optimizelegibility;
@@ -51,7 +51,7 @@
     top: -28px;
   }
 
-  hr.invisible {
+  hr.spacer {
     border-color: transparent;
   }
 
@@ -68,7 +68,7 @@
     text-align: center;
   }
 
-  /* Buttons */
+  /* ---- Buttons ---- */
   .btn {
     font-size: 18px;
     background-image: -webkit-linear-gradient(45deg, rgb(181,45,49) 0%, rgb(181,45,49) 50%, rgb(221,27,22) 50%);
@@ -99,6 +99,17 @@
     background-image: linear-gradient(45deg, rgb(181,45,49) 0%, rgb(181,45,49) 50%, rgb(221,27,22) 50%);
   }
 
+  .btn-small {
+    font-size: 12px;
+    padding: 5px 15px;
+  }
+
+  /* ---- Hints ---- */
+  code.nocode {
+    color: #fff;
+    background: #e84844 !important;
+  }
+
 /* -------------------------------------
   Header
   ------------------------------------- */
@@ -112,7 +123,7 @@
 
   /* ---- Menu ---- */
   #header nav.navbar-default {
-    background: rgba(255,255,255,0.8);
+    background: rgba(255,255,255,0.9);
   }
 
   #header nav.navbar-default li a {
@@ -142,7 +153,7 @@
 
   #header nav.navbar-default .dropdown-menu {
     border: none;
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(255, 255, 255, 0.9);
     box-shadow: 0 10px 12px rgba(0,0,0,.05);
   }
 
@@ -220,10 +231,13 @@
     position: absolute;
     right: 0;
     top: 50px;
-    padding: 30px 100px;
-    -webkit-transform: rotate(45deg);
-    transform: rotate(45deg);
-    display: none;
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    text-indent: -10000px;
+    background: url('../img/banner.png') no-repeat;
+    background-size: contain;
+    text-align: left;
   }
 
   /* ---- Breadcrumbs ---- */
@@ -290,6 +304,10 @@
   }
 
   /* ---- News & Updates Section ---- */
+  #news {
+    overflow: hidden;
+  }
+
   #news h3 {
     font-weight: normal;
     margin: 15px 0 15px;
@@ -379,12 +397,81 @@
   Mobile Layouts
   ------------------------------------- */
 
-  /*
-  @media (min-width: 768px) {
-    #header nav .navbar-brand {
-      width: 135px;
-      height: 30px;
-      margin: 10px 0;
+  /* --- Medium-sized Screen --- */
+  @media (max-width: 991px) {
+    #header nav.navbar-default li a {
+      padding: 15px 10px;
+    }
+
+    #header .jumbotron a.banner {
+      width: 125px;
+      height: 125px;
+    }
+
+    .primary h2 {
+      font-size: 26px;
     }
   }
-  */
+
+  /* --- Tablet --- */
+  @media (max-width: 767px) {
+    body {
+      font-size: 16px;
+    }
+
+    #header .jumbotron .btn {
+      width: 100%;
+      margin: 5px 0;
+    }
+
+    #header .jumbotron h1 {
+      display: none;
+    }
+
+    #header .jumbotron a.banner {
+      display: none;
+    }
+
+    #header nav .navbar-brand {
+      left: 50%;
+      margin-left: -85px;
+    }
+
+    #header nav.navbar-default .navbar-form {
+      margin-left: 0;
+    }
+
+    #header nav.navbar-default li a {
+      font-size: 24px;
+    }
+
+    .primary {
+      padding-bottom: 10px;
+      border-bottom: 1px solid #f2f2f2;
+      margin-bottom: 10px;
+    }
+
+    .primary:last-child {
+      border-bottom: none;
+    }
+
+    .primary h2 {
+      border-bottom: none;
+      font-size: 32px;
+    }
+
+    footer {
+      text-align: center;
+    }
+
+    footer .align-right {
+      text-align: center;
+    }
+  }
+
+  /* --- Phone-type device --- */
+  @media (max-width: 480px) {
+    #header .jumbotron h3 .inner {
+      font-size: ;
+    }
+  }

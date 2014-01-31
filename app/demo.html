@@ -14,9 +14,9 @@
     <title>AngularDart — Superheroic MVW Framework for Dart</title>
 
     <!-- Stylesheets -->
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/base.css">
-    <link rel="stylesheet" href="css/font-awesome.css">
     <link href="google-code-prettify/prettify.css" type="text/css" rel="stylesheet">
 
 
@@ -104,9 +104,9 @@
     <div role="main" class="container">
       <h1 id="the-basics">The Basics</h1>
       <div class="row example">
-        <div class="span8 app-source" app-source="hello.html hello.dart"
+        <div class="col-md-8 app-source" app-source="hello.html hello.dart"
              annotate="hello.annotation"></div>
-        <div class="col-md-12">
+        <div class="col-md-4">
           <span hint></span>
           <span class="pull-right" js-fiddle="hello.html" style="display: none;"></span>
           <div class="tabs-spacer"></div>
@@ -148,10 +148,12 @@
         </div><!-- /.col-md-4 -->
       </div><!-- /.row -->
 
+      <hr class="spacer" />
+
       <div class=" row example">
-        <div class="span8 app-source" app-source="todo.html todo.dart todo.css"
+        <div class="col-md-8 app-source" app-source="todo.html todo.dart todo.css"
              annotate="todo.annotation"></div>
-        <div class="col-md-12">
+        <div class="col-md-4">
           <span hint></span>
           <span class="pull-right" js-fiddle="todo.html todo.dart todo.css"
                 style="display: none;"></span>
@@ -170,7 +172,7 @@
               <form ng-submit="TodoCtrl.addTodo()">
                 <input type="text" ng-model="TodoCtrl.todoText"  size="30"
                        placeholder="add new todo here">
-                <input class="btn-primary" type="submit" value="add">
+                <input class="btn btn-primary btn-small" type="submit" value="add">
               </form>
             </div><!-- /.angular-dart-example -->
           </div><!-- /.well -->
@@ -214,9 +216,11 @@
         </div>
       </div>
 
-     <div class=" row example">
-      <div class="span8 app-source" app-source="classlist.html classlist.dart classlist.css" annotate="classlist.annotation"></div>
-      <div class="col-md-12">
+    <hr class="spacer" />
+
+    <div class="row example">
+      <div class="col-md-8 app-source" app-source="classlist.html classlist.dart classlist.css" annotate="classlist.annotation"></div>
+      <div class="col-md-4">
         <span hint></span>
         <span class="pull-right"  resource="resource" module="classlist"></span>
         <div class="tabs-spacer"></div>
@@ -328,16 +332,18 @@
       </div><!-- /.row -->
     </div><!-- /.container -->
 
+    <hr class="spacer" />
+
     <footer>
       <div class="container">
         <div class="row">
-          <div class="col-md-8">
+          <div class="col-md-8 col-sm-8">
             <p>Super-powered by Google  ©2010-2013<br />
               Code licensed under <a href="https://github.com/angular/angular.js/blob/master/LICENSE" target="_blank">The
               MIT License</a>. Documentation licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.
             </p>
           </div>
-          <div class="col-md-4 align-right">
+          <div class="col-md-4 col-sm-4 align-right">
             <a href="#"><i class="fa fa-google-plus"></i></a>
             <a href="#"><i class="fa fa-twitter"></i></a>
             <a href="#"><i class="fa fa-github"></i></a>
