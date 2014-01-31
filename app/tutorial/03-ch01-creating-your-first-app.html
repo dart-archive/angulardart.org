@@ -89,11 +89,12 @@ dependencies:
         <p>Next, let’s look at the two script tags at the end. </p>
 
         <pre class="prettyprint">
+&lt;script src="packages/shadow_dom/shadow_dom.min.js"&gt;&lt;/script&gt;
 &lt;script type="application/dart" src="main.dart"&gt;&lt;/script&gt;
 &lt;script type="text/javascript" src="packages/browser/dart.js"&gt;&lt;/script&gt;
 </pre>
 
-        <p>This code should be familiar if you’ve ever written a Dart web app. The first script tag specifies the Dart file that contains the main() function of your app. The second one runs a script, <code>dart.js</code>, that determines whether the browser is capable of running Dart code natively. If so, it runs Dart. If not, it runs compiled JavaScript. It then registers a callback to be executed by the browser when the containing HTML page is fully loaded.</p>
+        <p>This code should be familiar if you’ve ever written a Dart web app. The first script tag turns on the Shadow DOM (a new web platform feature) for older browsers. The second script tag specifies the Dart file that contains the main() function of your app. The second one runs a script, <code>dart.js</code>, that determines whether the browser is capable of running Dart code natively. If so, it runs Dart. If not, it runs compiled JavaScript. It then registers a callback to be executed by the browser when the containing HTML page is fully loaded.</p>
 
         <p>Once the page is loaded, Angular looks for the <code>ng-app</code> directive. If Angular finds the directive, it bootstraps the application with the root of the application DOM being the element on which the <code>ng-app</code> directive was defined.</p>
 
