@@ -123,7 +123,7 @@
 
   /* ---- Menu ---- */
   #header nav.navbar-default {
-    background: rgba(255,255,255,0.8);
+    background: rgba(255,255,255,0.9);
   }
 
   #header nav.navbar-default li a {
@@ -153,7 +153,7 @@
 
   #header nav.navbar-default .dropdown-menu {
     border: none;
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(255, 255, 255, 0.9);
     box-shadow: 0 10px 12px rgba(0,0,0,.05);
   }
 
