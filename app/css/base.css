@@ -3,7 +3,7 @@
   ------------------------------------- */
 
   /* ---- Fonts ---- */
-  @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Roboto:400,300,500,700);
+  @import url(//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Roboto:400,300,500,700);
 
   html {
     text-rendering: optimizelegibility;
@@ -51,7 +51,7 @@
     top: -28px;
   }
 
-  hr.invisible {
+  hr.spacer {
     border-color: transparent;
   }
 
@@ -68,7 +68,7 @@
     text-align: center;
   }
 
-  /* Buttons */
+  /* ---- Buttons ---- */
   .btn {
     font-size: 18px;
     background-image: -webkit-linear-gradient(45deg, rgb(181,45,49) 0%, rgb(181,45,49) 50%, rgb(221,27,22) 50%);
@@ -97,6 +97,17 @@
     background-image: -moz-linear-gradient(45deg, rgb(181,45,49) 0%, rgb(181,45,49) 50%, rgb(221,27,22) 50%);
     background-image: -o-linear-gradient(45deg, rgb(181,45,49) 0%, rgb(181,45,49) 50%, rgb(221,27,22) 50%);
     background-image: linear-gradient(45deg, rgb(181,45,49) 0%, rgb(181,45,49) 50%, rgb(221,27,22) 50%);
+  }
+
+  .btn-small {
+    font-size: 12px;
+    padding: 5px 15px;
+  }
+
+  /* ---- Hints ---- */
+  code.nocode {
+    color: #fff;
+    background: #e84844 !important;
   }
 
 /* -------------------------------------
