@@ -219,35 +219,23 @@
     <hr class="spacer" />
 
     <div class="row example">
-      <div class="col-md-8 app-source" app-source="classlist.html classlist.dart classlist.css" annotate="classlist.annotation"></div>
+      <div class="col-md-8 app-source" app-source="index.html backend.dart list.html new.html"></div>
       <div class="col-md-4">
         <span hint></span>
         <span class="pull-right"  resource="resource" module="classlist"></span>
         <div class="tabs-spacer"></div>
         <div class="well" ng-non-bindable>
-          <h2>Classlist</h2>
-          <div class="angular-dart-example" id="classlist-app">
-            <div classlist-controller>
-              <div class="well">
-                <div ng-repeat="student in ctrl.students">
-                  <div>
-                    <label>
-                      <input type="checkbox" ng-model="student['selected']">
-                      {{student['name']}}
-                    </label>
-                  </div>
-                 </div><!-- /.ng-repeat -->
-                </div><!-- /.well -->
-
-                <h5>Selected fruit</h5>
-                <div ng-repeat="student in ctrl.selectedStudents">
-                  {{student['name']}}
-                </div><!-- /.ng-repeat -->
-              </div><!-- /claslist-controller -->
-            </div><!-- /#classlist-app -->
+          <h2>Backend App</h2>
+          <div class="angular-dart-example" id="backend-app">
+  <nav>
+    <a href="/">Home</a>
+    <a href="/new">New Entry</a>
+  </nav>
+  <ng-view></ng-view>
           </div><!-- /.well -->
         </div><!-- /.col-md-4 -->
       </div><!-- /.row -->
+    </div>
 
       <hr class="shield" />
 
@@ -515,57 +503,228 @@
 </div>
 <div class="classlist-code">
     <!-- ============== Classlist ============== -->
-    <style type="text/css" id="classlist.css">
-        table { text-align: left; }
-        table td, table th {
-            vertical-align: top;
-            padding: 0 .25em;
-        }
-    </style>
-    <script id="classlist.dart" type="text/dart">
+    <script id="backend.dart" type="text/dart">
 import 'package:angular/angular.dart';
+import 'package:angular/routing/module.dart';
 import 'package:firebase/firebase.dart';
 import 'package:angularfire/angularfire.dart';
 
-@NgController(
-    selector: '[classlist-controller]',
-    publishAs: 'ctrl'
-)
-class ClasslistController {
-  List<String> students = [
-      {'name': 'Jack Aubrey', 'selected': true},
-      {'name': 'Clarissa Oakes', 'selected': true},
-      {'name': 'Stephen Maturin', 'selected': false}
-  ];
-
-  List<String> get selectedStudents {
-    return students.where((student) => student['selected']).toList();
+class BackendAppModule extends Module {
+  BackendAppModule() {
+    type(SystemPanelCtrl);
+    type(NewEntryFormCtrl);
+    type(FirebaseResultsAdapter);
+    type(RouteInitializer, implementedBy: BackendAppRouter);
   }
 }
-    </script>
-    <script type="text/ng-template" id="classlist.html">
-        <div classlist-controller>
-            <div class="well">
-                <div ng-repeat="student in ctrl.students">
-                    <div>
-                        <label>
-                            <input type="checkbox" ng-model="student['selected']">
-                            {{student['name']}}
-                        </label>
-                    </div>
-                </div>
-            </div>
 
-            <h5>Selected students</h5>
-            <div ng-repeat="student in ctrl.selectedStudents">
-                {{student['name']}}
-            </div>
-        </div>
+class BackendAppRouter implements RouteInitializer {
+  void init(Router router, ViewFactory view) {
+    router.root
+      ..addRoute(
+          defaultRoute: true,
+          name: 'home',
+          enter: view('./list.html')
+        )
+      ..addRoute(
+          name: 'status',
+          path: '/status/:status',
+          enter: view('./list.html')
+        )
+      ..addRoute(
+          name: 'topic',
+          path: '/topic/:topic',
+          enter: view('./list.html')
+        )
+      ..addRoute(
+          name: 'new',
+          path: '/new',
+          enter: view('./new.html')
+        );
+  }
+}
+
+@NgInjectableService()
+class FirebaseResultsAdapter {
+
+  //FirebaseAdapter _results;
+  Scope _rootScope;
+
+  FirebaseResultsAdapter(Scope this._rootScope) {
+    //Firebase ref = new Firebase("https://dart.firebaseio-demo.com/test");
+    //this._results = new AngularFire().create(ref);
+  }
+
+  getResults() {
+    //return this.results;
+    var results = this._rootScope['results'];
+    if(results == null) {
+      results = this._rootScope['results'] = this.populateResults();
+    }
+    return results;
+  }
+
+  populateResults() {
+    List mockResults = [
+      ['webserver', 'functional'],
+      ['coffee', 'offline'],
+      ['db', 'functional'],
+      ['billing', 'crashing']
+    ];
+
+    List results = [];
+    mockResults.forEach((result) {
+      results.add(new SystemEntry(result[0], result[1]));
+    });
+
+    return results;
+  }
+}
+
+@NgController(
+  selector: '[system-panel]',
+  publishAs: 'panel'
+)
+class SystemPanelCtrl {
+  Scope scope;
+  bool filterOn = false;
+  FirebaseAdapter results;
+
+  SystemPanelCtrl(RouteProvider routeProvider, Scope this.scope, FirebaseResultsAdapter adapter) {
+    Map params = routeProvider.parameters;
+
+    this.results = adapter.getResults();
+    if(params.containsKey("topic")) {
+      this.results = this.results.where((item) => item.topicKey == params["topic"]);
+      this.filterOn = true;
+    } else if(params.containsKey("status")) {
+      this.results = this.results.where((item) => item.statusKey == params["status"]);
+      this.filterOn = true;
+    }
+  }
+}
+
+class SystemEntry {
+  static statusValues() {
+    return {
+      "functional"    : "Operations Normal!",
+      "unpredictable" : "Runs OK ... Sometimes",
+      "crashing"      : "Ughh? What's going on?",
+      "offline"       : "Nope. It's not responding"
+    };
+  }
+
+  static topicValues() {
+    return {
+      "webserver" : "Webserver",
+      "db"        : "Database Engine",
+      "billing"   : "Billing System",
+      "coffee"    : "Coffee Machine"
+    };
+  }
+
+  String statusKey, topicKey, status, topic;
+
+  SystemEntry(String this.topicKey, String this.statusKey) {
+    this.topic  = SystemEntry.topicValues()[this.topicKey];
+    this.status = SystemEntry.statusValues()[this.statusKey];
+  }
+
+  save() {
+
+  }
+}
+
+@NgController(
+  selector: '[entry-form-ctrl]',
+  publishAs: 'form'
+)
+class NewEntryFormCtrl {
+
+  Scope _scope;
+  NgForm _form;
+  Router _router;
+
+  FirebaseAdapter _results;
+  String topicKey;
+  String statusKey;
+
+  String statuses;
+  String topics;
+
+  NewEntryFormCtrl(Router this._router, Scope this._scope, NgForm this._form, FirebaseResultsAdapter adapter) {
+    this.topics   = this.formatAsOptions(SystemEntry.topicValues());
+    this.statuses = this.formatAsOptions(SystemEntry.statusValues());
+    this._results = adapter.getResults();
+  }
+
+  formatAsOptions(Map items) {
+    List options = [];
+    items.forEach((value, title) {
+      options.add({
+        'value' : value,
+        'title' : title
+      });
+    });
+    return options;
+  }
+
+  submit() {
+    this._results.add(new SystemEntry(this.topicKey, this.statusKey));
+    this._router.gotoUrl('home');
+  }
+}
+
+main() {
+  ngBootstrap(module: new BackendAppModule());
+}
+    </script>
+    <script type="text/ng-template" id="index.html">
+  <nav>
+    <a href="/">Home</a>
+    <a href="/new">New Entry</a>
+  </nav>
+  <ng-view></ng-view>
+    </script>
+    <script type="text/ng-template" id="list.html">
+<div system-panel>
+  <h2>Website Uptime Status</h2>
+  <div ng-if="panel.filterOn">
+    <a href="/">Clear Filter</a>
+  </div>
+  <div ng-repeat="entry in panel.results ">
+    {{ $index + 1 }}:
+      <a ng-href="/topic/{{ entry.topicKey }}">{{ entry.topic }}</a> -
+      <a ng-href="/status/{{ entry.statusKey }}">{{ entry.status }}</a>
+  </div>
+</div>
+    </script>
+    <script type="text/ng-template" id="new.html">
+<form entry-form-ctrl ng-submit="form.submit()" novalidate>
+
+  <div class="field">
+    <label>Topic:</label>
+    <select required ng-model="form.topicKey" required>
+      <option ng-repeat="result in form.topics" value="{{ result['value'] }}">{{ result['title'] }}</option> 
+    </select>
+  </div>
+
+  <div class="field">
+    <label>Status:</label>
+    <select required ng-model="form.statusKey" required>
+      <option ng-repeat="result in form.statuses" value="{{ result['value'] }}">{{ result['title'] }}</option> 
+    </select>
+  </div>
+
+  <nav>
+    <input type="submit" />
+  </nav>
+</form>
     </script>
 
 
     <script type="text/ng-template" id="project.annotation">
-        { "classlist.html":
+        { "index.html":
         { "ng-app": "Tells AngularDart to be active in this portion of the page. In this case the entire document."
         , "classlist": "The <code>ng-app</code> activates the <code>classlist</code> module for this page region. This lets you have modules that run in different parts of the page."
         , "firebase/firebase.dart": "Load the Dart version of the Firebase SDK."
