@@ -11,7 +11,7 @@
 
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 
-    <title>AngularDart Tutorial: Before you Begin</title>
+    <title>AngularDart Tutorial</title>
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="../css/base.css">
@@ -95,8 +95,7 @@
         <div class="container">
             <ol class="breadcrumb">
                 <li><a href="/">Home</a></li>
-                <li><a href="/tutorial/index.html">Tutorial</a></li>
-                <li class="active"><a href="01-before-you-begin.html">Before You Begin</a></li>
+                <li class="active"><a href="/tutorial/index.html">Tutorial</a></li>
             </ol><!-- /.breadcrumb -->
         </div><!-- /.container -->
     </div><!-- /.breadcrumbs -->
@@ -104,53 +103,71 @@
 </div><!-- /#header -->
 
 <div role="main" class="container">
+  <h1 id="the-angulardart-tutorial">The AngularDart Tutorial</h1>
 
-  <h1 id="angulardart-tutorial-before-you-begin">Before You Begin</h1>
+  <p>Welcome to the AngularDart Tutorial!
+<a href="01-before-you-begin.html" class="more">Start here &raquo;</a></p>
 
-  <p>This tutorial assumes that you have some knowledge of the Dart programming language and development environment. It assumes you have no knowledge of Angular, but that you do know basic HTML and CSS.</p>
+  <p>Also check out this <a href="https://github.com/nikgraf/exploring-angular.dart/blob/master/resources.md">list of resources</a>.</p>
 
-  <p>To get the most out of this tutorial, you should have a Dart development environment and the tutorial’s sample code.</p>
-
-  <h3 id="get-a-dart-development-environment">Get a Dart development environment</h3>
-
-  <p>The easiest way to get started with AngularDart is to install Dart Editor:</p>
-
-  <blockquote>
-    <p>www.dartlang.org/tools/editor/</p>
-  </blockquote>
-
-  <p>When you download Dart Editor, you also get the Dart SDK (which includes Dart command-line tools) and Dartium—a build of Chromium with the Dart VM. For more information about Dart tools, see www.dartlang.org/tools/.</p>
-
-  <h3 id="get-the-tutorial-sample-code">Get the tutorial sample code</h3>
-
-  <p>All of the code in this tutorial is visible at https://github.com/angular/angular.dart.tutorial. We recommend that you get a local copy, either by cloning the repo or by downloading the <a href="https://github.com/angular/angular.dart.tutorial/archive/master.zip">ZIP file</a>.</p>
-
-  <h3 id="new-to-dart">New to Dart?</h3>
-
-  <p>If you’re new to Dart, take some time to familiarize yourself with the basics of the Dart language and application structure. The Dart documentation lives at www.dartlang.org/. You can start with any of these:</p>
-
-  <dl>
-      <dt><a href="https://www.dartlang.org/codelabs/darrrt/">Code Lab: Pirate Convention</a></dt>
-      <dd><p>Write your first Dart web app, using Dart Editor. Also: Generate your pirate name.</p></dd>
-
-      <dt><a href="https://www.dartlang.org/docs/dart-up-and-running/contents/ch02.html">A Tour of the Dart Language</a></dt>
-      <dd><p>Learn all about the Dart language. </p></dd>
-
-      <dt><a href="https://www.dartlang.org/docs/tutorials/">Dart Tutorials</a></dt>
-      <dd>
-          <p>Follow tutorials about various Dart programming topics, from web app 101 to package management to
-              asynchronous programming with Futures and Streams. </p></dd>
-</dl>
-          <table>
-              <tbody>
-              <tr>
-                  <td><a href="index.html">&laquo; Tutorial Overview</a>&nbsp;&nbsp;&nbsp;</td>
-                  <td><a href="02-welcome-to-angular.html">Next &raquo;</a></td>
-              </tr>
-              </tbody>
-          </table>
-
-</div>
+  <table>
+    <thead>
+      <tr>
+        <th style="text-align: left">Chapter</th>
+        <th style="text-align: left">Briefly</th>
+        <th style="text-align: left">Includes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="text-align: left"><a href="01-before-you-begin.html">Before You Begin</a></td>
+        <td style="text-align: left">Prerequisites</td>
+        <td style="text-align: left">Links to downloads</td>
+      </tr>
+      <tr>
+        <td style="text-align: left"><a href="02-welcome-to-angular.html">Welcome to Angular</a></td>
+        <td style="text-align: left">Overview</td>
+        <td style="text-align: left">Angular, MVC, AngularJS, API docs</td>
+      </tr>
+      <tr>
+        <td style="text-align: left">1: <a href="03-ch01-creating-your-first-app.html">Creating Your First Angular app</a></td>
+        <td style="text-align: left">A “Hello World” app</td>
+        <td style="text-align: left"><code>ng-app</code>, <code>ngBootstrap()</code>, MVC, mustache syntax (``), Angular expressions, data binding</td>
+      </tr>
+      <tr>
+        <td style="text-align: left">2: <a href="04-ch02-controller.html">Something More than “Hello World”</a></td>
+        <td style="text-align: left">A Recipe Book app</td>
+        <td style="text-align: left">Scopes, models, controllers, NgController, <code>type()</code>, common properties (<code>selector</code>, <code>publishAs</code>), <code>ng-repeat</code>, <code>ng-click</code></td>
+      </tr>
+      <tr>
+        <td style="text-align: left">3: <a href="05-ch03-component.html"> Creating a Custom Component</a></td>
+        <td style="text-align: left">A rating component for Recipe Book</td>
+        <td style="text-align: left">NgComponent, properties (<code>selector</code> &amp; <code>publishAs</code> again, <code>templateUrl</code>, <code>cssUrl</code>), NgAttr, NgOneWay, NgTwoWay, component vs. controller, <code>ng-if</code>, <code>ng-class</code></td>
+      </tr>
+      <tr>
+        <td style="text-align: left">4: <a href="06-ch04-directive.html"> Creating a Custom Directive</a></td>
+        <td style="text-align: left">Tooltips for Recipe Book</td>
+        <td style="text-align: left">NgDirective, custom element attributes, DOM manipulation, table comparing NgController &amp; NgDirective &amp; NgComponent</td>
+      </tr>
+      <tr>
+        <td style="text-align: left">5: <a href="07-ch05-filter-service.html">Introducing Filters and Services</a></td>
+        <td style="text-align: left">Filtering recipes by category, fetching data</td>
+        <td style="text-align: left">Built-in and custom filters, the Http service, displaying a “Loading…” message, <code>ng-cloak</code></td>
+      </tr>
+      <tr>
+        <td style="text-align: left">6: <a href="08-ch06-view.html">Creating Views</a></td>
+        <td style="text-align: left">Reorganizing the app, customizing URLs</td>
+        <td style="text-align: left">App structure, view-specific components, changing the app URL, Router, ViewFactory, <code>addRoute()</code>, <code>ng-view</code></td>
+      </tr>
+      <tr>
+        <td style="text-align: left">7: <a href="09-TBD.html">Deploying Your App</a></td>
+        <td style="text-align: left"><em>(Draft version)</em></td>
+        <td style="text-align: left">Minification, @MirrorsUsed, performance, code generation, cross-browser support</td>
+      </tr>
+    </tbody>
+  </table>
+ <br>
+  <p><a href="01-before-you-begin.html" class="more">Next &raquo;</a></p>
 </div>
 <footer>
     <div class="container">
