@@ -25,7 +25,7 @@ handlers:
   static_files: app\1
   upload: app/.*\.html
   mime_type: text/html; charset=utf-8
-  
+
 - url: (/.*\.json)
   static_files: app\1
   upload: app/.*\.json
@@ -40,7 +40,7 @@ handlers:
   static_files: app\1
   upload: app/.*\.png
   mime_type: image/png
-  
+
 - url: (/.*)
   static_files: app/index.html
   upload: app/index\.html
