@@ -8,6 +8,8 @@ class BackendAppModule extends Module {
     type(SystemPanelCtrl);
     type(NewEntryFormCtrl);
     type(FirebaseResultsAdapter);
+    factory(NgRoutingUsePushState,
+        (_) => new NgRoutingUsePushState.value(false));
     type(RouteInitializer, implementedBy: BackendAppRouter);
   }
 }
