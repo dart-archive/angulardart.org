@@ -1,8 +1,7 @@
 import 'package:angular/angular.dart';
 import 'package:di/di.dart';
 import 'package:intl/intl.dart';
-import 'package:firebase/firebase.dart';
-import 'package:angularfire/angularfire.dart';
+import './backend-app.dart';
 
 // Hello example ///////////////////////////////////////////////////////////////
 
@@ -166,5 +165,5 @@ class ClasslistController {
 main() {
   ngBootstrap(selector: '#hello-app');
   ngBootstrap(module: new TodoModule(), selector: '#todo-app');
-  ngBootstrap(module: new Module()..type(ClasslistController), selector: '#classlist-app' );
+  ngBootstrap(module: new BackendAppModule(), selector: '#backend-app' );
 }
