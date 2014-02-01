@@ -2,14 +2,13 @@ import 'package:angular/angular.dart';
 import 'package:angular/routing/module.dart';
 import 'package:firebase/firebase.dart';
 import 'package:angularfire/angularfire.dart';
+import 'dart:html';
 
 class BackendAppModule extends Module {
   BackendAppModule() {
     type(SystemPanelCtrl);
     type(NewEntryFormCtrl);
     type(FirebaseResultsAdapter);
-    factory(NgRoutingUsePushState,
-        (_) => new NgRoutingUsePushState.value(false));
     type(RouteInitializer, implementedBy: BackendAppRouter);
   }
 }
@@ -18,15 +17,23 @@ class BackendAppRouter implements RouteInitializer {
   void init(Router router, ViewFactory view) {
     router.root
       ..addRoute(
-          defaultRoute: true,
-          name: 'home',
-          enter: view('./list.html')
-        )
+        name: 'new',
+        path: '/demo/new',
+        enter: view('./new.html')
+      )
       ..addRoute(
-          name: 'new',
-          path: '/new',
-          enter: view('./new.html')
-        );
+        defaultRoute: true,
+        name: 'demohome',
+        path: '/demo/',
+        enter: view('./list.html')
+    )
+    ..addRoute(
+        name: 'home',
+        path: '/',
+        enter: (e) {
+          window.location.assign("/");
+        }
+    );
   }
 }
 
@@ -38,7 +45,7 @@ class FirebaseResultsAdapter {
   FirebaseAdapter _results;
 
   FirebaseResultsAdapter() {
-    this._results = new AngularFire(fb);
+    this._results = new AngularFire().create(fb);
   }
 
   getResults() {

@@ -53,13 +53,13 @@
             </form>
 
             <ul class="nav navbar-nav navbar-right">
-              <li><a href="#">Home</a></li>
-              <li class="active"><a href="demo.html">Intro</a></li>
+              <li><a href="/">Home</a></li>
+              <li class="active"><a href="/demo/">Demo</a></li>
 
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Learn <b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                  <li><a href="demo.html">Intro to AngularDart</a></li>
+                  <li><a href="/demo/">Intro to AngularDart</a></li>
                   <li><a href="/tutorial/">Tutorial</a></li>
                   <li><a href="https://github.com/dart-lang/dart_by_example#angular-dart">Examples</a></li>
                   <li><a href="https://www.dartlang.org/events/2014/flight-school/">Find a Flight School Event</a></li>
@@ -94,7 +94,7 @@
         <div class="container">
           <ol class="breadcrumb">
             <li><a href="/">Home</a></li>
-            <li class="active"><a href="demo.html">Intro</a></li>
+            <li class="active"><a href="/demo/">Demo</a></li>
           </ol><!-- /.breadcrumb -->
         </div><!-- /.container -->
       </div><!-- /.breadcrumbs -->
@@ -228,8 +228,8 @@
           <h2>Backend App</h2>
           <div class="angular-dart-example" id="backend-app">
   <nav>
-    <a href="#/">Home</a>
-    <a href="#/new">New Entry</a>
+    <a href="/demo/">Home</a>
+    <a href="/demo/new">New Entry</a>
   </nav>
   <ng-view></ng-view>
           </div><!-- /.well -->
@@ -259,7 +259,7 @@
 
         </div><!-- /.col-md-4 -->
       </div><!-- /.row -->
-      <div class="row example">TODO: Add code for example illustrating component use?</div>
+      <!--<div class="row example">TODO: Add code for example illustrating component use?</div>-->
 
       <!-- <div class=" row example">
          <div class="span8 app-source" app-source="tabs.html components.js app.js" annotate="tabs.annotation" module="app"></div>
@@ -887,7 +887,8 @@ class NewEntryFormCtrl {
 <script src="https://platform.twitter.com/widgets.js"></script>
 
 <script type="application/dart" src="../dart/examples.dart"></script>
-<script type="text/javascript" src="../js/dart.js"></script>
+<script type="text/javascript" src="../dart/packages/browser/dart.js"></script>
+<script type="text/javascript" src="../dart/packages/browser/interop.js"></script>
 <!--Analytics -->
 <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
