@@ -125,7 +125,7 @@
 
   <p>First, we created a text input box and bound it through <code>ng-model</code> to a property called <code>nameFilterString</code>. As the user types into the text input box, it updates the model object’s <code>nameFilterString</code> property.
 <pre class="prettyprint">
-&lt;input id="name-filter" type="text" 
+&lt;input id="name-filter" type="text"
   ng-model="ctrl.nameFilterString"
   value=" "&gt;&lt;/input&gt;
 </pre>
@@ -275,8 +275,8 @@ _http.get()
   <p>The <code>Http</code> <code>get</code> method returns a <a href="http://api.dartlang.org/docs/releases/latest/dart_async/Future.html">Dart Future</a>. A Future is the promise of a value sometime in the future. It is the core of <a href="https://www.dartlang.org/docs/dart-up-and-running/contents/ch03.html#ch03-asynchronous-programming">asynchronous programming in Dart</a>. Once the Future is complete, the <code>then()</code> method is invoked to process the response. <code>then()</code> takes two arguments, both functions. The first function is invoked when the Future is complete, and is used to process the data returned from the Future. The second optional argument is a function that will be invoked in the event that an error was returned from the call.</p>
 
 <pre class="prettyprint">
-future.then((value) { 
-        useValue(value); 
+future.then((value) {
+        useValue(value);
     },
     onError: (error) {
         handleError(error);
@@ -329,15 +329,11 @@ The CSS rule causes the view  to be hidden:
 
   <p><strong>Hint:</strong> You’ll have to change the recipe model to include a more full featured “Ingredient” field that contains an amount, and then possibly a unit, and finally, an item name. Next, add a “multiplier” input that will allow the user to double, triple, or quadruple the recipe. Lastly, write a custom filter that multiplies each amount by the number specified in the multiplier input. If your code fails with the error “5 $digest() iterations reached”, then read <a href="http://stackoverflow.com/questions/21322969/angulardart-custom-filter-call-method-required-to-be-idempotent">this explanation on StackOverflow</a>.</p>
 
-  <table>
-    <tbody>
-      <tr>
-        <td><a href="index.html">Tutorial Overview</a></td>
-        <td><a href="06-ch04-directive.html">Prev</a></td>
-        <td><a href="08-ch06-view.html">Next</a></td>
-      </tr>
-    </tbody>
-  </table>
+  <ul class="pager">
+    <li class="previous"><a href="06-ch04-directive.html">&laquo; Prev</a></li>
+    <li><a href="index.html">Tutorial Overview</a></li>
+    <li class="next"><a href="08-ch06-view.html">Next &raquo;</a></li>
+  </ul>
 </div>
 <footer>
     <div class="container">
