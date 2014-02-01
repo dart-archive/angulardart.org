@@ -125,19 +125,18 @@
 
   <p>First, we created a text input box and bound it through <code>ng-model</code> to a property called <code>nameFilterString</code>. As the user types into the text input box, it updates the model object’s <code>nameFilterString</code> property.
 <pre class="prettyprint">
-&lt;input id="name-filter" type="text"
-  ng-model="ctrl.nameFilterString"
-  value=" "&gt;&lt;/input&gt;
+&lt;input id="name-filter" type="text" 
+  ng-model="ctrl.nameFilterString"&gt;
 </pre>
 
   <p>Next, we pipe the <code>ng-repeat</code> criteria through the filter, and tell the filter to use <code>ctrl.nameFilterString</code> as the property to check.
     <pre class="prettyprint">
-    &lt;ul&gt;
-        &lt;li class="pointer"
-            ng-repeat="recipe in ctrl.recipes | filter:{name:ctrl.nameFilterString}"&gt;
-        …
-        &lt;/li&gt;
-    &lt;/ul&gt;
+&lt;ul&gt;
+    &lt;li class="pointer"
+	ng-repeat="recipe in ctrl.recipes | filter:{name:ctrl.nameFilterString}"&gt;
+    ...
+    &lt;/li&gt;
+&lt;/ul&gt;
 </pre>
   <p>Lastly, we create a property on our <code>RecipeBookController</code> to store the <code>nameFilterString</code> property for the input.
 <pre class="prettyprint">
@@ -182,9 +181,13 @@ call(recipeList, filterMap) {
 </pre>
   <p>Add the new class to the bootstrapping code:
 <pre class="prettyprint">
-  var module = new MyAppModule()
+class MyAppModule extends Module {
+  MyAppModule() {
     ...
-    ..type(CategoryFilter)
+    type(CategoryFilter)
+    ...
+  }
+}
 </pre>
 
   <p>and then use it from the view:</p>
@@ -198,7 +201,7 @@ call(recipeList, filterMap) {
         &lt;/span&gt;
     &lt;/label&gt;
 &lt;/div&gt;
- </pre>
+</pre>
 
   <p>Our view creates a checkbox input and label for each category. Angular stores each checkbox value as a boolean - true if checked, or false if not checked.</p>
 
@@ -227,20 +230,22 @@ call(recipeList, filterMap) {
 class RecipeBookController {
   Http _http;
   ...
-
   RecipeBookController(this._http) {
     _loadData();
   }
+  ...
+}
 </pre>
 
 <pre class="prettyprint">
 class MyAppModule extends Module {
   MyAppModule() {
+    ...
     type(RecipeBookController);
     ...
-</pre>
+  }
+}
 
-<pre class="prettyprint">
 main() {
   ngBootstrap(module: new MyAppModule());
 }
@@ -250,19 +255,20 @@ main() {
 <pre class="prettyprint">
 void _loadData() {
   recipesLoaded = false;
-
+  ...
   _http.get('recipes.json')
     .then((HttpResponse response) {
       for (Map recipe in response.data) {
         recipes.add(new Recipe.fromJsonMap(recipe));
       }
       recipesLoaded = true;
-    },
-    onError: (Object obj) {
+    })
+    .catchError((e) {
       recipesLoaded = false;
-      loadingMessage = ERROR_MESSAGE;
+      message = ERROR_MESSAGE;
     });
-...
+  ...
+}
 </pre>
 
   <p>Let’s look more closely at the call to the <code>Http</code> service:</p>
@@ -275,13 +281,12 @@ _http.get()
   <p>The <code>Http</code> <code>get</code> method returns a <a href="http://api.dartlang.org/docs/releases/latest/dart_async/Future.html">Dart Future</a>. A Future is the promise of a value sometime in the future. It is the core of <a href="https://www.dartlang.org/docs/dart-up-and-running/contents/ch03.html#ch03-asynchronous-programming">asynchronous programming in Dart</a>. Once the Future is complete, the <code>then()</code> method is invoked to process the response. <code>then()</code> takes two arguments, both functions. The first function is invoked when the Future is complete, and is used to process the data returned from the Future. The second optional argument is a function that will be invoked in the event that an error was returned from the call.</p>
 
 <pre class="prettyprint">
-future.then((value) {
-        useValue(value);
-    },
-    onError: (error) {
-        handleError(error);
-    }
-);
+future.then((value) { 
+    // use value
+  })
+  .catchError((e) {
+    // handle error
+  });
 </pre>
 
   <p>The important thing to understand from this example is that Futures are asynchronous. Your app code will proceed while the data is loading from the server side. If you are connecting to a very slow service, it is possible that the app will finish loading before the data has been returned. The view should be prepared for this. In our case, we need two pieces of data before the app is useful:</p>
@@ -297,10 +302,11 @@ List&lt;Recipe&gt; recipes = [];
 
 <pre class="prettyprint">
 &lt;div ng-if="!ctrl.recipesLoaded || !ctrl.categoriesLoaded"&gt;
-    {{ctrl.message}}
+  {{ctrl.message}}
 &lt;/div&gt;
 &lt;div ng-if="ctrl.recipesLoaded &amp;&amp; ctrl.categoriesLoaded"&gt;
-...
+  ...
+&lt;/div&gt;
 </pre>
 
   <p>You can see the “Loading…” feature work by simulating a really slow loading data source. Put a breakpoint inside one of the then closures in the <code>_loadData</code> method and load the app. Notice that while you’re stopped at the breakpoint, your app shows the  “Loading…” message. Now get out of the breakpoint and notice that your app’s real view pops into place. Also notice that we changed the loaded state from false to true inside the asynchronous part of <code>_loadData</code> (inside the then() call). If we’d put it at the end of the <code>_loadData</code> method outside of the asynchronous call, it would evaluate regardless of the state of the Future.</p>
