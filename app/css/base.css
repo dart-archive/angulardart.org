@@ -420,7 +420,14 @@
   /* --- Tablet --- */
   @media (max-width: 767px) {
     body {
-      font-size: 16px;
+    }
+
+    hr.shield {
+      margin: 25px 0 35px;
+    }
+
+    .container[role='main'] {
+      padding-top: 0;
     }
 
     #header .jumbotron .btn {
@@ -436,19 +443,48 @@
       display: none;
     }
 
+    #header nav .navbar-nav {
+      margin: -10px -15px;
+    }
+
     #header nav .navbar-brand {
       left: 50%;
       margin-left: -85px;
     }
 
     #header nav.navbar-default .navbar-form {
-      margin-left: 0;
+      margin-left: -15px;
+      margin-top: -1px;
+      padding-top: 15px;
+    }
+
+    #header nav.navbar-default li {
+      border-bottom: 1px solid #e7e7e7;
+    }
+
+    #header nav.navbar-default li:last-child {
+      border-bottom: none;
     }
 
     #header nav.navbar-default li a {
-      font-size: 24px;
+      font-size: 20px;
+      padding: 15px;
     }
 
+    #header nav.navbar-default .dropdown-menu {
+      padding: 0;
+      border-top: 1px solid #F5F5F5;
+    }
+
+    #header nav.navbar-default .dropdown-menu li {
+      border-color: #F5F5F5;
+    }
+
+    #header nav.navbar-default .dropdown-menu li a {
+      padding: 15px 20px;
+      font-size: 18px;
+    }
+   
     .primary {
       padding-bottom: 10px;
       border-bottom: 1px solid #f2f2f2;
@@ -475,7 +511,25 @@
 
   /* --- Phone-type device --- */
   @media (max-width: 480px) {
-    #header .jumbotron h3 .inner {
-      font-size: ;
+    #news h3 {
+      margin-bottom: 45px;
+      text-align: center;
     }
+
+    #news ul li {
+      padding-top: 25px;
+      border-top: 1px solid #eee;
+      padding-left: 0;
+      padding-bottom: 5px;
+    }
+
+    #news ul li:before {
+      left: 50%;
+      top: -24px;
+      margin-left: -16px;
+      background: #fff;
+      color: #eee;
+      border-color: #eee;
+    }
+
   }
