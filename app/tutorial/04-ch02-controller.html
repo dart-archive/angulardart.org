@@ -173,10 +173,10 @@ to open the <strong>Chapter_02</strong> directory. </p>
   <p>The <code>publishAs</code> field specifies that the controller instance should be assigned to the current scope under the name specified. The controller’s public fields are available for data binding from the view through the <code>publishAs</code> name. Similarly, the controller’s public methods can be invoked from the view using the <code>publishAs</code> name. Here is an example:</p>
 
   <pre class="prettyprint">
-  &lt;div>&lt;strong&gt;Name: &lt;/strong&gt;{{ctrl.selectedRecipe.name}}&lt;/div&gt;
+&lt;div>&lt;strong&gt;Name: &lt;/strong&gt;{{ctrl.selectedRecipe.name}}&lt;/div&gt;
 
-  &lt;li ng-click="ctrl.selectRecipe(recipe)"&gt;{{recipe.name}}&lt;/li&gt;
-      </pre>
+&lt;li ng-click="ctrl.selectRecipe(recipe)"&gt;{{recipe.name}}&lt;/li&gt;
+</pre>
 
     <p>Here we also see how to tell the Angular bootstrapping code about our custom types. Angular uses dependency injection to instantiate the application classes you create. Inside the <a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/angular.html#ngBootstrap"><code>ngBootstrap</code></a> method, a new <a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/angular/AngularModule.html"><code>AngularModule</code></a> is created. The <code>AngularModule</code> provides all of Angular’s built in services and directives. Your app’s module is added to the list of modules that Angular loads.</p>
 
@@ -196,10 +196,9 @@ main() {
     <p>From the view, we can use the controller by adding a set of attributes to the element which will trigger the CSS selector declared on the controller:</p>
 
    <pre class="prettyprint">
-  &lt;div recipe-book&gt;
-      …
-  &lt;/div&gt;
-
+&lt;div recipe-book&gt;
+    …
+&lt;/div&gt;
 </pre>
   <p>Anything within the containing element has access to the controller’s scope.</p>
 
@@ -210,11 +209,11 @@ main() {
   <p>Now that you have a better understanding of scopes, let’s elaborate on them further by describing what’s going on behind the scenes with the <code>ng-repeat</code> tag.</p>
 
   <pre class="prettyprint">
-    &lt;ul&gt;
-      &lt;li class="pointer"
-          ng-repeat="recipe in ctrl.recipes"
-          ng-click="ctrl.selectRecipe(recipe)"&gt;{{recipe.name}}&lt;/li&gt;
-    &lt;/ul&gt;
+&lt;ul&gt;
+  &lt;li class="pointer"
+      ng-repeat="recipe in ctrl.recipes"
+      ng-click="ctrl.selectRecipe(recipe)"&gt;{{recipe.name}}&lt;/li&gt;
+&lt;/ul&gt;
 </pre>
 
   <p>The <code>ng-repeat</code> directive on the li element causes Angular to iterate over the model (the recipes property in the RecipeBookController), and clone the li in the compiled DOM for each recipe in the list. Each li is created with its own scope and its own instance of the recipe property. If the model changes (for example, if a recipe is added to or deleted from the model), the <code>ng-repeat</code> tag re-evaluates the model and updates the view automatically.</p>
