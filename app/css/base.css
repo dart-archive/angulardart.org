@@ -259,6 +259,10 @@
   Body
   ------------------------------------- */
 
+  .container[role='main'] {
+    padding-top: 20px;
+  }
+
   /* ---- Home Sections ---- */
   .primary {
     text-align: center;
