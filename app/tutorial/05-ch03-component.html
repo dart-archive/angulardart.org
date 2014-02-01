@@ -207,7 +207,7 @@ and how they’re used in the HTML template.</p>
 &lt;div recipe-book&gt;
     ...
 &lt;/div&gt;
-      </pre>
+</pre>
 
   <h5 id="templateurl-and-cssurl"><code>templateUrl</code> and <code>cssUrl</code></h5>
   <p>Since components are self contained,
@@ -225,11 +225,11 @@ Your app has no direct visibility into the internals of the component.</p>
 
   <p>Let’s look at our component’s HTML template:
 <pre class="prettyprint">
-   &lt;span class="stars"
-         ng-if="cmp.rating != null"
-         ng-repeat="star in cmp.stars"
-         ng-click="cmp.handleClick(star)"
-         ng-class="cmp.starClass(star)"&gt;
+&lt;span class="stars"
+      ng-if="cmp.rating != null"
+      ng-repeat="star in cmp.stars"
+      ng-click="cmp.handleClick(star)"
+      ng-class="cmp.starClass(star)"&gt;
   {{cmp.starChar(star)}}
 &lt;/span&gt;
 </pre>
