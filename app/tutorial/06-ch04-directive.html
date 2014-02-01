@@ -200,8 +200,7 @@ an Element representing the <code>&lt;span&gt;</code>.</p>
   <p>In general, when you want to implement a directive as an attribute that
 takes a value, do it like this:</p>
 
-  <pre class="prettyprint">
-@NgDirective(
+  <pre class="prettyprint">@NgDirective(
     selector: '[attributeName]'
 )
 class MyDirective {
@@ -212,8 +211,7 @@ class MyDirective {
     ...
   }
   ...
-}
-  </pre>
+}</pre>
 
   <p>AngularDart’s dependency injection system calls the constructor,
 supplying context-specific objects for
@@ -232,9 +230,9 @@ whenever the user mouses over an element that has a tooltip:</p>
 tooltipElem = new dom.DivElement();
 // ...Create children using info from displayModel…
 // ...Add the children to the &lt;div&gt;...
-          // ...Style the &lt;div&gt;...
+// ...Style the &lt;div&gt;...
 
-              dom.document.body.append(tooltipElem);</pre>
+dom.document.body.append(tooltipElem);</pre>
 
   <p><strong>Important:</strong>
 Because Angular expects to have full control of the DOM,
@@ -290,8 +288,7 @@ so that’s the type that tooltipForRecipe() returns.</p>
           80);
     }
     return tooltip[recipe]; // recipe.tooltip
-  }
-</pre>
+}</pre>
 
   <p>The use of <a href="https://api.dartlang.org/dart_core/Expando.html">Expando</a>
 is an implementation detail.
