@@ -137,7 +137,6 @@ to open the <strong>Chapter_01</strong> directory. </p>
   <h3 id="making-angular-libraries-available-to-your-app">Making Angular libraries available to your app</h3>
   <p>Dart makes dependencies available to the application through the <strong>pubspec.yaml</strong> file. Here’s the minimal pubspec.yaml file for this sample:</p>
 <pre class="prettyprint">
-yaml
 name: angular_dart_demo
 version: 0.0.1
 dependencies:
@@ -185,8 +184,7 @@ dependencies:
         <p>Now let’s look at <strong>main.dart</strong>:</p>
 
         <pre class="prettyprint">import 'package:angular/angular.dart';
-main() =&gt; ngBootstrap();
-        </pre>
+main() =&gt; ngBootstrap();</pre>
 
         <p>That code is minimal because our app is so simple. The only thing we see is some code that imports Angular and bootstraps your app. For now, don’t worry about the details of bootstrapping. We’ll cover it later.</p>
 
