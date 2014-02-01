@@ -167,7 +167,7 @@ import 'package:angular/angular.dart';
 )
 class Tooltip {
   dom.Element element;
-  
+
   @NgOneWay('tooltip')
   TooltipModel displayModel;
   ...
@@ -278,7 +278,7 @@ The tooltip directive expects a TooltipModel argument,
 so that’s the type that tooltipForRecipe() returns.</p>
 
   <pre class="prettyprint">class RecipeBookController {
-  ... 
+  ...
   static final tooltip = new Expando&lt;TooltipModel&gt;();
   TooltipModel tooltipForRecipe(Recipe recipe) {
     if (tooltip[recipe] == null) {
@@ -355,15 +355,11 @@ and whether they create a new scope.</p>
   </tr>
 </table>
 
-  <table>
-    <tbody>
-      <tr>
-        <td><a href="index.html">Tutorial Overview</a></td>
-        <td><a href="05-ch03-component.html">Prev</a></td>
-        <td><a href="07-ch05-filter-service.html">Next</a></td>
-      </tr>
-    </tbody>
-  </table>
+  <ul class="pager">
+    <li class="previous"><a href="05-ch03-component.html">&laquo; Prev</a></li>
+    <li><a href="index.html">Tutorial Overview</a></li>
+    <li class="next"><a href="07-ch05-filter-service.html">Next &raquo;</a></li>
+  </ul>
 </div>
 <footer>
     <div class="container">

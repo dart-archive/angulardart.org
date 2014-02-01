@@ -105,6 +105,10 @@
 
 <div role="main" class="container">
 
+  <div class="alert alert-warning">
+    <strong>Hey there!</strong> This article is currently considered In Development by the AngularDart team. As soon as it is production ready, this message will disappear.
+  </div>
+
   <h1 id="angulardart-tutorial-production-deployment">Production Deployment</h1>
 
   <h2 id="running-the-sample-app">Running the Sample App</h2>
@@ -208,7 +212,7 @@ directives/components/controllers will be ignored when running in JavaScript.
 Usually, the easiest fix is to just add that class (or the whole library)
 to <code>@MirrorsUsed.targets</code>.</p>
 
-  <p>It’s much easier to debug <code>@MirrorsUsed</code> while working with unminified 
+  <p>It’s much easier to debug <code>@MirrorsUsed</code> while working with unminified
 dart2js output, as you’ll be able to see unminified class/field names and
 be able to much easier identify what is missing.</p>
 
@@ -397,14 +401,10 @@ natively supported in all modern browsers, so you would need to use a
   <p><strong>NOTE:</strong> Using the polyfill has <a href="https://github.com/polymer/ShadowDOM#known-limitations">some limitations</a>,
 so make sure you are aware of those limitations before you start using it.</p>
 
-  <table>
-      <tbody>
-      <tr>
-          <td><a href="index.html">Tutorial Overview</a></td>
-          <td><a href="07-ch05-filter-service.html">Prev</a></td>
-      </tr>
-      </tbody>
-  </table>
+  <ul class="pager">
+    <li class="previous"><a href="07-ch05-filter-service.html">&laquo; Prev</a></li>
+    <li><a href="index.html">Tutorial Overview</a></li>
+  <ul>
 </div>
 <footer>
     <div class="container">
