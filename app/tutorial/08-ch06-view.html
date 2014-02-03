@@ -121,7 +121,7 @@
 
   <p>Lets look at <code>SearchRecipeComponent</code> and the HTML that goes with it. The component takes two attributes that should look familiar: <code>nameFilterString</code> and <code>categoryFilterMap</code>. The component contains just enough logic to be able to control the portion of the view responsible for searching and filtering. Note that both attributes are declared as bidirectional. This is because the <code>SearchRecipeComponent</code> clears the search filters by resetting these two attributes.</p>
 
-  <p>Now our app’s main index.html file is a lot simpler. Instead of containing all the markup to set up the search and filter views, it now just contains the call to the component. The details of the view elements are hidden away in the <code>RecipeSearchComponent</code>’s HTML template.</p>
+  <p>Now our app’s main index.html file is a lot simpler. Instead of containing all the markup to set up the search and filter views, it now just contains the call to the component. The details of the view elements are hidden away in the <code>SearchRecipeComponent</code>’s HTML template.</p>
 
  <pre class="prettyprint">
 &lt;search-recipe
