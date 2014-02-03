@@ -330,11 +330,13 @@ The CSS rule causes the view  to be hidden:
 
   <p>Once Angular is finished compiling the DOM, it secretly removes the <code>ng-cloak</code> class or Directive from the DOM and allows your app to be visible.</p>
 
-  <h3 id="explore-more">Explore more</h3>
-  <p>Now it’s your turn to add a feature to the app. Pretend you’re cooking for a large party, and create a filter that will multiply all the amounts in the recipes.</p>
-
-  <p><strong>Hint:</strong> You’ll have to change the recipe model to include a more full featured “Ingredient” field that contains an amount, and then possibly a unit, and finally, an item name. Next, add a “multiplier” input that will allow the user to double, triple, or quadruple the recipe. Lastly, write a custom filter that multiplies each amount by the number specified in the multiplier input. If your code fails with the error “5 $digest() iterations reached”, then read <a href="http://stackoverflow.com/questions/21322969/angulardart-custom-filter-call-method-required-to-be-idempotent">this explanation on StackOverflow</a>.</p>
-
+  <h3 id="explore-more">Try it yourself</h3>
+  <p>Now it’s your turn. Here are three ways in which you can extend the app version described in this chapter.</p>
+  <ol>
+    <li>Write a <strong>filter</strong> to convert <em>degrees Fahrenheit</em> (F) into <em>degrees Celsius</em> (C) in the recipe description. Round the resulting degrees Celsius to the nearest multiple of 5: e.g., 300 degrees F would become  150 C. (<strong>Hint</strong>: Dart has a <code>String</code> function named <code>cloak</code> that could be handy in this case.)</li>
+    <li>Write one or more filters (as necessary) to replace all the occurrences of “sugar” and “powdered sugar” by “maple syrup” both in the ingredients and the recipe description.</li>
+    <li>Finally, pretend that you are cooking for a large party, and create a filter that will multiply all the amounts in the recipes. <strong>Hint:</strong> You’ll have to change the recipe model to include a more full featured “Ingredient” field that contains an amount, and then possibly a unit, and finally, an item name. Next, add a “multiplier” input that will allow the user to double, triple, or quadruple the recipe. Lastly, write a custom filter that multiplies each amount by the number specified in the multiplier input. <strong>Note</strong>: If your code fails with the error “5 $digest() iterations reached”, then read <a href="http://stackoverflow.com/questions/21322969/angulardart-custom-filter-call-method-required-to-be-idempotent">this explanation on StackOverflow</a>. Also note the suggested workaround of piping  ingredient values into a (custom) <code>toString</code> filter.</li>
+  </ol>
   <ul class="pager">
     <li class="previous"><a href="06-ch04-directive.html">&laquo; Prev</a></li>
     <li><a href="index.html">Tutorial Overview</a></li>
