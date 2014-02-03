@@ -275,13 +275,7 @@ void _loadData() {
 
 <pre class="prettyprint">
 _http.get()
-  .then(...)
-</pre>
-
-  <p>The <code>Http</code> <code>get</code> method returns a <a href="http://api.dartlang.org/docs/releases/latest/dart_async/Future.html">Dart Future</a>. A Future is the promise of a value sometime in the future. It is the core of <a href="https://www.dartlang.org/docs/dart-up-and-running/contents/ch03.html#ch03-asynchronous-programming">asynchronous programming in Dart</a>. Once the Future is complete, the <code>then()</code> method is invoked to process the response. <code>then()</code> takes two arguments, both functions. The first function is invoked when the Future is complete, and is used to process the data returned from the Future. The second optional argument is a function that will be invoked in the event that an error was returned from the call.</p>
-
-<pre class="prettyprint">
-future.then((value) { 
+  .then((value) { 
     // use value
   })
   .catchError((e) {
@@ -289,6 +283,7 @@ future.then((value) {
   });
 </pre>
 
+  <p>The <code>Http</code> <code>get</code> method returns a <a href="http://api.dartlang.org/docs/releases/latest/dart_async/Future.html">Dart Future</a>. A Future is the promise of a value sometime in the future. It is at the core of <a href="https://www.dartlang.org/docs/dart-up-and-running/contents/ch03.html#ch03-asynchronous-programming">asynchronous programming in Dart</a>. In its simplest form, the<code>then()</code> method  takes a single function argument. This function is invoked when the Future completes with a value (i.e., successfully), and is used to process the value returned from the Future. The <code>catchError()</code> method also takes a function argument. This function  will be invoked if an error is emitted by the Future.</p>
   <p>The important thing to understand from this example is that Futures are asynchronous. Your app code will proceed while the data is loading from the server side. If you are connecting to a very slow service, it is possible that the app will finish loading before the data has been returned. The view should be prepared for this. In our case, we need two pieces of data before the app is useful:</p>
 
 <pre class="prettyprint">
@@ -309,7 +304,7 @@ List&lt;Recipe&gt; recipes = [];
 &lt;/div&gt;
 </pre>
 
-  <p>You can see the “Loading…” feature work by simulating a really slow loading data source. Put a breakpoint inside one of the then closures in the <code>_loadData</code> method and load the app. Notice that while you’re stopped at the breakpoint, your app shows the  “Loading…” message. Now get out of the breakpoint and notice that your app’s real view pops into place. Also notice that we changed the loaded state from false to true inside the asynchronous part of <code>_loadData</code> (inside the then() call). If we’d put it at the end of the <code>_loadData</code> method outside of the asynchronous call, it would evaluate regardless of the state of the Future.</p>
+  <p>You can see the “Loading…” feature work by simulating a really slow loading data source. Put a breakpoint inside one of the <code>then()</code> closures in the <code>_loadData</code> method and load the app. Notice that while you’re stopped at the breakpoint, your app shows the  “Loading…” message. Now get out of the breakpoint and notice that your app’s real view pops into place. Also notice that we changed the loaded state from false to true inside the asynchronous part of <code>_loadData</code> (inside the <code>then()</code> call’s argument). If we’d put it at the end of the <code>_loadData</code> method outside of the asynchronous call, it would evaluate regardless of the state of the Future.</p>
 
   <h3 id="angular-features">Angular features</h3>
   <h4><a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/angular.directive/NgCloakDirective.html"><code>ng-cloak</code></a></h4>
