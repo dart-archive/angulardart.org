@@ -46,11 +46,13 @@
             </div>
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <!--
                 <form class="navbar-form navbar-right" role="search">
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Search">
                     </div>
                 </form>
+            -->
 
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="/">Home</a></li>
@@ -107,7 +109,7 @@
 
   <p>Also check out this <a href="https://github.com/nikgraf/exploring-angular.dart/blob/master/resources.md">list of resources</a>.</p>
 
-  <table>
+  <table id="tutorial-toc">
     <thead>
       <tr>
         <th style="text-align: left">Chapter</th>
@@ -127,37 +129,37 @@
         <td style="text-align: left">Angular, MVC, AngularJS, API docs</td>
       </tr>
       <tr>
-        <td style="text-align: left">1: <a href="03-ch01-creating-your-first-app.html">Creating Your First Angular app</a></td>
+        <td style="text-align: left"><a href="03-ch01-creating-your-first-app.html">1. Creating Your First Angular app</a></td>
         <td style="text-align: left">A “Hello World” app</td>
         <td style="text-align: left"><code>ng-app</code>, <code>ngBootstrap()</code>, MVC, mustache syntax ( <code>{{...}}</code> ), Angular expressions, data binding</td>
       </tr>
       <tr>
-        <td style="text-align: left">2: <a href="04-ch02-controller.html">Something More than “Hello World”</a></td>
+        <td style="text-align: left"><a href="04-ch02-controller.html">2. Something More than “Hello World”</a></td>
         <td style="text-align: left">A Recipe Book app</td>
         <td style="text-align: left">Scopes, models, controllers, NgController, <code>type()</code>, common properties (<code>selector</code>, <code>publishAs</code>), <code>ng-repeat</code>, <code>ng-click</code></td>
       </tr>
       <tr>
-        <td style="text-align: left">3: <a href="05-ch03-component.html"> Creating a Custom Component</a></td>
+        <td style="text-align: left"><a href="05-ch03-component.html">3. Creating a Custom Component</a></td>
         <td style="text-align: left">A rating component for Recipe Book</td>
         <td style="text-align: left">NgComponent, properties (<code>selector</code> &amp; <code>publishAs</code> again, <code>templateUrl</code>, <code>cssUrl</code>), NgAttr, NgOneWay, NgTwoWay, component vs. controller, <code>ng-if</code>, <code>ng-class</code></td>
       </tr>
       <tr>
-        <td style="text-align: left">4: <a href="06-ch04-directive.html"> Creating a Custom Directive</a></td>
+        <td style="text-align: left"><a href="06-ch04-directive.html">4. Creating a Custom Directive</a></td>
         <td style="text-align: left">Tooltips for Recipe Book</td>
         <td style="text-align: left">NgDirective, custom element attributes, DOM manipulation, table comparing NgController &amp; NgDirective &amp; NgComponent</td>
       </tr>
       <tr>
-        <td style="text-align: left">5: <a href="07-ch05-filter-service.html">Introducing Filters and Services</a></td>
+        <td style="text-align: left"><a href="07-ch05-filter-service.html">5. Introducing Filters and Services</a></td>
         <td style="text-align: left">Filtering recipes by category, fetching data</td>
         <td style="text-align: left">Built-in and custom filters, the Http service, displaying a “Loading…” message, <code>ng-cloak</code></td>
       </tr>
       <tr>
-        <td style="text-align: left">6: <a href="08-ch06-view.html">Creating Views</a></td>
+        <td style="text-align: left"><a href="08-ch06-view.html">6. Creating Views</a></td>
         <td style="text-align: left">Reorganizing the app, customizing URLs</td>
         <td style="text-align: left">App structure, view-specific components, changing the app URL, Router, ViewFactory, <code>addRoute()</code>, <code>ng-view</code></td>
       </tr>
       <tr>
-        <td style="text-align: left">7: <a href="09-ch07-deploying-your-app.html">Deploying Your App</a></td>
+        <td style="text-align: left"><a href="09-ch07-deploying-your-app.html">7. Deploying Your App</a></td>
         <td style="text-align: left"><em>(Draft version)</em></td>
         <td style="text-align: left">Minification, @MirrorsUsed, performance, code generation, cross-browser support</td>
       </tr>

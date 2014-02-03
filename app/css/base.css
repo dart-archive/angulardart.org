@@ -366,6 +366,34 @@
     content: '';
   }
 
+  /* ---- Tutorial Table of Contents ---- */
+  #tutorial-toc {
+    font-size: 16px;
+  }
+
+  #tutorial-toc tr {
+    border-bottom: 1px solid #efefef;
+  }
+
+  #tutorial-toc tr td:first-child {
+    display: block;
+    padding-left: 1em;
+    text-indent: -1em;
+  }
+
+  #tutorial-toc tr td:nth-child(3) {
+    font-size: 16px;
+    font-style: italic;
+  }
+
+  #tutorial-toc th {
+    font-size: 20px;
+  }
+
+  #tutorial-toc tr td, #tutorial-toc th {
+    padding: 10px;
+  }
+
 /* -------------------------------------
   Footer
   ------------------------------------- */
@@ -484,7 +512,7 @@
       padding: 15px 20px;
       font-size: 18px;
     }
-   
+
     .primary {
       padding-bottom: 10px;
       border-bottom: 1px solid #f2f2f2;
