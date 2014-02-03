@@ -379,8 +379,17 @@
     font-size: 16px;
   }
 
-  #tutorial-toc tr {
+  .tutorial table tr {
     border-bottom: 1px solid #efefef;
+  }
+
+
+  .tutorial tr td, .tutorial th {
+    padding: 10px;
+  }
+
+  .tutorial img {
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   }
 
   #tutorial-toc tr td:first-child {
@@ -394,16 +403,8 @@
     font-style: italic;
   }
 
-  #tutorial-toc th {
+  .tutorial table th {
     font-size: 20px;
-  }
-
-  #tutorial-toc tr td, #tutorial-toc th {
-    padding: 10px;
-  }
-
-  .tutorial img {
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);  
   }
 
   /* ---- Demo ---- */
