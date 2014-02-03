@@ -67,7 +67,7 @@ class TodoModule extends Module {
     type(TodoController);
   }
 }
- 
+
 // Tabs example ////////////////////////////////////////////////////////////////
 
 @NgComponent(
