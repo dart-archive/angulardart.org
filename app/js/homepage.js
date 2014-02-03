@@ -223,7 +223,7 @@ angular.module('homepage', [])
 
           panes.push(
             '<div class="tab-pane' + (!index ? ' active' : '') + '" id="' + id(filename) + '">' +
-              '<pre class="prettyprint linenums nocode">' + content +'</pre>' +
+              '<pre class="prettyprint nocode">' + content +'</pre>' +
             '</div>');
         });
 

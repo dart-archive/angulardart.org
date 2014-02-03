@@ -110,6 +110,13 @@
     background: #e84844 !important;
   }
 
+  .popover {
+    font-family: 'Source Sans Pro', sans-serif;
+    word-break: normal;
+    font-size: 14px;
+    color: #333;
+  }
+
 /* -------------------------------------
   Header
   ------------------------------------- */
@@ -261,6 +268,7 @@
 
   .container[role='main'] {
     padding-top: 20px;
+    overflow: hidden;
   }
 
   /* ---- Home Sections ---- */
@@ -558,6 +566,30 @@
       background: #fff;
       color: #eee;
       border-color: #eee;
+    }
+
+    .breadcrumb {
+      text-align: center;
+      font-size: 13px;
+    }
+
+    .tutorial h1 {
+      font-size: 30px;
+      text-align: center;
+    }
+
+    .tutorial img {
+      width: 100%;
+      margin: 5px 0;
+    }
+
+    #tutorial-toc thead th:nth-child(2),
+    #tutorial-toc tr td:nth-child(2) {
+      display: none;
+    }
+
+    .pager li:nth-child(2) {
+      display: none;
     }
 
   }
