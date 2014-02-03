@@ -15,7 +15,7 @@ packages:
   angularfire:
     description:
       ref: dart
-      resolved-ref: bc354170709ea7248120437e6de89a0da1aaec17
+      resolved-ref: "7211b8d8505ece2a804ea88b9be7ab41e1e1d1c3"
       url: "https://github.com/mhevery/angularFire"
     source: git
     version: "0.1.0"
