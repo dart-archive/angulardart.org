@@ -15,9 +15,8 @@
 
     <!-- Stylesheets -->
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/base.css">
-    <link href="../google-code-prettify/prettify.css" type="text/css" rel="stylesheet">
 
 
     <!--<base href="/">--><base href=".">
@@ -666,14 +665,14 @@ class NewEntryFormCtrl {
   <div class="field">
     <label>Topic:</label>
     <select required ng-model="form.topicKey" required>
-      <option ng-repeat="result in form.topics" value="{{ result['value'] }}">{{ result['title'] }}</option> 
+      <option ng-repeat="result in form.topics" value="{{ result['value'] }}">{{ result['title'] }}</option>
     </select>
   </div>
 
   <div class="field">
     <label>Status:</label>
     <select required ng-model="form.statusKey" required>
-      <option ng-repeat="result in form.statuses" value="{{ result['value'] }}">{{ result['title'] }}</option> 
+      <option ng-repeat="result in form.statuses" value="{{ result['value'] }}">{{ result['title'] }}</option>
     </select>
   </div>
 
@@ -861,7 +860,9 @@ class NewEntryFormCtrl {
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script src="../js/bootstrap.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+<script src="../google-code-prettify/prettify.min.js"></script>
+<link href="../google-code-prettify/prettify.css" type="text/css" rel="stylesheet">
 <script>
     $().dropdown();
 </script>
