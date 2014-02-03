@@ -3,6 +3,11 @@ import 'package:di/di.dart';
 import 'package:intl/intl.dart';
 import './backend-app.dart';
 
+@MirrorsUsed(targets: const [
+  Todo,
+  BackendAppRouter], override: '*')
+import 'dart:mirrors' show MirrorsUsed;
+
 // Hello example ///////////////////////////////////////////////////////////////
 
 // This example requires no code besides the import above and the main() below.
@@ -59,7 +64,7 @@ class TodoModule extends Module {
     type(TodoController);
   }
 }
- 
+
 // Tabs example ////////////////////////////////////////////////////////////////
 
 @NgComponent(
