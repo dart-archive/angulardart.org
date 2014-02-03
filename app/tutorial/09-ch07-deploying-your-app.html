@@ -111,6 +111,7 @@
   </div>
 
   <h1 id="angulardart-tutorial-production-deployment">Production Deployment</h1>
+  <hr />
 
   <h2 id="running-the-sample-app">Running the Sample App</h2>
 
@@ -127,6 +128,8 @@ Right-click <strong>Chapter_07/web/index.html</strong>, and choose <strong>Run a
   <p>After the app is compiled to JavaScript,
 the app should appear in your default browser.
 You can copy the app’s URL into any other browser you’d like to test.</p>
+
+  <hr class="spacer" />
 
   <h2 id="overview">Overview</h2>
 
@@ -155,6 +158,8 @@ you might need to think about.</li>
   </ol>
 
   <p>Here we will provide some tip on these subjects.</p>
+
+  <hr class="spacer" />
 
   <h2 id="managing-compiled-code-size">Managing Compiled Code Size</h2>
 
@@ -205,6 +210,8 @@ you will need to add the classes (or their libraries) to your application’s
 Angular has default definitions that
 include the APIs you’re likely to need.)</p>
 
+  <hr class="spacer" />
+
   <h4 id="debugging">Debugging</h4>
 
   <p>If it happens that you have misconfigured <code>@MirrorsUsed</code>, you will likely
@@ -217,10 +224,12 @@ to <code>@MirrorsUsed.targets</code>.</p>
 dart2js output, as you’ll be able to see unminified class/field names and
 be able to much easier identify what is missing.</p>
 
+<hr class="spacer" />
   <h2 id="optimizing-runtime-performance">Optimizing Runtime Performance</h2>
 
   <p>Currently there are two code generators: di and AngularDart Parser generators.</p>
 
+<hr class="spacer" />
   <h3 id="di-code-generator">di Code Generator</h3>
 
   <p>di.dart Injector uses dart:mirrors APIs for retrieving types of constructor
@@ -230,6 +239,7 @@ generates static code for creating new instances and resolving dependencies.</p>
   <p>You can find an example of how to use the di generator in
 <code>bin/generator.dart</code> file.</p>
 
+<hr class="spacer" />
   <h4 id="discovering-instantiable-types">Discovering Instantiable Types</h4>
 
   <p>Ideally, types that are instantiated by the injector should be extracted from
@@ -292,6 +302,7 @@ a fully qualified class name (including the library prefix). In case of the
 above example the fully qualified name of Service annotation would be
 <code>injectable.InjectableService</code>.</p>
 
+  <hr class="spacer" />
   <h3 id="angulardart-parser-generator">AngularDart Parser Generator</h3>
 
   <p>AngularDart Parser Generator extracts all expressions from your application
@@ -365,6 +376,7 @@ class FooDirective {
   <p>You can find an example of how to use the parser generator in
 <code>bin/generator.dart</code> file.</p>
 
+  <hr class="spacer" />
   <h3 id="code-generators-and-development-mode">Code Generators and Development Mode</h3>
 
   <p>You should not be using code generators during development, as they are slow
@@ -381,6 +393,7 @@ need to run the generator script before using the prod mode.</p>
 server) the prod/dev mode switching to minimize the chance of dev mode being
 released into production.</p>
 
+  <hr class="spacer" />
   <h2 id="cross-browser-support">Cross-browser Support</h2>
 
   <p>Angular components use <a href="http://www.html5rocks.com/en/tutorials/webcomponents/shadowdom/">Shadow DOM</a>, but unfortunately it’s not

@@ -109,11 +109,17 @@
 
   <p>In this chapter, we will add two features to our app. First, we will get the recipe data from a service instead of hardcoding mock data into the app. Second, we will look at another handy tool in Angular’s toolbox - filters. When you’re finished, you will be able to use built in filters as well as create your own custom filters. You will also be able to read data from a server-side service like a real app.</p>
 
+  <hr />
+
   <h3 id="the-code">The code</h3>
   <p><a href="https://github.com/angular/angular.dart.tutorial/tree/master/Chapter_05">Here is the code</a> for the next version of our Recipe Book app. Run the code in Dart Editor. Notice the text box and checkboxes at the top of the app. You can use these inputs to control which recipes are shown in the list. Start typing into the filter box and watch the list of visible recipes shrink to match your search criteria. Next, limit your results further by checking a few categories to limit to. Try using both filters together by typing in a search criteria and also limiting based on category. Lastly, clear the filters by pressing the “Clear Filters” button, and watch all your results re-appear.</p>
 
+  <hr class="spacer" />
+
   <h3 id="introducing-filters">Introducing filters</h3>
   <p>Filters let you change how your model data is displayed in the view without changing the model data itself. They do things like allow you to show parts of the model data, or display data in a particular format. You can also use Angular’s custom filters feature to create your own filters to do anything you want.</p>
+
+  <hr class="spacer" />
 
   <h4 id="built-in-filters">Built in filters</h4>
   <p>Angular has some built in filters that provide some handy functionality. Here is a list of all the currently implemented <a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/angular.filter.html">AngularDart filters</a></p>
@@ -145,6 +151,8 @@ String nameFilterString = "";
 </pre>
 
   <p>That’s all you need to start filtering your results.</p>
+
+  <hr class="spacer" />
 
   <h4 id="custom-filters">Custom filters</h4>
   <p>Built in filters are nice, but what if you want to do something more specific. In our app, we also want to be able to reduce the number of recipes shown to those in a particular category. For this, we write a custom filter called <code>CategoryFilter</code>.</p>
@@ -213,6 +221,8 @@ class MyAppModule extends Module {
 &lt;li class="pointer"
     ng-repeat="recipe in ctrl.recipes | categoryfilter:ctrl.categoryFilterMap"&gt;
 </pre>
+
+<hr class="spacer" />
   <h4 id="filter-chaining">Filter chaining</h4>
   <p>Our app uses a feature called filter chaining to apply more than one filter to the same view element. Below, we see the <code>ng-repeat</code> Directive has three filters separated by pipes. This is how Angular applies multiple filters to a single <code>ng-repeat</code>.</p>
 
@@ -221,6 +231,8 @@ class MyAppModule extends Module {
     ng-repeat="recipe in ctrl.recipes | orderBy:'name' | filter:{name:ctrl.nameFilterString} | categoryfilter:ctrl.categoryFilterMap"&gt;
 </pre>
 
+
+<hr class="spacer" />
   <h3 id="introducing-the-httphttpciangularjsorgviewdartjobangulardart-masterjavadocangularcoredomhttphtml-service">Introducing the <a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/angular.core.dom/Http.html"><code>Http</code></a> service</h3>
 
   <p>Our last example had the data hard coded in the app. In reality, you’d request data from a server side service. Angular provides a built in service called the <code>Http</code> Service that handles making HTTP requests to the server. First lets look at the two new files we’ve added to the project: recipes.json and categories.json. These contain data that’s been serialized as a JSON string. We will use the <code>Http</code> service to make an HTTP request to the web server to fetch this data. Let’s look at how to do this.</p>
@@ -307,6 +319,8 @@ List&lt;Recipe&gt; recipes = [];
 
   <p>You can see the “Loading…” feature work by simulating a really slow loading data source. Put a breakpoint inside one of the <code>then()</code> closures in the <code>_loadData</code> method and load the app. Notice that while you’re stopped at the breakpoint, your app shows the  “Loading…” message. Now get out of the breakpoint and notice that your app’s real view pops into place. Also notice that we changed the loaded state from false to true inside the asynchronous part of <code>_loadData</code> (inside the <code>then()</code> call’s argument). If we’d put it at the end of the <code>_loadData</code> method outside of the asynchronous call, it would evaluate regardless of the state of the Future.</p>
 
+  <hr class="spacer" />
+
   <h3 id="angular-features">Angular features</h3>
   <h4><a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/angular.directive/NgCloakDirective.html"><code>ng-cloak</code></a></h4>
 <p>You probably noticed that in previous examples, when you first loaded your app, you briefly saw curly braces like <code>{{someVar}}</code> before your app “popped” into place, and the correct values appeared. The <code>ng-cloak</code> Directive combined with some CSS rules that you add to your app’s main CSS file allow you to avoid this blink. The blink happens between the time your HTML loads and Angular is bootstrapped and has compiled the DOM and has substituted in the real values for the uncompiled DOM values. While Angular is compiling the DOM, you can hide the page (or sections of it) by using <code>ng-cloak</code>:</p>
@@ -325,6 +339,8 @@ The CSS rule causes the view  to be hidden:
 </pre>
 
   <p>Once Angular is finished compiling the DOM, it secretly removes the <code>ng-cloak</code> class or Directive from the DOM and allows your app to be visible.</p>
+
+  <hr class="spacer" />
 
   <h3 id="explore-more">Try it yourself</h3>
   <p>Now it’s your turn. Here are three ways in which you can extend the app version described in this chapter.</p>

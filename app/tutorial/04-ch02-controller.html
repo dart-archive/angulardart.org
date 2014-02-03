@@ -108,10 +108,14 @@
 
   <p>In the previous chapter, we showed you how to build a “Hello World” app. Now let’s do something more interesting. Let’s build a Recipe Book app.</p>
 
+  <hr />
+
   <h3 id="what-you-will-learn">What you will learn</h3>
   <p>In this tutorial, you will learn more about how Angular does MVC. Specifically, you will learn about controllers, which you will implement with something called an <em>Angular controller</em>. You will also learn more about the <em>model</em>, which Angular calls the <em>scope</em>.</p>
 
   <p>When you’re finished, you will be able to write your own custom controller and use it to control the view. You will understand how to create data in the model, expose it through the controller, and access it from the view.</p>
+
+  <hr class="spacer" />
 
   <h3 id="running-the-sample-app">Running the sample app</h3>
   <p>The code for this chapter is in the
@@ -125,6 +129,8 @@ to open the <strong>Chapter_02</strong> directory. </p>
   <p>Dartium launches, displaying the first version of the Recipe Book app. Play with the app a bit by clicking on each recipe and watching it display in the view.</p>
 
   <p><img src="img/ch02-1.png" alt="Dartium running the first Recipe Book app" />       <img src="img/ch02-2.png" alt="Recipe Book with a recipe selected" /></p>
+
+  <hr class="spacer" />
 
   <h3 id="understanding-scopes">Understanding scopes</h3>
   <p>In previous chapter, we alluded to the scope and provided a partial definition. In this chapter, we provide a more complete picture of scopes in Angular.</p>
@@ -149,8 +155,12 @@ to open the <strong>Chapter_02</strong> directory. </p>
 
   <p>The correct way to create model objects is to create a controller class and expose the controller to the view through a directive.</p>
 
+  <hr class="spacer" />
+
   <h3 id="understanding-controllers">Understanding controllers</h3>
   <p>Traditional MVC defines a controller as an object that contains all the model data and methods necessary to control the view. Angular has three kinds of MVC controllers: controllers, directives, and components. These are implemented using plain old Dart classes. These plain old Dart classes are annotated as either an <a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/angular.core/NgController.html"><code>NgController</code></a>, <a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/angular.core/NgDirective.html"><code>NgDirective</code></a> or <a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/angular.core/NgComponent.html"><code>NgComponent</code></a>, and the combination of the controller class and the annotation is analogous to an MVC controller. Controllers are the simplest of the three types of controllers, so we will cover them first. We will cover directives and components in the next chapters.</p>
+
+  <hr class="spacer" />
 
   <h3 id="understanding-controller">Understanding controller</h3>
   <p>The easiest way to create a controller is to put the <code>NgController</code> annotation on a controller class and then declare the controller class as a type in the bootstrap module.</p>
@@ -202,6 +212,8 @@ main() {
 &lt;/div&gt;
 </pre>
   <p>Anything within the containing element has access to the controller’s scope.</p>
+
+  <hr class="spacer" />
 
   <h3 id="angular-features">Angular features</h3>
   <p>In this chapter, we introduced you to two more built in Angular directives: <code>ng-repeat</code> and <code>ng-click</code>.</p>

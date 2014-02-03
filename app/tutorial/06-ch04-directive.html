@@ -114,6 +114,8 @@ annotations to create custom controllers and components.
 We will now learn how to add behavior to any element, using <em>directives</em>
 (<a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/angular.core/NgDirective.html">NgDirective</a>).</p>
 
+<hr />
+
   <p>Directives offer a way to define behavior that can be triggered using CSS selectors—most commonly, element attributes. Each element can have multiple directives, just as it can have multiple HTML attributes.
 If you are familiar with the <strong><a href="http://en.wikipedia.org/wiki/Decorator_pattern">Decorator</a> design pattern</strong>, then you can think of a directive as an <em>HTML element decorator</em>.</p>
 
@@ -129,6 +131,8 @@ The NgDirective annotation can also be used to create structural directives,
 such as the built-in ng-if and ng-repeat directives.
 This is an advanced usage case, and we don’t cover it.</p>
 
+<hr class="spacer" />
+
   <h3 id="running-the-sample-app">Running the sample app</h3>
   <p>The code for this chapter is in the
 <em><a href="https://github.com/angular/angular.dart.tutorial/tree/master/Chapter_04">Chapter_04</a></em> directory of the
@@ -140,6 +144,8 @@ to open the <strong>Chapter_04</strong> directory. </p>
 
   <p>See how mousing over any item in the recipe list
 brings up a tooltip for that recipe. </p>
+
+  <hr class="spacer" />
 
   <h3 id="custom-directives">Custom directives</h3>
 
@@ -155,6 +161,8 @@ to register the Tooltip type.</li>
     <li>Modifying <a href="https://github.com/angular/angular.dart.tutorial/blob/master/Chapter_04/web/index.html">web/index.html</a>
 to use the tooltip directive.</li>
   </ul>
+
+  <hr class="spacer" />
 
   <h3 id="implementing-a-directive">Implementing a directive</h3>
 
@@ -268,6 +276,8 @@ The class just encapsulates data that the tooltip needs:</p>
 }
 </pre>
 
+  <hr class="spacer" />
+
   <h3 id="modifying-the-controller-to-provide-the-model">Modifying the controller to provide the model</h3>
 
   <p>Remember that we want the HTML to be able to use a tooltip directive like this:</p>
@@ -300,6 +310,8 @@ a TooltipModel subclass, or a map.</p>
 
   <p>The other changes to <a href="https://github.com/angular/angular.dart.tutorial/blob/master/Chapter_04/lib/recipe_book.dart">lib/recipe_book.dart</a>
 include adding an <code>imgUrl</code> field to the Recipe class.</p>
+
+  <hr class="spacer" />
 
   <h3 id="table-angular-annotations">Table: Angular annotations</h3>
   <p>The Recipe Book app now uses all three of Angular’s annotation classes.

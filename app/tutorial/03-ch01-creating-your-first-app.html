@@ -95,7 +95,7 @@
             <ol class="breadcrumb">
                 <li><a href="/">Home</a></li>
                 <li><a href="/tutorial/index.html">Tutorial</a></li>
-                <li class="active"><a href="01-before-you-begin.html">Creating Your First App</a></li>
+                <li class="active"><a href="/tutorial/03-ch01-creating-your-first-app.html">Creating Your First App</a></li>
             </ol><!-- /.breadcrumb -->
         </div><!-- /.container -->
     </div><!-- /.breadcrumbs -->
@@ -108,8 +108,10 @@
 
   <p>In this chapter, you’ll use a “Hello World” app to learn about the basic structure of an AngularDart app, how to bind a model to your view, and how to use a couple of built-in Angular directives.</p>
 
-  <h3 id="running-the-sample-app">Running the sample app</h3>
-  <p>The code for this chapter is in the <em>
+  <hr />
+
+<h3 id="running-the-sample-app">Running the sample app</h3>
+<p>The code for this chapter is in the <em>
 <a href="https://github.com/angular/angular.dart.tutorial/tree/master/Chapter_01">Chapter_01</a></em>
 directory of the
 <a href="https://github.com/angular/angular.dart.tutorial/archive/master.zip">angular.dart.tutorial download</a>.
@@ -133,6 +135,8 @@ to open the <strong>Chapter_01</strong> directory. </p>
     </tbody>
   </table>
 
+<hr class="spacer" />
+
   <h3 id="making-angular-libraries-available-to-your-app">Making Angular libraries available to your app</h3>
   <p>Dart makes dependencies available to the application through the <strong>pubspec.yaml</strong> file. Here’s the minimal pubspec.yaml file for this sample:</p>
 <pre class="prettyprint">
@@ -145,6 +149,8 @@ dependencies:
   <p>To use AngularDart in any app, include <code>angular</code> as a dependency.</p>
 
   <p>Dart Editor automatically downloads the packages your app depends on, along with any packages that they, in turn, depend on. If this download fails or you like using the command line, you can explicitly install packages. From Dart Editor, you can use <strong>Tools &gt; Pub Get</strong>. From the command line (in the root directory of your app, assuming the Dart SDK is in your path), you can run <code>pub get</code>.</p>
+
+<hr class="spacer" />
 
   <h3 id="the-apps-code">The app’s code</h3>
   <p>Two files contain the app’s code:</p>
@@ -189,6 +195,8 @@ main() =&gt; ngBootstrap();</pre>
 
         <p>Once an application is bootstrapped, it’s ready to respond to incoming browser events that might change the model (such as mouse clicks, key presses, or incoming HTTP responses). If changes are detected, Angular reflects them in the view by updating all of the affected bindings.</p>
 
+        <hr class="spacer" />
+
         <h3 id="how-angular-does-mvc">How Angular does MVC</h3>
         <p>The previous chapter introduced the principles of MVC. Let’s go into a little more detail about how Angular expresses MVC concepts.</p>
 
@@ -206,6 +214,8 @@ Name: &lt;input type="text" ng-model="name"&gt;</pre>
         <h4 id="controller">Controller</h4>
         <p>A really simple Angular app like this one doesn’t need a controller. Real apps, however, have controllers. The next chapter dives into controllers.</p>
 
+        <hr class="spacer" />
+
         <h3 id="mustache-syntax-interpolation-and-angular-expressions">Mustache syntax (interpolation) and Angular expressions</h3>
         <p>Angular uses double curly braces <code>{{ … }}</code> to contain Angular expressions. Anything inside the braces is evaluated as a Dart-like expression. The braces tell Angular to evaluate the expression and put the result into the DOM. Expressions are “Dart-like” because the allowed expression syntax is not strictly Dart. Angular expressions differ from Dart in the following ways:</p>
 
@@ -220,6 +230,8 @@ Name: &lt;input type="text" ng-model="name"&gt;</pre>
         <p>Here’s another:
     <pre class="prettyprint">{{ 'foo' + 'bar'}}</pre>
         <p>These expressions would display as <strong>3</strong> and <strong>foobar</strong>, respectively.</p>
+
+        <hr class="spacer" />
 
         <h3 id="mustache-syntax-and-data-binding-in-hello-world">Mustache syntax and data binding in Hello World</h3>
 

@@ -109,6 +109,8 @@
 
   <p>In the last chapter, we created a basic Recipe Book app. In this chapter, we will add to the app by creating a feature that will allow users to rate each recipe.</p>
 
+  <hr />
+
   <h3 id="what-you-will-learn">What you will learn</h3>
   <p>Previously, you learned about how
 Angular implements MVC controllers through controllers.
@@ -117,6 +119,8 @@ which are a second way Angular implements MVC controllers.
 When you’re finished, you will understand the similarities and differences
 between controllers and components,
 and you will understand when to use controllers and when to use components.</p>
+
+<hr class="spacer" />
 
   <h3 id="running-the-sample-app">Running the sample app</h3>
   <p>The code for this chapter is in the
@@ -144,6 +148,8 @@ PENDING: We should add screenshots here.
 ![TEXT GOES HERE](img/ch03-1.png) &nbsp; &nbsp; &nbsp; ![TEXT GOES HERE](img/ch03-2.png)
 -->
 
+<hr class="spacer" />
+
   <h3 id="angular-components">Angular components</h3>
   <p>The rating feature is an Angular component,
 implemented using the
@@ -156,6 +162,8 @@ It can be used anywhere in your app as many times as you want.
 Nothing about the rating component is intrinsically tied to our Recipe Book.
 We could use this component in any app to rate anything.</p>
 
+<hr class="spacer" />
+
   <h4 id="using-components-from-your-app">Using components from your app</h4>
   <p>Using a component from your app is simple.
 Just create an HTML element with the name of the component,
@@ -165,6 +173,8 @@ Here is how our Recipe Book app uses the rating component.</p>
   <pre class="prettyprint">
 &lt;rating max-rating="5" rating="ctrl.selectedRecipe.rating"&gt;&lt;/rating&gt;
 </pre>
+
+<hr class="spacer" />
 
   <h4 id="creating-components">Creating components</h4>
   <p>Creating a component is similar to creating a controller.
@@ -240,6 +250,8 @@ Your app has no direct visibility into the internals of the component.</p>
   <p>A few other properties can be set on a component annotation,
 but these are the most important.
 We will cover some of the less common ones in later chapters.</p>
+
+<hr class="spacer" />
 
   <h4 id="defining-attributes">Defining attributes</h4>
 
@@ -326,6 +338,8 @@ to be evaluated:</p>
     </dd>
   </dl>
 
+  <hr class="spacer" />
+
   <h4 id="how-is-a-component-different-from-a-controller">How is a component different from a controller?</h4>
 
   <p>The key difference between components and controllers is that
@@ -341,6 +355,8 @@ nor does the app have direct access to a component’s scope.</p>
 <a href="http://www.google.com/url?q=http%3A%2F%2Fwww.w3.org%2FTR%2Fshadow-dom%2F&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNF9dpDWirbbvI2JasCRd9Qs1jUg9A">shadow DOM</a>.
 Using a shadow DOM allows components to be used anywhere without
 suffering from things like CSS name collisions.</p>
+
+<hr class="spacer" />
 
   <h3 id="angular-features">Angular features</h3>
   <p>This chapter introduced you to two more built in Angular directives:
