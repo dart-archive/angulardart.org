@@ -1,3 +1,5 @@
+library backendapp;
+
 import 'package:angular/angular.dart';
 import 'package:angular/routing/module.dart';
 import 'package:firebase/firebase.dart';

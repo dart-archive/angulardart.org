@@ -1,7 +1,15 @@
+library examples;
+
 import 'package:angular/angular.dart';
 import 'package:di/di.dart';
 import 'package:intl/intl.dart';
 import './backend-app.dart';
+
+@MirrorsUsed(targets: const[
+  'examples',
+  'backendapp'
+], override: '*')
+import 'dart:mirrors';
 
 // Hello example ///////////////////////////////////////////////////////////////
 
@@ -59,7 +67,7 @@ class TodoModule extends Module {
     type(TodoController);
   }
 }
- 
+
 // Tabs example ////////////////////////////////////////////////////////////////
 
 @NgComponent(
