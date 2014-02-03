@@ -135,42 +135,40 @@ to open the <strong>Chapter_02</strong> directory. </p>
   <h3 id="understanding-scopes">Understanding scopes</h3>
   <p>In previous chapter, we alluded to the scope and provided a partial definition. In this chapter, we provide a more complete picture of scopes in Angular.</p>
 
-  <p>A scope in Angular is an execution context, and is similar to the idea of a scope or block in other programming languages. Each scope has its own context that is separate from the surrounding scopes.</p>
-
-  <p>There isn’t just one scope in an Angular app. At any given moment, there is a hierarchy of scopes that roughly mimics the DOM’s structure. The <code>ng-app</code> directive declares the boundary of the root scope. Angular objects within the <code>ng-app</code> can create their own scopes called child scopes. Child scopes implicitly inherit the properties of their parents, but the properties defined in a child scope are not visible to the parent scope.</p>
+  <p>A <strong>scope</strong> in Angular is an execution context, and is similar to the idea of a scope or block in conventional programming languages. There isn’t just one scope in an Angular app. At any given moment, there is a hierarchy of scopes that roughly mimics the DOM’s structure. The <code>ng-app</code> directive declares the boundary of the root scope. Angular elements within the <code>ng-app</code> can create their own scopes called child scopes. Child scopes implicitly inherit the properties of their parents, but the properties defined in a child scope are not visible to the parent scope, nor to sibling scopes.</p>
 
   <p>The diagram below shows how some relevant portions of the HTML template map to the Model/Scope, and how it’s represented in the view.</p>
 
   <p><img src="img/scope_diagram.png" alt="scopes" /></p>
 
   <h3 id="understanding-the-model">Understanding the model</h3>
-  <p>In the previous chapter, we gave a simplified definition of the model (The model is the scope). In this chapter, we will give a more accurate definition. The model is defined as any property, function, or object that is reachable from the scope.</p>
+  <p>In the previous chapter, we gave a simplified definition of the model (i.e., the model <em>is</em> the scope). In this chapter, we will give a more accurate definition. The app <strong>model</strong> is defined as any property, function, or object that is reachable from an app scope.</p>
 
-  <p>There are several ways that Model objects can be created in the scope. In the previous example, we showed you how to create and use a model object directly in the view, with code patterns like this:</p>
+  <p>There are several ways that model properties, functions, or objects can be created in a scope. In the previous example, we showed you how to create and use a model property directly in the view, with code patterns like this:</p>
 
   <pre class="prettyprint">&lt;input type="text" ng-model="name"&gt;
 </pre>
 
-  <p>Properties created in this way are created in the root scope, and not in the scope of the controller. These properties are available in the view, but are not directly available from inside the controller. Creating model data in this way is useful for demonstrating basic concepts in tutorials, but in practice it is not recommended.</p>
+  <p>Properties created in this way are created in the root scope, and hence not in the scope of any controller. These properties are available in the view, but nowhere else. Creating model data in this way is useful for demonstrating basic concepts in tutorials, but in practice it is not recommended.</p>
 
-  <p>The correct way to create model objects is to create a controller class and expose the controller to the view through a directive.</p>
+  <p>The usual way to create model members is to create a controller class and expose the controller to the view through a directive.</p>
 
   <hr class="spacer" />
 
   <h3 id="understanding-controllers">Understanding controllers</h3>
-  <p>Traditional MVC defines a controller as an object that contains all the model data and methods necessary to control the view. Angular has three kinds of MVC controllers: controllers, directives, and components. These are implemented using plain old Dart classes. These plain old Dart classes are annotated as either an <a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/angular.core/NgController.html"><code>NgController</code></a>, <a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/angular.core/NgDirective.html"><code>NgDirective</code></a> or <a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/angular.core/NgComponent.html"><code>NgComponent</code></a>, and the combination of the controller class and the annotation is analogous to an MVC controller. Controllers are the simplest of the three types of controllers, so we will cover them first. We will cover directives and components in the next chapters.</p>
+  <p>Traditional MVC defines a controller as an object that contains all the model data and methods necessary to control the view. Angular has three kinds of MVC controllers: controllers, directives, and components. These are implemented using plain old Dart classes. These plain old Dart classes are annotated as either an <a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/angular.core/NgController.html"><code>@NgController</code></a>, <a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/angular.core/NgDirective.html"><code>@NgDirective</code></a> or <a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/angular.core/NgComponent.html"><code>@NgComponent</code></a>, and the combination of the controller class and the annotation is analogous to an MVC controller. <code>@NgController</code>s are the simplest of the three types of controller, so we will cover them first. We will cover directives and components in the next chapters.</p>
 
   <hr class="spacer" />
 
-  <h3 id="understanding-controller">Understanding controller</h3>
-  <p>The easiest way to create a controller is to put the <code>NgController</code> annotation on a controller class and then declare the controller class as a type in the bootstrap module.</p>
+  <h3 id="understanding-controller">Understanding <code>@NgController</code> controllers</h3>
+  <p>The easiest way to create a controller is to put the <code>@NgController</code> annotation on a controller class and then declare the controller class as a type in the bootstrap module.</p>
 
   <p>In the Recipe Book example, we see this annotation on the <code>RecipeBookController</code> class:</p>
 
   <pre class="prettyprint">
 @NgController(
-    selector: '[recipe-book]',
-    publishAs: 'ctrl')
+  selector: '[recipe-book]',
+  publishAs: 'ctrl')
 </pre>
 
   <p>This annotation tells Angular that the class <code>RecipeBookController</code> is an Angular controller. When the compiler sees one of these in the DOM, it instantiates the controller class.</p>
@@ -208,7 +206,7 @@ main() {
 
    <pre class="prettyprint">
 &lt;div recipe-book&gt;
-    ...
+  ...
 &lt;/div&gt;
 </pre>
   <p>Anything within the containing element has access to the controller’s scope.</p>
