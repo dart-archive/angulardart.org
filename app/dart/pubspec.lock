@@ -6,14 +6,17 @@ packages:
     source: hosted
     version: "0.10.5"
   angular:
-    description: angular
-    source: hosted
-    version: "0.9.5+2"
+    description:
+      ref: master
+      resolved-ref: "3ab250a706c84542c9e618d9e98eea81d99a5d22"
+      url: "https://github.com/angular/angular.dart"
+    source: git
+    version: "0.9.5"
   angularfire:
     description:
       ref: dart
-      resolved-ref: c733dc1e3e3a24311d73b61d4a5fb43791d2da6d
-      url: "https://github.com/firebase/angularFire"
+      resolved-ref: bc354170709ea7248120437e6de89a0da1aaec17
+      url: "https://github.com/mhevery/angularFire"
     source: git
     version: "0.1.0"
   args:
@@ -47,7 +50,7 @@ packages:
   js:
     description: js
     source: hosted
-    version: "0.2.1"
+    version: "0.2.2"
   logging:
     description: logging
     source: hosted
@@ -63,7 +66,7 @@ packages:
   route_hierarchical:
     description: route_hierarchical
     source: hosted
-    version: "0.4.10"
+    version: "0.4.11"
   shadow_dom:
     description: shadow_dom
     source: hosted

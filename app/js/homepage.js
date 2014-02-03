@@ -198,7 +198,7 @@ angular.module('homepage', [])
 
           // hack around incorrect tokenization
           content = content.replace('.done-true', 'doneTrue');
-          content = prettyPrintOne(escape(content), undefined, true);
+          content = PR.prettyPrintOne(escape(content), undefined, true);
           // hack around incorrect tokenization
           content = content.replace('doneTrue', '.done-true');
 

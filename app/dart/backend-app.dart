@@ -26,13 +26,6 @@ class BackendAppRouter implements RouteInitializer {
         name: 'demohome',
         path: '/demo/',
         enter: view('./list.html')
-    )
-    ..addRoute(
-        name: 'home',
-        path: '/',
-        enter: (e) {
-          window.location.assign("/");
-        }
     );
   }
 }
@@ -45,7 +38,7 @@ class FirebaseResultsAdapter {
   FirebaseAdapter _results;
 
   FirebaseResultsAdapter() {
-    this._results = new AngularFire().create(fb);
+    this._results = new AngularFire(fb);
   }
 
   getResults() {

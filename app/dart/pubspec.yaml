@@ -1,13 +1,16 @@
 name: angular_dart_demo
 version: 0.0.1
 dependencies:
-  angular: any
+  angular:
+    git:
+      url: https://github.com/angular/angular.dart
+      ref: master
   browser: any
   js: any
   firebase: 0.1.0
   angularfire:
     git:
-      url: https://github.com/firebase/angularFire
+      url: https://github.com/mhevery/angularFire
       ref: dart
 
 dev_dependencies:
