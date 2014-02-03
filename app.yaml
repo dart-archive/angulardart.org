@@ -11,6 +11,20 @@ handlers:
   static_files: app/img/favicon.ico
   upload: app/img/favicon.ico
 
+- url: /demo/.*
+  static_dir: app/demo
+
+- url: /demo/?
+  static_files: app/demo/index.html
+  upload: app/demo/index.html
+
+- url: /tutorial/.*
+  static_dir: app/tutorial
+
+- url: /tutorial/?
+  static_files: app/tutorial/index.html
+  upload: app/tutorial/index.html
+
 - url: /
   static_files: app/index.html
   upload: app/index\.html
@@ -41,12 +55,10 @@ handlers:
   upload: app/.*\.png
   mime_type: image/png
 
-- url: (/.*)
-  static_files: app/index.html
-  upload: app/index\.html
+- url: /tutorial/
+  static_files: app/tutorial/index\.html
+  upload: app/tutorial/index\.html
   mime_type: text/html; charset=utf-8
 
-- url: /tutorial(/.*\.html)
-  static_files: app/tutorial\1
-  upload: app/tutorial/.*\.html
-  mime_type: text/html; charset=utf-8
+
+
