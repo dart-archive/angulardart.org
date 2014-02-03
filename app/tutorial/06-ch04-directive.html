@@ -104,7 +104,7 @@
 
 </div><!-- /#header -->
 
-<div role="main" class="container tutorial">
+<div role="main" class="container tutorial page-6">
   <h1 id="angulardart-tutorial-creating-a-custom-directive">Creating a Custom Directive</h1>
 
   <p>In previous chapters, you learned how to use the
@@ -137,7 +137,7 @@ This is an advanced usage case, and we don’t cover it.</p>
   <p>The code for this chapter is in the
 <em><a href="https://github.com/angular/angular.dart.tutorial/tree/master/Chapter_04">Chapter_04</a></em> directory of the
       <a href="https://github.com/angular/angular.dart.tutorial/archive/master.zip">angular.dart.tutorial download</a>.
-View it in Dart Editor by using <strong>File &gt; Open Existing Folder…</strong>
+View it in Dart Editor by using <strong>File &gt; Open Existing Folder...</strong>
 to open the <strong>Chapter_04</strong> directory. </p>
 
   <p>Now run the app. In Dart Editor’s Files view, select <strong>Chapter_04/web/index.html</strong>, right-click, and choose <strong>Run in Dartium</strong>.</p>
@@ -237,7 +237,7 @@ whenever the user mouses over an element that has a tooltip:</p>
 ...
 // In an onMouseEnter handler:
 tooltipElem = new dom.DivElement();
-// ...Create children using info from displayModel…
+// ...Create children using info from displayModel...
 // ...Add the children to the &lt;div&gt;...
 // ...Style the &lt;div&gt;...
 
@@ -323,7 +323,7 @@ and whether they create a new scope.</p>
     <th>Annotation</th> <th>Usual usage</th> <th>New scope?</th>
   </tr>
   <tr>
-    <th> @NgController </th>
+    <td><code>@NgController</code></td>
     <td> <b>Application-specific logic</b>
       <p>
         Example: recipe-book
@@ -336,7 +336,7 @@ and whether they create a new scope.</p>
     <td> Yes </td>
   </tr>
   <tr>
-    <th> @NgDirective </th>
+    <td><code>@NgDirective</code></td>
     <td> <b>Decorator</b> that adds to existing elements
       <p>
         Examples: tooltip, ng-class
@@ -349,7 +349,7 @@ and whether they create a new scope.</p>
     <td> No </td>
   </tr>
   <tr>
-    <th> @NgComponent </th>
+    <td><code>@NgComponent</code></td>
     <td> <b>Custom elements</b>
       <p>
         Example: rating

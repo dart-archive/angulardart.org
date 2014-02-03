@@ -104,7 +104,7 @@
 
 </div><!-- /#header -->
 
-<div role="main" class="container tutorial">
+<div role="main" class="container tutorial page-7">
   <h1 id="angulardart-tutorial-introducing-filters-and-services">Introducing Filters and Services</h1>
 
   <p>In this chapter, we will add two features to our app. First, we will get the recipe data from a service instead of hardcoding mock data into the app. Second, we will look at another handy tool in Angular’s toolbox - filters. When you’re finished, you will be able to use built in filters as well as create your own custom filters. You will also be able to read data from a server-side service like a real app.</p>
@@ -304,7 +304,7 @@ List categories = [];
 List&lt;Recipe&gt; recipes = [];
 </pre>
 
-  <p>Until the future has returned, your recipe book contains an empty list of recipes and an empty list of categories. Any part of your view that uses or displays recipes or categories will see an empty list. If you don’t want empty spots displaying on the app, you can surround portions of your view with statements that display a “Loading…” message until the data is ready.</p>
+  <p>Until the future has returned, your recipe book contains an empty list of recipes and an empty list of categories. Any part of your view that uses or displays recipes or categories will see an empty list. If you don’t want empty spots displaying on the app, you can surround portions of your view with statements that display a “Loading...” message until the data is ready.</p>
 
   <p>In our app, we keep track of whether we have enough data to load the app by storing the load state for recipes and categories and conditionally displaying a load message, or the whole view, depending on whether the app is done loading enough data to be useful.</p>
 
@@ -317,7 +317,7 @@ List&lt;Recipe&gt; recipes = [];
 &lt;/div&gt;
 </pre>
 
-  <p>You can see the “Loading…” feature work by simulating a really slow loading data source. Put a breakpoint inside one of the <code>then()</code> closures in the <code>_loadData</code> method and load the app. Notice that while you’re stopped at the breakpoint, your app shows the  “Loading…” message. Now get out of the breakpoint and notice that your app’s real view pops into place. Also notice that we changed the loaded state from false to true inside the asynchronous part of <code>_loadData</code> (inside the <code>then()</code> call’s argument). If we’d put it at the end of the <code>_loadData</code> method outside of the asynchronous call, it would evaluate regardless of the state of the Future.</p>
+  <p>You can see the “Loading...” feature work by simulating a really slow loading data source. Put a breakpoint inside one of the <code>then()</code> closures in the <code>_loadData</code> method and load the app. Notice that while you’re stopped at the breakpoint, your app shows the  “Loading...” message. Now get out of the breakpoint and notice that your app’s real view pops into place. Also notice that we changed the loaded state from false to true inside the asynchronous part of <code>_loadData</code> (inside the <code>then()</code> call’s argument). If we’d put it at the end of the <code>_loadData</code> method outside of the asynchronous call, it would evaluate regardless of the state of the Future.</p>
 
   <hr class="spacer" />
 
