@@ -402,6 +402,13 @@
     padding: 10px;
   }
 
+  /* ---- Demo ---- */
+  .demo div[system-panel] {
+    max-height: 200px;
+    overflow-y: auto;
+    margin-top: 10px;
+  }
+
 /* -------------------------------------
   Footer
   ------------------------------------- */
@@ -480,7 +487,7 @@
     }
 
     #header nav .navbar-nav {
-      margin: -10px -15px;
+      margin: 0px -15px;
     }
 
     #header nav .navbar-brand {
@@ -503,7 +510,7 @@
     }
 
     #header nav.navbar-default li a {
-      font-size: 20px;
+      font-size: 18px;
       padding: 15px;
     }
 
@@ -518,7 +525,7 @@
 
     #header nav.navbar-default .dropdown-menu li a {
       padding: 15px 20px;
-      font-size: 18px;
+      font-size: 16px;
     }
 
     .primary {
@@ -571,11 +578,16 @@
     .breadcrumb {
       text-align: center;
       font-size: 13px;
+      padding: 8px 0;
     }
 
     .tutorial h1 {
       font-size: 30px;
       text-align: center;
+    }
+
+    .tutorial h1 + hr + .btn-primary {
+      display: block;
     }
 
     .tutorial img {
@@ -590,6 +602,10 @@
 
     .pager li:nth-child(2) {
       display: none;
+    }
+
+    .pager li a {
+      white-space: nowrap;
     }
 
   }
