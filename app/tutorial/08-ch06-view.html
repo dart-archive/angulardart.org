@@ -111,13 +111,28 @@
 
   <hr />
 
-  <h3 id="the-code">The code</h3>
-  <p><a href="https://github.com/angular/angular.dart.tutorial/tree/master/Chapter_06">Here is the code</a> for the next version of our Recipe Book app. Run the code in Dart Editor. Click on a recipe to view it. The first thing you’ll notice is some new buttons. In addition to viewing a recipe, we can now add and edit them as well. Notice how the URL changes to reflect your specific view when you navigate from recipe to recipe. Notice also that the back button now works as you would expect.</p>
+  <h3 id="running-the-sample-app">Running the sample app</h3>
+  <p>The code for this chapter is in the
+<em><a href="https://github.com/angular/angular.dart.tutorial/tree/master/Chapter_06">Chapter_06</a></em> directory of the
+      <a href="https://github.com/angular/angular.dart.tutorial/archive/master.zip">angular.dart.tutorial download</a>.
+View it in Dart Editor by using <strong>File &gt; Open Existing Folder...</strong>
+to open the <strong>Chapter_06</strong> directory. </p>
+
+  <p>Now run the app. In Dart Editor’s Files view, select <strong>Chapter_06/web/index.html</strong>, right-click, and choose <strong>Run in Dartium</strong>.</p>
+
+  <p> 
+    Click a recipe to view it.
+    The first thing you’ll notice is some new buttons.
+    In addition to viewing a recipe, you can now add and edit them as well.
+    Notice how the URL changes to reflect your specific view when
+    you navigate from recipe to recipe.
+    Notice also that the back button now works as you would expect.
+  </p>
 
   <hr class="spacer" />
 
   <h3 id="application-structure-and-organization">Application structure and organization</h3>
-  <p>Before we dive into routing and views, lets look at the structural changes we made to the app. The first thing we’ve done is to make subdirectories for specific purposes like components, filters, services, and views. Next, we removed all of our custom components, filters, and services from the main.dart file to their own files, leaving only our main Controller, the <code>RecipeBookController</code> inside main.dart.</p>
+  <p>Before we dive into routing and views, let’s look at the structural changes we made to the app. The first thing we’ve done is to make subdirectories for specific purposes like components, filters, services, and views. Next, we removed all of our custom components, filters, and services from the main.dart file to their own files, leaving only our main controller, the <code>RecipeBookController</code> inside main.dart.</p>
 
   <hr class="spacer" />
 
@@ -126,7 +141,7 @@
 
   <p>Our two new components aren’t generic. They contain logic that is specific to the view they control and so they live in the view directory.</p>
 
-  <p>Lets look at <code>SearchRecipeComponent</code> and the HTML that goes with it. The component takes two attributes that should look familiar: <code>nameFilterString</code> and <code>categoryFilterMap</code>. The component contains just enough logic to be able to control the portion of the view responsible for searching and filtering. Note that both attributes are declared as bidirectional. This is because the <code>SearchRecipeComponent</code> clears the search filters by resetting these two attributes.</p>
+  <p>Let’s look at <code>SearchRecipeComponent</code> and the HTML that goes with it. The component takes two attributes that should look familiar: <code>nameFilterString</code> and <code>categoryFilterMap</code>. The component contains just enough logic to be able to control the portion of the view responsible for searching and filtering. Note that both attributes are declared as bidirectional. This is because the <code>SearchRecipeComponent</code> clears the search filters by resetting these two attributes.</p>
 
   <p>Now our app’s main index.html file is a lot simpler. Instead of containing all the markup to set up the search and filter views, it now just contains the call to the component. The details of the view elements are hidden away in the <code>SearchRecipeComponent</code>’s HTML template.</p>
 
@@ -230,7 +245,7 @@ Logger.root.onRecord.listen((LogRecord r) { print(r.message); });
   <hr class="spacer" />
 
   <h4 id="connecting-a-route-to-a-view">Connecting a route to a view</h4>
-  <p>Now lets look at the how the routes and views are connected in our app. There are two pieces involved: the router configuration, and the <code>ng-view</code> Directive. Open up the index.html file and look at the details section. It contains only an <code>ng-view</code> Directive.</p>
+  <p>Now let’s look at the how the routes and views are connected in our app. There are two pieces involved: the router configuration, and the <code>ng-view</code> directive. Open up the index.html file and look at the details section. It contains only an <code>ng-view</code> directive.</p>
 
  <pre class="prettyprint">
 &lt;section id="details"&gt;
@@ -238,7 +253,7 @@ Logger.root.onRecord.listen((LogRecord r) { print(r.message); });
 &lt;/section&gt;
 </pre>
 
-  <p>The <code>ng-view</code> Directive causes the rendered template of the current route to be included into the layout where the <code>ng-view</code> appears. Whenever the current route changes, the <code>ng-view</code> changes the view.</p>
+  <p>The <code>ng-view</code> directive causes the rendered template of the current route to be included into the layout where the <code>ng-view</code> appears. Whenever the current route changes, the <code>ng-view</code> changes the view.</p>
 
   <p>Next we’ll look at how to make the route parameters available inside our <code>ViewRecipeComponent</code>.</p>
 
