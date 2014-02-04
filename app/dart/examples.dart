@@ -82,16 +82,16 @@ class TabsComponent {
 
   void select(var pane) {
     for (var i = 0; i < panes.length; i++) {
-      this.panes[i].selected = false;
+      panes[i].selected = false;
     }
     pane.selected = true;
   }
 
   void addPane(PaneComponent pane) {
-    if (this.panes.length == 0) {
-      this.select(pane);
+    if (panes.length.isEmpty) {
+      select(pane);
     }
-    this.panes.add(pane);
+    panes.add(pane);
   }
 }
 
@@ -101,8 +101,7 @@ class TabsComponent {
     cssUrl: 'pane.css',
     applyAuthorStyles: true,
     publishAs: 'pane',
-    map: const {'title' : '@'}
-)
+    map: const {'title' : '@'})
 class PaneComponent {
   String title = '';
   bool selected = false;
@@ -121,14 +120,14 @@ class BeerCounter {
 
   BeerCounter() {
     if (Intl.defaultLocale.toString() == 'sk_SK') {
-      this.getMessage = (beer_count) => Intl.plural(
+      getMessage = (beer_count) => Intl.plural(
           beer_count,
           zero: '\u017Eiadne pivo',
           one: '$beer_count pivo',
           few: '$beer_count piv\u00E1',
           other: '$beer_count p\u00EDv');
     } else {
-      this.getMessage = (beer_count) => Intl.plural(
+      getMessage = (beer_count) => Intl.plural(
           beer_count,
           zero: 'no beers',
           one: '$beer_count beer',

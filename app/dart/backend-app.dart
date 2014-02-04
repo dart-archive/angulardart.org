@@ -39,87 +39,74 @@ class FirebaseResultsAdapter {
 
   FirebaseAdapter _results;
 
-  FirebaseResultsAdapter() {
-    this._results = new AngularFire(fb);
-  }
+  FirebaseResultsAdapter(): _results = new AngularFire(fb);
 
-  getResults() {
-    return _results;
-  }
+  FirebaseAdapter get results =>  _results;
 }
 
 @NgController(
   selector: '[system-panel]',
-  publishAs: 'panel'
-)
+  publishAs: 'panel')
 class SystemPanelCtrl {
-  Scope scope;
+  final Scope scope;
   bool filterOn = false;
   FirebaseAdapter results;
 
-  SystemPanelCtrl(RouteProvider routeProvider, Scope this.scope, FirebaseResultsAdapter adapter) {
+  SystemPanelCtrl(RouteProvider routeProvider, this.scope, FirebaseResultsAdapter adapter) {
     Map params = routeProvider.parameters;
-    this.results = adapter.getResults().values;
+    results = adapter.results.values;
   }
 }
 
 class SystemEntry {
-  static statusValues() {
-    return {
-      "functional"    : "Operations Normal!",
-      "unpredictable" : "Runs OK ... Sometimes",
-      "crashing"      : "Ughh? What's going on?",
-      "offline"       : "Nope. It's not responding"
-    };
-  }
+  static Map<String, String> statusValues() => {
+    "functional"    : "Operations Normal!",
+    "unpredictable" : "Runs OK ... Sometimes",
+    "crashing"      : "Ughh? What's going on?",
+    "offline"       : "Nope. It's not responding"
+  };
 
-  static topicValues() {
-    return {
-      "webserver" : "Webserver",
-      "db"        : "Database Engine",
-      "billing"   : "Billing System",
-      "coffee"    : "Coffee Machine"
-    };
-  }
+  static Map<String, String> topicValues() => {
+    "webserver" : "Webserver",
+    "db"        : "Database Engine",
+    "billing"   : "Billing System",
+    "coffee"    : "Coffee Machine"
+  };
 
   String statusKey, topicKey, status, topic;
 
-  SystemEntry(String this.topicKey, String this.statusKey) {
-    this.topic  = SystemEntry.topicValues()[this.topicKey];
-    this.status = SystemEntry.statusValues()[this.statusKey];
+  SystemEntry(this.topicKey, this.statusKey) {
+    topic  = SystemEntry.topicValues()[topicKey];
+    status = SystemEntry.statusValues()[statusKey];
   }
 
-  export() {
-    return {
-      'topicKey' : this.topicKey,
-      'topic' : this.topic,
-      'statusKey' : this.statusKey,
-      'status' : this.status
-    };
-  }
+  export() => {
+    'topicKey' : this.topicKey,
+    'topic' : this.topic,
+    'statusKey' : this.statusKey,
+    'status' : this.status
+  };
 }
 
 @NgController(
   selector: '[entry-form-ctrl]',
-  publishAs: 'form'
-)
+  publishAs: 'form')
 class NewEntryFormCtrl {
 
-  Scope _scope;
-  NgForm _form;
-  Router _router;
+  final Scope _scope;
+  final NgForm _form;
+  final Router _router;
 
   FirebaseAdapter _results;
   String topicKey;
   String statusKey;
-
   String statuses;
   String topics;
 
-  NewEntryFormCtrl(Router this._router, Scope this._scope, NgForm this._form, FirebaseResultsAdapter adapter) {
-    this.topics   = this.formatAsOptions(SystemEntry.topicValues());
-    this.statuses = this.formatAsOptions(SystemEntry.statusValues());
-    this._results = adapter.getResults();
+  NewEntryFormCtrl(this._router, this._scope, this._form, FirebaseResultsAdapter adapter) {
+    topics   = this.formatAsOptions(SystemEntry.topicValues());
+    statuses = this.formatAsOptions(SystemEntry.statusValues());
+    _results = adapter.results;
   }
 
   formatAsOptions(Map items) {
@@ -134,7 +121,7 @@ class NewEntryFormCtrl {
   }
 
   submit() {
-    SystemEntry entry = new SystemEntry(this.topicKey, this.statusKey);
+    SystemEntry entry = new SystemEntry(topicKey, statusKey);
     print(entry.export());
     this._results.add(entry.export());
     this._router.gotoUrl('home');
