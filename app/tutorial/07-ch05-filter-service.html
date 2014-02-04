@@ -111,8 +111,26 @@
 
   <hr />
 
-  <h3 id="the-code">The code</h3>
-  <p><a href="https://github.com/angular/angular.dart.tutorial/tree/master/Chapter_05">Here is the code</a> for the next version of our Recipe Book app. Run the code in Dart Editor. Notice the text box and checkboxes at the top of the app. You can use these inputs to control which recipes are shown in the list. Start typing into the filter box and watch the list of visible recipes shrink to match your search criteria. Next, limit your results further by checking a few categories to limit to. Try using both filters together by typing in a search criteria and also limiting based on category. Lastly, clear the filters by pressing the “Clear Filters” button, and watch all your results re-appear.</p>
+  <h3 id="running-the-sample-app">Running the sample app</h3>
+  <p>The code for this chapter is in the
+<em><a href="https://github.com/angular/angular.dart.tutorial/tree/master/Chapter_05">Chapter_05</a></em> directory of the
+      <a href="https://github.com/angular/angular.dart.tutorial/archive/master.zip">angular.dart.tutorial download</a>.
+View it in Dart Editor by using <strong>File &gt; Open Existing Folder...</strong>
+to open the <strong>Chapter_05</strong> directory. </p>
+
+  <p>Now run the app. In Dart Editor’s Files view, select <strong>Chapter_05/web/index.html</strong>, right-click, and choose <strong>Run in Dartium</strong>.</p>
+
+  <p>
+    Notice the text box and checkboxes at the top of the app.
+    You can use these inputs to control which recipes are shown in the list.
+    Start typing into the filter box and
+    watch the list of visible recipes shrink to match your search criteria.
+    Next, limit your results further by checking a few categories to limit to.
+    Try using both filters together by typing in a search criteria and
+    also limiting based on category.
+    Lastly, clear the filters by pressing the “Clear Filters” button,
+    and watch all your results re-appear.
+  </p>
 
   <hr class="spacer" />
 
@@ -214,7 +232,7 @@ class MyAppModule extends Module {
 
   <p>Our view creates a checkbox input and label for each category. Angular stores each checkbox value as a boolean - true if checked, or false if not checked.</p>
 
-  <p>To create the checkboxes, we added a new piece of data to our app - a list of categories. We use the <code>ng-repeat</code> Directive to iterate through the list and create a checkbox and label for each category. Inputs in Angular are bound to a model object with the <code>ng-model</code> Directive. Here, we bind to a map called <code>categoryFilterMap</code>. The map’s keys are the category names, and the values are true or false depending on whether or not they’re checked.</p>
+  <p>To create the checkboxes, we added a new piece of data to our app - a list of categories. We use the <code>ng-repeat</code> directive to iterate through the list and create a checkbox and label for each category. Inputs in Angular are bound to a model object with the <code>ng-model</code> directive. Here, we bind to a map called <code>categoryFilterMap</code>. The map’s keys are the category names, and the values are true or false depending on whether or not they’re checked.</p>
 
   <p>Next, we plug the custom filter in the same way we would plug in a built in filter:
 <pre class="prettyprint">
@@ -224,7 +242,7 @@ class MyAppModule extends Module {
 
 <hr class="spacer" />
   <h4 id="filter-chaining">Filter chaining</h4>
-  <p>Our app uses a feature called filter chaining to apply more than one filter to the same view element. Below, we see the <code>ng-repeat</code> Directive has three filters separated by pipes. This is how Angular applies multiple filters to a single <code>ng-repeat</code>.</p>
+  <p>Our app uses a feature called filter chaining to apply more than one filter to the same view element. Below, we see the <code>ng-repeat</code> directive has three filters separated by pipes. This is how Angular applies multiple filters to a single <code>ng-repeat</code>.</p>
 
  <pre class="prettyprint">
 &lt;li class="pointer"
@@ -323,7 +341,7 @@ List&lt;Recipe&gt; recipes = [];
 
   <h3 id="angular-features">Angular features</h3>
   <h4><a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/angular.directive/NgCloakDirective.html"><code>ng-cloak</code></a></h4>
-<p>You probably noticed that in previous examples, when you first loaded your app, you briefly saw curly braces like <code>{{someVar}}</code> before your app “popped” into place, and the correct values appeared. The <code>ng-cloak</code> Directive combined with some CSS rules that you add to your app’s main CSS file allow you to avoid this blink. The blink happens between the time your HTML loads and Angular is bootstrapped and has compiled the DOM and has substituted in the real values for the uncompiled DOM values. While Angular is compiling the DOM, you can hide the page (or sections of it) by using <code>ng-cloak</code>:</p>
+<p>You probably noticed that in previous examples, when you first loaded your app, you briefly saw curly braces like <code>{{someVar}}</code> before your app “popped” into place, and the correct values appeared. The <code>ng-cloak</code> directive combined with some CSS rules that you add to your app’s main CSS file allow you to avoid this blink. The blink happens between the time your HTML loads and Angular is bootstrapped and has compiled the DOM and has substituted in the real values for the uncompiled DOM values. While Angular is compiling the DOM, you can hide the page (or sections of it) by using <code>ng-cloak</code>:</p>
 <pre class="prettyprint">
 &lt;body class=”ng-cloak”&gt;
 </pre>
@@ -338,7 +356,7 @@ The CSS rule causes the view  to be hidden:
 }
 </pre>
 
-  <p>Once Angular is finished compiling the DOM, it secretly removes the <code>ng-cloak</code> class or Directive from the DOM and allows your app to be visible.</p>
+  <p>Once Angular is finished compiling the DOM, it secretly removes the <code>ng-cloak</code> class or directive from the DOM and allows your app to be visible.</p>
 
   <hr class="spacer" />
 
