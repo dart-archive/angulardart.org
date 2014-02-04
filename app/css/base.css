@@ -548,6 +548,10 @@
       font-size: 32px;
     }
 
+    .pager li a {
+      white-space: nowrap;
+    }
+
     footer {
       text-align: center;
     }
@@ -607,10 +611,6 @@
 
     .pager li:nth-child(2) {
       display: none;
-    }
-
-    .pager li a {
-      white-space: nowrap;
     }
 
   }
