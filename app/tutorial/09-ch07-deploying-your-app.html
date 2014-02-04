@@ -107,27 +107,62 @@
 <div role="main" class="container tutorial page-9">
 
   <div class="alert alert-warning">
-    <strong>Hey there!</strong> This article is currently considered In Development by the AngularDart team. As soon as it is production ready, this message will disappear.
+    <strong>Hey there!</strong> This chapter is currently considered In Development by the AngularDart team. As soon as it is production ready, this message will disappear.
   </div>
 
   <h1 id="angulardart-tutorial-production-deployment">Production Deployment</h1>
+
+  This chapter shows how to create tree-shaken, minified JavaScript that
+  can run in any modern browser.
+
   <hr />
 
   <h2 id="running-the-sample-app">Running the Sample App</h2>
 
-  <p>Before running the app, make sure you run the code generators (see below for
-more info) like so:</p>
+  <p>The code for this chapter is in the
+    <em><a href="https://github.com/angular/angular.dart.tutorial/tree/master/Chapter_07">Chapter_07</a></em> directory of the
+          <a href="https://github.com/angular/angular.dart.tutorial/archive/master.zip">angular.dart.tutorial download</a>.
+    View it in Dart Editor by using <strong>File &gt; Open Existing Folder...</strong>
+    to open the <strong>Chapter_07</strong> directory. </p>
 
-<pre class="prettyprint">
+  <div class="alert alert-info">
+    <strong>See errors?</strong>
+    The first time you open this app, Dart Editor displays warnings and errors.
+    Once you run the code generator, those messages go away.
+  </div>
+
+  <p>
+    Before running the app, get the packages,
+    temporarily set the DART_SDK environment variable,
+    and run the code generator.
+    For example:
+  </p>
+
+<pre>
+pub get
+export DART_SDK=/Applications/Dart/dart-sdk
 dart -c bin/generator.dart
 </pre>
 
-  <p>You can then run the app in Dart Editor:
-Right-click <strong>Chapter_07/web/index.html</strong>, and choose <strong>Run as JavaScript</strong>.</p>
+  <p>
+    Now run the app in your default web browser.
+    In Dart Editor’s Files view,
+    select <strong>Chapter_07/web/index.html</strong>,
+    right-click, and choose <strong>Run as JavaScript</strong>.
+  </p>
 
-  <p>After the app is compiled to JavaScript,
-the app should appear in your default browser.
-You can copy the app’s URL into any other browser you’d like to test.</p>
+  <p>
+    After the app is compiled to JavaScript,
+    the app should appear in your default browser.
+    You can copy the app’s URL into any other browser you’d like to test.
+  </p>
+
+  <div class="alert alert-info">
+    <strong>Note:</strong>
+    To reduce the size of the generated JavaScript,
+    you can minify it, as described below.
+  </div>
+
 
   <hr class="spacer" />
 
@@ -157,7 +192,7 @@ mirrors, so long-term it’s not a problem, but in short-term it’s something
 you might need to think about.</li>
   </ol>
 
-  <p>Here we will provide some tip on these subjects.</p>
+  <p>Here we will provide some tips on these subjects.</p>
 
   <hr class="spacer" />
 
@@ -174,13 +209,31 @@ you might need to think about.</li>
 
   <p>Minification can reduce your resulting JavaScript by 2-3x.</p>
 
-  <p>All you need to do is run <code>pub build</code>, which has minification turned on
-by default.</p>
+  <p>One way to minify is to run <code>pub build</code>, which has minification turned on
+by default:</p>
 
 <pre class="prettyprint">
 cd your_app
 pub build
 </pre>
+
+  <p>Another way is through Dart Editor:</p>
+
+  <ol>
+    <li>
+      Click the arrow next to the Run button, and choose
+      <b>Manage Launches...</b>.
+    </li>
+    <li>
+      In the list of launches, choose the dart2js (gray world) icon for
+      <b>Chapter_07, web/index.html</b>.
+    </li>
+    <li>
+      Specify the <b>--minify</b> compiler flag.
+    </li>
+  </ol>
+
+  <img src="img/ch07-1.png" alt="screenshot of Manage Launches dialog">
 
   <h3 id="mirrorsused"><code>@MirrorsUsed</code></h3>
 
@@ -222,7 +275,7 @@ to <code>@MirrorsUsed.targets</code>.</p>
 
   <p>It’s much easier to debug <code>@MirrorsUsed</code> while working with unminified
 dart2js output, as you’ll be able to see unminified class/field names and
-be able to much easier identify what is missing.</p>
+to more easily identify what is missing.</p>
 
 <hr class="spacer" />
   <h2 id="optimizing-runtime-performance">Optimizing Runtime Performance</h2>
