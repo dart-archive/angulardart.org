@@ -373,7 +373,7 @@ ViewRecipeComponent(RouteProvider routeProvider) {
   <h3 id="more-on-futures">More on Futures</h3>
   <p>In this version of our app, we also separated the query layer  from our <code>RecipeBookController</code> by creating a <code>QueryService</code>. The <code>QueryService</code> does basically the same thing the old <code>_loadData</code> method did, but with a few enhancements.</p>
 
-  <p><img src="img/ch06-1-QueryServiceOutline.png" alt="Dartium running the Hello World app" /></p>
+  <p><img src="img/ch06-1-QueryServiceOutline.png" alt="QueryService public API outline" /></p>
   <p>First, it provides getters for common queries. Notice that these getters don’t return concrete objects. They return <a href="https://api.dartlang.org/docs/channels/stable/latest/dart_async/Future.html">Future</a>s. Our application code still has to plan for the possibility that the service will be slow, so our app’s <code>_loadData</code> method isn’t too different from the last version. It still determines if the data is loaded and sets appropriate view messages. It just delegates to the <code>QueryService</code> to do the actual query and JSON mapping.</p>
 
   <p>Second, we’ve built some caching into the <code>QueryService</code>. This (overly simplistic) cache determines if the data has already been loaded, and if so, serves it from the cache. The service guarantees that data is loaded by using Future chaining. Let’s look at the <code>QueryService</code> constructor:</p>
