@@ -137,12 +137,12 @@ to open the <strong>Chapter_06</strong> directory. </p>
   <hr class="spacer" />
 
   <h3 id="encapsulating-view-logic-into-components">Encapsulating view logic into components</h3>
-  <p>An important refactoring of <strong>main.dart</strong> and <strong>index.html</strong> that we have performed is to move the view logic related to</p>
+  <p>An important refactoring of <strong>main.dart</strong> and <strong>index.html</strong> that we have performed is to move some of the view logic  into the following components:</p>
   <ul>
-    <li>recipe searching (using the filters), and </li>
-    <li>presenting a recipe&rsquo;s details</li>
+    <li><code>SearchRecipeComponent</code>, responsible for  searching recipes (by means of  filters)</li>
+    <li><code>ViewRecipeComponent</code>, responsible for presenting a recipe&rsquo;s details</li>
   </ul>
-  <p>into their own Angular components named <code>SearchRecipeComponent</code> and <code>ViewRecipeComponent</code>, respectively. These are good examples of how components can be used to encapsulate view specific functionality. The <code>RatingComponent</code> , that we introduced in Chapter 3, is different in that it is truly generic and can be used anywhere. For this reason, we left it in it's own separate subdirectory (<code>rating</code>). Our two new components aren’t generic. They contain logic that is specific to the view they control and so they live in the view directory.</p>
+  <p>These components are good examples of encapsulating view-specific functionality. The <code>RatingComponent</code>, which we introduced in Chapter 3, is different in that it is truly generic and can be used anywhere. For this reason, we left it in its own separate subdirectory (<code>rating</code>). Our two new components aren’t generic. They contain logic that is specific to the view they control and so they live in the <code>view</code> directory.</p>
   
   <table>
     <tr>
@@ -158,7 +158,7 @@ to open the <strong>Chapter_06</strong> directory. </p>
 
   <strong>&lt;div id="filters"&gt;
     &lt;div&gt;
-      &lt;label for="name-filter"&gt;Filter recipes by name&lt;/label&gt;
+      &lt;label for="name-filter"&gt;Filter ... &lt;/label&gt;
       &lt;input id="name-filter" type="text" 
              ng-model="ctrl.nameFilterString"&gt;
     &lt;/div&gt;
@@ -208,7 +208,7 @@ to open the <strong>Chapter_06</strong> directory. </p>
       <td><pre class="prettyprint" style="font-size:x-small">
 &lt;div id="filters"&gt;
   &lt;div&gt;
-    &lt;label for="name-filter"&gt;Filter recipes by name&lt;/label&gt;
+    &lt;label for="name-filter"&gt;Filter ...&lt;/label&gt;
     &lt;input id="name-filter" type="text" 
            ng-model="ctrl.nameFilterString"&gt;
   &lt;/div&gt;
@@ -224,7 +224,7 @@ to open the <strong>Chapter_06</strong> directory. </p>
 &lt;/div&gt;
 </pre></td>
     </tr>
-  </table>
+</table>
   <p>&nbsp;</p>
 
   <p>Let’s look at <code>SearchRecipeComponent</code> and the HTML that goes with it. The component has two attribute fields that should look familiar: <code>nameFilterString</code> and <code>categoryFilterMap</code>. The component contains just enough logic to be able to control the portion of the view responsible for searching and filtering. Note that both fields are declared as bidirectional. The component needs the &ldquo;return&rdquo; direction  because its <code>clearFilter()</code> method updates the search filters by resetting these two attributes.</p>
