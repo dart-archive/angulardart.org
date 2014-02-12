@@ -109,7 +109,7 @@
 <div role="main" class="container tutorial page-8">
   <h1 id="angulardart-tutorial-creating-views">Creating Views</h1>
 
-  <p>In this chapter, we will examine how to use routing to create different views in our app. We will also clean up our app a bit by moving functionality out of our ever-growing main.dart and into more appropriate locations. Lastly, We will create a more sophisticated query service that shows you a little bit more about Futures. When you are finished, you will be able to create views within your app that are bookmarkable. You will also have a deeper understanding of how to write robust application code so that it works well in the asynchronous world of modern web apps.</p>
+  <p>In this chapter, we will examine how to use routing to create different views in our app. We will also clean up our app a bit by moving functionality out of our ever-growing <strong>main.dart</strong>, <strong>recipe_book.dart</strong>, and <strong>index.html</strong> files into more appropriate locations. Lastly, we will create a more sophisticated query service  that shows you a little bit more about Futures. When you are finished, you will be able to create views within your app that are bookmarkable. You will also have a deeper understanding of how to write robust application code so that it works well in the asynchronous world of modern web apps.</p>
 
   <hr />
 
@@ -124,8 +124,7 @@ to open the <strong>Chapter_06</strong> directory. </p>
 
   <p>
     Click a recipe to view it.
-    The first thing you’ll notice is some new buttons.
-    In addition to viewing a recipe, you can now add and edit them as well.
+    The first thing you’ll notice is some new buttons: in addition to viewing a recipe, you now have buttons to add and edit recipes as well.
     Notice how the URL changes to reflect your specific view when
     you navigate from recipe to recipe.
     Notice also that the back button now works as you would expect.
@@ -134,42 +133,144 @@ to open the <strong>Chapter_06</strong> directory. </p>
   <hr class="spacer" />
 
   <h3 id="application-structure-and-organization">Application structure and organization</h3>
-  <p>Before we dive into routing and views, let’s look at the structural changes we made to the app. The first thing we’ve done is to make subdirectories for specific purposes like components, filters, services, and views. Next, we removed all of our custom components, filters, and services from the main.dart file to their own files, leaving only our main controller, the <code>RecipeBookController</code> inside main.dart.</p>
-
+  <p>Before we dive into routing and views, take a look at the app&rsquo;s <code>lib</code> folder. The <code>filter</code> subdirectory is joined by new subdirectories named <code>component</code>, <code>routing</code>, and <code>service</code>. As an app grows in size, it can be useful to organize its source files by function and place them into appropriate subdirectories like these. We will cover the content of each  new subdirectory as we make our way through the remainder of this chapter.</p>
   <hr class="spacer" />
 
   <h3 id="encapsulating-view-logic-into-components">Encapsulating view logic into components</h3>
-  <p>We also created two more components: <code>SearchRecipeComponent</code> and <code>ViewRecipeComponent</code>. These are examples of how components can be used to encapsulate view specific functionality. The <code>RatingComponent</code> is a little bit different in that it is truly generic and can be used anywhere. For this reason, we put it in a separate directory (lib/rating).</p>
+  <p>An important refactoring of <strong>main.dart</strong> and <strong>index.html</strong> that we have performed is to move some of the view logic  into the following components:</p>
+  <ul>
+    <li><code>SearchRecipeComponent</code>, responsible for  searching recipes (by means of  filters)</li>
+    <li><code>ViewRecipeComponent</code>, responsible for presenting a recipe&rsquo;s details</li>
+  </ul>
+  <p>These components are good examples of encapsulating view-specific functionality. The <code>RatingComponent</code>, which we introduced in Chapter 3, is different in that it is truly generic and can be used anywhere. For this reason, we left it in its own separate subdirectory (<code>rating</code>). Our two new components aren’t generic. They contain logic that is specific to the view they control and so they live in the <code>view</code> directory.</p>
+  
+  <table>
+    <tr>
+      <th> index.html (previous Chapter)</th>
+      <th>index.html (revisited)</th>
+    </tr>
+    <tr>
+      <td rowspan="3">
+<pre class="prettyprint" style="font-size:x-small">
+&lt;div recipe-book&gt;
+  ...
+  &lt;h3&gt;Recipe List&lt;/h3&gt;
 
-  <p>Our two new components aren’t generic. They contain logic that is specific to the view they control and so they live in the view directory.</p>
+  <strong>&lt;div id="filters"&gt;
+    &lt;div&gt;
+      &lt;label for="name-filter"&gt;Filter ... &lt;/label&gt;
+      &lt;input id="name-filter" type="text" 
+             ng-model="ctrl.nameFilterString"&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      Filter recipes by category:
+      &lt;span ng-repeat="category in ctrl.categories"&gt;
+        &lt;label&gt;
+          &lt;input type="checkbox"
+           ng-model="ctrl.categoryFilterMap[category]"&gt;
+              {{category}}
+        &lt;/label&gt;
+      &lt;/span&gt;
+    &lt;/div&gt;
+    &lt;input type="button" value="Clear Filters" 
+        ng-click="ctrl.clearFilters()"&gt;
+  &lt;/div&gt;</strong>
 
-  <p>Let’s look at <code>SearchRecipeComponent</code> and the HTML that goes with it. The component takes two attributes that should look familiar: <code>nameFilterString</code> and <code>categoryFilterMap</code>. The component contains just enough logic to be able to control the portion of the view responsible for searching and filtering. Note that both attributes are declared as bidirectional. This is because the <code>SearchRecipeComponent</code> clears the search filters by resetting these two attributes.</p>
+  &lt;div id="recipe-list"&gt;
+   ...
+  &lt;/div&gt;      
 
-  <p>Now our app’s main index.html file is a lot simpler. Instead of containing all the markup to set up the search and filter views, it now just contains the call to the component. The details of the view elements are hidden away in the <code>SearchRecipeComponent</code>’s HTML template.</p>
+  &lt;div id="recipe-details"&gt;
+    &lt;h3&gt;Recipe Details&lt;/h3&gt;
+    ...
+  &lt;/div&gt;
+&lt;/div&gt;
+</pre>
+      </td>
+      <td><pre class="prettyprint" style="font-size:x-small">
+&lt;div recipe-book&gt; ...
+  &lt;h3&gt;Recipe List&lt;/h3&gt; ...
+    <strong>&lt;search-recipe 
+        name-filter-string="ctrl.nameFilter"
+        category-filter-map="ctrl.categoryFilterMap"&gt;
+    &lt;/search-recipe&gt;</strong> ...
+    &lt;div id="recipe-list"&gt;...&lt;/div&gt; ...
+  &lt;section id="details"&gt;
+    &lt;ng-view&gt;&lt;/ng-view&gt;
+  &lt;/section&gt;
+&lt;/div&gt;
+</pre></td>
+    </tr>
+    <tr>
+      <th>search_recipe_component.html</th>
+    </tr>
+    <tr>
+      <td><pre class="prettyprint" style="font-size:x-small">
+&lt;div id="filters"&gt;
+  &lt;div&gt;
+    &lt;label for="name-filter"&gt;Filter ...&lt;/label&gt;
+    &lt;input id="name-filter" type="text" 
+           ng-model="ctrl.nameFilterString"&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    Filter recipes by category:
+    &lt;span ng-repeat="category in ctrl.categories"&gt;
+      &lt;label&gt;
+        &lt;input type="checkbox" ... &gt;{{category}}
+      &lt;/label&gt;
+    &lt;/span&gt;
+  &lt;/div&gt;
+  &lt;input type="button" value="Clear Filters"...&gt;
+&lt;/div&gt;
+</pre></td>
+    </tr>
+</table>
+  <p>&nbsp;</p>
+
+  <p>Let’s look at <code>SearchRecipeComponent</code> and the HTML that goes with it. The component has two attribute fields that should look familiar: <code>nameFilterString</code> and <code>categoryFilterMap</code>. The component contains just enough logic to be able to control the portion of the view responsible for searching and filtering. Note that both fields are declared as bidirectional. The component needs the &ldquo;return&rdquo; direction  because its <code>clearFilter()</code> method updates the search filters by resetting these two attributes.</p>
+
+  <p>Now our app’s main <strong>index.html</strong> file is a lot simpler (see the table above). Instead of containing all of the markup to set up the search and filter views, it now just contains the a reference to the component. The details of the view elements are hidden away in the <code>SearchRecipeComponent</code>’s HTML template (shown as the lower right excerpt in the table above).</p>
 
  <pre class="prettyprint">
-&lt;search-recipe
-    name-filter-string="ctrl.nameFilter"
-    category-filter-map="ctrl.categoryFilterMap"&gt;
-&lt;/search-recipe&gt;
+@NgComponent(
+    selector: 'search-recipe',
+    templateUrl: 'packages/angular_dart_demo/component/search_recipe_component.html',
+    publishAs: 'ctrl'
+)
+class SearchRecipeComponent {
+  @NgTwoWay('name-filter-string')
+  String nameFilterString = "";
+  
+  @NgTwoWay('category-filter-map')
+  Map&lt;String, bool&gt; categoryFilterMap;
+
+  List&lt;String&gt; get categories {
+    return categoryFilterMap.keys.toList();
+  }
+
+  void clearFilters() {
+    categoryFilterMap.keys.forEach((f) => categoryFilterMap[f] = false);
+    nameFilterString = "";
+  }
+}
 </pre>
 
   <hr class="spacer" />
 
   <h3 id="using-routing-to-create-views">Using routing to create views</h3>
-  <p>In earlier versions of our app, we had only one view. No matter where you were in the app, the URL never changed to reflect what you were doing. This is generally undesirable and user unfriendly. If one of our users found a recipe they liked, they had no way of bookmarking it for later. Using routing to create views lets us address this problem. Routing makes it easier to build large single-page applications. It lets you map the browser address bar to the semantic structure of your application, and keeps them in sync.</p>
+  <p>In earlier versions of our app, we had only one view. No matter what you did in the app, the URL never changed to reflect what you were doing. This is generally undesirable and user unfriendly. If one of our users found a recipe they liked, they had no way of bookmarking it for later. Using routing to create views lets us address this problem. Routing makes it easier to build large single-page applications. It lets you map the browser address bar to the semantic structure of your application, and keeps them in sync.</p>
 
   <hr class="spacer" />
 
   <h4 id="configuring-the-router">Configuring the router</h4>
-  <p>Let’s look at recipe_book_router.dart. There we define all of our app’s routes and map them to views. To take advantage of routing, just create a class that implements the <a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/angular.routing/RouteInitializer.html"><code>RouteInitializer</code></a> interface. Angular will look for an instance of <code>RouteInitializer</code> when it instantiates the router and will use it to configure the routes. <code>RouteInitializer</code> has a single method: <code>init</code>. It takes two parameters, a <a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/route.client/Router.html"><code>Router</code></a>, and a <a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/angular.routing/ViewFactory.html"><code>ViewFactory</code></a>, both of which are created by the dependency injector for you.</p>
+  <p>Let’s look at <strong>recipe_book_router.dart</strong>. There we define all of our app’s routes and map them to views. To take advantage of routing, just create a class that implements the <a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/angular.routing/RouteInitializer.html"><code>RouteInitializer</code></a> interface. Angular will look for an instance of <code>RouteInitializer</code> when it instantiates the router and will use it to configure the routes. <code>RouteInitializer</code> has a single method: <code>init</code>(). It takes two parameters, a <a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/route.client/Router.html"><code>Router</code></a>, and a <a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/angular.routing/ViewFactory.html"><code>ViewFactory</code></a>, both of which are created by the dependency injector for you.</p>
 
  <pre class="prettyprint">
 class RecipeBookRouteInitializer implements RouteInitializer {
-  init(Router router, ViewFactory view) {
+  init(Router router, ViewFactory view) { ...
 </pre>
 
-  <p>All you need to do to set up routing is to implement the <code>init</code> method, and then make the <code>RouteInitializer</code> available in the your app’s module configuration:</p>
+  <p>All you need to do to set up routing is to implement the <code>init</code>() method, and then make the <code>RouteInitializer</code> available in the your app’s module configuration:</p>
 
  <pre class="prettyprint">
 type(RouteInitializer, implementedBy: RecipeBookRouteInitializer);
@@ -189,14 +290,14 @@ router.root
   <p>Is the name you give to the route. You will use this name in the template to tell Angular which route to use for the view.</p>
 
   <h5 id="path"><code>path</code></h5>
-  <p>Is the URL pattern that maps to this route. More than one route can match a given pattern, so patterns should go from more specific to more general. (Hint: if your routes are misbehaving, this is probably the place to start looking for misconfiguration). If you find you need to debug your routing configuration, import Dart’s logging library and add this magic to your <code>main()</code>:</p>
+  <p>Is the URL pattern that maps to this route. More than one route can match a given pattern, so patterns should go from more specific to more general. (Hint: if your routes are misbehaving, this is probably the place to start looking for misconfiguration). If you find that you need to debug your routing configuration, import Dart’s logging library and add this magic to your <code>main()</code>:</p>
 
  <pre class="prettyprint">
 Logger.root.level = Level.FINEST;
 Logger.root.onRecord.listen((LogRecord r) { print(r.message); });
 </pre>
   <h5 id="enter"><code>enter</code></h5>
-  <p>A <a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/route.client/RouteEventHandler.html"><code>RouteEventHandler</code></a> that tells the router what to do when the route is entered. Our example code above asks the <code>ViewFactory</code> to create a <code>RouteEventHandler</code> that points our route to a specific html file. You can also write your own custom <code>RouteEventHandlers</code>.</p>
+  <p>A <a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/route.client/RouteEventHandler.html"><code>RouteEventHandler</code></a> that tells the router what to do when the route is entered. Our example code above asks the <code><a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/angular.routing/ViewFactory.html">ViewFactory</a></code> to create a <code>RouteEventHandler</code> that points our route to a specific html file. You can also write your own custom <code>RouteEventHandlers</code>.</p>
 
   <h5 id="leave"><code>leave</code></h5>
   <p>A <code>RouteEventHandler</code> that tells the router what to do when the route is left. You can use this for a number of purposes. For example, you can determine if a view is leavable, and what to do if it shouldn’t be left (for example, if there are unsaved changes on a view, you might want to prevent the route from leaving, or warn the user that their changes will be lost).</p>
@@ -207,7 +308,7 @@ Logger.root.onRecord.listen((LogRecord r) { print(r.message); });
   <hr class="spacer" />
 
   <h4 id="routes-can-do-more-than-just-load-a-view">Routes can do more than just load a view</h4>
-  <p>The configuration below is an example of a more complex enter handler. It uses the <code>defaultRoute</code> and a special <code>RouteEventHandler</code> to redirect users to something sane in the event that they entered an invalid URL. In our case, it routes them back to the “view recipe” view. The <code>replace: true</code> causes the invalid route to be removed from the history, so going back doesn’t cause your users to go through an invalid route.</p>
+  <p>The configuration below is an example of a more complex <code>enter</code> handler. It uses  <code>defaultRoute</code> and a special <code>RouteEventHandler</code> to redirect users to something sane in the event that they entered an invalid URL. In our case, it routes them back to the “view recipe” view. The <code>replace: true</code> causes the invalid route to be removed from the history, so going back doesn’t cause your users to go through an invalid route.</p>
 
  <pre class="prettyprint">
 ..addRoute(
@@ -221,7 +322,7 @@ Logger.root.onRecord.listen((LogRecord r) { print(r.message); });
   <hr class="spacer" />
 
   <h4 id="routes-are-hierarchical">Routes are hierarchical</h4>
-  <p>The <code>mount</code> parameter allows you to define nested routes. The URL for each nested route is created by appending it’s path to its parents’ paths. Here is an example of nested paths in our app:</p>
+  <p>The <code>mount</code> parameter allows you to define nested routes. The URL for each nested route is created by appending it’s path to its ancestors’ paths. Here is an example of nested paths in our app:</p>
 
  <pre class="prettyprint">
 ..addRoute(
@@ -233,11 +334,11 @@ Logger.root.onRecord.listen((LogRecord r) { print(r.message); });
             path: '/view',
             enter: view('recipeView.html'))
 </pre>
-  <p>Our app’s nested paths are a little more complicated, because they also add a parameter to the path. In the example above, the all the routes underneath the recipe subtree require a recipeId parameter.</p>
+  <p>Our app’s nested paths are a little more complicated, because they also add a parameter to the path. In the example above, the all the routes underneath the recipe subtree require a <code>recipeId</code> parameter.</p>
 
   <p>Here is how our routing configuration will build the paths we’ve defined:</p>
 
- <pre class="prettyprint">
+ <pre class="prettyprint lang-html">
 ...#
 ...#/add
 ...#/recipe/6/view
@@ -247,7 +348,7 @@ Logger.root.onRecord.listen((LogRecord r) { print(r.message); });
   <hr class="spacer" />
 
   <h4 id="connecting-a-route-to-a-view">Connecting a route to a view</h4>
-  <p>Now let’s look at the how the routes and views are connected in our app. There are two pieces involved: the router configuration, and the <code>ng-view</code> directive. Open up the index.html file and look at the details section. It contains only an <code>ng-view</code> directive.</p>
+  <p>Now let’s look at the how the routes and views are connected in our app. There are two pieces involved: the router configuration, and the <code>ng-view</code> directive. Open up the <strong>index.html</strong> file and look at the details section. It contains only an <code>ng-view</code> directive.</p>
 
  <pre class="prettyprint">
 &lt;section id="details"&gt;
@@ -270,9 +371,10 @@ ViewRecipeComponent(RouteProvider routeProvider) {
   <hr class="spacer" />
 
   <h3 id="more-on-futures">More on Futures</h3>
-  <p>In this version of our app, we also separated the query layer out from our main app by creating a <code>QueryService</code>. The <code>QueryService</code> does basically the same thing that our old <code>_loadData</code> method did, but with a couple of enhancements.</p>
+  <p>In this version of our app, we also separated the query layer  from our <code>RecipeBookController</code> by creating a <code>QueryService</code>. The <code>QueryService</code> does basically the same thing the old <code>_loadData</code> method did, but with a few enhancements.</p>
 
-  <p>First, it provides getters for common queries. Notice that these getters don’t return concrete objects. They return Futures. Our application code still has to plan for the possibility that the service will be slow, so our app’s <code>_loadData</code> method isn’t too different from the last version. It still determines if the data is loaded and sets appropriate view messages. It just delegates to the <code>QueryService</code> to do the actual query and JSON mapping.</p>
+  <p><img src="img/ch06-1-QueryServiceOutline.png" alt="QueryService public API outline" /></p>
+  <p>First, it provides getters for common queries. Notice that these getters don’t return concrete objects. They return <a href="https://api.dartlang.org/docs/channels/stable/latest/dart_async/Future.html">Future</a>s. Our application code still has to plan for the possibility that the service will be slow, so our app’s <code>_loadData</code> method isn’t too different from the last version. It still determines if the data is loaded and sets appropriate view messages. It just delegates to the <code>QueryService</code> to do the actual query and JSON mapping.</p>
 
   <p>Second, we’ve built some caching into the <code>QueryService</code>. This (overly simplistic) cache determines if the data has already been loaded, and if so, serves it from the cache. The service guarantees that data is loaded by using Future chaining. Let’s look at the <code>QueryService</code> constructor:</p>
 
@@ -284,7 +386,7 @@ ViewRecipeComponent(RouteProvider routeProvider) {
 
   <p>It wraps the calls to <code>_loadRecipes</code> and <code>_loadCategories</code> in a call to <a href="https://api.dartlang.org/docs/channels/stable/latest/dart_async/Future.html#wait"><code>Future.wait</code></a>. <code>Future.wait</code> also returns a <code>Future</code> which completes only when all the Futures in the list complete.</p>
 
-  <p>The getters in the service (<code>getRecipeById</code>, <code>getAllRecipes</code>, <code>getAllCategories</code>) first check to see if the cache has finished being loaded. If not, it returns a <code>Future</code> that will wait until <code>_loaded</code> is complete. If the cache has been populated, it still returns a <code>Future</code> - a new <code>Future</code> with the value of the cached data.</p>
+  <p>The getters in the service (<code>getRecipeById</code>, <code>getAllRecipes</code>, and <code>getAllCategories</code>) first check to see if the cache has finished  loading. If not, it returns a <code>Future</code> that will wait until <code>_loaded</code> is complete. If the cache has been populated, it still returns a <code>Future</code> &mdash; a new <code>Future</code> with the value of the cached data.</p>
 
   <p>Here’s an example:</p>
 
@@ -302,10 +404,10 @@ Future&lt;Recipe&gt; getRecipeById(String id) {
 <hr class="spacer" />
 
   <h3 id="now-its-your-turn">Now it's your turn</h3>
-  <p>We have set up a stub for adding and editing recipes. Try building the view to edit an existing recipe and write it back out to the mock data store (the JSON file). First you’ll need to create a view component for editing a recipe. Next, you will need to create a method on the <code>QueryService</code> to update the recipe data store, and then reload the recipe cache from the data store.</p>
+  <p>We have set up a stub for adding and editing recipes. Try building the view to edit an existing recipe and write it back  to the mock data store (the JSON file). First you’ll need to create a view component for editing a recipe. Next, you will need to create a method on the <code>QueryService</code> to update the recipe data store, and then reload the recipe cache from the data store.</p>
 
   <hr class="spacer" />
-  <h4 id="extra-credit">Extra credit</h4>
+  <h4 id="extra-credit">Extra challenge</h4>
   <p>Try to use the router <code>leave()</code> callback to prevent a user from leaving a page with unsaved edits.</p>
 
   <ul class="pager">
