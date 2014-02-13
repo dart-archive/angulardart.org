@@ -11,6 +11,12 @@
     <meta itemprop="image" content="https://angulardart.org/img/logo.png">
     <meta itemprop="name" content="AngularDart: Superheroic MVW Framework for Dart">
 
+    <style type="text/css">
+      [ng-cloak] {
+        display: none !important;
+      }
+    </style>
+
     <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
 
     <title>AngularDart Demo</title>
@@ -160,7 +166,7 @@
               <input type="text" ng-model="yourName"
                      placeholder="Enter a name here">
               <hr>
-              <h1>Hello {{yourName}}!</h1>
+              <h1 ng-cloak>Hello {{yourName}}!</h1>
             </div><!-- /#hello-app -->
           </div><!-- .well -->
         </div><!-- .col-md-4 -->
@@ -210,12 +216,12 @@
           <div class="well" ng-non-bindable>
             <h2>Todo</h2>
             <div class="angular-dart-example" todo-list id="todo-app">
-              <span>{{TodoCtrl.remaining()}} of {{TodoCtrl.todos.length}} remaining</span>
+              <span ng-cloak>{{TodoCtrl.remaining()}} of {{TodoCtrl.todos.length}} remaining</span>
               [ <a href="" ng-click="TodoCtrl.archive()">archive</a> ]
               <ul class="unstyled">
                 <li ng-repeat="todo in TodoCtrl.todos">
                   <input type="checkbox" ng-model="todo.done">
-                  <span class="done-{{todo.done}}">{{todo.text}}</span>
+                  <span class="done-{{todo.done}}" ng-cloak>{{todo.text}}</span>
                 </li>
               </ul>
               <form ng-submit="TodoCtrl.addTodo()">
@@ -380,14 +386,13 @@
 
 <div class="hello-code">
     <!-- ============== Hello ============== -->
-
     <script type="text/ng-template" id="hello.html">
         <div>
             <label>Name:</label>
             <input type="text" ng-model="yourName"
                    placeholder="Enter a name here">
             <hr>
-            <h1>Hello {{yourName}}!</h1>
+            <h1 ng-cloak>Hello {{yourName}}!</h1>
         </div>
     </script>
     <script id="hello.dart" type="text/dart">
@@ -486,14 +491,14 @@
     <script type="text/ng-template" id="todo.html">
         <h2>Todo</h2>
         <div todo-list>
-        <span>
+        <span ng-cloak>
           {{TodoCtrl.remaining()}} of {{TodoCtrl.todos.length}} remaining
         </span>
             [ <a href="" ng-click="TodoCtrl.archive()">archive</a> ]
             <ul class="unstyled">
                 <li ng-repeat="todo in TodoCtrl.todos">
                     <input type="checkbox" ng-model="todo.done">
-                    <span class="done-{{todo.done}}">{{todo.text}}</span>
+                    <span class="done-{{todo.done}}" ng-cloak>{{todo.text}}</span>
                 </li>
             </ul>
             <form ng-submit="TodoCtrl.addTodo()">
@@ -675,7 +680,7 @@ class NewEntryFormCtrl {
     <script type="text/ng-template" id="list.html">
       <div system-panel>
         <h2>Website Uptime Status</h2>
-        <div ng-repeat="entry in panel.results ">
+        <div ng-repeat="entry in panel.results" ng-cloak>
           {{ $index + 1 }}: {{ entry.$value.topic }} - {{ entry.$value.status }}
         </div>
       </div>
@@ -685,7 +690,7 @@ class NewEntryFormCtrl {
 
   <div class="field">
     <label>Topic:</label>
-    <select required ng-model="form.topicKey" required>
+    <select required ng-model="form.topicKey" required ng-cloak>
       <option ng-repeat="result in form.topics" value="{{ result['value'] }}">
         {{ result['title'] }}</option>
     </select>
@@ -693,7 +698,7 @@ class NewEntryFormCtrl {
 
   <div class="field">
     <label>Status:</label>
-    <select required ng-model="form.statusKey" required>
+    <select required ng-model="form.statusKey" required ng-cloak>
       <option ng-repeat="result in form.statuses" value="{{ result['value'] }}">
         {{ result['title'] }}</option>
     </select>
@@ -770,7 +775,7 @@ class NewEntryFormCtrl {
             template:
               '<div class="tabbable">' +
                 '<ul class="nav nav-tabs">' +
-                  '<li ng-repeat="pane in panes" ng-class="{active:pane.selected}">'+
+                  '<li ng-repeat="pane in panes" ng-class="{active:pane.selected}" ng-cloak>'+
                     '<a href="" ng-click="select(pane)">{{pane.title}}</a>' +
                   '</li>' +
                 '</ul>' +
@@ -823,7 +828,7 @@ class NewEntryFormCtrl {
     </script>
     <script type="text/ng-template" id="tabs.html">
         <tabs>
-            <pane title="Localization">
+            <pane title="Localization" ng-cloak>
                 Date: {{ '2012-04-01' | date:'fullDate' }} <br>
                 Currency: {{ 123456 | currency }} <br>
                 Number: {{ 98765.4321 | number }} <br>

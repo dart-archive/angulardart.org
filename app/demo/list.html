@@ -1,7 +1,6 @@
 <div system-panel>
   <h2>Website Uptime Status</h2>
-  <div ng-repeat="entry in panel.results ">
-    {{ $index + 1 }}:
-      {{ entry.$value.topic }} - {{ entry.$value.status }}
+  <div ng-repeat="entry in panel.results " ng-cloak>
+    {{ $index + 1 }}: {{ entry.$value.topic }} - {{ entry.$value.status }}
   </div>
 </div>
