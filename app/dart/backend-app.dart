@@ -4,7 +4,6 @@ import 'package:angular/angular.dart';
 import 'package:angular/routing/module.dart';
 import 'package:firebase/firebase.dart';
 import 'package:angularfire/angularfire.dart';
-import 'dart:html';
 
 class BackendAppModule extends Module {
   BackendAppModule() {
@@ -18,30 +17,29 @@ class BackendAppModule extends Module {
 class BackendAppRouter implements RouteInitializer {
   void init(Router router, ViewFactory view) {
     router.root
-      ..addRoute(
-        name: 'new',
-        path: '/demo/new',
-        enter: view('./new.html')
-      )
-      ..addRoute(
-        defaultRoute: true,
-        name: 'demohome',
-        path: '/demo/',
-        enter: view('./list.html')
-    );
+        ..addRoute(
+            name: 'new',
+            path: '/demo/new',
+            enter: view('./new.html'))
+        ..addRoute(
+            defaultRoute: true,
+            name: 'demohome',
+            path: '/demo/',
+            enter: view('./list.html'));
   }
 }
 
 @NgInjectableService()
 class FirebaseResultsAdapter {
   static const String BASE = 'https://angular-dart-homepage.firebaseio.com/';
-  Firebase fb = new Firebase(BASE);
+  AngularFire _results;
 
-  FirebaseAdapter _results;
+  FirebaseResultsAdapter() {
+    Firebase fb = new Firebase(BASE);
+    _results = new AngularFire(fb);
+  }
 
-  FirebaseResultsAdapter(): _results = new AngularFire(fb);
-
-  FirebaseAdapter get results =>  _results;
+  AngularFire get results =>  _results;
 }
 
 @NgController(
@@ -50,7 +48,7 @@ class FirebaseResultsAdapter {
 class SystemPanelCtrl {
   final Scope scope;
   bool filterOn = false;
-  FirebaseAdapter results;
+  List results;
 
   SystemPanelCtrl(RouteProvider routeProvider, this.scope, FirebaseResultsAdapter adapter) {
     Map params = routeProvider.parameters;
@@ -59,14 +57,14 @@ class SystemPanelCtrl {
 }
 
 class SystemEntry {
-  static Map<String, String> statusValues() => {
+  static Map<String, String> statusValues() => const {
     "functional"    : "Operations Normal!",
     "unpredictable" : "Runs OK ... Sometimes",
     "crashing"      : "Ughh? What's going on?",
     "offline"       : "Nope. It's not responding"
   };
 
-  static Map<String, String> topicValues() => {
+  static Map<String, String> topicValues() => const {
     "webserver" : "Webserver",
     "db"        : "Database Engine",
     "billing"   : "Billing System",
@@ -80,11 +78,11 @@ class SystemEntry {
     status = SystemEntry.statusValues()[statusKey];
   }
 
-  export() => {
-    'topicKey' : this.topicKey,
-    'topic' : this.topic,
-    'statusKey' : this.statusKey,
-    'status' : this.status
+  Map export() => {
+    'topicKey': topicKey,
+    'topic': topic,
+    'statusKey': statusKey,
+    'status': status
   };
 }
 
@@ -92,25 +90,24 @@ class SystemEntry {
   selector: '[entry-form-ctrl]',
   publishAs: 'form')
 class NewEntryFormCtrl {
-
   final Scope _scope;
   final NgForm _form;
   final Router _router;
 
-  FirebaseAdapter _results;
+  AngularFire _results;
   String topicKey;
   String statusKey;
-  String statuses;
-  String topics;
+  List statuses;
+  List topics;
 
   NewEntryFormCtrl(this._router, this._scope, this._form, FirebaseResultsAdapter adapter) {
-    topics   = this.formatAsOptions(SystemEntry.topicValues());
-    statuses = this.formatAsOptions(SystemEntry.statusValues());
+    topics   = formatAsOptions(SystemEntry.topicValues());
+    statuses = formatAsOptions(SystemEntry.statusValues());
     _results = adapter.results;
   }
 
-  formatAsOptions(Map items) {
-    List options = [];
+  List formatAsOptions(Map items) {
+    var options = [];
     items.forEach((value, title) {
       options.add({
         'value' : value,
@@ -123,7 +120,7 @@ class NewEntryFormCtrl {
   submit() {
     SystemEntry entry = new SystemEntry(topicKey, statusKey);
     print(entry.export());
-    this._results.add(entry.export());
-    this._router.gotoUrl('home');
+    _results.add(entry.export());
+    _router.gotoUrl('home');
   }
 }

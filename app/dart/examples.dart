@@ -21,14 +21,13 @@ import 'dart:mirrors';
     selector: '[todo-list]',
     publishAs: 'TodoCtrl')
 class TodoController {
-
   List<Todo> todos;
   String todoText;
 
   TodoController() {
     todos = [
-      new Todo('learn angular', true),
-      new Todo('build an angular app', false)
+        new Todo('learn angular', true),
+        new Todo('build an angular app', false)
     ];
   }
 
@@ -75,10 +74,9 @@ class TodoModule extends Module {
     templateUrl: 'tabs.html',
     cssUrl: 'tabs.css',
     publishAs: 'tabs',
-    visibility: NgDirective.DIRECT_CHILDREN_VISIBILITY
-)
+    visibility: NgDirective.DIRECT_CHILDREN_VISIBILITY)
 class TabsComponent {
-  List<PaneComponent> panes = [];
+  final panes = <PaneComponent>[];
 
   void select(var pane) {
     for (var i = 0; i < panes.length; i++) {
@@ -88,9 +86,7 @@ class TabsComponent {
   }
 
   void addPane(PaneComponent pane) {
-    if (panes.length.isEmpty) {
-      select(pane);
-    }
+    if (panes.isEmpty) select(pane);
     panes.add(pane);
   }
 }
@@ -115,7 +111,7 @@ class PaneComponent {
     selector: '[beer-counter]',
     publishAs: 'beerCounter')
 class BeerCounter {
-  List<int> beerCounts = [0, 1, 2, 3, 4, 5, 6];
+  final beerCounts = <int>[0, 1, 2, 3, 4, 5, 6];
   Function getMessage;
 
   BeerCounter() {
@@ -151,16 +147,15 @@ class TabsModule extends Module {
 
 @NgController(
     selector: '[classlist-controller]',
-    publishAs: 'ctrl'
-)
+    publishAs: 'ctrl')
 class ClasslistController {
-  List<String> students = [
+  final students = [
       {'name': 'Jack Aubrey', 'selected': true},
       {'name': 'Clarissa Oakes', 'selected': true},
       {'name': 'Stephen Maturin', 'selected': false}
   ];
 
-  List<String> get selectedStudents {
+  List get selectedStudents {
     return students.where((student) => student['selected']).toList();
   }
 }
