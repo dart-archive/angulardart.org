@@ -78,7 +78,7 @@ class SystemEntry {
     status = SystemEntry.statusValues()[statusKey];
   }
 
-  Map export() => {
+  Map<String, String> export() => {
     'topicKey': topicKey,
     'topic': topic,
     'statusKey': statusKey,
