@@ -173,9 +173,9 @@
         use the tooltip directive in a span or any other element:</p>
 
 <pre class="prettyprint">
-  <code>&lt;span tooltip="ctrl.tooltipForRecipe(recipe)"&gt;
-    ...
-  &lt;/span&gt;</code>
+<code>&lt;span tooltip="ctrl.tooltipForRecipe(recipe)"&gt;
+  ...
+&lt;/span&gt;</code>
 </pre>
 
       <p><strong>Note:</strong> The <code>NgDirective</code> annotation can also
@@ -229,23 +229,22 @@
         specify the tooltip API:</p>
 
 <pre class="prettyprint">
-  ...
-  import 'package:angular/angular.dart';
+...
+import 'package:angular/angular.dart';
 
-  @NgDirective(
-    selector: '[tooltip]')
+@NgDirective(
+  selector: '[tooltip]')
+  class Tooltip {
+    dom.Element element;
 
-    class Tooltip {
-      dom.Element element;
-
-      @NgOneWay('tooltip')
-      TooltipModel displayModel;
+    @NgOneWay('tooltip')
+    TooltipModel displayModel;
+    ...
+    Tooltip(this.element) {
       ...
-      Tooltip(this.element) {
-        ...
-      }
-      ...
-  }
+    }
+    ...
+}
 </pre>
 
       <p>The <strong>selector</strong> argument to the NgDirective constructor
@@ -257,7 +256,7 @@
       <p>Consider the following HTML:</p>
 
 <pre class="prettyprint">
-  &lt;span tooltip="ctrl.tooltipForRecipe(recipe)"&gt;
+&lt;span tooltip="ctrl.tooltipForRecipe(recipe)"&gt;
 </pre>
 
       <p>Along with the preceding Dart code, this HTML tells AngularDart to
@@ -270,18 +269,18 @@
         takes avalue, do it like this:</p>
 
 <pre class="prettyprint">
-  @NgDirective(
-    selector: '[attributeName]')
+@NgDirective(
+  selector: '[attributeName]')
 
-    class MyDirective {
-      @NgOneWay('attributeName')
-      Model model;
+  class MyDirective {
+    @NgOneWay('attributeName')
+    Model model;
+    ...
+    MyDirective(/* Optional arguments */) {
       ...
-      MyDirective(/* Optional arguments */) {
-        ...
-      }
-      ...
-  }
+    }
+    ...
+}
 </pre>
 
       <p>AngularDart’s dependency injection system calls the constructor,
@@ -296,16 +295,16 @@
         has a tooltip:</p>
 
 <pre class="prettyprint">
-  import 'dart:html' as dom;
-  ...
-  // In an onMouseEnter handler:
-  tooltipElem = new dom.DivElement();
+import 'dart:html' as dom;
+...
+// In an onMouseEnter handler:
+tooltipElem = new dom.DivElement();
 
-  // ...Create children using info from displayModel...
-  // ...Add the children to the &lt;div&gt;...
-  // ...Style the &lt;div&gt;...
+// ...Create children using info from displayModel...
+// ...Add the children to the &lt;div&gt;...
+// ...Style the &lt;div&gt;...
 
-  dom.document.body.append(tooltipElem);
+dom.document.body.append(tooltipElem);
 </pre>
 
       <p><strong>Important:</strong> Because Angular expects to have full
@@ -334,13 +333,13 @@
       encapsulates data that the tooltip needs:</p>
 
 <pre class="prettyprint">
-  class TooltipModel {
-    String imgUrl;
-    String text;
-    int imgWidth;
+class TooltipModel {
+  String imgUrl;
+  String text;
+  int imgWidth;
 
-    TooltipModel(this.imgUrl, this.text, this.imgWidth);
-  }
+  TooltipModel(this.imgUrl, this.text, this.imgWidth);
+}
 </pre>
 
       <hr class="spacer" />
@@ -352,7 +351,7 @@
         like this:</p>
 
 <pre class="prettyprint">
-  &lt;span tooltip="ctrl.tooltipForRecipe(recipe)"&gt;
+&lt;span tooltip="ctrl.tooltipForRecipe(recipe)"&gt;
 </pre>
 
       <p>That means the controller needs to implement
@@ -361,18 +360,18 @@
         <code>tooltipForRecipe()</code> returns.</p>
 
 <pre class="prettyprint">
-  class RecipeBookController {
-    ...
-    static final tooltip = new Expando&lt;TooltipModel&gt;();
-    TooltipModel tooltipForRecipe(Recipe recipe) {
-      if (tooltip[recipe] == null) {
-        tooltip[recipe] = new TooltipModel(recipe.imgUrl,
-            "I don't have a picture of these recipes, "
-            "so here's one of my cat instead!",
-            80);
-      }
-      return tooltip[recipe]; // recipe.tooltip
-  }
+class RecipeBookController {
+  ...
+  static final tooltip = new Expando&lt;TooltipModel&gt;();
+  TooltipModel tooltipForRecipe(Recipe recipe) {
+    if (tooltip[recipe] == null) {
+      tooltip[recipe] = new TooltipModel(recipe.imgUrl,
+          "I don't have a picture of these recipes, "
+          "so here's one of my cat instead!",
+          80);
+    }
+    return tooltip[recipe]; // recipe.tooltip
+}
 </pre>
 
       <p>The use of <a href="https://api.dartlang.org/dart_core/Expando.html">

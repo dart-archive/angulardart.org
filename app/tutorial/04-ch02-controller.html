@@ -172,7 +172,7 @@
       <h3 id="running-the-sample-app">Running the sample app</h3>
       <p>The code for this chapter is in the
         <em><a href="https://github.com/angular/angular.dart.tutorial/tree/master/Chapter_02">
-          Chapter_02</a></em>directory of the
+          Chapter_02</a></em> directory of the
         <a href="https://github.com/angular/angular.dart.tutorial/archive/master.zip">
           angular.dart.tutorial download</a>.
         View it in Dart Editor by using <strong>File &gt; Open Existing Folder...</strong>
@@ -225,7 +225,7 @@
         like this:</p>
 
 <pre class="prettyprint">
-  &lt;input type="text" ng-model="name"&gt;
+&lt;input type="text" ng-model="name"&gt;
 </pre>
 
       <p>Properties created in this way are created in the root scope, and hence
@@ -268,9 +268,9 @@
         <code>RecipeBookController</code> class:</p>
 
 <pre class="prettyprint">
-  @NgController(
-    selector: '[recipe-book]',
-    publishAs: 'ctrl')
+@NgController(
+  selector: '[recipe-book]',
+  publishAs: 'ctrl')
 </pre>
 
       <p>This annotation tells Angular that the class
@@ -295,9 +295,9 @@
         <code>publishAs</code> name. Here is an example:</p>
 
 <pre class="prettyprint">
-  &lt;div>&lt;strong&gt;Name: &lt;/strong&gt;{{ctrl.selectedRecipe.name}}&lt;/div&gt;
+&lt;div>&lt;strong&gt;Name: &lt;/strong&gt;{{ctrl.selectedRecipe.name}}&lt;/div&gt;
 
-  &lt;li ng-click="ctrl.selectRecipe(recipe)"&gt;{{recipe.name}}&lt;/li&gt;
+&lt;li ng-click="ctrl.selectRecipe(recipe)"&gt;{{recipe.name}}&lt;/li&gt;
 </pre>
 
       <p>Here we also see how to tell the Angular bootstrapping code about our
@@ -312,15 +312,15 @@
         list of modules that Angular loads.</p>
 
 <pre class="prettyprint">
-  class MyAppModule extends Module {
-    MyAppModule() {
-      type(RecipeBookController);
-    }
+class MyAppModule extends Module {
+  MyAppModule() {
+    type(RecipeBookController);
   }
+}
 
-  main() {
-    ngBootstrap(module: new MyAppModule());
-  }
+main() {
+  ngBootstrap(module: new MyAppModule());
+}
 </pre>
 
       <p>Including your controller class in the module allows Angular to
@@ -331,9 +331,9 @@
         controller:</p>
 
 <pre class="prettyprint">
-  &lt;div recipe-book&gt;
-    ...
-  &lt;/div&gt;
+&lt;div recipe-book&gt;
+  ...
+&lt;/div&gt;
 </pre>
 
       <p>Anything within the containing element has access to the controller’s
@@ -353,11 +353,11 @@
         <code>ng-repeat</code> tag.</p>
 
 <pre class="prettyprint">
-  &lt;ul&gt;
-    &lt;li class="pointer"
-        ng-repeat="recipe in ctrl.recipes"
-        ng-click="ctrl.selectRecipe(recipe)"&gt;{{recipe.name}}&lt;/li&gt;
-  &lt;/ul&gt;
+&lt;ul&gt;
+  &lt;li class="pointer"
+      ng-repeat="recipe in ctrl.recipes"
+      ng-click="ctrl.selectRecipe(recipe)"&gt;{{recipe.name}}&lt;/li&gt;
+&lt;/ul&gt;
 </pre>
 
       <p>The <code>ng-repeat</code> directive on the li element causes Angular

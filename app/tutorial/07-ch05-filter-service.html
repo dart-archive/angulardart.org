@@ -221,8 +221,8 @@
         <code>nameFilterString</code> property.
 
 <pre class="prettyprint">
-  &lt;input id="name-filter" type="text"
-          ng-model="ctrl.nameFilterString"&gt;
+&lt;input id="name-filter" type="text"
+       ng-model="ctrl.nameFilterString"&gt;
 </pre>
 
       <p>Next, we pipe the <code>ng-repeat</code> criteria through the filter,
@@ -230,18 +230,18 @@
         property to filter against.
 
 <pre class="prettyprint">
-  &lt;ul&gt;
-      &lt;li class="pointer"
-          ng-repeat="recipe in ctrl.recipes | filter:{name:ctrl.nameFilterString}"&gt;
-      ...
-      &lt;/li&gt;
-  &lt;/ul&gt;
+&lt;ul&gt;
+    &lt;li class="pointer"
+        ng-repeat="recipe in ctrl.recipes | filter:{name:ctrl.nameFilterString}"&gt;
+    ...
+    &lt;/li&gt;
+&lt;/ul&gt;
 </pre>
 
       <p>Lastly, we create a property on our <code>RecipeBookController</code>
         to store the <code>nameFilterString</code> property for the input.
 <pre class="prettyprint">
-  String nameFilterString = "";
+String nameFilterString = "";
 </pre>
 
       <p>That’s all you need to start filtering your results.</p>
@@ -258,7 +258,7 @@
         <code>call</code> method with at least one argument:</p>
 
 <pre class="prettyprint">
-  call(valueToFilter, optArg1, ..., optArgN);
+call(valueToFilter, optArg1, ..., optArgN);
 </pre>
 
       <p>The first argument is the incoming model object to be filtered; in our
@@ -277,16 +277,16 @@
       <p>Here is the call method from our <code>CategoryFilter</code>:</p>
 
 <pre class="prettyprint">
-  call(recipeList, filterMap) {
-    if (recipeList is List &amp;&amp; filterMap is Map) {
-      // If there is nothing checked, treat it as "everything is checked"
-      bool nothingChecked = filterMap.values.every((isChecked) =&gt; !isChecked);
-      if (nothingChecked) {
-        return recipeList.toList();
-      }
-      return recipeList.where((i) =&gt; filterMap[i.category] == true).toList();
+call(recipeList, filterMap) {
+  if (recipeList is List &amp;&amp; filterMap is Map) {
+    // If there is nothing checked, treat it as "everything is checked"
+    bool nothingChecked = filterMap.values.every((isChecked) =&gt; !isChecked);
+    if (nothingChecked) {
+      return recipeList.toList();
     }
+    return recipeList.where((i) =&gt; filterMap[i.category] == true).toList();
   }
+}
 </pre>
 
       <p>The <code>filterMap</code> parameter deserves some further explanation.
@@ -297,32 +297,32 @@
       <p>Next, annotate the class to publish it as a filter:
 
 <pre class="prettyprint">
-  @NgFilter(name: 'categoryfilter')
+@NgFilter(name: 'categoryfilter')
 </pre>
 
       <p>Add the new class to the bootstrapping code:</p>
 
 <pre class="prettyprint">
-  class MyAppModule extends Module {
-    MyAppModule() {
-      ...
-      type(CategoryFilter)
-      ...
-    }
+class MyAppModule extends Module {
+  MyAppModule() {
+    ...
+    type(CategoryFilter)
+    ...
   }
+}
 </pre>
 
       <p>and then use it from the view:</p>
 
 <pre class="prettyprint">
-  &lt;div&gt;
-      &lt;label>Filter recipes by category
-          &lt;span ng-repeat="category in ctrl.categories"&gt;
-            &lt;input type="checkbox"
-                   ng-model="ctrl.categoryFilterMap[category]">{{category}}
-          &lt;/span&gt;
-      &lt;/label&gt;
-  &lt;/div&gt;
+&lt;div&gt;
+    &lt;label>Filter recipes by category
+        &lt;span ng-repeat="category in ctrl.categories"&gt;
+          &lt;input type="checkbox"
+                 ng-model="ctrl.categoryFilterMap[category]">{{category}}
+        &lt;/span&gt;
+    &lt;/label&gt;
+&lt;/div&gt;
 </pre>
 
       <p>Our view creates a checkbox input and label for each category. Angular
@@ -341,8 +341,8 @@
       <p>Next, we plug the custom filter in the same way we would plug in a built in filter:
 
 <pre class="prettyprint">
-  &lt;li class="pointer"
-      ng-repeat="recipe in ctrl.recipes | categoryfilter:ctrl.categoryFilterMap"&gt;
+&lt;li class="pointer"
+    ng-repeat="recipe in ctrl.recipes | categoryfilter:ctrl.categoryFilterMap"&gt;
 </pre>
 
     <hr class="spacer" />
@@ -354,8 +354,8 @@
         <code>ng-repeat</code>.</p>
 
 <pre class="prettyprint">
-  &lt;li class="pointer"
-      ng-repeat="recipe in ctrl.recipes | orderBy:'name' | filter:{name:ctrl.nameFilterString} | categoryfilter:ctrl.categoryFilterMap"&gt;
+&lt;li class="pointer"
+    ng-repeat="recipe in ctrl.recipes | orderBy:'name' | filter:{name:ctrl.nameFilterString} | categoryfilter:ctrl.categoryFilterMap"&gt;
 </pre>
 
 
@@ -390,28 +390,28 @@
         including the <code>Http</code> service.</p>
 
 <pre class="prettyprint">
-  class RecipeBookController {
-    Http _http;
-    ...
-    RecipeBookController(this._http) {
-      _loadData();
-    }
-    ...
+class RecipeBookController {
+  Http _http;
+  ...
+  RecipeBookController(this._http) {
+    _loadData();
   }
+  ...
+}
 </pre>
 
 <pre class="prettyprint">
-  class MyAppModule extends Module {
-    MyAppModule() {
-      ...
-      type(RecipeBookController);
-      ...
-    }
+class MyAppModule extends Module {
+  MyAppModule() {
+    ...
+    type(RecipeBookController);
+    ...
   }
+}
 
-  void main() {
-    ngBootstrap(module: new MyAppModule());
-  }
+void main() {
+  ngBootstrap(module: new MyAppModule());
+}
 </pre>
 
       <p>Next, let’s look at how to use the <code>Http</code> service to fetch
@@ -419,34 +419,34 @@
         <code>_loadData</code> method. Here is the new code:</p>
 
 <pre class="prettyprint">
-  void _loadData() {
-    recipesLoaded = false;
-    ...
-    _http.get('recipes.json')
-      .then((HttpResponse response) {
-        for (Map recipe in response.data) {
-          recipes.add(new Recipe.fromJsonMap(recipe));
-        }
-        recipesLoaded = true;
-      })
-      .catchError((e) {
-        recipesLoaded = false;
-        message = ERROR_MESSAGE;
-      });
-    ...
-  }
+void _loadData() {
+  recipesLoaded = false;
+  ...
+  _http.get('recipes.json')
+    .then((HttpResponse response) {
+      for (Map recipe in response.data) {
+        recipes.add(new Recipe.fromJsonMap(recipe));
+      }
+      recipesLoaded = true;
+    })
+    .catchError((e) {
+      recipesLoaded = false;
+      message = ERROR_MESSAGE;
+    });
+  ...
+}
 </pre>
 
       <p>Let’s look more closely at the call to the <code>Http</code> service:</p>
 
 <pre class="prettyprint">
-  _http.get()
-    .then((value) {
-      // use value
-    })
-    .catchError((e) {
-      // handle error
-    });
+_http.get()
+  .then((value) {
+    // use value
+  })
+  .catchError((e) {
+    // handle error
+  });
 </pre>
 
       <p>The <code>Http</code> <code>get</code> method returns a
@@ -470,8 +470,8 @@
         pieces of data before the app is useful:</p>
 
 <pre class="prettyprint">
-  List categories = [];
-  List&lt;Recipe&gt; recipes = [];
+List categories = [];
+List&lt;Recipe&gt; recipes = [];
 </pre>
 
       <p>Until the future has returned, your recipe book contains an empty list
@@ -487,12 +487,12 @@
         whether the app is done loading enough data to be useful.</p>
 
 <pre class="prettyprint">
-  &lt;div ng-if="!ctrl.recipesLoaded || !ctrl.categoriesLoaded"&gt;
-    {{ctrl.message}}
-  &lt;/div&gt;
-  &lt;div ng-if="ctrl.recipesLoaded &amp;&amp; ctrl.categoriesLoaded"&gt;
-    ...
-  &lt;/div&gt;
+&lt;div ng-if="!ctrl.recipesLoaded || !ctrl.categoriesLoaded"&gt;
+  {{ctrl.message}}
+&lt;/div&gt;
+&lt;div ng-if="ctrl.recipesLoaded &amp;&amp; ctrl.categoriesLoaded"&gt;
+  ...
+&lt;/div&gt;
 </pre>
 
       <p>You can see the “Loading...” feature work by simulating a really slow
@@ -524,21 +524,21 @@
         <code>ng-cloak</code>:</p>
 
 <pre class="prettyprint">
-  &lt;body class=”ng-cloak”&gt;
+&lt;body class=”ng-cloak”&gt;
 </pre>
 
       or
 
 <pre class="prettyprint">
-  &lt;body ng-cloak&gt;
+&lt;body ng-cloak&gt;
 </pre>
 
       The CSS rule causes the view to be hidden:
 
 <pre class="prettyprint">
-  [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
-     display: none !important;
-  }
+[ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+   display: none !important;
+}
 </pre>
 
       <p>Once Angular is finished compiling the DOM, it secretly removes the

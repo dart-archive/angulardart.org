@@ -224,39 +224,39 @@
           <h3>index.html (previous Chapter)</h3>
 
 <pre class="prettyprint">
-  &lt;div recipe-book&gt;
-    ...
-    &lt;h3&gt;Recipe List&lt;/h3&gt;
+&lt;div recipe-book&gt;
+  ...
+  &lt;h3&gt;Recipe List&lt;/h3&gt;
 
-    <strong>&lt;div id="filters"&gt;
-      &lt;div&gt;
-        &lt;label for="name-filter"&gt;Filter ... &lt;/label&gt;
-        &lt;input id="name-filter" type="text"
-               ng-model="ctrl.nameFilterString"&gt;
-      &lt;/div&gt;
-      &lt;div&gt;
-        Filter recipes by category:
-        &lt;span ng-repeat="category in ctrl.categories"&gt;
-          &lt;label&gt;
-            &lt;input type="checkbox"
-             ng-model="ctrl.categoryFilterMap[category]"&gt;
-                {{category}}
-          &lt;/label&gt;
-        &lt;/span&gt;
-      &lt;/div&gt;
-      &lt;input type="button" value="Clear Filters"
-          ng-click="ctrl.clearFilters()"&gt;
-    &lt;/div&gt;</strong>
-
-    &lt;div id="recipe-list"&gt;
-     ...
+  <strong>&lt;div id="filters"&gt;
+    &lt;div&gt;
+      &lt;label for="name-filter"&gt;Filter ... &lt;/label&gt;
+      &lt;input id="name-filter" type="text"
+             ng-model="ctrl.nameFilterString"&gt;
     &lt;/div&gt;
-
-    &lt;div id="recipe-details"&gt;
-      &lt;h3&gt;Recipe Details&lt;/h3&gt;
-      ...
+    &lt;div&gt;
+      Filter recipes by category:
+      &lt;span ng-repeat="category in ctrl.categories"&gt;
+        &lt;label&gt;
+          &lt;input type="checkbox"
+           ng-model="ctrl.categoryFilterMap[category]"&gt;
+              {{category}}
+        &lt;/label&gt;
+      &lt;/span&gt;
     &lt;/div&gt;
+    &lt;input type="button" value="Clear Filters"
+        ng-click="ctrl.clearFilters()"&gt;
+  &lt;/div&gt;</strong>
+
+  &lt;div id="recipe-list"&gt;
+   ...
   &lt;/div&gt;
+
+  &lt;div id="recipe-details"&gt;
+    &lt;h3&gt;Recipe Details&lt;/h3&gt;
+    ...
+  &lt;/div&gt;
+&lt;/div&gt;
 </pre>
 
         </div><!-- /.col-md-6 -->
@@ -265,38 +265,38 @@
           <h3>index.html (revisited)</h3>
 
 <pre class="prettyprint">
-  &lt;div recipe-book&gt; ...
-    &lt;h3&gt;Recipe List&lt;/h3&gt; ...
-      <strong>&lt;search-recipe
-          name-filter-string="ctrl.nameFilter"
-          category-filter-map="ctrl.categoryFilterMap"&gt;
-      &lt;/search-recipe&gt;</strong> ...
-      &lt;div id="recipe-list"&gt;...&lt;/div&gt; ...
-    &lt;section id="details"&gt;
-      &lt;ng-view&gt;&lt;/ng-view&gt;
-    &lt;/section&gt;
-  &lt;/div&gt;
+&lt;div recipe-book&gt; ...
+  &lt;h3&gt;Recipe List&lt;/h3&gt; ...
+    <strong>&lt;search-recipe
+        name-filter-string="ctrl.nameFilter"
+        category-filter-map="ctrl.categoryFilterMap"&gt;
+    &lt;/search-recipe&gt;</strong> ...
+    &lt;div id="recipe-list"&gt;...&lt;/div&gt; ...
+  &lt;section id="details"&gt;
+    &lt;ng-view&gt;&lt;/ng-view&gt;
+  &lt;/section&gt;
+&lt;/div&gt;
 </pre>
 
           <h3>search_recipe_component.html</h3>
 
 <pre class="prettyprint">
-  &lt;div id="filters"&gt;
-    &lt;div&gt;
-      &lt;label for="name-filter"&gt;Filter ...&lt;/label&gt;
-      &lt;input id="name-filter" type="text"
-             ng-model="ctrl.nameFilterString"&gt;
-    &lt;/div&gt;
-    &lt;div&gt;
-      Filter recipes by category:
-      &lt;span ng-repeat="category in ctrl.categories"&gt;
-        &lt;label&gt;
-          &lt;input type="checkbox" ... &gt;{{category}}
-        &lt;/label&gt;
-      &lt;/span&gt;
-    &lt;/div&gt;
-    &lt;input type="button" value="Clear Filters"...&gt;
+&lt;div id="filters"&gt;
+  &lt;div&gt;
+    &lt;label for="name-filter"&gt;Filter ...&lt;/label&gt;
+    &lt;input id="name-filter" type="text"
+           ng-model="ctrl.nameFilterString"&gt;
   &lt;/div&gt;
+  &lt;div&gt;
+    Filter recipes by category:
+    &lt;span ng-repeat="category in ctrl.categories"&gt;
+      &lt;label&gt;
+        &lt;input type="checkbox" ... &gt;{{category}}
+      &lt;/label&gt;
+    &lt;/span&gt;
+  &lt;/div&gt;
+  &lt;input type="button" value="Clear Filters"...&gt;
+&lt;/div&gt;
 </pre>
 
         </div><!-- /.col-md-6 -->
@@ -324,28 +324,27 @@
         right excerpt in the table above).</p>
 
 <pre class="prettyprint">
-  @NgComponent(
-      selector: 'search-recipe',
-      templateUrl: 'packages/angular_dart_demo/component/search_recipe_component.html',
-      publishAs: 'ctrl'
-  )
+@NgComponent(
+    selector: 'search-recipe',
+    templateUrl: 'packages/angular_dart_demo/component/search_recipe_component.html',
+    publishAs: 'ctrl'
+)
+class SearchRecipeComponent {
+  @NgTwoWay('name-filter-string')
+  String nameFilterString = "";
 
-  class SearchRecipeComponent {
-    @NgTwoWay('name-filter-string')
-    String nameFilterString = "";
+  @NgTwoWay('category-filter-map')
+  Map&lt;String, bool&gt; categoryFilterMap;
 
-    @NgTwoWay('category-filter-map')
-    Map&lt;String, bool&gt; categoryFilterMap;
-
-    List&lt;String&gt; get categories {
-      return categoryFilterMap.keys.toList();
-    }
-
-    void clearFilters() {
-      categoryFilterMap.keys.forEach((f) => categoryFilterMap[f] = false);
-      nameFilterString = "";
-    }
+  List&lt;String&gt; get categories {
+    return categoryFilterMap.keys.toList();
   }
+
+  void clearFilters() {
+    categoryFilterMap.keys.forEach((f) => categoryFilterMap[f] = false);
+    nameFilterString = "";
+  }
+}
 </pre>
 
       <hr class="spacer" />
@@ -378,8 +377,8 @@
         dependency injector for you.</p>
 
 <pre class="prettyprint">
-  class RecipeBookRouteInitializer implements RouteInitializer {
-    init(Router router, ViewFactory view) { ...
+class RecipeBookRouteInitializer implements RouteInitializer {
+  init(Router router, ViewFactory view) { ...
 </pre>
 
       <p>All you need to do to set up routing is to implement the
@@ -388,18 +387,18 @@
         configuration:</p>
 
 <pre class="prettyprint">
-  type(RouteInitializer, implementedBy: RecipeBookRouteInitializer);
+type(RouteInitializer, implementedBy: RecipeBookRouteInitializer);
 </pre>
 
       <p>Here is a simple route configuration. Let’s examine the call to
         <code>addRoute</code>, and all of its parameters in detail:</p>
 
 <pre class="prettyprint">
-  router.root
-      ..addRoute(
-        name: 'add',
-        path: '/add',
-        enter: view('view/addRecipe.html'))
+router.root
+    ..addRoute(
+      name: 'add',
+      path: '/add',
+      enter: view('view/addRecipe.html'))
 </pre>
 
       <h5 id="name"><code>name</code></h5>
@@ -415,8 +414,8 @@
         add this magic to your <code>main()</code>:</p>
 
 <pre class="prettyprint">
-  Logger.root.level = Level.FINEST;
-  Logger.root.onRecord.listen((LogRecord r) { print(r.message); });
+Logger.root.level = Level.FINEST;
+Logger.root.onRecord.listen((LogRecord r) { print(r.message); });
 </pre>
 
       <h5 id="enter"><code>enter</code></h5>
@@ -453,12 +452,12 @@
         invalid route.</p>
 
 <pre class="prettyprint">
-  ..addRoute(
-      name: 'view_default',
-      defaultRoute: true,
-      enter: (_) =&gt;
-          router.go('view', {'recipeId': ':recipeId'},
-              startingFrom: route, replace: true))
+..addRoute(
+    name: 'view_default',
+    defaultRoute: true,
+    enter: (_) =&gt;
+        router.go('view', {'recipeId': ':recipeId'},
+            startingFrom: route, replace: true))
 </pre>
 
       <hr class="spacer" />
@@ -469,14 +468,14 @@
         ancestors’ paths. Here is an example of nested paths in our app:</p>
 
 <pre class="prettyprint">
-  ..addRoute(
-      name: 'recipe',
-      path: '/recipe/:recipeId',
-      mount: (Route route) =&gt; route
-          ..addRoute(
-              name: 'view',
-              path: '/view',
-              enter: view('recipeView.html'))
+..addRoute(
+    name: 'recipe',
+    path: '/recipe/:recipeId',
+    mount: (Route route) =&gt; route
+        ..addRoute(
+            name: 'view',
+            path: '/view',
+            enter: view('recipeView.html'))
 </pre>
 
       <p>Our app’s nested paths are a little more complicated, because they also
@@ -488,10 +487,10 @@
         defined:</p>
 
 <pre class="prettyprint lang-html">
-  ...#
-  ...#/add
-  ...#/recipe/6/view
-  ...#/recipe/6/edit
+...#
+...#/add
+...#/recipe/6/view
+...#/recipe/6/edit
 </pre>
 
       <hr class="spacer" />
@@ -504,9 +503,9 @@
         <code>ng-view</code> directive.</p>
 
 <pre class="prettyprint">
-  &lt;section id="details"&gt;
-      &lt;ng-view&gt;&lt;/ng-view&gt;
-  &lt;/section&gt;
+&lt;section id="details"&gt;
+    &lt;ng-view&gt;&lt;/ng-view&gt;
+&lt;/section&gt;
 </pre>
 
       <p>The <code>ng-view</code> directive causes the rendered template of the
@@ -524,9 +523,9 @@
         the <code>recipeId</code> to look up the recipe being viewed:</p>
 
 <pre class="prettyprint">
-  ViewRecipeComponent(RouteProvider routeProvider) {
-    _recipeId = routeProvider.parameters['recipeId'];
-  }
+ViewRecipeComponent(RouteProvider routeProvider) {
+  _recipeId = routeProvider.parameters['recipeId'];
+}
 </pre>
 
       <hr class="spacer" />
@@ -557,9 +556,9 @@
         <code>QueryService</code> constructor:</p>
 
 <pre class="prettyprint">
-  QueryService(Http this._http) {
-    _loaded = Future.wait([_loadRecipes(), _loadCategories()]);
-  }
+QueryService(Http this._http) {
+  _loaded = Future.wait([_loadRecipes(), _loadCategories()]);
+}
 </pre>
 
       <p>It wraps the calls to <code>_loadRecipes</code> and
@@ -580,14 +579,14 @@
       <p>Here’s an example:</p>
 
 <pre class="prettyprint">
-  Future&lt;Recipe&gt; getRecipeById(String id) {
-    if (_recipesCache == null) {
-      return _loaded.then((_) {
-        return _recipesCache[id];
-      });
-    }
-    return new Future.value(_recipesCache[id]);
+Future&lt;Recipe&gt; getRecipeById(String id) {
+  if (_recipesCache == null) {
+    return _loaded.then((_) {
+      return _recipesCache[id];
+    });
   }
+  return new Future.value(_recipesCache[id]);
+}
 </pre>
 
       <hr class="spacer" />

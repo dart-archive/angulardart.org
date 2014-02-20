@@ -214,7 +214,7 @@
         component.</p>
 
 <pre class="prettyprint">
-  &lt;rating max-rating="5" rating="ctrl.selectedRecipe.rating"&gt;&lt;/rating&gt;
+&lt;rating max-rating="5" rating="ctrl.selectedRecipe.rating"&gt;&lt;/rating&gt;
 </pre>
 
       <hr class="spacer" />
@@ -225,13 +225,13 @@
         annotation. Here is the annotation for our rating component:</p>
 
 <pre class="prettyprint">
-  @NgComponent(
-    selector: 'rating',
-    templateUrl: 'packages/angular_dart_demo/rating/rating_component.html',
-    cssUrl: 'packages/angular_dart_demo/rating/rating_component.css',
-    publishAs: 'cmp'
-  )
-  class RatingComponent {...}
+@NgComponent(
+  selector: 'rating',
+  templateUrl: 'packages/angular_dart_demo/rating/rating_component.html',
+  cssUrl: 'packages/angular_dart_demo/rating/rating_component.css',
+  publishAs: 'cmp'
+)
+class RatingComponent {...}
 </pre>
 
       <p>Let’s look at those properties in more detail.</p>
@@ -251,17 +251,17 @@
 
       <!-- PENDING: The following code is a little weird. Make it a table? -->
 <pre class="prettyprint">
-  @NgComponent(
-    selector: 'rating',
+@NgComponent(
+  selector: 'rating',
 
-  &lt;rating&gt;&lt;/rating&gt;
+&lt;rating&gt;&lt;/rating&gt;
 
-  @NgController(
-    selector: '[recipe-book]',
+@NgController(
+  selector: '[recipe-book]',
 
-  &lt;div recipe-book&gt;
-      ...
-  &lt;/div&gt;
+&lt;div recipe-book&gt;
+    ...
+&lt;/div&gt;
 </pre>
 
       <h5 id="templateurl-and-cssurl"><code>templateUrl</code> and
@@ -281,13 +281,13 @@
       <p>Let’s look at our component’s HTML template:</p>
 
 <pre class="prettyprint">
-  &lt;span class="stars"
-        ng-if="cmp.rating != null"
-        ng-repeat="star in cmp.stars"
-        ng-click="cmp.handleClick(star)"
-        ng-class="cmp.starClass(star)"&gt;
-    {{cmp.starChar(star)}}
-  &lt;/span&gt;
+&lt;span class="stars"
+      ng-if="cmp.rating != null"
+      ng-repeat="star in cmp.stars"
+      ng-click="cmp.handleClick(star)"
+      ng-class="cmp.starClass(star)"&gt;
+  {{cmp.starChar(star)}}
+&lt;/span&gt;
 </pre>
 
       <p><code>rating</code> here refers to the properties and methods on a
@@ -304,7 +304,7 @@
       <p>Recall how our Recipe Book app uses the rating component:</p>
 
 <pre class="prettyprint">
-  &lt;rating max-rating="5" rating="ctrl.selectedRecipe.rating"&gt;&lt;/rating&gt;
+&lt;rating max-rating="5" rating="ctrl.selectedRecipe.rating"&gt;&lt;/rating&gt;
 </pre>
 
       <p>To specify which HTML attributes correspond to which properties of the
@@ -312,11 +312,11 @@
         following:</p>
 
 <pre class="prettyprint">
-  @NgTwoWay(‘rating’)
-    int rating;
+@NgTwoWay(‘rating’)
+  int rating;
 
-  @NgAttr('max-rating')
-    set maxRating(String value) {...}
+@NgAttr('max-rating')
+  set maxRating(String value) {...}
 </pre>
 
       <p>The argument to the annotation specifies the HTML attribute name—for

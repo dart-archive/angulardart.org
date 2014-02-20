@@ -209,10 +209,10 @@
         file for this sample:</p>
 
 <pre class="prettyprint">
-  name: angular_dart_demo
-  version: 0.0.1
-  dependencies:
-  angular: any
+name: angular_dart_demo
+version: 0.0.1
+dependencies:
+angular: any
 </pre>
 
       <p>To use AngularDart in any app, include <code>angular</code> as
@@ -257,7 +257,7 @@
         element:</p>
 
 <pre class="prettyprint">
-  &lt;html ng-app&gt;
+&lt;html ng-app&gt;
 </pre>
 
       <p>The <code>ng-app</code> directive tells Angular which element is the
@@ -270,9 +270,9 @@
       <p>Next, let’s look at the two script tags at the end.</p>
 
 <pre class="prettyprint">
-  &lt;script src="packages/shadow_dom/shadow_dom.min.js"&gt;&lt;/script&gt;
-  &lt;script type="application/dart" src="main.dart"&gt;&lt;/script&gt;
-  &lt;script type="text/javascript" src="packages/browser/dart.js"&gt;&lt;/script&gt;
+&lt;script src="packages/shadow_dom/shadow_dom.min.js"&gt;&lt;/script&gt;
+&lt;script type="application/dart" src="main.dart"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="packages/browser/dart.js"&gt;&lt;/script&gt;
 </pre>
 
       <p>This code should be familiar if you’ve ever written a Dart web app.
@@ -292,8 +292,8 @@
       <p>Now let’s look at <strong>main.dart</strong>:</p>
 
 <pre class="prettyprint">
-  import 'package:angular/angular.dart';
-    main() =&gt; ngBootstrap();
+import 'package:angular/angular.dart';
+  main() =&gt; ngBootstrap();
 </pre>
 
       <p>That code is minimal because our app is so simple. The only thing we
@@ -323,8 +323,8 @@
         and where it’s displayed (in the curly braces, or “mustache”).</p>
 
 <pre class="prettyprint">
-  &lt;h3&gt;Hello {{name}}!&lt;/h3&gt;
-    Name: &lt;input type="text" ng-model="name"&gt;
+&lt;h3&gt;Hello {{name}}!&lt;/h3&gt;
+Name: &lt;input type="text" ng-model="name"&gt;
 </pre>
 
       <p>The term <em>scope</em> means the portion of the model that you want to
@@ -357,13 +357,13 @@
 
       <p>Here’s an example of a simple expression:
 <pre class="prettyprint">
-  {{ 1 + 2 }}
+{{ 1 + 2 }}
 </pre>
       </p>
 
       <p>Here’s another:
 <pre class="prettyprint">
-  {{ 'foo' + 'bar'}}
+{{ 'foo' + 'bar'}}
 </pre>
         These expressions would display as <strong>3</strong> and
         <strong>foobar</strong>, respectively.</p>
@@ -377,7 +377,8 @@
         the model (“name”) and display the model in the view.</p>
 
 <pre class="prettyprint">
-  &lt;h3&gt;Hello {{name}}!&lt;/h3&gt;Name: &lt;input type="text" ng-model="name"&gt;
+&lt;h3&gt;Hello {{name}}!&lt;/h3&gt;
+Name: &lt;input type="text" ng-model="name"&gt;
 </pre>
 
       <p>Notice that the input element has the
