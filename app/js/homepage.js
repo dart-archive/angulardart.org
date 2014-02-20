@@ -186,8 +186,7 @@ angular.module('homepage', [])
             });
             if (body.length > 1)
               body.push('    <script src="packages/browser/dart.js"></script>\n')
-            content = TEMPLATE['index.html'];
-            content = content.
+            content = TEMPLATE['index.html'].
               replace('__MODULE__', attrs.module ? '="' + attrs.module + '"' : '').
               replace('__HEAD__', head.join('')).
               replace('  <head>\n  </head>\n', '').
@@ -212,7 +211,7 @@ angular.module('homepage', [])
               var token = "__" + (counter++) + "__";
               popovers[token] =
                 '<code class="nocode" rel="popover" title="' + escape('<code>' + key + '</code>') +
-                '" data-content="' + escape(text) + '">' + escape(key) + '</code>';
+                '" data-content="' + escape(text) + '" data-html="true">' + escape(key) + '</code>';
               return before + token + after;
             });
           });
@@ -418,11 +417,7 @@ angular.module('homepage', [])
           $(this).find('.modal-body').html('');
         });
 
-      $('[rel=popover]').
-        popover(
-          {trigger: 'hover'}
-          ).
-        pulse();
+      $('[rel=popover]').popover({trigger: 'hover'}).pulse();
       startPulse();
     });
   })

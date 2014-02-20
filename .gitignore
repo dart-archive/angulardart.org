@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-.DS_Store
-=======
 .idea
 .project
 packages
-**/.DS_Store
->>>>>>> upstream/master
+.DS_Store

@@ -1,288 +1,455 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en" itemscope itemtype="http://schema.org/Product">
+  <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="Description"
-          content="AngularDart is a framework for building web-apps in DART.
-                 Declarative templates with data-binding, MVW, MVVM, MVC, dependency injection and great
-                 testability story!">
+    <meta itemprop="description" name="Description"
+          content="AngularDart is a framework for building web-apps in Dart.
+                 Declarative templates with data-binding, MVW, MVVM, MVC,
+                 dependency injection and great testability story!">
+    <meta itemprop="image" content="https://angulardart.org/img/logo.png">
+    <meta itemprop="name" content="AngularDart: Superheroic MVW Framework for Dart">
 
     <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
 
     <title>AngularDart Tutorial: Creating Your First App</title>
 
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="../css/base.css">
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../css/base.css">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css"
+          rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css"
+          rel="stylesheet">
+    <link rel="stylesheet" href="/css/base.css">
+    <link href="/google-code-prettify/prettify.css" type="text/css" rel="stylesheet">
+
 
     <!--<base href="/">--><base href=".">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.min.js"></script>
-</head>
+  </head>
 
-<body>
-<div id="header">
-    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <body>
+    <div id="header">
+      <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/">AngularDart</a>
-            </div>
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">AngularDart</a>
+          </div>
 
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <!--
-                <form class="navbar-form navbar-right" role="search">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search">
-                    </div>
-                </form>
-                -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/demo/">Demo</a></li>
+            <!--
+            <form class="navbar-form navbar-right" role="search">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Search">
+              </div>
+            </form>
+            -->
 
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Learn <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="/demo/index.html">Intro to AngularDart</a></li>
-                            <li class="active"><a href="/tutorial/">Tutorial</a></li>
-                            <li><a href="https://github.com/dart-lang/dart_by_example#angular-dart">Examples</a></li>
-                            <li><a href="https://www.dartlang.org/events/2014/flight-school/">Find a Flight School Event</a></li>
-                        </ul>
-                    </li>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="/">Home</a></li>
+              <li><a href="/demo/">Demo</a></li>
 
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Develop <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/">API Reference</a></li>
-                            <li><a href="http://stackoverflow.com/questions/tagged/angular-dart">Q&amp;A (Stack Overflow)</a></li>
-                        </ul>
-                    </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  Learn <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a href="/demo/">Intro to AngularDart</a>
+                  </li>
+                  <li class="active">
+                    <a href="/tutorial/">Tutorial</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/dart-lang/dart_by_example#angular-dart">
+                      Examples</a>
+                  </li>
+                  <li>
+                    <a href="https://www.dartlang.org/events/2014/flight-school/">
+                      Find a Flight School Event</a>
+                  </li>
+                </ul>
+              </li>
 
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Discuss<b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="http://blog.angulardart.org">Blog</a></li>
-                            <li><a href="http://groups.google.com/group/angular-dart">Mailing List</a></li>
-                            <li><a href="https://twitter.com/#!/angulardart">Twitter</a></li>
-                            <li><a href="https://plus.google.com/117340875933142003564">Google+</a></li>
-                            <li><a href="https://github.com/angular/angular.dart">GitHub</a></li>
-                            <li><a href="https://github.com/angular/angular.dart/issues">Issue Tracker</a></li>
-                        </ul>
-                    </li>
-                </ul><!-- /.nav -->
-            </div><!-- /.navbar-collapse -->
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  Develop <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/">
+                      API Reference</a>
+                  </li>
+                  <li>
+                    <a href="http://stackoverflow.com/questions/tagged/angular-dart">
+                      Q&amp;A (Stack Overflow)</a>
+                  </li>
+                </ul>
+              </li>
+
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  Discuss<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a href="http://blog.angulardart.org">Blog</a>
+                  </li>
+                  <li>
+                    <a href="http://groups.google.com/group/angular-dart">
+                      Mailing List</a>
+                  </li>
+                  <li>
+                    <a href="https://twitter.com/#!/angulardart">Twitter</a>
+                  </li>
+                  <li>
+                    <a href="https://plus.google.com/117340875933142003564">
+                      Google+</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/angular/angular.dart">GitHub</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/angular/angular.dart/issues">
+                      Issue Tracker</a>
+                  </li>
+                </ul>
+              </li>
+            </ul><!-- /.nav -->
+          </div><!-- /.navbar-collapse -->
         </div><!-- /.container -->
-    </nav><!-- /.navbar -->
+      </nav><!-- /.navbar -->
 
-    <div class="breadcrumbs">
+      <div class="breadcrumbs">
         <div class="container">
-            <ol class="breadcrumb">
-                <li><a href="/">Home</a></li>
-                <li><a href="/tutorial/index.html">Tutorial</a></li>
-                <li class="active"><a href="/tutorial/03-ch01-creating-your-first-app.html">Creating Your First App</a></li>
-            </ol><!-- /.breadcrumb -->
+          <ol class="breadcrumb">
+            <li><a href="/">Home</a></li>
+            <li><a href="/tutorial/index.html">Tutorial</a></li>
+            <li class="active">
+              <a href="/tutorial/03-ch01-creating-your-first-app.html">
+                Creating Your First App</a>
+            </li>
+          </ol><!-- /.breadcrumb -->
         </div><!-- /.container -->
-    </div><!-- /.breadcrumbs -->
+      </div><!-- /.breadcrumbs -->
 
-</div><!-- /#header -->
+    </div><!-- /#header -->
 
-<div role="main" class="container tutorial page-3">
+    <div role="main" class="container tutorial page-3">
 
-  <h1 id="angulardart-tutorial-creating-your-first-angular-app">Creating Your First Angular App</h1>
+      <h1 id="angulardart-tutorial-creating-your-first-angular-app">
+        Creating Your First Angular App</h1>
 
-  <p>In this chapter, you’ll use a “Hello World” app to learn about the basic structure of an AngularDart app, how to bind a model to your view, and how to use a couple of built-in Angular directives.</p>
+      <p>In this chapter, you’ll use a “Hello World” app to learn about the
+        basic structure of an AngularDart app, how to bind a model to your
+        view, and how to use a couple of built-in Angular directives.</p>
 
-  <hr />
+      <hr />
 
-<h3 id="running-the-sample-app">Running the sample app</h3>
-<p>The code for this chapter is in the <em>
-<a href="https://github.com/angular/angular.dart.tutorial/tree/master/Chapter_01">Chapter_01</a></em>
-directory of the
-<a href="https://github.com/angular/angular.dart.tutorial/archive/master.zip">angular.dart.tutorial download</a>.
-View it in Dart Editor by using <strong>File &gt; Open Existing Folder...</strong>
-to open the <strong>Chapter_01</strong> directory. </p>
+      <h3 id="running-the-sample-app">Running the sample app</h3>
+      <p>The code for this chapter is in the <em>
+        <a href="https://github.com/angular/angular.dart.tutorial/tree/master/Chapter_01">Chapter_01</a></em>
+          directory of the
+        <a href="https://github.com/angular/angular.dart.tutorial/archive/master.zip">
+          angular.dart.tutorial download</a>.
 
-  <p>Now run the app. In Dart Editor’s Files view, select <strong>Chapter_01/web/index.html</strong>, right-click, and choose <strong>Run in Dartium</strong>.</p>
+        View it in Dart Editor by using
+        <strong>File &gt; Open Existing Folder...</strong> to open the
+        <strong>Chapter_01</strong> directory.</p>
 
-  <p><strong>Note:</strong> Although AngularDart apps can run in any modern browser, we recommend using Dartium, for now. <a href="09-ch07-deploying-your-app.html">Later</a> you’ll learn how to generate tree-shaken, minified JavaScript that can run in any modern browser.</p>
+      <p>Now run the app. In Dart Editor’s Files view, select
+        <strong>Chapter_01/web/index.html</strong>, right-click, and choose
+        <strong>Run in Dartium</strong>.</p>
 
-  <p>Dartium launches, displaying the app. As you type in the field, the letters you type appear in the title.</p>
+      <p><strong>Note:</strong> Although AngularDart apps can run in any modern
+        browser, we recommend using Dartium, for now.
+        <a href="09-ch07-deploying-your-app.html">Later</a> you’ll learn how to
+        generate tree-shaken, minified JavaScript that can run in any modern
+        browser.</p>
 
-  <p><img src="img/ch01-1.png" alt="Dartium running the Hello World app" />       <img src="img/ch01-2.png" alt="Hello World app with text" /></p>
+      <p>Dartium launches, displaying the app. As you type in the field, the
+        letters you type appear in the title.</p>
 
-  <table>
-    <tbody>
-      <tr>
-        <td><strong>Note:</strong> You might notice <em>{{name}}</em> appearing and then disappearing when the app first starts. Don’t worry,
-            <a href="07-ch05-filter-service.html">later</a> you’ll learn how to use <code>ng-cloak</code> to hide uncompiled DOM values.</td>
-      </tr>
-    </tbody>
-  </table>
+      <p><img src="img/ch01-1.png" alt="Dartium running the Hello World app" />
+        <img src="img/ch01-2.png" alt="Hello World app with text" /></p>
 
-<hr class="spacer" />
+      <table>
+        <tbody>
+          <tr>
+            <td>
+              <strong>Note:</strong> You might notice <em>{{name}}</em>
+              appearing and then disappearing when the app first starts. Don’t
+              worry, <a href="07-ch05-filter-service.html">later</a> you’ll
+              learn how to use <code>ng-cloak</code> to hide uncompiled DOM
+              values.
+            </td>
+          </tr>
+        </tbody>
+      </table>
 
-  <h3 id="making-angular-libraries-available-to-your-app">Making Angular libraries available to your app</h3>
-  <p>Dart makes dependencies available to the application through the <strong>pubspec.yaml</strong> file. Here’s the minimal pubspec.yaml file for this sample:</p>
+      <hr class="spacer" />
+
+      <h3 id="making-angular-libraries-available-to-your-app">Making Angular
+        libraries available to your app</h3>
+
+      <p>Dart makes dependencies available to the application through the
+        <strong>pubspec.yaml</strong> file. Here’s the minimal pubspec.yaml
+        file for this sample:</p>
+
 <pre class="prettyprint">
 name: angular_dart_demo
 version: 0.0.1
 dependencies:
-  angular: any
+angular: any
 </pre>
 
-  <p>To use AngularDart in any app, include <code>angular</code> as a dependency.</p>
+      <p>To use AngularDart in any app, include <code>angular</code> as
+        a dependency.</p>
 
-  <p>Dart Editor automatically downloads the packages your app depends on, along with any packages that they, in turn, depend on. If this download fails or you like using the command line, you can explicitly install packages. From Dart Editor, you can use <strong>Tools &gt; Pub Get</strong>. From the command line (in the root directory of your app, assuming the Dart SDK is in your path), you can run <code>pub get</code>.</p>
+      <p>Dart Editor automatically downloads the packages your app depends on,
+        along with any packages that they, in turn, depend on. If this download
+        fails or you like using the command line, you can explicitly install
+        packages. From Dart Editor, you can use <strong>Tools &gt; Pub Get</strong>.
+        From the command line (in the root directory of your app, assuming the
+        Dart SDK is in your path), you can run <code>pub get</code>.</p>
 
-<hr class="spacer" />
+      <hr class="spacer" />
 
-  <h3 id="the-apps-code">The app’s code</h3>
-  <p>Two files contain the app’s code:</p>
+      <h3 id="the-apps-code">The app’s code</h3>
 
-  <dl>
-    <dt> <a href="https://github.com/angular/angular.dart.tutorial/blob/master/Chapter_01/web/index.html">index.html</a> </dt>
-    <dd>
-      <p>Defines the app’s UI and includes the app’s script. </p></dd>
+      <p>Two files contain the app’s code:</p>
 
-      <dt> <a href="https://github.com/angular/angular.dart.tutorial/blob/master/Chapter_01/web/main.dart">main.dart</a> </dt>
-      <dd>
-        <p>Defines a main() function that bootstraps Angular. </p></dd>
-</dl>
+      <dl>
+        <dt>
+          <a href="https://github.com/angular/angular.dart.tutorial/blob/master/Chapter_01/web/index.html">
+            index.html</a>
+        </dt>
+        <dd>
+          <p>Defines the app’s UI and includes the app’s script.</p></dd>
+          <dt>
+            <a href="https://github.com/angular/angular.dart.tutorial/blob/master/Chapter_01/web/main.dart">
+            main.dart</a>
+          </dt>
+          <dd>
+            <p>Defines a main() function that bootstraps Angular.</p>
+        </dd>
+      </dl>
 
-        <p>Both files are in a directory that’s named <strong>web</strong>, in accordance with <a href="http://pub.dartlang.org/doc/package-layout.html">pub package layout conventions</a>.</p>
+      <p>Both files are in a directory that’s named <strong>web</strong>, in
+        accordance with
+        <a href="http://pub.dartlang.org/doc/package-layout.html">pub package
+          layout conventions</a>.</p>
 
-        <p>First, let’s look at <strong>index.html</strong>. Notice the addition of the <code>ng-app</code> directive to the <code>&lt;html&gt;</code> element:</p>
+      <p>First, let’s look at <strong>index.html</strong>. Notice the addition
+        of the <code>ng-app</code> directive to the <code>&lt;html&gt;</code>
+        element:</p>
 
-        <pre class="prettyprint">&lt;html ng-app&gt;
+<pre class="prettyprint">
+&lt;html ng-app&gt;
 </pre>
 
-        <p>The <code>ng-app</code> directive tells Angular which element is the root element of the application. Anything inside of this element is part of the page template managed by Angular. Unless you have a reason for Angular to manage only part of the app, we recommend putting the <code>ng-app</code> directive on the <code>&lt;html&gt;</code> element because it is the outermost tag.</p>
+      <p>The <code>ng-app</code> directive tells Angular which element is the
+        root element of the application. Anything inside of this element is
+        part of the page template managed by Angular. Unless you have a reason
+        for Angular to manage only part of the app, we recommend putting the
+        <code>ng-app</code> directive on the <code>&lt;html&gt;</code> element
+        because it is the outermost tag.</p>
 
-        <p>Next, let’s look at the two script tags at the end. </p>
+      <p>Next, let’s look at the two script tags at the end.</p>
 
-        <pre class="prettyprint">
+<pre class="prettyprint">
 &lt;script src="packages/shadow_dom/shadow_dom.min.js"&gt;&lt;/script&gt;
 &lt;script type="application/dart" src="main.dart"&gt;&lt;/script&gt;
 &lt;script type="text/javascript" src="packages/browser/dart.js"&gt;&lt;/script&gt;
 </pre>
 
-        <p>This code should be familiar if you’ve ever written a Dart web app. The first script tag turns on the Shadow DOM (a new web platform feature) for older browsers. The second script tag specifies the Dart file that contains the main() function of your app. The second one runs a script, <code>dart.js</code>, that determines whether the browser is capable of running Dart code natively. If so, it runs Dart. If not, it runs compiled JavaScript. It then registers a callback to be executed by the browser when the containing HTML page is fully loaded.</p>
+      <p>This code should be familiar if you’ve ever written a Dart web app.
+        The first script tag turns on the Shadow DOM (a new web platform feature)
+        for older browsers. The second script tag specifies the Dart file that
+        contains the main() function of your app. The second one runs a script,
+        <code>dart.js</code>, that determines whether the browser is capable of
+        running Dart code natively. If so, it runs Dart. If not, it runs
+        compiled JavaScript. It then registers a callback to be executed by the
+        browser when the containing HTML page is fully loaded.</p>
 
-        <p>Once the page is loaded, Angular looks for the <code>ng-app</code> directive. If Angular finds the directive, it bootstraps the application with the root of the application DOM being the element on which the <code>ng-app</code> directive was defined.</p>
+      <p>Once the page is loaded, Angular looks for the <code>ng-app</code>
+        directive. If Angular finds the directive, it bootstraps the application
+        with the root of the application DOM being the element on which the
+        <code>ng-app</code> directive was defined.</p>
 
-        <p>Now let’s look at <strong>main.dart</strong>:</p>
+      <p>Now let’s look at <strong>main.dart</strong>:</p>
 
-        <pre class="prettyprint">import 'package:angular/angular.dart';
-main() =&gt; ngBootstrap();</pre>
+<pre class="prettyprint">
+import 'package:angular/angular.dart';
+  main() =&gt; ngBootstrap();
+</pre>
 
-        <p>That code is minimal because our app is so simple. The only thing we see is some code that imports Angular and bootstraps your app. For now, don’t worry about the details of bootstrapping. We’ll cover it later.</p>
+      <p>That code is minimal because our app is so simple. The only thing we
+        see is some code that imports Angular and bootstraps your app. For
+        now, don’t worry about the details of bootstrapping. We’ll cover it
+        later.</p>
 
-        <p>Once an application is bootstrapped, it’s ready to respond to incoming browser events that might change the model (such as mouse clicks, key presses, or incoming HTTP responses). If changes are detected, Angular reflects them in the view by updating all of the affected bindings.</p>
+      <p>Once an application is bootstrapped, it’s ready to respond to incoming
+        browser events that might change the model (such as mouse clicks, key
+        presses, or incoming HTTP responses). If changes are detected, Angular
+        reflects them in the view by updating all of the affected bindings.</p>
 
-        <hr class="spacer" />
+      <hr class="spacer" />
 
-        <h3 id="how-angular-does-mvc">How Angular does MVC</h3>
-        <p>The previous chapter introduced the principles of MVC. Let’s go into a little more detail about how Angular expresses MVC concepts.</p>
+      <h3 id="how-angular-does-mvc">How Angular does MVC</h3>
+      <p>The previous chapter introduced the principles of MVC. Let’s go into a
+        little more detail about how Angular expresses MVC concepts.</p>
 
-        <h4 id="view">View</h4>
-        <p>In Angular, the view is a projection of the model through the HTML template. This means that whenever the model changes, Angular updates the HTML template to reflect those changes.</p>
+      <h4 id="view">View</h4>
+      <p>In Angular, the view is a projection of the model through the HTML
+        template. This means that whenever the model changes, Angular updates
+        the HTML template to reflect those changes.</p>
 
-        <h4 id="model">Model</h4>
-        <p>In our Hello World example, the “name” property is the model. It appears in two places in the view: where it’s set (in the input element) and where it’s displayed (in the curly braces, or “mustache”).</p>
-<pre class="prettyprint">&lt;h3&gt;Hello {{name}}!&lt;/h3&gt;
-Name: &lt;input type="text" ng-model="name"&gt;</pre>
+      <h4 id="model">Model</h4>
+      <p>In our Hello World example, the “name” property is the model. It
+        appears in two places in the view: where it’s set (in the input element)
+        and where it’s displayed (in the curly braces, or “mustache”).</p>
 
+<pre class="prettyprint">
+&lt;h3&gt;Hello {{name}}!&lt;/h3&gt;
+Name: &lt;input type="text" ng-model="name"&gt;
+</pre>
 
-        <p>The term <em>scope</em> means the portion of the model that you want to expose to a view. We’ll go into more detail about scopes in later chapters. For now, just go with the definition of “The model is the scope.”</p>
+      <p>The term <em>scope</em> means the portion of the model that you want to
+        expose to a view. We’ll go into more detail about scopes in later
+        chapters. For now, just go with the definition of “The model is the
+        scope.”</p>
 
-        <h4 id="controller">Controller</h4>
-        <p>A really simple Angular app like this one doesn’t need a controller. Real apps, however, have controllers. The next chapter dives into controllers.</p>
+      <h4 id="controller">Controller</h4>
+      <p>A really simple Angular app like this one doesn’t need a controller.
+        Real apps, however, have controllers. The next chapter dives into
+        controllers.</p>
 
-        <hr class="spacer" />
+      <hr class="spacer" />
 
-        <h3 id="mustache-syntax-interpolation-and-angular-expressions">Mustache syntax (interpolation) and Angular expressions</h3>
-        <p>Angular uses double curly braces <code>{{ ... }}</code> to contain Angular expressions. Anything inside the braces is evaluated as a Dart-like expression. The braces tell Angular to evaluate the expression and put the result into the DOM. Expressions are “Dart-like” because the allowed expression syntax is not strictly Dart. Angular expressions differ from Dart in the following ways:</p>
+      <h3 id="mustache-syntax-interpolation-and-angular-expressions">Mustache
+        syntax (interpolation) and Angular expressions</h3>
+      <p>Angular uses double curly braces <code>{{ ... }}</code> to contain
+        Angular expressions. Anything inside the braces is evaluated as a
+        Dart-like expression. The braces tell Angular to evaluate the expression
+        and put the result into the DOM. Expressions are “Dart-like” because the
+        allowed expression syntax is not strictly Dart. Angular expressions
+        differ from Dart in the following ways:</p>
 
-        <ul>
-          <li>No control flow statements are allowed (no ifs or loops, for example).</li>
-          <li>Dereferencing chained objects is forgiving. For example, foo.bar.baz doesn’t blow up if one of the objects along the chain is null.</li>
-        </ul>
+      <ul>
+        <li>No control flow statements are allowed (no ifs or loops, for
+          example).</li>
+        <li>Dereferencing chained objects is forgiving. For example, foo.bar.baz
+          doesn’t blow up if one of the objects along the chain is null.</li>
+      </ul>
 
-        <p>Here’s an example of a simple expression:
-<pre class="prettyprint">{{ 1 + 2 }}</pre>
+      <p>Here’s an example of a simple expression:
+<pre class="prettyprint">
+{{ 1 + 2 }}
+</pre>
+      </p>
 
-        <p>Here’s another:
-    <pre class="prettyprint">{{ 'foo' + 'bar'}}</pre>
-        <p>These expressions would display as <strong>3</strong> and <strong>foobar</strong>, respectively.</p>
+      <p>Here’s another:
+<pre class="prettyprint">
+{{ 'foo' + 'bar'}}
+</pre>
+        These expressions would display as <strong>3</strong> and
+        <strong>foobar</strong>, respectively.</p>
 
-        <hr class="spacer" />
+      <hr class="spacer" />
 
-        <h3 id="mustache-syntax-and-data-binding-in-hello-world">Mustache syntax and data binding in Hello World</h3>
+      <h3 id="mustache-syntax-and-data-binding-in-hello-world">Mustache syntax
+        and data binding in Hello World</h3>
 
-        <p>Here’s how the Hello World app uses the mustache syntax to bind to the model (“name”) and display the model in the view.</p>
-<pre class="prettyprint">&lt;h3&gt;Hello {{name}}!&lt;/h3&gt;
-Name: &lt;input type="text" ng-model="name"&gt;</pre>
+      <p>Here’s how the Hello World app uses the mustache syntax to bind to
+        the model (“name”) and display the model in the view.</p>
 
-        <p>Notice that the input element has the <a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/angular.directive/NgModel.html"><code>ng-model</code></a> directive, which looks like an HTML attribute. The following chapters go into more detail about directives. For now, just be aware that Angular has a construct called directives that extend HTML syntax and can control the view.</p>
+<pre class="prettyprint">
+&lt;h3&gt;Hello {{name}}!&lt;/h3&gt;
+Name: &lt;input type="text" ng-model="name"&gt;
+</pre>
 
-        <p>The ng-model directive binds the input’s value attribute to the property “name” in the current scope. First, Angular checks whether the property exists in the scope. If it does exist, Angular sets its value. If not, Angular creates the property in the scope and then sets the value from the input.</p>
+      <p>Notice that the input element has the
+        <a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/angular.directive/NgModel.html">
+          <code>ng-model</code></a>
+        directive, which looks like an HTML attribute. The following chapters
+        go into more detail about directives. For now, just be aware that
+        Angular has a construct called directives that extend HTML syntax and
+        can control the view.</p>
 
-        <p>The view displays the value of the model object using the Angular expression <code>{{name}}</code>. Notice how the view updates in real time whenever the model changes. This is called <em>two-way data binding</em>. Angular listens for changes to the model and updates the view to reflect those changes.</p>
+      <p>The ng-model directive binds the input’s value attribute to the
+        property “name” in the current scope. First, Angular checks whether
+        the property exists in the scope. If it does exist, Angular sets its
+        value. If not, Angular creates the property in the scope and then sets
+        the value from the input.</p>
 
-    <ul class="pager">
-      <li class="previous"><a href="02-welcome-to-angular.html">&laquo; Prev</a></li>
-      <li><a href="index.html">Tutorial Overview</a></li>
-      <li class="next"><a href="04-ch02-controller.html">Next &raquo;</a></li>
-    </ul>
+      <p>The view displays the value of the model object using the Angular
+        expression <code>{{name}}</code>. Notice how the view updates in real
+        time whenever the model changes. This is called <em>two-way data
+        binding</em>. Angular listens for changes to the model and updates
+        the view to reflect those changes.</p>
 
-</div>
-<footer>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8">
-                <p>Super-powered by Google  ©2010-2013<br />
-                    Code licensed under <a href="https://github.com/angular/angular.js/blob/master/LICENSE" target="_blank">The
-                        MIT License</a>. Documentation licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.
-                </p>
-            </div>
-            <div class="col-md-4 align-right">
-                <a href="https://plus.google.com/117340875933142003564"><i class="fa fa-google-plus"></i></a>
-                <a href="https://twitter.com/#!/angulardart"><i class="fa fa-twitter"></i></a>
-                <a href="https://github.com/angular/angular.dart"><i class="fa fa-github"></i></a>
-                <a href="http://blog.angulardart.org"><i class="fa fa-rss"></i></a>
-            </div>
-        </div><!-- /.row -->
+      <ul class="pager">
+        <li class="previous">
+          <a href="02-welcome-to-angular.html">&laquo; Prev</a>
+        </li>
+        <li><a href="index.html">Tutorial Overview</a></li>
+        <li class="next">
+          <a href="04-ch02-controller.html">Next &raquo;</a>
+        </li>
+      </ul>
+
     </div><!-- /.container -->
-</footer>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-<script src="../google-code-prettify/prettify.min.js"></script>
-<link href="../google-code-prettify/prettify.css" type="text/css" rel="stylesheet">
-<script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 col-sm-8">
+            <p>Super-powered by Google ©2010-2014<br />Code licensed under
+              <a href="https://github.com/angular/angular.js/blob/master/LICENSE"
+                 target="_blank">
+                The MIT License</a>. Documentation licensed under
+              <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.
+            </p>
+          </div>
+          <div class="col-md-4 col-sm-4 align-right">
+            <a href="https://plus.google.com/117340875933142003564">
+              <i class="fa fa-google-plus"></i></a>
+            <a href="https://twitter.com/#!/angulardart">
+              <i class="fa fa-twitter"></i></a>
+            <a href="https://github.com/angular/angular.dart">
+              <i class="fa fa-github"></i></a>
+            <a href="http://blog.angulardart.org">
+              <i class="fa fa-rss"></i></a>
+          </div>
+        </div><!-- /.row -->
+      </div><!-- /.container -->
+    </footer>
 
-    ga('create', 'UA-8594346-12', 'angulardart.org');
-    ga('send', 'pageview');
-</script><!-- /Analytics-->
-</body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="../google-code-prettify/prettify.min.js"></script>
+    <link href="../google-code-prettify/prettify.css" type="text/css" rel="stylesheet">
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
+        ga('create', 'UA-8594346-12', 'angulardart.org');
+        ga('send', 'pageview');
+    </script><!-- /Analytics-->
+  </body>
+</html>

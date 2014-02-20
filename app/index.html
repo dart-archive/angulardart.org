@@ -1,23 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" itemscope itemtype="http://schema.org/Product">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="Description"
-          content="AngularDart is a framework for building web-apps in DART.
-                 Declarative templates with data-binding, MVW, MVVM, MVC, dependency injection and great
-                 testability story!">
+    <meta itemprop="description" name="Description"
+          content="AngularDart is a framework for building web-apps in Dart.
+                 Declarative templates with data-binding, MVW, MVVM, MVC,
+                 dependency injection and great testability story!">
+    <meta itemprop="image" content="https://angulardart.org/img/logo.png">
+    <meta itemprop="name" content="AngularDart: Superheroic MVW Framework for Dart">
 
     <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
 
     <title>AngularDart — Superheroic MVW Framework for Dart</title>
 
     <!-- Stylesheets -->
-    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/base.css">
-    <link href="google-code-prettify/prettify.css" type="text/css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css"
+          rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css"
+          rel="stylesheet">
+    <link rel="stylesheet" href="/css/base.css">
+    <link href="/google-code-prettify/prettify.css" type="text/css" rel="stylesheet">
 
 
     <!--<base href="/">--><base href=".">
@@ -36,7 +40,8 @@
       <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container">
           <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
               <span class="sr-only">Toggle navigation</span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
@@ -46,6 +51,7 @@
           </div>
 
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
             <!--
             <form class="navbar-form navbar-right" role="search">
               <div class="form-group">
@@ -55,36 +61,70 @@
             -->
 
             <ul class="nav navbar-nav navbar-right">
-              <li class="active"><a href="#">Home</a></li>
-              <li><a href="/demo">Demo</a></li>
+              <li class="active"><a href="/">Home</a></li>
+              <li><a href="/demo/">Demo</a></li>
 
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Learn <b class="caret"></b></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  Learn <b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                  <li><a href="/demo">Intro to AngularDart</a></li>
-                  <li><a href="/tutorial/">Tutorial</a></li>
-                  <li><a href="https://github.com/dart-lang/dart_by_example#angular-dart">Examples</a></li>
-                  <li><a href="https://www.dartlang.org/events/2014/flight-school/">Find a Flight School Event</a></li>
+                  <li>
+                    <a href="/demo/">Intro to AngularDart</a>
+                  </li>
+                  <li>
+                    <a href="/tutorial/">Tutorial</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/dart-lang/dart_by_example#angular-dart">
+                      Examples</a>
+                  </li>
+                  <li>
+                    <a href="https://www.dartlang.org/events/2014/flight-school/">
+                      Find a Flight School Event</a>
+                  </li>
                 </ul>
               </li>
 
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Develop <b class="caret"></b></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  Develop <b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                  <li><a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/">API Reference</a></li>
-                  <li><a href="http://stackoverflow.com/questions/tagged/angular-dart">Q&amp;A (Stack Overflow)</a></li>
+                  <li>
+                    <a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/">
+                      API Reference</a>
+                  </li>
+                  <li>
+                    <a href="http://stackoverflow.com/questions/tagged/angular-dart">
+                      Q&amp;A (Stack Overflow)</a>
+                  </li>
                 </ul>
               </li>
 
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Discuss<b class="caret"></b></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  Discuss<b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                  <li><a href="http://blog.angulardart.org">Blog</a></li>
-                  <li><a href="http://groups.google.com/group/angular-dart">Mailing List</a></li>
-                  <li><a href="https://twitter.com/#!/angulardart">Twitter</a></li>
-                  <li><a href="https://plus.google.com/117340875933142003564">Google+</a></li>
-                  <li><a href="https://github.com/angular/angular.dart">GitHub</a></li>
-                  <li><a href="https://github.com/angular/angular.dart/issues">Issue Tracker</a></li>
+                  <li>
+                    <a href="http://blog.angulardart.org">Blog</a>
+                  </li>
+                  <li>
+                    <a href="http://groups.google.com/group/angular-dart">
+                      Mailing List</a>
+                  </li>
+                  <li>
+                    <a href="https://twitter.com/#!/angulardart">Twitter</a>
+                  </li>
+                  <li>
+                    <a href="https://plus.google.com/117340875933142003564">
+                      Google+</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/angular/angular.dart">GitHub</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/angular/angular.dart/issues">
+                      Issue Tracker</a>
+                  </li>
                 </ul>
               </li>
             </ul><!-- /.nav -->
@@ -95,11 +135,16 @@
       <div class="jumbotron">
         <div class="container">
           <h1>AngularDart</h1>
-          <h3><span class="inner">A Web Framework for <span class="icon">Dart</span></span></h3>
-          <a class="btn btn-primary btn-lg" role="button" href="/demo">See it in action</a>
-          <a class="btn btn-primary btn-lg" role="button" href="tutorial/index.html">Try AngularDart</a>
-          <a href="https://github.com/angular/angular.dart/blob/master/CONTRIBUTING.md" class="banner">Want to Help? Contribute here!</a>
-          <p>Not what you're looking for? Learn more about <a href="http://www.angularjs.org" target="_blank">AngularJS &raquo;</a></p>
+          <h3><span class="inner">A Web Framework for
+              <span class="icon">Dart</span></span></h3>
+          <a class="btn btn-primary btn-lg" role="button" href="/demo/">
+            See it in action</a>
+          <a class="btn btn-primary btn-lg" role="button" href="/tutorial/">
+            Try AngularDart</a>
+          <a href="https://github.com/angular/angular.dart/blob/master/CONTRIBUTING.md"
+             class="banner">Want to Help? Contribute here!</a>
+          <p>Not what you're looking for? Learn more about
+            <a href="http://www.angularjs.org" target="_blank">AngularJS &raquo;</a></p>
         </div><!-- /.container -->
       </div><!-- /.jumbotron -->
 
@@ -109,15 +154,18 @@
       <div class="row">
         <div class="col-md-4 col-sm-4 primary" id="why-angulardart">
           <h2>Why AngularDart?</h2>
-          <p>AngularDart brings the proven Angular philosophy of testable, succinct web development to Dart.</p>
+          <p>AngularDart brings the proven Angular philosophy of testable,
+            succinct web development to Dart.</p>
         </div>
         <div class="col-md-4 col-sm-4 primary" id="angularjs-plus-dart">
           <h2>AngularJS + Dart</h2>
-          <p>Designed for Dart: use classes, annotations, and more. Build apps that scale.</p>
+          <p>Designed for Dart: use classes, annotations, and more. Build apps
+            that scale.</p>
         </div>
         <div class="col-md-4 col-sm-4 primary" id="future-ready">
           <h2>Future-ready</h2>
-          <p>AngularDart embraces modern web platform features, starting with Shadow DOM and Web Components.</p>
+          <p>AngularDart embraces modern web platform features, starting with
+            Shadow DOM and Web Components.</p>
         </div>
       </div><!-- /.row -->
 
@@ -126,19 +174,23 @@
      <!-- <div class="row">
         <div class="col-md-6 col-sm-6 secondary" id="getting-started">
           <h3>Getting Started</h3>
-          <p>Lorem vestibulum. Donec ac ante nulla. Aenean interdum hendrerit enim vel cursus. Vestibulum fermentum sed erat sed ornare. Sed id sagittis ipsuma, vel eleifend ligula. Donec rhoncus sapien vitae pretium fermentum.</p>
+          <p>Lorem vestibulum. Donec ac ante nulla. Aenean interdum hendrerit
+             enim vel cursus. Vestibulum fermentum sed erat sed ornare. Sed id
+             sagittis ipsuma, vel eleifend ligula. Donec rhoncus sapien vitae
+             pretium fermentum.</p>
           <a href="#" class="more">Let's Get Started &raquo;</a>
         </div>
         <div class="col-md-6 col-sm-6 secondary" id="documentation">
           <h3>Documentation</h3>
-          <p>Lorem vestibulum. Donec ac ante nulla. Aenean interdum hendrerit enim vel cursus. Vestibulum fermentum sed erat sed ornare. Sed id sagittis ipsuma, vel eleifend ligula. Donec rhoncus sapien vitae pretium fermentum.</p>
+          <p>Lorem vestibulum. Donec ac ante nulla. Aenean interdum hendrerit
+             enim vel cursus. Vestibulum fermentum sed erat sed ornare. Sed id
+             sagittis ipsuma, vel eleifend ligula. Donec rhoncus sapien vitae
+             pretium fermentum.</p>
           <a href="#" class="more">See the Documentation &raquo;</a>
         </div>
       </div>
       <!-- /.row -->
-<!--
-      <hr />
--->
+      <!-- <hr /> -->
 
       <div class="row">
         <div class="col-md-12" id="news">
@@ -146,23 +198,46 @@
           <ul>
             <li class="stackoverflow">
               <time datetime="2014-01-26">30 Jan 2014</time>
-              <p><strong>Escaping characters ever necessary in AngularDart?</strong> Does one ever have to worry about character escaping in AngularDart? I think that mustache rendering is always safe; e.g... <a href="http://stackoverflow.com/questions/21472281/escaping-characters-ever-necessary-in-angulardart">more »</a></p>
+              <p><strong>Escaping characters ever necessary in AngularDart?</strong>
+                Does one ever have to worry about character escaping in
+                AngularDart? I think that mustache rendering is always safe; e.g...
+                <a href="http://stackoverflow.com/questions/21472281/escaping-characters-ever-necessary-in-angulardart">
+                more »</a></p>
             </li>
             <li class="twitter">
               <time datetime="2014-01-26">29 Jan 2014</time>
-              <p><a href="https://twitter.com/jbdeboer">@jbdeboer</a> The latest AngularDart beta release 0.9.5 out and up on pub <a href="http://blog.angulardart.org/2014/01/angulardart-release-v095.html">http://blog.angulardart.org/2014/01/a...</a> <a href="https://twitter.com/jbdeboer/status/428650000491372544">more »</a></p></p>
+              <p><a href="https://twitter.com/jbdeboer">@jbdeboer</a> The latest
+                AngularDart beta release 0.9.5 out and up on pub
+                <a href="http://blog.angulardart.org/2014/01/angulardart-release-v095.html">
+                  http://blog.angulardart.org/2014/01/a...</a>
+                <a href="https://twitter.com/jbdeboer/status/428650000491372544">
+                  more »</a></p></p>
             </li>
             <li class="release">
               <time datetime="2014-01-26">27 Jan 2014</time>
-              <p><strong>v0.9.5 badger-magic (2014-01-27)</strong> Bug Fixes. Directive: remove publishAs from NgDirective to avoi... <a href="https://github.com/angular/angular.dart/blob/master/CHANGELOG.md">more »</a></p>
+              <p><strong>v0.9.5 badger-magic (2014-01-27)</strong> Bug Fixes.
+                Directive: remove publishAs from NgDirective to avoi...
+                <a href="https://github.com/angular/angular.dart/blob/master/CHANGELOG.md">
+                more »</a></p>
             </li>
             <li class="google_plus">
               <time datetime="2014-01-26">27 Jan 2014</time>
-              <p><a href="https://plus.google.com/u/0/+MatthewButler/posts">Matthew Butler:</a> The <a href="https://plus.google.com/u/0/114045997737047039685/posts">+dartlangfr</a> team have put together an awesome AngularDart Codelab. This codelab is similar to the <a href="https://plus.google.com/u/0/+dartlang/posts">+Dart</a> codelab: Darrrt. Bu... <a href="https://plus.google.com/u/0/+MatthewButler/posts/X3cYbs3CDrn">more »</a></p>
+              <p><a href="https://plus.google.com/u/0/+MatthewButler/posts">
+                Matthew Butler:</a> The <a href="https://plus.google.com/u/0/114045997737047039685/posts">
+                +dartlangfr</a> team have put together an awesome AngularDart
+                Codelab. This codelab is similar to the
+                <a href="https://plus.google.com/u/0/+dartlang/posts">+Dart</a>
+                codelab: Darrrt. Bu...
+                <a href="https://plus.google.com/u/0/+MatthewButler/posts/X3cYbs3CDrn">
+                more »</a></p>
             </li>
             <li class="rss">
-                  <time datetime="2014-01-26">5 Nov 2014</time>
-                  <p><strong>Introducing AngularDart v0.9.0</strong> Today we are happy to share with you the beta release of the AngularDart framework, our port of Angular to Dart. AngularDart is...<a href="http://blog.angulardart.org/2013/11/today-we-are-happy-to-share-with-you.html">more »</a></p>
+              <time datetime="2014-01-26">5 Nov 2013</time>
+              <p><strong>Introducing AngularDart v0.9.0</strong> Today we are
+                happy to share with you the beta release of the AngularDart
+                framework, our port of Angular to Dart. AngularDart is...
+                <a href="http://blog.angulardart.org/2013/11/today-we-are-happy-to-share-with-you.html">
+                  more »</a></p>
             </li>
 
           </ul>
@@ -174,16 +249,22 @@
       <div class="container">
         <div class="row">
           <div class="col-md-8 col-sm-8">
-            <p>Super-powered by Google  ©2010-2013<br />
-              Code licensed under <a href="https://github.com/angular/angular.js/blob/master/LICENSE" target="_blank">The
-              MIT License</a>. Documentation licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.
+            <p>Super-powered by Google ©2010-2014<br />Code licensed under
+              <a href="https://github.com/angular/angular.js/blob/master/LICENSE"
+                 target="_blank">
+                The MIT License</a>. Documentation licensed under
+              <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.
             </p>
           </div>
           <div class="col-md-4 col-sm-4 align-right">
-              <a href="https://plus.google.com/117340875933142003564"><i class="fa fa-google-plus"></i></a>
-              <a href="https://twitter.com/#!/angulardart"><i class="fa fa-twitter"></i></a>
-              <a href="https://github.com/angular/angular.dart"><i class="fa fa-github"></i></a>
-              <a href="http://blog.angulardart.org"><i class="fa fa-rss"></i></a>
+            <a href="https://plus.google.com/117340875933142003564">
+              <i class="fa fa-google-plus"></i></a>
+            <a href="https://twitter.com/#!/angulardart">
+              <i class="fa fa-twitter"></i></a>
+            <a href="https://github.com/angular/angular.dart">
+              <i class="fa fa-github"></i></a>
+            <a href="http://blog.angulardart.org">
+              <i class="fa fa-rss"></i></a>
           </div>
         </div><!-- /.row -->
       </div><!-- /.container -->
