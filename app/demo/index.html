@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta itemprop="description" name="Description"
           content="AngularDart is a framework for building web-apps in Dart.
-                 Declarative templates with data-binding, MVW, MVVM, MVC, dependency injection and great
-                 testability story!">
+                 Declarative templates with data-binding, MVW, MVVM, MVC,
+                 dependency injection and great testability story!">
     <meta itemprop="image" content="https://angulardart.org/img/logo.png">
     <meta itemprop="name" content="AngularDart: Superheroic MVW Framework for Dart">
 
@@ -16,10 +16,15 @@
     <title>AngularDart — Superheroic MVW Framework for Dart</title>
 
     <!-- Stylesheets -->
-    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../css/base.css">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css"
+          rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css"
+          rel="stylesheet">
+    <link rel="stylesheet" href="/css/base.css">
+    <link href="/google-code-prettify/prettify.css" type="text/css" rel="stylesheet">
 
+
+    <!--<base href="/">--><base href=".">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -35,7 +40,8 @@
       <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container">
           <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
               <span class="sr-only">Toggle navigation</span>
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
@@ -45,6 +51,7 @@
           </div>
 
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
             <!--
             <form class="navbar-form navbar-right" role="search">
               <div class="form-group">
@@ -54,36 +61,70 @@
             -->
 
             <ul class="nav navbar-nav navbar-right">
-              <li><a href="/">Home</a></li>
-              <li class="active"><a href="/demo/">Demo</a></li>
+              <li><a href="#">Home</a></li>
+              <li><a href="/demo">Demo</a></li>
 
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Learn <b class="caret"></b></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  Learn <b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                  <li><a href="/demo/">Intro to AngularDart</a></li>
-                  <li><a href="/tutorial/">Tutorial</a></li>
-                  <li><a href="https://github.com/dart-lang/dart_by_example#angular-dart">Examples</a></li>
-                  <li><a href="https://www.dartlang.org/events/2014/flight-school/">Find a Flight School Event</a></li>
+                  <li class="active">
+                    <a href="/demo">Intro to AngularDart</a>
+                  </li>
+                  <li>
+                    <a href="/tutorial/">Tutorial</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/dart-lang/dart_by_example#angular-dart">
+                      Examples</a>
+                  </li>
+                  <li>
+                    <a href="https://www.dartlang.org/events/2014/flight-school/">
+                      Find a Flight School Event</a>
+                  </li>
                 </ul>
               </li>
 
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Develop <b class="caret"></b></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  Develop <b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                  <li><a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/">API Reference</a></li>
-                  <li><a href="http://stackoverflow.com/questions/tagged/angular-dart">Q&amp;A (Stack Overflow)</a></li>
+                  <li>
+                    <a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/">
+                      API Reference</a>
+                  </li>
+                  <li>
+                    <a href="http://stackoverflow.com/questions/tagged/angular-dart">
+                      Q&amp;A (Stack Overflow)</a>
+                  </li>
                 </ul>
               </li>
 
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Discuss<b class="caret"></b></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  Discuss<b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                  <li><a href="http://blog.angulardart.org">Blog</a></li>
-                  <li><a href="http://groups.google.com/group/angular-dart">Mailing List</a></li>
-                  <li><a href="https://twitter.com/#!/angulardart">Twitter</a></li>
-                  <li><a href="https://plus.google.com/117340875933142003564">Google+</a></li>
-                  <li><a href="https://github.com/angular/angular.dart">GitHub</a></li>
-                  <li><a href="https://github.com/angular/angular.dart/issues">Issue Tracker</a></li>
+                  <li>
+                    <a href="http://blog.angulardart.org">Blog</a>
+                  </li>
+                  <li>
+                    <a href="http://groups.google.com/group/angular-dart">
+                      Mailing List</a>
+                  </li>
+                  <li>
+                    <a href="https://twitter.com/#!/angulardart">Twitter</a>
+                  </li>
+                  <li>
+                    <a href="https://plus.google.com/117340875933142003564">
+                      Google+</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/angular/angular.dart">GitHub</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/angular/angular.dart/issues">
+                      Issue Tracker</a>
+                  </li>
                 </ul>
               </li>
             </ul><!-- /.nav -->
@@ -110,12 +151,14 @@
         <hr class="spacer" />
         <div class="col-md-4">
           <span hint></span>
-          <span class="pull-right" js-fiddle="hello.html" style="display: none;"></span>
+          <span class="pull-right" js-fiddle="hello.html"
+                style="display: none;"></span>
           <div class="tabs-spacer"></div>
           <div class="well" ng-non-bindable>
             <div class="angular-dart-example" id="hello-app">
               <label>Name:</label>
-              <input type="text" ng-model="yourName" placeholder="Enter a name here">
+              <input type="text" ng-model="yourName"
+                     placeholder="Enter a name here">
               <hr>
               <h1>Hello {{yourName}}!</h1>
             </div><!-- /#hello-app -->
@@ -130,22 +173,25 @@
         <div class="col-md-4">
           <h3>Data Binding</h3>
           <p>
-              Data binding automatically updates the view whenever the model changes, and updates the model whenever the
-              view changes. Eliminate DOM manipulation from your list of worries. Awesome!
+            Data binding automatically updates the view whenever the model
+            changes, and updates the model whenever the view changes.
+            Eliminate DOM manipulation from your list of worries. Awesome!
           </p>
         </div>
         <div class="col-md-4">
           <h3>Controllers</h3>
           <p>
-              In AngularDart, controller classes let you express application behavior in a clean readable form without the
-              usual boilerplate of updating the DOM, registering callbacks, or watching model changes.
+            In AngularDart, controller classes let you express application
+            behavior in a clean readable form without the usual boilerplate of
+            updating the DOM, registering callbacks, or watching model changes.
           </p>
         </div>
         <div class="col-md-4">
           <h3>Models</h3>
           <p>
-              Models are just plain Dart classes. There is no need to inherit from proprietary types, or to wrap the model
-              in accessor methods. Code is easy to test, maintain, and reuse.
+            Models are just plain Dart classes. There is no need to inherit from
+            proprietary types, or to wrap the model in accessor methods. Code is
+            easy to test, maintain, and reuse.
           </p>
         </div><!-- /.col-md-4 -->
       </div><!-- /.row -->
@@ -198,23 +244,27 @@
         <div class="col-md-4">
           <h3>Deep Linking</h3>
           <p>
-            A deep link reflects where the user is in the app, this is useful so users can bookmark and email links to
-            locations within apps. Round trip apps get this automatically, but AJAX apps by their nature do not.
-            AngularDart combines the benefits of deep linking with desktop app-like behavior.
+            A deep link reflects where the user is in the app, this is useful so
+            users can bookmark and email links to locations within apps. Round
+            trip apps get this automatically, but AJAX apps by their nature do
+            not. AngularDart combines the benefits of deep linking with desktop
+            app-like behavior.
           </p>
         </div>
         <div class="col-md-4">
           <h3>Form Validation</h3>
           <p>
-            Use built-in validators and avoid imperative code. Write less, go have beer sooner.
+            Use built-in validators and avoid imperative code. Write less, go
+            have beer sooner.
           </p>
         </div>
         <div class="col-md-4">
           <h3>Connect to RESTful Services</h3>
           <p>
-            Dart's high-level implementation of HttpRequest makes server communication easy. With AngularDart, you also
-            get testability, interceptors, and mocks for the HttpRequest object. Effortlessly build data transformations
-            right into your HTTP stack.
+            Dart's high-level implementation of HttpRequest makes server
+            communication easy. With AngularDart, you also get testability,
+            interceptors, and mocks for the HttpRequest object. Effortlessly
+            build data transformations right into your HTTP stack.
           </p>
         </div>
       </div>
@@ -222,7 +272,8 @@
     <hr class="spacer" />
 
     <div class="row example">
-      <div class="col-md-8 app-source" app-source="index.html backend.dart list.html new.html"></div>
+      <div class="col-md-8 app-source"
+           app-source="index.html backend.dart list.html new.html"></div>
       <hr class="spacer" />
       <div class="col-md-4">
         <span hint></span>
@@ -248,53 +299,22 @@
         <div class="col-md-4">
           <h3>Modern Web Standards</h3>
           <p>
-              AngularDart components are built with the Shadow DOM for real encapsulation of styles and structure.
-              Encapsulate views, behaviors, and actions within reusable, nestable components.
+              AngularDart components are built with the Shadow DOM for real
+              encapsulation of styles and structure. Encapsulate views,
+              behaviors, and actions within reusable, nestable components.
           </p>
         </div><!-- /.col-md-4 -->
         <div class="col-md-4">
           <h3>It's Just HTML</h3>
           <p>
-            Add behavior to HTML elements. Create and use custom attributes and elements for code that's easy to
-            understand at a glance.
+            Add behavior to HTML elements. Create and use custom attributes and
+            elements for code that's easy to understand at a glance.
           </p>
         </div>
         <div class="col-md-4">
 
         </div><!-- /.col-md-4 -->
       </div><!-- /.row -->
-      <!--<div class="row example">TODO: Add code for example illustrating component use?</div>-->
-
-      <!-- <div class=" row example">
-         <div class="span8 app-source" app-source="tabs.html components.js app.js" annotate="tabs.annotation" module="app"></div>
-         <div class="col-md-12">
-           <span hint></span>
-           <span class="pull-right" js-fiddle="tabs.html components.js app.js" module="app"></span>
-           <div class="tabs-spacer"></div>
-           <h4>Locale: US</h4>
-             <div class="well" ng-non-bindable>
-             <h2>Todo</h2>
-             <div class="angular-dart-example" todo-list id="tabs-app">
-               <span>{{TodoCtrl.remaining()}} of {{TodoCtrl.todos.length}} remaining</span>
-               [ <a href="" ng-click="TodoCtrl.archive()">archive</a> ]
-               <ul class="unstyled">
-                 <li ng-repeat="todo in TodoCtrl.todos">
-                   <input type="checkbox" ng-model="todo.done">
-                   <span class="done-{{todo.done}}">{{todo.text}}</span>
-                 </li>
-               </ul>
-               <form ng-submit="TodoCtrl.addTodo()">
-                 <input type="text" ng-model="TodoCtrl.todoText"  size="30"
-                        placeholder="add new todo here">
-                 <input class="btn-primary" type="submit" value="add">
-               </form>
-             </div>
-           </div>
-           <div class="tabs-spacer"></div>
-           <h4>Locale: SK</h4>
-           <div class="well"></div>
-         </div>
-       </div> -->
 
       <hr class="shield" />
 
@@ -303,22 +323,23 @@
         <div class="col-md-4">
           <h3>Injectable</h3>
           <p>
-            Write single-purpose components and services, and use Dependency Injection to wire up your app. Apps are
-            more testable; components are more reusable.
+            Write single-purpose components and services, and use Dependency
+            Injection to wire up your app. Apps are more testable; components
+            are more reusable.
           </p>
         </div><!-- /.col-md-4 -->
         <div class="col-md-4">
           <h3>Testable</h3>
           <p>
-            Single-purpose components and Dependency Injection make applications easy to test. Unit tests are built into
-            the framework.
+            Single-purpose components and Dependency Injection make applications
+            easy to test. Unit tests are built into the framework.
           </p>
         </div><!-- /.col-md-4 -->
         <div class="col-md-4">
           <h3>Reusable</h3>
           <p>
-            Develop a large application without large application pain. Easily share components and code using Dart's
-            package manager.
+            Develop a large application without large application pain. Easily
+            share components and code using Dart's package manager.
           </p>
         </div><!-- /.col-md-4 -->
       </div><!-- /.row -->
@@ -330,16 +351,23 @@
       <div class="container">
         <div class="row">
           <div class="col-md-8 col-sm-8">
-            <p>Super-powered by Google  ©2010-2014<br />
-              Code licensed under <a href="https://github.com/angular/angular.js/blob/master/LICENSE" target="_blank">The
-              MIT License</a>. Documentation licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.
+            <p>
+              Super-powered by Google ©2010-2014<br />
+              Code licensed under
+              <a href="https://github.com/angular/angular.js/blob/master/LICENSE" target="_blank">The
+              MIT License</a>. Documentation licensed under
+              <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.
             </p>
           </div>
             <div class="col-md-4 align-right">
-                <a href="https://plus.google.com/117340875933142003564"><i class="fa fa-google-plus"></i></a>
-                <a href="https://twitter.com/#!/angulardart"><i class="fa fa-twitter"></i></a>
-                <a href="https://github.com/angular/angular.dart"><i class="fa fa-github"></i></a>
-                <a href="http://blog.angulardart.org"><i class="fa fa-rss"></i></a>
+              <a href="https://plus.google.com/117340875933142003564">
+                <i class="fa fa-google-plus"></i></a>
+              <a href="https://twitter.com/#!/angulardart">
+                <i class="fa fa-twitter"></i></a>
+              <a href="https://github.com/angular/angular.dart">
+                <i class="fa fa-github"></i></a>
+              <a href="http://blog.angulardart.org">
+                <i class="fa fa-rss"></i></a>
             </div>
         </div><!-- /.row -->
       </div><!-- /.container -->
@@ -354,7 +382,8 @@
     <script type="text/ng-template" id="hello.html">
         <div>
             <label>Name:</label>
-            <input type="text" ng-model="yourName" placeholder="Enter a name here">
+            <input type="text" ng-model="yourName"
+                   placeholder="Enter a name here">
             <hr>
             <h1>Hello {{yourName}}!</h1>
         </div>
@@ -563,7 +592,8 @@ class SystemPanelCtrl {
   bool filterOn = false;
   FirebaseAdapter results;
 
-  SystemPanelCtrl(RouteProvider routeProvider, Scope this.scope, FirebaseResultsAdapter adapter) {
+  SystemPanelCtrl(RouteProvider routeProvider, Scope this.scope,
+                  FirebaseResultsAdapter adapter) {
     Map params = routeProvider.parameters;
     this.results = adapter.getResults().values;
   }
@@ -622,7 +652,8 @@ class NewEntryFormCtrl {
   String statuses;
   String topics;
 
-  NewEntryFormCtrl(Router this._router, Scope this._scope, NgForm this._form, FirebaseResultsAdapter adapter) {
+  NewEntryFormCtrl(Router this._router, Scope this._scope, NgForm this._form,
+                   FirebaseResultsAdapter adapter) {
     this.topics   = this.formatAsOptions(SystemEntry.topicValues());
     this.statuses = this.formatAsOptions(SystemEntry.statusValues());
     this._results = adapter.getResults();
@@ -670,14 +701,16 @@ class NewEntryFormCtrl {
   <div class="field">
     <label>Topic:</label>
     <select required ng-model="form.topicKey" required>
-      <option ng-repeat="result in form.topics" value="{{ result['value'] }}">{{ result['title'] }}</option>
+      <option ng-repeat="result in form.topics" value="{{ result['value'] }}">
+        {{ result['title'] }}</option>
     </select>
   </div>
 
   <div class="field">
     <label>Status:</label>
     <select required ng-model="form.statusKey" required>
-      <option ng-repeat="result in form.statuses" value="{{ result['value'] }}">{{ result['title'] }}</option>
+      <option ng-repeat="result in form.statuses" value="{{ result['value'] }}">
+        {{ result['title'] }}</option>
     </select>
   </div>
 
