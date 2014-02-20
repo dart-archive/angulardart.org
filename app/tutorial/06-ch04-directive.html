@@ -271,15 +271,14 @@ class Tooltip {
 <pre class="prettyprint">
 @NgDirective(
   selector: '[attributeName]')
-
-  class MyDirective {
-    @NgOneWay('attributeName')
-    Model model;
+class MyDirective {
+  @NgOneWay('attributeName')
+  Model model;
+  ...
+  MyDirective(/* Optional arguments */) {
     ...
-    MyDirective(/* Optional arguments */) {
-      ...
-    }
-    ...
+  }
+  ...
 }
 </pre>
 
