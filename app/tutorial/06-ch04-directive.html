@@ -234,16 +234,16 @@ import 'package:angular/angular.dart';
 
 @NgDirective(
   selector: '[tooltip]')
-  class Tooltip {
-    dom.Element element;
+class Tooltip {
+  dom.Element element;
 
-    @NgOneWay('tooltip')
-    TooltipModel displayModel;
+  @NgOneWay('tooltip')
+  TooltipModel displayModel;
+  ...
+  Tooltip(this.element) {
     ...
-    Tooltip(this.element) {
-      ...
-    }
-    ...
+  }
+  ...
 }
 </pre>
 
