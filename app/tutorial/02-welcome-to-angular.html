@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" itemscope itemtype="http://schema.org/Product">
-<head>
+  <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta itemprop="description" name="Description"
           content="AngularDart is a framework for building web-apps in Dart.
-                 Declarative templates with data-binding, MVW, MVVM, MVC, dependency injection and great
-                 testability story!">
+                 Declarative templates with data-binding, MVW, MVVM, MVC,
+                 dependency injection and great testability story!">
     <meta itemprop="image" content="https://angulardart.org/img/logo.png">
     <meta itemprop="name" content="AngularDart: Superheroic MVW Framework for Dart">
 
@@ -16,173 +16,243 @@
     <title>AngularDart Tutorial: Welcome to Angular</title>
 
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="../css/base.css">
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../css/base.css">
-
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css"
+          rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css"
+          rel="stylesheet">
+    <link rel="stylesheet" href="/css/base.css">
+    <link href="/google-code-prettify/prettify.css" type="text/css" rel="stylesheet">
 
 
     <!--<base href="/">--><base href=".">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.min.js"></script>
-</head>
+  </head>
 
-<body>
-<div id="header">
-    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <body>
+    <div id="header">
+      <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/">AngularDart</a>
-            </div>
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">AngularDart</a>
+          </div>
 
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <!--
-                <form class="navbar-form navbar-right" role="search">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search">
-                    </div>
-                </form>
-                -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/demo/">Demo</a></li>
+            <!--
+            <form class="navbar-form navbar-right" role="search">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Search">
+              </div>
+            </form>
+            -->
 
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Learn <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="/demo/index.html">Intro to AngularDart</a></li>
-                            <li class="active"><a href="/tutorial/">Tutorial</a></li>
-                            <li><a href="https://github.com/dart-lang/dart_by_example#angular-dart">Examples</a></li>
-                            <li><a href="https://www.dartlang.org/events/2014/flight-school/">Find a Flight School Event</a></li>
-                        </ul>
-                    </li>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="/">Home</a></li>
+              <li><a href="/demo/">Demo</a></li>
 
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Develop <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/">API Reference</a></li>
-                            <li><a href="http://stackoverflow.com/questions/tagged/angular-dart">Q&amp;A (Stack Overflow)</a></li>
-                        </ul>
-                    </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  Learn <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a href="/demo/">Intro to AngularDart</a>
+                  </li>
+                  <li class="active">
+                    <a href="/tutorial/">Tutorial</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/dart-lang/dart_by_example#angular-dart">
+                      Examples</a>
+                  </li>
+                  <li>
+                    <a href="https://www.dartlang.org/events/2014/flight-school/">
+                      Find a Flight School Event</a>
+                  </li>
+                </ul>
+              </li>
 
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Discuss<b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="http://blog.angulardart.org">Blog</a></li>
-                            <li><a href="http://groups.google.com/group/angular-dart">Mailing List</a></li>
-                            <li><a href="https://twitter.com/#!/angulardart">Twitter</a></li>
-                            <li><a href="https://plus.google.com/117340875933142003564">Google+</a></li>
-                            <li><a href="https://github.com/angular/angular.dart">GitHub</a></li>
-                            <li><a href="https://github.com/angular/angular.dart/issues">Issue Tracker</a></li>
-                        </ul>
-                    </li>
-                </ul><!-- /.nav -->
-            </div><!-- /.navbar-collapse -->
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  Develop <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/">
+                      API Reference</a>
+                  </li>
+                  <li>
+                    <a href="http://stackoverflow.com/questions/tagged/angular-dart">
+                      Q&amp;A (Stack Overflow)</a>
+                  </li>
+                </ul>
+              </li>
+
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  Discuss<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a href="http://blog.angulardart.org">Blog</a>
+                  </li>
+                  <li>
+                    <a href="http://groups.google.com/group/angular-dart">
+                      Mailing List</a>
+                  </li>
+                  <li>
+                    <a href="https://twitter.com/#!/angulardart">Twitter</a>
+                  </li>
+                  <li>
+                    <a href="https://plus.google.com/117340875933142003564">
+                      Google+</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/angular/angular.dart">GitHub</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/angular/angular.dart/issues">
+                      Issue Tracker</a>
+                  </li>
+                </ul>
+              </li>
+            </ul><!-- /.nav -->
+          </div><!-- /.navbar-collapse -->
         </div><!-- /.container -->
-    </nav><!-- /.navbar -->
+      </nav><!-- /.navbar -->
 
-    <div class="breadcrumbs">
+      <div class="breadcrumbs">
         <div class="container">
-            <ol class="breadcrumb">
-                <li><a href="/">Home</a></li>
-                <li><a href="/tutorial/index.html">Tutorial</a></li>
-                <li class="active"><a href="02-welcome-to-angular.html">Welcome To Angular</a></li>
-            </ol><!-- /.breadcrumb -->
+          <ol class="breadcrumb">
+            <li><a href="/">Home</a></li>
+            <li><a href="/tutorial/index.html">Tutorial</a></li>
+            <li class="active">
+              <a href="02-welcome-to-angular.html">Welcome To Angular</a>
+            </li>
+          </ol><!-- /.breadcrumb -->
         </div><!-- /.container -->
-    </div><!-- /.breadcrumbs -->
+      </div><!-- /.breadcrumbs -->
 
-</div><!-- /#header -->
+    </div><!-- /#header -->
 
-<div role="main" class="container tutorial page-2">
+    <div role="main" class="container tutorial page-2">
 
-  <h1 id="angulardart-tutorial-welcome-to-angular">Welcome to Angular</h1>
+      <h1 id="angulardart-tutorial-welcome-to-angular">Welcome to Angular</h1>
 
-  <hr />
+      <hr />
 
-  <h3 id="angular-is-for-web-apps">Angular is for web apps</h3>
-  <p>Angular is a client-side structural framework for creating dynamic web applications. It uses HTML as the template language and allows you to extend HTML to accommodate the needs of your application.</p>
+      <h3 id="angular-is-for-web-apps">Angular is for web apps</h3>
+      <p>Angular is a client-side structural framework for creating dynamic web
+         applications. It uses HTML as the template language and allows you to
+         extend HTML to accommodate the needs of your application.</p>
 
-  <hr class="spacer" />
+      <hr class="spacer" />
 
-  <h3 id="angular-is-dynamic">Angular is dynamic</h3>
-  <p>Angular helps you extend HTML’s syntax to create custom elements and attributes that contain application behavior. Angular reduces the need to do DOM manipulation as Directives create reusable components that do most of what you need without requiring you to repeat DOM boilerplate everywhere. This allows you to concentrate on your application’s logic, and not on how to trick the browser into doing what you want.</p>
+      <h3 id="angular-is-dynamic">Angular is dynamic</h3>
+      <p>Angular helps you extend HTML’s syntax to create custom elements and
+         attributes that contain application behavior. Angular reduces the need
+         to do DOM manipulation as Directives create reusable components that do
+         most of what you need without requiring you to repeat DOM boilerplate
+         everywhere. This allows you to concentrate on your application’s logic,
+         and not on how to trick the browser into doing what you want.</p>
 
-  <hr class="spacer" />
+      <hr class="spacer" />
 
-  <h3 id="angular-encourages-mvc">Angular encourages MVC</h3>
-  <p>The <a href="http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller">MVC</a> pattern from Angular’s perspective:
-Separate applications into distinct presentation, data, and logic components.
-Encourage loose coupling between these components.</p>
+      <h3 id="angular-encourages-mvc">Angular encourages MVC</h3>
+      <p>The <a href="http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller">
+         MVC</a> pattern from Angular’s perspective: Separate applications into
+         distinct presentation, data, and logic components. Encourage loose
+         coupling between these components.</p>
 
-   <hr class="spacer" />
+      <hr class="spacer" />
 
-  <h3 id="angularjs-and-angulardart">AngularJS and AngularDart</h3>
-  <p>Angular exists in two flavors: <a href="http://docs.angularjs.org">AngularJS</a>, and AngularDart.  AngularJS and AngularDart are similar concepts, but have some big differences in implementation. This tutorial focuses on AngularDart. We will not compare AngularDart with AngularJS, or discuss how, where and why they diverge.</p>
+      <h3 id="angularjs-and-angulardart">AngularJS and AngularDart</h3>
+      <p>Angular exists in two flavors: <a href="http://docs.angularjs.org">
+         AngularJS</a>, and AngularDart. AngularJS and AngularDart are similar
+         concepts, but have some big differences in implementation. This
+         tutorial focuses on AngularDart. We will not compare AngularDart with
+         AngularJS, or discuss how, where and why they diverge.</p>
 
-  <p>This tutorial is intended to get you started on AngularDart, and not to serve as a comparison between the two flavors of Angular.</p>
+      <p>This tutorial is intended to get you started on AngularDart, and not to
+         serve as a comparison between the two flavors of Angular.</p>
 
-  <hr class="spacer" />
+      <hr class="spacer" />
 
-  <h3 id="where-can-i-find-more-information">Where can I find more information?</h3>
-  <p>Read the <a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/index.html">AngularDart API documentation</a>.</p>
+      <h3 id="where-can-i-find-more-information">
+        Where can I find more information?</h3>
+      <p>Read the
+         <a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/index.html">
+           AngularDart API documentation</a>.</p>
 
-  <hr class="spacer" />
+      <hr class="spacer" />
 
-  <h3 id="lets-get-started">Let’s get started</h3>
-  <p>A good way to learn about AngularDart is to create a small application. This tutorial will take you through several iterations of a simple Recipe Book App. Each iteration will build on the previous one, explaining new Angular concepts and introducing new features.</p>
+      <h3 id="lets-get-started">Let’s get started</h3>
+      <p>A good way to learn about AngularDart is to create a small application.
+         This tutorial will take you through several iterations of a simple
+         Recipe Book App. Each iteration will build on the previous one,
+         explaining new Angular concepts and introducing new features.</p>
 
-<ul class="pager">
-  <li class="previous"><a href="01-before-you-begin.html">&laquo; Prev</a></li>
-  <li><a href="index.html">Tutorial Overview</a></li>
-  <li class="next"><a href="03-ch01-creating-your-first-app.html">Next &raquo;</a></li>
-</ul>
+      <ul class="pager">
+        <li class="previous">
+          <a href="01-before-you-begin.html">&laquo; Prev</a>
+        </li>
+        <li><a href="index.html">Tutorial Overview</a></li>
+        <li class="next">
+          <a href="03-ch01-creating-your-first-app.html">Next &raquo;</a>
+        </li>
+      </ul>
 
-</div>
-<footer>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8">
-                <p>Super-powered by Google  ©2010-2014<br />
-                    Code licensed under <a href="https://github.com/angular/angular.js/blob/master/LICENSE" target="_blank">The
-                        MIT License</a>. Documentation licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.
-                </p>
-            </div>
-            <div class="col-md-4 align-right">
-                <a href="https://plus.google.com/117340875933142003564"><i class="fa fa-google-plus"></i></a>
-                <a href="https://twitter.com/#!/angulardart"><i class="fa fa-twitter"></i></a>
-                <a href="https://github.com/angular/angular.dart"><i class="fa fa-github"></i></a>
-                <a href="http://blog.angulardart.org"><i class="fa fa-rss"></i></a>
-            </div>
-        </div><!-- /.row -->
     </div><!-- /.container -->
-</footer>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-<script src="../google-code-prettify/prettify.min.js"></script>
-<link href="../google-code-prettify/prettify.css" type="text/css" rel="stylesheet">
-<script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 col-sm-8">
+            <p>Super-powered by Google ©2010-2014<br />Code licensed under
+              <a href="https://github.com/angular/angular.js/blob/master/LICENSE"
+                 target="_blank">
+                The MIT License</a>. Documentation licensed under
+              <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.
+            </p>
+          </div>
+          <div class="col-md-4 col-sm-4 align-right">
+            <a href="https://plus.google.com/117340875933142003564">
+              <i class="fa fa-google-plus"></i></a>
+            <a href="https://twitter.com/#!/angulardart">
+              <i class="fa fa-twitter"></i></a>
+            <a href="https://github.com/angular/angular.dart">
+              <i class="fa fa-github"></i></a>
+            <a href="http://blog.angulardart.org">
+              <i class="fa fa-rss"></i></a>
+          </div>
+        </div><!-- /.row -->
+      </div><!-- /.container -->
+    </footer>
 
-    ga('create', 'UA-8594346-12', 'angulardart.org');
-    ga('send', 'pageview');
-</script><!-- /Analytics-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="../google-code-prettify/prettify.min.js"></script>
+    <link href="../google-code-prettify/prettify.css" type="text/css" rel="stylesheet">
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-</body>
+        ga('create', 'UA-8594346-12', 'angulardart.org');
+        ga('send', 'pageview');
+    </script><!-- /Analytics-->
 
+  </body>
+</html>

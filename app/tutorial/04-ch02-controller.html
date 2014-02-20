@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" itemscope itemtype="http://schema.org/Product">
-<head>
+  <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta itemprop="description" name="Description"
           content="AngularDart is a framework for building web-apps in Dart.
-                 Declarative templates with data-binding, MVW, MVVM, MVC, dependency injection and great
-                 testability story!">
+                 Declarative templates with data-binding, MVW, MVVM, MVC,
+                 dependency injection and great testability story!">
     <meta itemprop="image" content="https://angulardart.org/img/logo.png">
     <meta itemprop="name" content="AngularDart: Superheroic MVW Framework for Dart">
 
@@ -16,182 +16,303 @@
     <title>AngularDart Tutorial: Building Something More than Hello World</title>
 
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="../css/base.css">
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../css/base.css">
-
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css"
+          rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css"
+          rel="stylesheet">
+    <link rel="stylesheet" href="/css/base.css">
+    <link href="/google-code-prettify/prettify.css" type="text/css" rel="stylesheet">
 
 
     <!--<base href="/">--><base href=".">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.min.js"></script>
-</head>
+  </head>
 
-<body>
-<div id="header">
-    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <body>
+    <div id="header">
+      <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/">AngularDart</a>
-            </div>
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">AngularDart</a>
+          </div>
 
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <!--
-                <form class="navbar-form navbar-right" role="search">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search">
-                    </div>
-                </form>
-                -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/demo/">Demo</a></li>
+            <!--
+            <form class="navbar-form navbar-right" role="search">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Search">
+              </div>
+            </form>
+            -->
 
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Learn <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="/demo/index.html">Intro to AngularDart</a></li>
-                            <li class="active"><a href="/tutorial/">Tutorial</a></li>
-                            <li><a href="https://github.com/dart-lang/dart_by_example#angular-dart">Examples</a></li>
-                            <li><a href="https://www.dartlang.org/events/2014/flight-school/">Find a Flight School Event</a></li>
-                        </ul>
-                    </li>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="/">Home</a></li>
+              <li><a href="/demo/">Demo</a></li>
 
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Develop <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/">API Reference</a></li>
-                            <li><a href="http://stackoverflow.com/questions/tagged/angular-dart">Q&amp;A (Stack Overflow)</a></li>
-                        </ul>
-                    </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  Learn <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a href="/demo/">Intro to AngularDart</a>
+                  </li>
+                  <li class="active">
+                    <a href="/tutorial/">Tutorial</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/dart-lang/dart_by_example#angular-dart">
+                      Examples</a>
+                  </li>
+                  <li>
+                    <a href="https://www.dartlang.org/events/2014/flight-school/">
+                      Find a Flight School Event</a>
+                  </li>
+                </ul>
+              </li>
 
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Discuss<b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="http://blog.angulardart.org">Blog</a></li>
-                            <li><a href="http://groups.google.com/group/angular-dart">Mailing List</a></li>
-                            <li><a href="https://twitter.com/#!/angulardart">Twitter</a></li>
-                            <li><a href="https://plus.google.com/117340875933142003564">Google+</a></li>
-                            <li><a href="https://github.com/angular/angular.dart">GitHub</a></li>
-                            <li><a href="https://github.com/angular/angular.dart/issues">Issue Tracker</a></li>
-                        </ul>
-                    </li>
-                </ul><!-- /.nav -->
-            </div><!-- /.navbar-collapse -->
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  Develop <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/">
+                      API Reference</a>
+                  </li>
+                  <li>
+                    <a href="http://stackoverflow.com/questions/tagged/angular-dart">
+                      Q&amp;A (Stack Overflow)</a>
+                  </li>
+                </ul>
+              </li>
+
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  Discuss<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a href="http://blog.angulardart.org">Blog</a>
+                  </li>
+                  <li>
+                    <a href="http://groups.google.com/group/angular-dart">
+                      Mailing List</a>
+                  </li>
+                  <li>
+                    <a href="https://twitter.com/#!/angulardart">Twitter</a>
+                  </li>
+                  <li>
+                    <a href="https://plus.google.com/117340875933142003564">
+                      Google+</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/angular/angular.dart">GitHub</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/angular/angular.dart/issues">
+                      Issue Tracker</a>
+                  </li>
+                </ul>
+              </li>
+            </ul><!-- /.nav -->
+          </div><!-- /.navbar-collapse -->
         </div><!-- /.container -->
-    </nav><!-- /.navbar -->
+      </nav><!-- /.navbar -->
 
-    <div class="breadcrumbs">
-        <div class="container">
-            <ol class="breadcrumb">
-                <li><a href="/">Home</a></li>
-                <li><a href="/tutorial/index.html">Tutorial</a></li>
-                <li class="active"><a href="04-ch02-controller.html">Building Something More than Hello World</a></li>
-            </ol><!-- /.breadcrumb -->
-        </div><!-- /.container -->
-    </div><!-- /.breadcrumbs -->
+      <div class="breadcrumbs">
+          <div class="container">
+              <ol class="breadcrumb">
+                  <li><a href="/">Home</a></li>
+                  <li><a href="/tutorial/index.html">Tutorial</a></li>
+                  <li class="active"><a href="04-ch02-controller.html">Building
+                    Something More than Hello World</a></li>
+              </ol><!-- /.breadcrumb -->
+          </div><!-- /.container -->
+      </div><!-- /.breadcrumbs -->
 
-</div><!-- /#header -->
+    </div><!-- /#header -->
 
-<div role="main" class="container tutorial page-4">  <h1 id="angulardart-tutorial-building-something-more-than-hello-world">Building Something More than Hello World</h1>
+    <div role="main" class="container tutorial page-4">
+      <h1 id="angulardart-tutorial-building-something-more-than-hello-world">
+        Building Something More than Hello World</h1>
 
-  <p>In the previous chapter, we showed you how to build a “Hello World” app. Now let’s do something more interesting. Let’s build a Recipe Book app.</p>
+      <p>In the previous chapter, we showed you how to build a “Hello World”
+        app. Now let’s do something more interesting. Let’s build a Recipe Book
+        app.</p>
 
-  <hr />
+      <hr />
 
-  <h3 id="what-you-will-learn">What you will learn</h3>
-  <p>In this tutorial, you will learn more about how Angular does MVC. Specifically, you will learn about controllers, which you will implement with something called an <em>Angular controller</em>. You will also learn more about the <em>model</em>, which Angular calls the <em>scope</em>.</p>
+      <h3 id="what-you-will-learn">What you will learn</h3>
+      <p>In this tutorial, you will learn more about how Angular does MVC.
+        Specifically, you will learn about controllers, which you will implement
+        with something called an <em>Angular controller</em>. You will also
+        learn more about the <em>model</em>, which Angular calls the
+        <em>scope</em>.</p>
 
-  <p>When you’re finished, you will be able to write your own custom controller and use it to control the view. You will understand how to create data in the model, expose it through the controller, and access it from the view.</p>
+      <p>When you’re finished, you will be able to write your own custom
+        controller and use it to control the view. You will understand how to
+        create data in the model, expose it through the controller, and access
+        it from the view.</p>
 
-  <hr class="spacer" />
+      <hr class="spacer" />
 
-  <h3 id="running-the-sample-app">Running the sample app</h3>
-  <p>The code for this chapter is in the
-<em><a href="https://github.com/angular/angular.dart.tutorial/tree/master/Chapter_02">Chapter_02</a></em> directory of the
-<a href="https://github.com/angular/angular.dart.tutorial/archive/master.zip">angular.dart.tutorial download</a>.
-View it in Dart Editor by using <strong>File &gt; Open Existing Folder...</strong>
-to open the <strong>Chapter_02</strong> directory. </p>
+      <h3 id="running-the-sample-app">Running the sample app</h3>
+      <p>The code for this chapter is in the
+        <em><a href="https://github.com/angular/angular.dart.tutorial/tree/master/Chapter_02">
+          Chapter_02</a></em> directory of the
+        <a href="https://github.com/angular/angular.dart.tutorial/archive/master.zip">
+          angular.dart.tutorial download</a>.
+        View it in Dart Editor by using <strong>File &gt; Open Existing Folder...</strong>
+        to open the <strong>Chapter_02</strong> directory. </p>
 
-  <p>Now run the app. In Dart Editor’s Files view, select <strong>Chapter_02/web/index.html</strong>, right-click, and choose <strong>Run in Dartium</strong>.</p>
+      <p>Now run the app. In Dart Editor’s Files view, select
+        <strong>Chapter_02/web/index.html</strong>, right-click, and choose
+        <strong>Run in Dartium</strong>.</p>
 
-  <p>Dartium launches, displaying the first version of the Recipe Book app. Play with the app a bit by clicking on each recipe and watching it display in the view.</p>
+      <p>Dartium launches, displaying the first version of the Recipe Book app.
+        Play with the app a bit by clicking on each recipe and watching it
+        display in the view.</p>
 
-  <p><img src="img/ch02-1.png" alt="Dartium running the first Recipe Book app" />       <img src="img/ch02-2.png" alt="Recipe Book with a recipe selected" /></p>
+      <p><img src="img/ch02-1.png" alt="Dartium running the first Recipe Book app" />
+        <img src="img/ch02-2.png" alt="Recipe Book with a recipe selected" /></p>
 
-  <hr class="spacer" />
+      <hr class="spacer" />
 
-  <h3 id="understanding-scopes">Understanding scopes</h3>
-  <p>In previous chapter, we alluded to the scope and provided a partial definition. In this chapter, we provide a more complete picture of scopes in Angular.</p>
+      <h3 id="understanding-scopes">Understanding scopes</h3>
+      <p>In previous chapter, we alluded to the scope and provided a partial
+        definition. In this chapter, we provide a more complete picture of
+        scopes in Angular.</p>
 
-  <p>A <strong>scope</strong> in Angular is an execution context, and is similar to the idea of a scope or block in conventional programming languages. There isn’t just one scope in an Angular app. At any given moment, there is a hierarchy of scopes that roughly mimics the DOM’s structure. The <code>ng-app</code> directive declares the boundary of the root scope. Angular elements within the <code>ng-app</code> can create their own scopes called child scopes. Child scopes implicitly inherit the properties of their parents, but the properties defined in a child scope are not visible to the parent scope, nor to sibling scopes.</p>
+      <p>A <strong>scope</strong> in Angular is an execution context, and is
+        similar to the idea of a scope or block in conventional programming
+        languages. There isn’t just one scope in an Angular app. At any given
+        moment, there is a hierarchy of scopes that roughly mimics the DOM’s
+        structure. The <code>ng-app</code> directive declares the boundary of
+        the root scope. Angular elements within the <code>ng-app</code> can
+        create their own scopes called child scopes. Child scopes implicitly
+        inherit the properties of their parents, but the properties defined in a
+        child scope are not visible to the parent scope, nor to sibling
+        scopes.</p>
 
-  <p>The diagram below shows how some relevant portions of the HTML template map to the Model/Scope, and how it’s represented in the view.</p>
+      <p>The diagram below shows how some relevant portions of the HTML template
+        map to the Model/Scope, and how it’s represented in the view.</p>
 
-  <p><img src="img/scope_diagram.png" alt="scopes" /></p>
+      <p><img src="img/scope_diagram.png" alt="scopes" /></p>
 
-  <h3 id="understanding-the-model">Understanding the model</h3>
-  <p>In the previous chapter, we gave a simplified definition of the model (i.e., the model <em>is</em> the scope). In this chapter, we will give a more accurate definition. The app <strong>model</strong> is defined as any property, function, or object that is reachable from an app scope.</p>
+      <h3 id="understanding-the-model">Understanding the model</h3>
+      <p>In the previous chapter, we gave a simplified definition of the model
+        (i.e., the model <em>is</em> the scope). In this chapter, we will give a
+        more accurate definition. The app <strong>model</strong> is defined as
+        any property, function, or object that is reachable from an app
+        scope.</p>
 
-  <p>There are several ways that model properties, functions, or objects can be created in a scope. In the previous example, we showed you how to create and use a model property directly in the view, with code patterns like this:</p>
+      <p>There are several ways that model properties, functions, or objects can
+        be created in a scope. In the previous example, we showed you how to
+        create and use a model property directly in the view, with code patterns
+        like this:</p>
 
-  <pre class="prettyprint">&lt;input type="text" ng-model="name"&gt;
+<pre class="prettyprint">
+&lt;input type="text" ng-model="name"&gt;
 </pre>
 
-  <p>Properties created in this way are created in the root scope, and hence not in the scope of any controller. These properties are available in the view, but nowhere else. Creating model data in this way is useful for demonstrating basic concepts in tutorials, but in practice it is not recommended.</p>
+      <p>Properties created in this way are created in the root scope, and hence
+        not in the scope of any controller. These properties are available in
+        the view, but nowhere else. Creating model data in this way is useful
+        for demonstrating basic concepts in tutorials, but in practice it is not
+        recommended.</p>
 
-  <p>The usual way to create model members is to create a controller class and expose the controller to the view through a directive.</p>
+      <p>The usual way to create model members is to create a controller class
+        and expose the controller to the view through a directive.</p>
 
-  <hr class="spacer" />
+      <hr class="spacer" />
 
-  <h3 id="understanding-controllers">Understanding controllers</h3>
-  <p>Traditional MVC defines a controller as an object that contains all the model data and methods necessary to control the view. Angular has three kinds of MVC controllers: controllers, directives, and components. These are implemented using plain old Dart classes. These plain old Dart classes are annotated as either an <a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/angular.core/NgController.html"><code>@NgController</code></a>, <a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/angular.core/NgDirective.html"><code>@NgDirective</code></a> or <a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/angular.core/NgComponent.html"><code>@NgComponent</code></a>, and the combination of the controller class and the annotation is analogous to an MVC controller. <code>@NgController</code>s are the simplest of the three types of controller, so we will cover them first. We will cover directives and components in the next chapters.</p>
+      <h3 id="understanding-controllers">Understanding controllers</h3>
+      <p>Traditional MVC defines a controller as an object that contains all the
+        model data and methods necessary to control the view. Angular has three
+        kinds of MVC controllers: controllers, directives, and components. These
+        are implemented using plain old Dart classes. These plain old Dart
+        classes are annotated as either an
+        <a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/angular.core/NgController.html">
+          <code>@NgController</code></a>,
+        <a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/angular.core/NgDirective.html">
+          <code>@NgDirective</code></a>
+        or <a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/angular.core/NgComponent.html">
+        <code>@NgComponent</code></a>,
+        and the combination of the controller class and the annotation is
+        analogous to an MVC controller. <code>@NgController</code>s are the
+        simplest of the three types of controller, so we will cover them first.
+        We will cover directives and components in the next chapters.</p>
 
-  <hr class="spacer" />
+      <hr class="spacer" />
 
-  <h3 id="understanding-controller">Understanding <code>@NgController</code> controllers</h3>
-  <p>The easiest way to create a controller is to put the <code>@NgController</code> annotation on a controller class and then declare the controller class as a type in the bootstrap module.</p>
+      <h3 id="understanding-controller">Understanding <code>@NgController</code>
+        controllers</h3>
+      <p>The easiest way to create a controller is to put the
+        <code>@NgController</code> annotation on a controller class and then
+        declare the controller class as a type in the bootstrap module.</p>
 
-  <p>In the Recipe Book example, we see this annotation on the <code>RecipeBookController</code> class:</p>
+      <p>In the Recipe Book example, we see this annotation on the
+        <code>RecipeBookController</code> class:</p>
 
-  <pre class="prettyprint">
+<pre class="prettyprint">
 @NgController(
   selector: '[recipe-book]',
   publishAs: 'ctrl')
 </pre>
 
-  <p>This annotation tells Angular that the class <code>RecipeBookController</code> is an Angular controller. When the compiler sees one of these in the DOM, it instantiates the controller class.</p>
+      <p>This annotation tells Angular that the class
+        <code>RecipeBookController</code> is an Angular controller. When the
+        compiler sees one of these in the DOM, it instantiates the controller
+        class.</p>
 
-  <p>Controllers are configured by setting properties on the annotation. Here we describe the most common properties.</p>
+      <p>Controllers are configured by setting properties on the annotation.
+        Here we describe the most common properties.</p>
 
-  <h5 id="selector"><code>selector</code></h5>
-  <p>The required <code>selector</code> field defines the CSS selector that will trigger the controller. It can be any valid CSS selector which does not cross element boundaries.</p>
+      <h5 id="selector"><code>selector</code></h5>
+      <p>The required <code>selector</code> field defines the CSS selector that
+        will trigger the controller. It can be any valid CSS selector which does
+        not cross element boundaries.</p>
 
-  <h5 id="publishas"><code>publishAs</code></h5>
-  <p>The <code>publishAs</code> field specifies that the controller instance should be assigned to the current scope under the name specified. The controller’s public fields are available for data binding from the view through the <code>publishAs</code> name. Similarly, the controller’s public methods can be invoked from the view using the <code>publishAs</code> name. Here is an example:</p>
+      <h5 id="publishas"><code>publishAs</code></h5>
+      <p>The <code>publishAs</code> field specifies that the controller instance
+        should be assigned to the current scope under the name specified. The
+        controller’s public fields are available for data binding from the view
+        through the <code>publishAs</code> name. Similarly, the controller’s
+        public methods can be invoked from the view using the
+        <code>publishAs</code> name. Here is an example:</p>
 
-  <pre class="prettyprint">
+<pre class="prettyprint">
 &lt;div>&lt;strong&gt;Name: &lt;/strong&gt;{{ctrl.selectedRecipe.name}}&lt;/div&gt;
 
 &lt;li ng-click="ctrl.selectRecipe(recipe)"&gt;{{recipe.name}}&lt;/li&gt;
 </pre>
 
-    <p>Here we also see how to tell the Angular bootstrapping code about our custom types. Angular uses dependency injection to instantiate the application classes you create. Inside the <a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/angular.html#ngBootstrap"><code>ngBootstrap</code></a> method, a new <a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/angular/AngularModule.html"><code>AngularModule</code></a> is created. The <code>AngularModule</code> provides all of Angular’s built in services and directives. Your app’s module is added to the list of modules that Angular loads.</p>
+      <p>Here we also see how to tell the Angular bootstrapping code about our
+        custom types. Angular uses dependency injection to instantiate the
+        application classes you create. Inside the
+        <a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/angular.html#ngBootstrap">
+          <code>ngBootstrap</code></a> method, a new
+        <a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/angular/AngularModule.html">
+          <code>AngularModule</code></a>
+        is created. The <code>AngularModule</code> provides all of Angular’s
+        built in services and directives. Your app’s module is added to the
+        list of modules that Angular loads.</p>
 
-<pre class="prettyprint">class MyAppModule extends Module {
+<pre class="prettyprint">
+class MyAppModule extends Module {
   MyAppModule() {
     type(RecipeBookController);
   }
@@ -199,29 +320,39 @@ to open the <strong>Chapter_02</strong> directory. </p>
 
 main() {
   ngBootstrap(module: new MyAppModule());
-}</pre>
+}
+</pre>
 
+      <p>Including your controller class in the module allows Angular to
+        instantiate the controller we just created.</p>
 
-    <p>Including your controller class in the module allows Angular to instantiate the controller we just created.</p>
+      <p>From the view, we can use the controller by adding a set of attributes
+        to the element which will trigger the CSS selector declared on the
+        controller:</p>
 
-    <p>From the view, we can use the controller by adding a set of attributes to the element which will trigger the CSS selector declared on the controller:</p>
-
-   <pre class="prettyprint">
+<pre class="prettyprint">
 &lt;div recipe-book&gt;
   ...
 &lt;/div&gt;
 </pre>
-  <p>Anything within the containing element has access to the controller’s scope.</p>
 
-  <hr class="spacer" />
+      <p>Anything within the containing element has access to the controller’s
+        scope.</p>
 
-  <h3 id="angular-features">Angular features</h3>
-  <p>In this chapter, we introduced you to two more built in Angular directives: <code>ng-repeat</code> and <code>ng-click</code>.</p>
+      <hr class="spacer" />
 
-  <h4 id="ng-repeathttpciangularjsorgviewdartjobangulardart-masterjavadocangulardirectivengrepeatdirectivehtml"><a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/angular.directive/NgRepeatDirective.html"><code>ng-repeat</code></a></h4>
-  <p>Now that you have a better understanding of scopes, let’s elaborate on them further by describing what’s going on behind the scenes with the <code>ng-repeat</code> tag.</p>
+      <h3 id="angular-features">Angular features</h3>
+      <p>In this chapter, we introduced you to two more built in Angular
+        directives: <code>ng-repeat</code> and <code>ng-click</code>.</p>
 
-  <pre class="prettyprint">
+      <h4 id="ng-repeathttpciangularjsorgviewdartjobangulardart-masterjavadocangulardirectivengrepeatdirectivehtml">
+        <a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/angular.directive/NgRepeatDirective.html">
+          <code>ng-repeat</code></a></h4>
+      <p>Now that you have a better understanding of scopes, let’s elaborate on
+        them further by describing what’s going on behind the scenes with the
+        <code>ng-repeat</code> tag.</p>
+
+<pre class="prettyprint">
 &lt;ul&gt;
   &lt;li class="pointer"
       ng-repeat="recipe in ctrl.recipes"
@@ -229,48 +360,68 @@ main() {
 &lt;/ul&gt;
 </pre>
 
-  <p>The <code>ng-repeat</code> directive on the li element causes Angular to iterate over the model (the recipes property in the RecipeBookController), and clone the li in the compiled DOM for each recipe in the list. Each li is created with its own scope and its own instance of the recipe property. If the model changes (for example, if a recipe is added to or deleted from the model), the <code>ng-repeat</code> tag re-evaluates the model and updates the view automatically.</p>
+      <p>The <code>ng-repeat</code> directive on the li element causes Angular
+        to iterate over the model (the recipes property in the
+        RecipeBookController), and clone the li in the compiled DOM for each
+        recipe in the list. Each li is created with its own scope and its own
+        instance of the recipe property. If the model changes (for example, if a
+        recipe is added to or deleted from the model), the
+        <code>ng-repeat</code> tag re-evaluates the model and updates the view
+        automatically.</p>
 
-  <h4 id="ng-click"><code>ng-click</code></h4>
-  <p><code>ng-click</code> is a built-in Angular directive that allows you to specify custom behavior when any element is clicked. In our example, it invokes the <code>selectRecipe()</code> method on the controller, passing it the recipe property from the view.</p>
+      <h4 id="ng-click"><code>ng-click</code></h4>
+      <p><code>ng-click</code> is a built-in Angular directive that allows you
+        to specify custom behavior when any element is clicked. In our example,
+        it invokes the <code>selectRecipe()</code> method on the controller,
+        passing it the recipe property from the view.</p>
 
-  <ul class="pager">
-    <li class="previous"><a href="03-ch01-creating-your-first-app.html">&laquo; Prev</a></li>
-    <li><a href="index.html">Tutorial Overview</a></li>
-    <li class="next"><a href="05-ch03-component.html">Next &raquo;</a></li>
-  </ul>
-</div>
-<footer>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8">
-                <p>Super-powered by Google  ©2010-2014<br />
-                    Code licensed under <a href="https://github.com/angular/angular.js/blob/master/LICENSE" target="_blank">The
-                        MIT License</a>. Documentation licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.
-                </p>
-            </div>
-            <div class="col-md-4 align-right">
-                <a href="https://plus.google.com/117340875933142003564"><i class="fa fa-google-plus"></i></a>
-                <a href="https://twitter.com/#!/angulardart"><i class="fa fa-twitter"></i></a>
-                <a href="https://github.com/angular/angular.dart"><i class="fa fa-github"></i></a>
-                <a href="http://blog.angulardart.org"><i class="fa fa-rss"></i></a>
-            </div>
-        </div><!-- /.row -->
+      <ul class="pager">
+        <li class="previous">
+          <a href="03-ch01-creating-your-first-app.html">&laquo; Prev</a>
+        </li>
+        <li><a href="index.html">Tutorial Overview</a></li>
+        <li class="next"><a href="05-ch03-component.html">Next &raquo;</a></li>
+      </ul>
     </div><!-- /.container -->
-</footer>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-<script src="../google-code-prettify/prettify.min.js"></script>
-<link href="../google-code-prettify/prettify.css" type="text/css" rel="stylesheet">
-<script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 col-sm-8">
+            <p>Super-powered by Google ©2010-2014<br />Code licensed under
+              <a href="https://github.com/angular/angular.js/blob/master/LICENSE"
+                 target="_blank">
+                The MIT License</a>. Documentation licensed under
+              <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.
+            </p>
+          </div>
+          <div class="col-md-4 col-sm-4 align-right">
+            <a href="https://plus.google.com/117340875933142003564">
+              <i class="fa fa-google-plus"></i></a>
+            <a href="https://twitter.com/#!/angulardart">
+              <i class="fa fa-twitter"></i></a>
+            <a href="https://github.com/angular/angular.dart">
+              <i class="fa fa-github"></i></a>
+            <a href="http://blog.angulardart.org">
+              <i class="fa fa-rss"></i></a>
+          </div>
+        </div><!-- /.row -->
+      </div><!-- /.container -->
+    </footer>
 
-    ga('create', 'UA-8594346-12', 'angulardart.org');
-    ga('send', 'pageview');
-</script><!-- /Analytics-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="../google-code-prettify/prettify.min.js"></script>
+    <link href="../google-code-prettify/prettify.css" type="text/css" rel="stylesheet">
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-</body>
+        ga('create', 'UA-8594346-12', 'angulardart.org');
+        ga('send', 'pageview');
+    </script><!-- /Analytics-->
+
+  </body>
+</html>
