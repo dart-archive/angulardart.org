@@ -90,7 +90,7 @@
                   Develop <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                   <li>
-                    <a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/">
+                    <a href="https://docs.angulardart.org/">
                       API Reference</a>
                   </li>
                   <li>
@@ -365,14 +365,14 @@ class SearchRecipeComponent {
       <p>Let’s look at <strong>recipe_book_router.dart</strong>. There we define
         all of our app’s routes and map them to views. To take advantage of
         routing, just create a class that implements the
-        <a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/angular.routing/RouteInitializer.html">
+        <a href="https://docs.angulardart.org/#angular/angular.RouteInitializer">
           <code>RouteInitializer</code></a> interface. Angular will look for an
         instance of <code>RouteInitializer</code> when it instantiates the
         router and will use it to configure the routes.
         <code>RouteInitializer</code> has a single method: <code>init</code>().
-        It takes two parameters, a <a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/route.client/Router.html">
+        It takes two parameters, a <a href="https://docs.angulardart.org/#angular-routing.Router">
         <code>Router</code></a>, and a
-        <a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/angular.routing/ViewFactory.html">
+        <a href="https://docs.angulardart.org/#angular-routing.ViewFactory">
           <code>ViewFactory</code></a>, both of which are created by the
         dependency injector for you.</p>
 
@@ -419,10 +419,9 @@ Logger.root.onRecord.listen((LogRecord r) { print(r.message); });
 </pre>
 
       <h5 id="enter"><code>enter</code></h5>
-      <p>A <a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/route.client/RouteEventHandler.html">
-        <code>RouteEventHandler</code></a> that tells the router what to do when
+      <p>A  <code>RouteEventHandler</code></a> that tells the router what to do when
         the route is entered. Our example code above asks the
-        <code><a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/angular.routing/ViewFactory.html">
+        <code><a href="https://docs.angulardart.org/#angular-routing.ViewFactory">
           ViewFactory</a></code> to create a <code>RouteEventHandler</code>
         that points our route to a specific html file. You can also write your
         own custom <code>RouteEventHandlers</code>.</p>
@@ -517,7 +516,7 @@ Logger.root.onRecord.listen((LogRecord r) { print(r.message); });
         our <code>ViewRecipeComponent</code>.</p>
 
       <p>We’ve added a parameter for the
-        <a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/angular.routing/RouteProvider.html">
+        <a href="https://docs.angulardart.org/#angular-routing.RouteProvider">
           <code>RouteProvider</code></a> to its constructor, which we use to
         extract the parameters for the current route. In our case, we extract
         the <code>recipeId</code> to look up the recipe being viewed:</p>
