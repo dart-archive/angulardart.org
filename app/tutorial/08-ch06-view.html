@@ -363,46 +363,47 @@ class SearchRecipeComponent {
       <h4 id="configuring-the-router">Configuring the router</h4>
       <p>Let’s look at <strong>recipe_book_router.dart</strong>. There we define
         all of our app’s routes and map them to views. To take advantage of
-        routing, just create a class that implements the
-        <a href="https://docs.angulardart.org/#angular/angular.RouteInitializer">
-          <code>RouteInitializer</code></a> interface. Angular will look for an
-        instance of <code>RouteInitializer</code> when it instantiates the
+        routing, just create a function that implements the
+        <a href="https://docs.angulardart.org/#angular/angular.RouteInitializerFn">
+          <code>RouteInitializerFn</code></a> typedef. Angular will look for a
+        <code>RouteInitializerFn</code> when it instantiates the
         router and will use it to configure the routes.
-        <code>RouteInitializer</code> has a single method: <code>init</code>().
-        It takes two parameters, a <a href="https://docs.angulardart.org/#angular-routing.Router">
+        <code>RouteInitializerFn</code> takes two parameters, a <a href="https://docs.angulardart.org/#angular-routing.Router">
         <code>Router</code></a>, and a
         <a href="https://docs.angulardart.org/#angular-routing.ViewFactory">
           <code>ViewFactory</code></a>, both of which are created by the
-        dependency injector for you.</p>
+        routing framework for you.</p>
 
 <pre class="prettyprint">
-class RecipeBookRouteInitializer implements RouteInitializer {
-  init(Router router, ViewFactory view) { ...
+recipeBookRouteInitializer(Router router, ViewFactory views) => ...
 </pre>
 
-      <p>All you need to do to set up routing is to implement the
-        <code>init</code>() method, and then make the
-        <code>RouteInitializer</code> available in the your app’s module
-        configuration:</p>
+      <p>All you need to do to set up routing is to implement a function, 
+        and then make the <code>RouteInitializerFn</code> available in the
+        your app’s module configuration:</p>
 
 <pre class="prettyprint">
-type(RouteInitializer, implementedBy: RecipeBookRouteInitializer);
+value(RouteInitializerFn, recipeBookRouteInitializer);
 </pre>
 
-      <p>Here is a simple route configuration. Let’s examine the call to
-        <code>addRoute</code>, and all of its parameters in detail:</p>
+      <p>You configure the router by calling <code>ViewFactory.configure()</code> 
+        where you pass a <code>Map</code> of your routes. Keys of that map are route
+        names, and values are <code>NgRouteCfg</code> objects that can constructed 
+        using the provided  <code>ngRoute()</code> function. Here is a simple route configuration.</p>
 
 <pre class="prettyprint">
-router.root
-    ..addRoute(
-      name: 'add',
-      path: '/add',
-      enter: view('view/addRecipe.html'))
+views.configure({
+    'add': ngRoute(
+        path: '/add',
+        view: 'view/addRecipe.html'),
+    'recipe': ngRoute(
+        path: '/recipe/:recipeId',
+        mount: // ...
+  });
 </pre>
 
-      <h5 id="name"><code>name</code></h5>
-      <p>Is the name you give to the route. You will use this name in the
-        template to tell Angular which route to use for the view.</p>
+      <p>Let’s examine the call to <code>ngRoute</code>, and all of its parameters 
+        in detail:</p>
 
       <h5 id="path"><code>path</code></h5>
       <p>Is the URL pattern that maps to this route. More than one route can
@@ -417,16 +418,23 @@ Logger.root.level = Level.FINEST;
 Logger.root.onRecord.listen((LogRecord r) { print(r.message); });
 </pre>
 
+      <h5 id="view"><code>view</code></h5>
+      <p>URL of the template to be loaded into <code>ng-view</code> when the route
+        is entered.</p>
+
       <h5 id="enter"><code>enter</code></h5>
-      <p>A  <code>RouteEventHandler</code></a> that tells the router what to do when
-        the route is entered. Our example code above asks the
-        <code><a href="https://docs.angulardart.org/#angular-routing.ViewFactory">
-          ViewFactory</a></code> to create a <code>RouteEventHandler</code>
-        that points our route to a specific html file. You can also write your
-        own custom <code>RouteEventHandlers</code>.</p>
+      <p>A <code>RouteEnterEventHandler</code></a> that tells the router what to do when
+        the route is entered.</p>
+
+      <h5 id="enter"><code>preEnter</code></h5>
+      <p>A <code>RoutePreEnterEventHandler</code></a> that's invoked before the route
+        is entered and before previous routes are left. The <code>RoutePreEnterEvent</code>
+        is vetoable, so it can prevent current navigation. It can be used for route
+        parameter validation, security and other purposes where you might want to 
+        prevent the route from being entered.</p>
 
       <h5 id="leave"><code>leave</code></h5>
-      <p>A <code>RouteEventHandler</code> that tells the router what to do when
+      <p>A <code>RouteLeaveEventHandler</code> that tells the router what to do when
         the route is left. You can use this for a number of purposes. For
         example, you can determine if a view is leavable, and what to do if it
         shouldn’t be left (for example, if there are unsaved changes on a view,
@@ -442,7 +450,7 @@ Logger.root.onRecord.listen((LogRecord r) { print(r.message); });
         just load a view</h4>
       <p>The configuration below is an example of a more complex
         <code>enter</code> handler. It uses  <code>defaultRoute</code> and a
-        special <code>RouteEventHandler</code> to redirect users to something
+        special <code>RouteEnterEventHandler</code> to redirect users to something
         sane in the event that they entered an invalid URL. In our case, it
         routes them back to the “view recipe” view. The
         <code>replace: true</code> causes the invalid route to be removed from
@@ -450,12 +458,12 @@ Logger.root.onRecord.listen((LogRecord r) { print(r.message); });
         invalid route.</p>
 
 <pre class="prettyprint">
-..addRoute(
-    name: 'view_default',
+'view_default': ngRoute(
     defaultRoute: true,
-    enter: (_) =&gt;
-        router.go('view', {'recipeId': ':recipeId'},
-            startingFrom: route, replace: true))
+    enter: (RouteEnterEvent e) =>
+        router.go('view', {},
+            startingFrom: router.root.getRoute('recipe'),
+            replace: true))
 </pre>
 
       <hr class="spacer" />
@@ -466,14 +474,14 @@ Logger.root.onRecord.listen((LogRecord r) { print(r.message); });
         ancestors’ paths. Here is an example of nested paths in our app:</p>
 
 <pre class="prettyprint">
-..addRoute(
-    name: 'recipe',
+'recipe': ngRoute(
     path: '/recipe/:recipeId',
-    mount: (Route route) =&gt; route
-        ..addRoute(
-            name: 'view',
-            path: '/view',
-            enter: view('recipeView.html'))
+    mount: {
+      'view': ngRoute(
+          path: '/view',
+          view: 'view/viewRecipe.html'),
+      // ...
+    })
 </pre>
 
       <p>Our app’s nested paths are a little more complicated, because they also
