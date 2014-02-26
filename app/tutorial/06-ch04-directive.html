@@ -90,7 +90,7 @@
                   Develop <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                   <li>
-                    <a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/">
+                    <a href="https://docs.angulardart.org/">
                       API Reference</a>
                   </li>
                   <li>
@@ -150,13 +150,13 @@
       <h1 id="angulardart-tutorial-creating-a-custom-directive">Creating a Custom Directive</h1>
 
       <p>In previous chapters, you learned how to use the
-        <a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/angular.core/NgController.html">
+        <a href="https://docs.angulardart.org/#angular/angular.NgController">
           NgController</a> and
-        <a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/angular.core/NgComponent.html">
+        <a href="https://docs.angulardart.org/#angular/angular.NgComponent">
           NgComponent</a> annotations to create custom controllers and
         components. We will now learn how to add behavior to any element, using
         <em>directives</em>
-        (<a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/angular.core/NgDirective.html">
+        (<a href="https://docs.angulardart.org/#angular/angular.NgDirective">
           NgDirective</a>).</p>
 
       <hr />
@@ -266,7 +266,7 @@ class Tooltip {
         the <code>&lt;span&gt;</code>.</p>
 
       <p>In general, when you want to implement a directive as an attribute that
-        takes avalue, do it like this:</p>
+        takes a value, do it like this:</p>
 
 <pre class="prettyprint">
 @NgDirective(
@@ -328,8 +328,8 @@ dom.document.body.append(tooltipElem);
       <a href="https://github.com/angular/angular.dart.tutorial/blob/master/Chapter_04/lib/tooltip/tooltip_directive.dart">
       lib/tooltip/tooltip_directive.dart</a>.</p>
 
-      <p>The implementation of the TooltipModel class is trivial. The class just
-      encapsulates data that the tooltip needs:</p>
+      <p>The implementation of the <code>TooltipModel</code> class is trivial.
+      The class just encapsulates data that the tooltip needs:</p>
 
 <pre class="prettyprint">
 class TooltipModel {
@@ -374,10 +374,10 @@ class RecipeBookController {
 </pre>
 
       <p>The use of <a href="https://api.dartlang.org/dart_core/Expando.html">
-        Expando</a> is an implementation detail. An Expando is just a way to
-        associate a property (in this case, a TooltipModel) with an existing
-        object (a recipe). Instead of an Expando, the code could use a mixin, a
-        TooltipModel subclass, or a map.</p>
+        Expando</a> is an implementation detail. An <code>Expando</code>code>
+        is just a way to associate a property (in this case, a TooltipModel)
+        with an existing object (a recipe). Instead of an Expando, the code
+        could use a mixin, a TooltipModel subclass, or a map.</p>
 
       <p>The other changes to
         <a href="https://github.com/angular/angular.dart.tutorial/blob/master/Chapter_04/lib/recipe_book.dart">

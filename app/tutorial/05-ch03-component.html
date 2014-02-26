@@ -90,7 +90,7 @@
                   Develop <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                   <li>
-                    <a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/">
+                    <a href="https://docs.angulardart.org/">
                       API Reference</a>
                   </li>
                   <li>
@@ -197,7 +197,7 @@
 
       <h3 id="angular-components">Angular components</h3>
       <p>The rating feature is an Angular component, implemented using the
-        <a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/angular.core/NgComponent.html">
+        <a href="https://docs.angulardart.org/#angular/angular.NgComponent">
           NgComponent</a> annotation. Components are lightweight, reusable,
         self-contained UI components that have a single specific purpose. The
         rating component is a great example of a small, simple, re-usable
@@ -229,8 +229,7 @@
   selector: 'rating',
   templateUrl: 'packages/angular_dart_demo/rating/rating_component.html',
   cssUrl: 'packages/angular_dart_demo/rating/rating_component.css',
-  publishAs: 'cmp'
-)
+  publishAs: 'cmp')
 class RatingComponent {...}
 </pre>
 
@@ -253,11 +252,13 @@ class RatingComponent {...}
 <pre class="prettyprint">
 @NgComponent(
   selector: 'rating',
+  ...)
 
 &lt;rating&gt;&lt;/rating&gt;
 
 @NgController(
   selector: '[recipe-book]',
+  ...)
 
 &lt;div recipe-book&gt;
     ...
@@ -308,7 +309,7 @@ class RatingComponent {...}
 </pre>
 
       <p>To specify which HTML attributes correspond to which properties of the
-        component, the RatingComponent class uses annotations like the
+        component, the <code>RatingComponent</code> class uses annotations like the
         following:</p>
 
 <pre class="prettyprint">
@@ -327,7 +328,7 @@ class RatingComponent {...}
         to be evaluated:</p>
 
       <dl>
-        <dt> <a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/angular.core/NgAttr.html">NgAttr</a> </dt>
+        <dt> <a href="https://docs.angulardart.org/#angular/angular.NgAttr">NgAttr</a> </dt>
           <dd>
             <p>Sets the property to the value of the attribute, interpolating
               if it contains {{}} . Our example had this:
@@ -336,14 +337,14 @@ class RatingComponent {...}
               <code>max-rating="{{ctrl.someProperty}}"</code>.</p>
 
             <p>
-              NgAttr attributes are unidirectional. A copy of the attribute is
+              <code>NgAttr</code> attributes are unidirectional. A copy of the attribute is
               passed to the component, and each instance of the component has
               its own copy. The component can change its local value of the
               property without changing the value outside the component.</p>
           </dd>
 
         <dt>
-          <a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/angular.core/NgOneWay.html">
+          <a href="https://docs.angulardart.org/#angular/angular.NgOneWay">
             NgOneWay</a></dt>
 
         <dd>
@@ -352,22 +353,22 @@ class RatingComponent {...}
             example, <code>"foo + bar"</code> would pass the result of
             <code>foo + bar</code> to the component.</p>
 
-          <p>NgOneWay attributes are unidirectional. The component's property
+          <p><code>NgOneWay</code> attributes are unidirectional. The component's property
             changes if the expression's value changes, but changing the
             component's property has no effect outside the component.</p>
         </dd>
 
         <dt>
-          <a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/angular.core/NgTwoWay.html">
+          <a href="https://docs.angulardart.org/#angular/angular.NgTwoWay">
             NgTwoWay</a></dt>
 
         <dd>
           <p>Evaluates the expression, passes the result to the component, and
             keeps the expression and property value in sync. Our example set an
-            NgTwoWay attribute using this code:
+            <code>NgTwoWay</code> attribute using this code:
             <code>rating="ctrl.selectedRecipe.rating"</code></p>
 
-          <p>NgTwoWay is bidirectional. When a component changes the value of an
+          <p><code>NgTwoWay</code> is bidirectional. When a component changes the value of an
             NgTwoWay-annotated property, the value outside of the component
             changes, as well. In this way, components can change model objects
             in your app. In our example, the rating component changes the rating
@@ -400,7 +401,7 @@ class RatingComponent {...}
         <code>ng-if</code> and <code>ng-class</code>.</p>
 
       <h4 id="ng-ifhttpciangularjsorgviewdartjobangulardart-masterjavadocangulardirectivengifdirectivehtml">
-        <a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/angular.directive/NgIfDirective.html">
+        <a href="https://docs.angulardart.org/#angular/angular.NgIfDirective">
           <code>ng-if</code></a></h4>
       <p>The <code>ng-if</code> directive allows you to evaluate sections of the
         DOM conditionally. The <code>ng-if</code> directive takes an expression.
@@ -409,7 +410,7 @@ class RatingComponent {...}
         DOM element. It removes it.</p>
 
       <h4 id="ng-classhttpciangularjsorgviewdartjobangulardart-masterjavadocangulardirectivengclassdirectivehtml">
-        <a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/angular.directive/NgClassDirective.html">
+        <a href="https://docs.angulardart.org/#angular/angular.NgClassDirective">
           <code>ng-class</code></a></h4>
       <p>The <code>ng-class</code> directive allows you to set CSS classes on an
         element dynamically using an expression that evaluates to the classes to
