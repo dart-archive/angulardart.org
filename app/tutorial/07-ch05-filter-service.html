@@ -363,7 +363,9 @@ class MyAppModule extends Module {
 
       <p>Our last example had the data hard coded in the app. In reality, you’d
         request data from a server. Angular provides a built in
-        service called the <code><a href="https://docs.angulardart.org/#angular/angular.Http">Http</a></code> Service that handles making HTTP
+        service called the 
+	<code><a href="https://docs.angulardart.org/#angular/angular.Http">Http</a></code> 
+	Service that handles making HTTP
         requests to the server. First let’s look at the two new files we’ve
         added to the project: <strong>recipes.json</strong> and
         <strong>categories.json</strong>. These contain data that’s been
@@ -478,8 +480,12 @@ List&lt;Recipe&gt; recipes = [];
         of your view with statements that display a “Loading...” message until
         the data is ready.</p>
 
-      <p>In our app, we keep track of the load state for recipes and categories, and
-        conditionally display a “Loading...” message or the whole app view. While we could use <code>ng-if</code> to implement the conditional display logic, let&rsquo;s use an <code>ng-switch</code> directive instead, in this way we can illustrate a new directive and avoid having two <code>ng-if</code> conditions.</p>
+      <p>In our app, we keep track of the load state for recipes and
+        categories, and conditionally display a “Loading...” message or the
+        whole app view. While we could use <code>ng-if</code> to implement the
+        conditional display logic, let&rsquo;s use an <code>ng-switch</code>
+        directive instead, in this way we can illustrate a new directive and
+        avoid having two <code>ng-if</code> conditions.</p>
 
 <pre class="prettyprint">
 &lt;body recipe-book ng-cloak&gt;
@@ -495,9 +501,17 @@ List&lt;Recipe&gt; recipes = [];
 &lt;/body&gt;
 </pre>
 
-      <p>Note that we could replace either <code>ng-switch-when</code> directive above by <code>ng-switch-default</code>. Generally speaking, the <code>ng-switch</code> expression can be of any type that has a denotable value. For more details see the <code>ng-switch</code> directive  <a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/angular.directive/NgSwitchDirective.html">documentation</a>.</p>
+      <p>Note that we could replace either <code>ng-switch-when</code>
+        directive above by <code>ng-switch-default</code>. Generally speaking,
+        the <code>ng-switch</code> expression can be of any type that has a
+        denotable value. For more details, see the <code>ng-switch</code>
+        directive 
+	<a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/angular.directive/NgSwitchDirective.html">documentation</a>.
+      </p>
+
       <p>You can see the “Loading...” feature work by simulating a really slow
-        loading data source. Put a breakpoint inside one of the <code>then()</code> closures in the <code>_loadData</code> method and
+        loading data source. Put a breakpoint inside one of the <code>then()</code> 
+	closures in the <code>_loadData</code> method and
         load the app. Notice that while you’re stopped at the breakpoint, your
         app shows the  “Loading...” message. Now get out of the breakpoint and
         notice that your app’s real view pops into place. Also notice that we
@@ -563,7 +577,7 @@ List&lt;Recipe&gt; recipes = [];
           degrees F would become  150 C. <strong>Hint</strong>: Dart
           <a href="https://api.dartlang.org/apidocs/channels/stable/#dart:core.RegExp">
             regular expressions</a> are likely to be useful.</li>
-        <li>Let us assume that you are cooking for a large party.
+        <li>Assume that you are cooking for a large party.
           Create a filter that will multiply all the amounts in the recipes.
           <strong>Hint:</strong> You’ll have to change the recipe model to
           include a more full featured “Ingredient” field that contains an
@@ -576,7 +590,9 @@ List&lt;Recipe&gt; recipes = [];
             this explanation on StackOverflow</a>.
           Also note the suggested workaround of piping  ingredient values into a
           (custom) <code>toString()</code> filter.</li>
-        <li>Finally, if you have not done so already, adapt your solutions to the first two problems above so that application of each filter is controlled by a checkbox.</li>
+        <li>Finally, if you have not done so already, adapt your solutions to
+	  the first two problems above so that application of each filter is
+	  controlled by a checkbox.</li>
       </ol>
 
       <ul class="pager">
