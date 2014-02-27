@@ -484,8 +484,7 @@ List&lt;Recipe&gt; recipes = [];
         categories, and conditionally display a “Loading...” message or the
         whole app view. While we could use <code>ng-if</code> to implement the
         conditional display logic, let&rsquo;s use an <code>ng-switch</code>
-        directive instead, in this way we can illustrate a new directive and
-        avoid having two <code>ng-if</code> conditions.</p>
+        directive instead.</p>
 
 <pre class="prettyprint">
 &lt;body recipe-book ng-cloak&gt;
@@ -501,13 +500,13 @@ List&lt;Recipe&gt; recipes = [];
 &lt;/body&gt;
 </pre>
 
-      <p>Note that we could replace either <code>ng-switch-when</code>
-        directive above by <code>ng-switch-default</code>. Generally speaking,
-        the <code>ng-switch</code> expression can be of any type that has a
-        denotable value. For more details, see the <code>ng-switch</code>
-        directive 
-	<a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/angular.directive/NgSwitchDirective.html">documentation</a>.
-      </p>
+      <p>Note that we could replace one of the <code>ng-switch-when</code>
+        directives above by <code>ng-switch-default</code>. Also, loosely speaking,
+        expressions of most types are suitable as arguments to
+        an <code>ng-switch</code> provided switch case values can assigned
+        to <code>ng-switch-when</code> attributes. For more
+        details, <a href="http://ci.angularjs.org/view/Dart/job/angular.dart-master/javadoc/angular.directive/NgSwitchDirective.html">see
+        the <code>NgSwitchDirective</code> API documentation</a>.</p>
 
       <p>You can see the “Loading...” feature work by simulating a really slow
         loading data source. Put a breakpoint inside one of the <code>then()</code> 
