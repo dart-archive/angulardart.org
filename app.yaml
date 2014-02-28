@@ -14,6 +14,11 @@ handlers:
 - url: /demo/.*
   static_dir: app/demo
 
+- url: /(.*\.png)
+  static_files: app/\1
+  expiration: 1d
+  upload: app/(.*\.png)
+
 - url: /demo/?
   static_files: app/demo/index.html
   upload: app/demo/index.html
