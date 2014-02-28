@@ -413,7 +413,8 @@ void main() {
 }
 </pre>
 
-      <p>Next, let’s look at how to use the <code>Http</code> service to fetch
+      <p>Next, let’s look at how to use the 
+        <code><a href="https://docs.angulardart.org/#angular/angular.Http">Http</a></code> service to fetch
         data from the server. Look at the changes we made to the
         <code>_loadData</code> method. Here is the new code:</p>
 
@@ -439,7 +440,7 @@ void _loadData() {
       <p>Let’s look more closely at the call to the <code>Http</code> service:</p>
 
 <pre class="prettyprint">
-_http.get()
+_http.get(URL)
   .then((value) {
     // use value
   })
