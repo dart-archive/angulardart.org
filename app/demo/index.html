@@ -215,13 +215,13 @@
           <div class="tabs-spacer"></div>
           <div class="well" ng-non-bindable>
             <h2>Todo</h2>
-            <div class="angular-dart-example" todo-list id="todo-app">
-              <span ng-cloak>{{TodoCtrl.remaining()}} of {{TodoCtrl.todos.length}} remaining</span>
+            <div class="angular-dart-example" todo-list id="todo-app" ng-cloak>
+              <span>{{TodoCtrl.remaining()}} of {{TodoCtrl.todos.length}} remaining</span>
               [ <a href="" ng-click="TodoCtrl.archive()">archive</a> ]
               <ul class="unstyled">
                 <li ng-repeat="todo in TodoCtrl.todos">
                   <input type="checkbox" ng-model="todo.done">
-                  <span class="done-{{todo.done}}" ng-cloak>{{todo.text}}</span>
+                  <span class="done-{{todo.done}}">{{todo.text}}</span>
                 </li>
               </ul>
               <form ng-submit="TodoCtrl.addTodo()">
@@ -492,15 +492,15 @@
     </script>
     <script type="text/ng-template" id="todo.html">
         <h2>Todo</h2>
-        <div todo-list>
-        <span ng-cloak>
+        <div todo-list ng-cloak>
+        <span>
           {{TodoCtrl.remaining()}} of {{TodoCtrl.todos.length}} remaining
         </span>
             [ <a href="" ng-click="TodoCtrl.archive()">archive</a> ]
             <ul class="unstyled">
                 <li ng-repeat="todo in TodoCtrl.todos">
                     <input type="checkbox" ng-model="todo.done">
-                    <span class="done-{{todo.done}}" ng-cloak>{{todo.text}}</span>
+                    <span class="done-{{todo.done}}">{{todo.text}}</span>
                 </li>
             </ul>
             <form ng-submit="TodoCtrl.addTodo()">
@@ -679,19 +679,19 @@ class NewEntryFormCtrl {
       <ng-view></ng-view>
     </script>
     <script type="text/ng-template" id="list.html">
-      <div system-panel>
+      <div system-panel ng-cloak>
         <h2>Website Uptime Status</h2>
-        <div ng-repeat="entry in panel.results" ng-cloak>
+        <div ng-repeat="entry in panel.results">
           {{ $index + 1 }}: {{ entry.$value.topic }} - {{ entry.$value.status }}
         </div>
       </div>
     </script>
     <script type="text/ng-template" id="new.html">
-<form entry-form-ctrl ng-submit="form.submit()" novalidate>
+<form entry-form-ctrl ng-submit="form.submit()" novalidate ng-cloak>
 
   <div class="field">
     <label>Topic:</label>
-    <select required ng-model="form.topicKey" required ng-cloak>
+    <select required ng-model="form.topicKey" required>
       <option ng-repeat="result in form.topics" value="{{ result['value'] }}">
         {{ result['title'] }}</option>
     </select>
@@ -699,7 +699,7 @@ class NewEntryFormCtrl {
 
   <div class="field">
     <label>Status:</label>
-    <select required ng-model="form.statusKey" required ng-cloak>
+    <select required ng-model="form.statusKey" required>
       <option ng-repeat="result in form.statuses" value="{{ result['value'] }}">
         {{ result['title'] }}</option>
     </select>
