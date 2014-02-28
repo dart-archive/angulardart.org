@@ -555,23 +555,21 @@ class BackendAppModule extends Module {
     type(SystemPanelCtrl);
     type(NewEntryFormCtrl);
     type(FirebaseResultsAdapter);
-    type(RouteInitializer, implementedBy: BackendAppRouter);
+    value(RouteInitializerFn, backendAppRouteInit);
   }
 }
 
-class BackendAppRouter implements RouteInitializer {
-  void init(Router router, ViewFactory view) {
-    router.root
-        ..addRoute(
-            name: 'new',
-            path: '/demo/new',
-            enter: view('./new.html'))
-        ..addRoute(
-            defaultRoute: true,
-            name: 'demohome',
-            path: '/demo/',
-            enter: view('./list.html'));
-  }
+void backendAppRouteInit(Router router, ViewFactory view) {
+  router.root
+      ..addRoute(
+          name: 'new',
+          path: '/demo/new',
+          enter: view('./new.html'))
+      ..addRoute(
+          defaultRoute: true,
+          name: 'demohome',
+          path: '/demo/',
+          enter: view('./list.html'));
 }
 
 @NgInjectableService()
@@ -595,7 +593,7 @@ class SystemPanelCtrl {
   bool filterOn = false;
   List results;
 
-  SystemPanelCtrl(RouteProvider routeProvider, Scope this.scope,
+  SystemPanelCtrl(RouteProvider routeProvider, this.scope,
                   FirebaseResultsAdapter adapter) {
     Map params = routeProvider.parameters;
     results = adapter.results.values;
@@ -624,7 +622,7 @@ class SystemEntry {
     status = SystemEntry.statusValues()[statusKey];
   }
 
-  Map export() => {
+  Map<String, String> export() => {
     'topicKey': topicKey,
     'topic': topic,
     'statusKey': statusKey,
@@ -646,11 +644,11 @@ class NewEntryFormCtrl {
   List statuses;
   List topics;
 
-  NewEntryFormCtrl(Router this._router, Scope this._scope, NgForm this._form,
+  NewEntryFormCtrl(this._router, this._scope, this._form,
                    FirebaseResultsAdapter adapter) {
-    this.topics   = this.formatAsOptions(SystemEntry.topicValues());
-    this.statuses = this.formatAsOptions(SystemEntry.statusValues());
-    this._results = adapter.getResults();
+    topics   = formatAsOptions(SystemEntry.topicValues());
+    statuses = formatAsOptions(SystemEntry.statusValues());
+    _results = adapter.results;
   }
 
   List formatAsOptions(Map items) {
@@ -671,6 +669,7 @@ class NewEntryFormCtrl {
     _router.gotoUrl('home');
   }
 }
+
     </script>
     <script type="text/ng-template" id="index.html">
       <nav>

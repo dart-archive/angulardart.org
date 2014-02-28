@@ -10,23 +10,19 @@ class BackendAppModule extends Module {
     type(SystemPanelCtrl);
     type(NewEntryFormCtrl);
     type(FirebaseResultsAdapter);
-    type(RouteInitializer, implementedBy: BackendAppRouter);
+    value(RouteInitializerFn, backendAppRouteInit);
   }
 }
 
-class BackendAppRouter implements RouteInitializer {
-  void init(Router router, ViewFactory view) {
-    router.root
-        ..addRoute(
-            name: 'new',
-            path: '/demo/new',
-            enter: view('./new.html'))
-        ..addRoute(
-            defaultRoute: true,
-            name: 'demohome',
-            path: '/demo/',
-            enter: view('./list.html'));
-  }
+void backendAppRouteInit(Router router, ViewFactory views) {
+  views.configure({
+      'new': ngRoute(
+          path: '/demo/new',
+          view: 'new.html'),
+      'demo': ngRoute(
+          path: '/demo',
+          view: 'list.html')
+  });
 }
 
 @NgInjectableService()
@@ -50,7 +46,8 @@ class SystemPanelCtrl {
   bool filterOn = false;
   List results;
 
-  SystemPanelCtrl(RouteProvider routeProvider, this.scope, FirebaseResultsAdapter adapter) {
+  SystemPanelCtrl(RouteProvider routeProvider, this.scope,
+                  FirebaseResultsAdapter adapter) {
     Map params = routeProvider.parameters;
     results = adapter.results.values;
   }
@@ -100,7 +97,8 @@ class NewEntryFormCtrl {
   List statuses;
   List topics;
 
-  NewEntryFormCtrl(this._router, this._scope, this._form, FirebaseResultsAdapter adapter) {
+  NewEntryFormCtrl(this._router, this._scope, this._form,
+                   FirebaseResultsAdapter adapter) {
     topics   = formatAsOptions(SystemEntry.topicValues());
     statuses = formatAsOptions(SystemEntry.statusValues());
     _results = adapter.results;
