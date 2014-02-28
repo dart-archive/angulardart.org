@@ -21,14 +21,13 @@ import 'dart:mirrors';
     selector: '[todo-list]',
     publishAs: 'TodoCtrl')
 class TodoController {
-
   List<Todo> todos;
   String todoText;
 
   TodoController() {
     todos = [
-      new Todo('learn angular', true),
-      new Todo('build an angular app', false)
+        new Todo('learn angular', true),
+        new Todo('build an angular app', false)
     ];
   }
 
@@ -75,23 +74,20 @@ class TodoModule extends Module {
     templateUrl: 'tabs.html',
     cssUrl: 'tabs.css',
     publishAs: 'tabs',
-    visibility: NgDirective.DIRECT_CHILDREN_VISIBILITY
-)
+    visibility: NgDirective.DIRECT_CHILDREN_VISIBILITY)
 class TabsComponent {
-  List<PaneComponent> panes = [];
+  final panes = <PaneComponent>[];
 
   void select(var pane) {
     for (var i = 0; i < panes.length; i++) {
-      this.panes[i].selected = false;
+      panes[i].selected = false;
     }
     pane.selected = true;
   }
 
   void addPane(PaneComponent pane) {
-    if (this.panes.length == 0) {
-      this.select(pane);
-    }
-    this.panes.add(pane);
+    if (panes.isEmpty) select(pane);
+    panes.add(pane);
   }
 }
 
@@ -101,8 +97,7 @@ class TabsComponent {
     cssUrl: 'pane.css',
     applyAuthorStyles: true,
     publishAs: 'pane',
-    map: const {'title' : '@'}
-)
+    map: const {'title' : '@'})
 class PaneComponent {
   String title = '';
   bool selected = false;
@@ -116,19 +111,19 @@ class PaneComponent {
     selector: '[beer-counter]',
     publishAs: 'beerCounter')
 class BeerCounter {
-  List<int> beerCounts = [0, 1, 2, 3, 4, 5, 6];
+  final beerCounts = <int>[0, 1, 2, 3, 4, 5, 6];
   Function getMessage;
 
   BeerCounter() {
     if (Intl.defaultLocale.toString() == 'sk_SK') {
-      this.getMessage = (beer_count) => Intl.plural(
+      getMessage = (beer_count) => Intl.plural(
           beer_count,
           zero: '\u017Eiadne pivo',
           one: '$beer_count pivo',
           few: '$beer_count piv\u00E1',
           other: '$beer_count p\u00EDv');
     } else {
-      this.getMessage = (beer_count) => Intl.plural(
+      getMessage = (beer_count) => Intl.plural(
           beer_count,
           zero: 'no beers',
           one: '$beer_count beer',
@@ -152,16 +147,15 @@ class TabsModule extends Module {
 
 @NgController(
     selector: '[classlist-controller]',
-    publishAs: 'ctrl'
-)
+    publishAs: 'ctrl')
 class ClasslistController {
-  List<String> students = [
+  final students = [
       {'name': 'Jack Aubrey', 'selected': true},
       {'name': 'Clarissa Oakes', 'selected': true},
       {'name': 'Stephen Maturin', 'selected': false}
   ];
 
-  List<String> get selectedStudents {
+  List get selectedStudents {
     return students.where((student) => student['selected']).toList();
   }
 }

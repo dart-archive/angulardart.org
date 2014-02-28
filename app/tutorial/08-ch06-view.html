@@ -378,7 +378,7 @@ class SearchRecipeComponent {
 recipeBookRouteInitializer(Router router, ViewFactory views) => ...
 </pre>
 
-      <p>All you need to do to set up routing is to implement a function, 
+      <p>All you need to do to set up routing is to implement a function,
         and then make the <code>RouteInitializerFn</code> available in the
         your app’s module configuration:</p>
 
@@ -386,13 +386,14 @@ recipeBookRouteInitializer(Router router, ViewFactory views) => ...
 value(RouteInitializerFn, recipeBookRouteInitializer);
 </pre>
 
-      <p>You configure the router by calling <code>ViewFactory.configure()</code> 
+      <p>You configure the router by calling <code>ViewFactory.configure()</code>
         where you pass a <code>Map</code> of your routes. Keys of that map are route
-        names, and values are <code>NgRouteCfg</code> objects that can be constructed 
+        names, and values are <code>NgRouteCfg</code> objects that can be constructed
         using the provided  <code>ngRoute()</code> function. Here is a simple route configuration.</p>
 
 <pre class="prettyprint">
-views.configure({
+void recipeBookRouteInitializer(Router router, ViewFactory views) {
+  views.configure({
     'add': ngRoute(
         path: '/add',
         view: 'view/addRecipe.html'),
@@ -400,9 +401,10 @@ views.configure({
         path: '/recipe/:recipeId',
         mount: // ...
   });
+}
 </pre>
 
-      <p>Let’s examine the call to <code>ngRoute</code>, and all of its parameters 
+      <p>Let’s examine the call to <code>ngRoute</code>, and all of its parameters
         in detail:</p>
 
       <h5 id="path"><code>path</code></h5>
@@ -430,7 +432,7 @@ Logger.root.onRecord.listen((LogRecord r) { print(r.message); });
       <p>A <code>RoutePreEnterEventHandler</code></a> that's invoked before the route
         is entered and before previous routes are left. The <code>RoutePreEnterEvent</code>
         is vetoable, so it can prevent current navigation. It can be used for route
-        parameter validation, security and other purposes where you might want to 
+        parameter validation, security and other purposes where you might want to
         prevent the route from being entered.</p>
 
       <h5 id="leave"><code>leave</code></h5>

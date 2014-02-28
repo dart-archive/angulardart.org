@@ -2,15 +2,15 @@
 
   <div class="field">
     <label>Topic:</label>
-    <select required ng-model="form.topicKey" required>
-      <option ng-repeat="result in form.topics" value="{{ result['value'] }}">{{ result['title'] }}</option> 
+    <select required ng-model="form.topicKey" required ng-cloak>
+      <option ng-repeat="result in form.topics" value="{{ result['value'] }}">{{ result['title'] }}</option>
     </select>
   </div>
 
   <div class="field">
     <label>Status:</label>
-    <select required ng-model="form.statusKey" required>
-      <option ng-repeat="result in form.statuses" value="{{ result['value'] }}">{{ result['title'] }}</option> 
+    <select required ng-model="form.statusKey" required ng-cloak>
+      <option ng-repeat="result in form.statuses" value="{{ result['value'] }}">{{ result['title'] }}</option>
     </select>
   </div>
 

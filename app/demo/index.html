@@ -11,6 +11,12 @@
     <meta itemprop="image" content="https://angulardart.org/img/logo.png">
     <meta itemprop="name" content="AngularDart: Superheroic MVW Framework for Dart">
 
+    <style type="text/css">
+      [ng-cloak] {
+        display: none !important;
+      }
+    </style>
+
     <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
 
     <title>AngularDart Demo</title>
@@ -160,7 +166,7 @@
               <input type="text" ng-model="yourName"
                      placeholder="Enter a name here">
               <hr>
-              <h1>Hello {{yourName}}!</h1>
+              <h1 ng-cloak>Hello {{yourName}}!</h1>
             </div><!-- /#hello-app -->
           </div><!-- .well -->
         </div><!-- .col-md-4 -->
@@ -209,7 +215,7 @@
           <div class="tabs-spacer"></div>
           <div class="well" ng-non-bindable>
             <h2>Todo</h2>
-            <div class="angular-dart-example" todo-list id="todo-app">
+            <div class="angular-dart-example" todo-list id="todo-app" ng-cloak>
               <span>{{TodoCtrl.remaining()}} of {{TodoCtrl.todos.length}} remaining</span>
               [ <a href="" ng-click="TodoCtrl.archive()">archive</a> ]
               <ul class="unstyled">
@@ -380,20 +386,21 @@
 
 <div class="hello-code">
     <!-- ============== Hello ============== -->
-
     <script type="text/ng-template" id="hello.html">
         <div>
             <label>Name:</label>
             <input type="text" ng-model="yourName"
                    placeholder="Enter a name here">
             <hr>
-            <h1>Hello {{yourName}}!</h1>
+            <h1 ng-cloak>Hello {{yourName}}!</h1>
         </div>
     </script>
     <script id="hello.dart" type="text/dart">
       import 'package:angular/angular.dart';
 
-      main() => ngBootstrap();
+      main() {
+        ngBootstrap();
+      }
     </script>
     <script type="text/ng-template" id="hello.annotation">
         { "hello.html":
@@ -433,14 +440,13 @@
           selector: '[todo-list]',
           publishAs: 'TodoCtrl')
       class TodoController {
-
         List<Todo> todos;
         String todoText;
 
         TodoController() {
           todos = [
-            new Todo('learn angular', true),
-            new Todo('build an angular app', false)
+              new Todo('learn angular', true),
+              new Todo('build an angular app', false)
           ];
         }
 
@@ -486,7 +492,7 @@
     </script>
     <script type="text/ng-template" id="todo.html">
         <h2>Todo</h2>
-        <div todo-list>
+        <div todo-list ng-cloak>
         <span>
           {{TodoCtrl.remaining()}} of {{TodoCtrl.todos.length}} remaining
         </span>
@@ -549,120 +555,104 @@ class BackendAppModule extends Module {
     type(SystemPanelCtrl);
     type(NewEntryFormCtrl);
     type(FirebaseResultsAdapter);
-    type(RouteInitializer, implementedBy: BackendAppRouter);
+    value(RouteInitializerFn, backendAppRouteInit);
   }
 }
 
-class BackendAppRouter implements RouteInitializer {
-  void init(Router router, ViewFactory view) {
-    router.root
-      ..addRoute(
-          defaultRoute: true,
-          name: 'home',
-          enter: view('./list.html')
-        )
+void backendAppRouteInit(Router router, ViewFactory view) {
+  router.root
       ..addRoute(
           name: 'new',
-          path: '/new',
-          enter: view('./new.html')
-        );
-  }
+          path: '/demo/new',
+          enter: view('./new.html'))
+      ..addRoute(
+          defaultRoute: true,
+          name: 'demohome',
+          path: '/demo/',
+          enter: view('./list.html'));
 }
 
 @NgInjectableService()
 class FirebaseResultsAdapter {
   static const String BASE = 'https://angular-dart-homepage.firebaseio.com/';
-  Firebase fb = new Firebase(BASE);
-
-  FirebaseAdapter _results;
+  AngularFire _results;
 
   FirebaseResultsAdapter() {
-    this._results = new AngularFire(fb);
+    Firebase fb = new Firebase(BASE);
+    _results = new AngularFire(fb);
   }
 
-  getResults() {
-    return _results;
-  }
+  AngularFire get results =>  _results;
 }
 
 @NgController(
   selector: '[system-panel]',
-  publishAs: 'panel'
-)
+  publishAs: 'panel')
 class SystemPanelCtrl {
-  Scope scope;
+  final Scope scope;
   bool filterOn = false;
-  FirebaseAdapter results;
+  List results;
 
-  SystemPanelCtrl(RouteProvider routeProvider, Scope this.scope,
+  SystemPanelCtrl(RouteProvider routeProvider, this.scope,
                   FirebaseResultsAdapter adapter) {
     Map params = routeProvider.parameters;
-    this.results = adapter.getResults().values;
+    results = adapter.results.values;
   }
 }
 
 class SystemEntry {
-  static statusValues() {
-    return {
-      "functional"    : "Operations Normal!",
-      "unpredictable" : "Runs OK ... Sometimes",
-      "crashing"      : "Ughh? What's going on?",
-      "offline"       : "Nope. It's not responding"
-    };
-  }
+  static Map<String, String> statusValues() => const {
+    "functional"    : "Operations Normal!",
+    "unpredictable" : "Runs OK ... Sometimes",
+    "crashing"      : "Ughh? What's going on?",
+    "offline"       : "Nope. It's not responding"
+  };
 
-  static topicValues() {
-    return {
-      "webserver" : "Webserver",
-      "db"        : "Database Engine",
-      "billing"   : "Billing System",
-      "coffee"    : "Coffee Machine"
-    };
-  }
+  static Map<String, String> topicValues() => const {
+    "webserver" : "Webserver",
+    "db"        : "Database Engine",
+    "billing"   : "Billing System",
+    "coffee"    : "Coffee Machine"
+  };
 
   String statusKey, topicKey, status, topic;
 
-  SystemEntry(String this.topicKey, String this.statusKey) {
-    this.topic  = SystemEntry.topicValues()[this.topicKey];
-    this.status = SystemEntry.statusValues()[this.statusKey];
+  SystemEntry(this.topicKey, this.statusKey) {
+    topic  = SystemEntry.topicValues()[topicKey];
+    status = SystemEntry.statusValues()[statusKey];
   }
 
-  export() {
-    return {
-      'topicKey' : this.topicKey,
-      'topic' : this.topic,
-      'statusKey' : this.statusKey,
-      'status' : this.status
-    };
-  }
+  Map<String, String> export() => {
+    'topicKey': topicKey,
+    'topic': topic,
+    'statusKey': statusKey,
+    'status': status
+  };
 }
 
 @NgController(
   selector: '[entry-form-ctrl]',
-  publishAs: 'form'
-)
+  publishAs: 'form')
 class NewEntryFormCtrl {
+  final Scope _scope;
+  final NgForm _form;
+  final Router _router;
 
-  Scope _scope;
-  NgForm _form;
-  Router _router;
-
-  FirebaseAdapter _results;
+  AngularFire _results;
   String topicKey;
   String statusKey;
+  List statuses;
+  List topics;
 
-  String statuses;
-  String topics;
-
-  NewEntryFormCtrl(Router this._router, Scope this._scope, NgForm this._form,
+  NewEntryFormCtrl(this._router, this._scope, this._form,
                    FirebaseResultsAdapter adapter) {
-    this.topics   = this.formatAsOptions(SystemEntry.topicValues());
-    this.statuses = this.formatAsOptions(SystemEntry.statusValues());
-    this._results = adapter.getResults();
+    topics   = formatAsOptions(SystemEntry.topicValues());
+    statuses = formatAsOptions(SystemEntry.statusValues());
+    _results = adapter.results;
   }
 
-  formatAsOptions(Map items) {
-    List options = [];
+  List formatAsOptions(Map items) {
+    var options = [];
     items.forEach((value, title) {
       options.add({
         'value' : value,
@@ -673,32 +663,31 @@ class NewEntryFormCtrl {
   }
 
   submit() {
-    SystemEntry entry = new SystemEntry(this.topicKey, this.statusKey);
+    SystemEntry entry = new SystemEntry(topicKey, statusKey);
     print(entry.export());
-    this._results.add(entry.export());
-    this._router.gotoUrl('home');
+    _results.add(entry.export());
+    _router.gotoUrl('home');
   }
 }
+
     </script>
     <script type="text/ng-template" id="index.html">
-  <nav>
-    <a href="/">Home</a>
-    <a href="/new">New Entry</a>
-  </nav>
-  <ng-view></ng-view>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/new">New Entry</a>
+      </nav>
+      <ng-view></ng-view>
     </script>
     <script type="text/ng-template" id="list.html">
-<div system-panel>
-  <h2>Website Uptime Status</h2>
-  <div ng-repeat="entry in panel.results ">
-    {{ $index + 1 }}:
-      {{ entry.$value.topic }} -
-      {{ entry.$value.status }}
-  </div>
-</div>
+      <div system-panel ng-cloak>
+        <h2>Website Uptime Status</h2>
+        <div ng-repeat="entry in panel.results">
+          {{ $index + 1 }}: {{ entry.$value.topic }} - {{ entry.$value.status }}
+        </div>
+      </div>
     </script>
     <script type="text/ng-template" id="new.html">
-<form entry-form-ctrl ng-submit="form.submit()" novalidate>
+<form entry-form-ctrl ng-submit="form.submit()" novalidate ng-cloak>
 
   <div class="field">
     <label>Topic:</label>
@@ -787,7 +776,7 @@ class NewEntryFormCtrl {
             template:
               '<div class="tabbable">' +
                 '<ul class="nav nav-tabs">' +
-                  '<li ng-repeat="pane in panes" ng-class="{active:pane.selected}">'+
+                  '<li ng-repeat="pane in panes" ng-class="{active:pane.selected}" ng-cloak>'+
                     '<a href="" ng-click="select(pane)">{{pane.title}}</a>' +
                   '</li>' +
                 '</ul>' +
@@ -840,7 +829,7 @@ class NewEntryFormCtrl {
     </script>
     <script type="text/ng-template" id="tabs.html">
         <tabs>
-            <pane title="Localization">
+            <pane title="Localization" ng-cloak>
                 Date: {{ '2012-04-01' | date:'fullDate' }} <br>
                 Currency: {{ 123456 | currency }} <br>
                 Number: {{ 98765.4321 | number }} <br>
@@ -913,11 +902,9 @@ class NewEntryFormCtrl {
 <script src="https://cdn.firebase.com/v0/firebase.js"></script>
 <script src="http://firebase.github.io/angularFire/angularFire.js"></script>
 <script src="http://code.angularjs.org/1.2.4/i18n/angular-locale_sk.js"></script>
-<script>
-    angular.module('ngLocal.sk', [])._invokeQueue.push(angular.module('ngLocale')._invokeQueue[0]);
-</script>
 <script src="http://code.angularjs.org/1.2.4/i18n/angular-locale_en-us.js"></script>
 <script>
+    angular.module('ngLocal.sk', [])._invokeQueue.push(angular.module('ngLocale')._invokeQueue[0]);
     angular.module('ngLocal.us', [])._invokeQueue.push(angular.module('ngLocale')._invokeQueue[0]);
     angular.bootstrap(document, ['ngRoute', 'homepage', 'ngLocal.us']);
 </script>
