@@ -375,7 +375,9 @@ class SearchRecipeComponent {
         routing framework for you.</p>
 
 <pre class="prettyprint">
-recipeBookRouteInitializer(Router router, ViewFactory views) => ...
+recipeBookRouteInitializer(Router router, ViewFactory views) {
+  // ...
+}
 </pre>
 
       <p>All you need to do to set up routing is to implement a function,
@@ -589,9 +591,7 @@ QueryService(Http this._http) {
 <pre class="prettyprint">
 Future&lt;Recipe&gt; getRecipeById(String id) {
   if (_recipesCache == null) {
-    return _loaded.then((_) {
-      return _recipesCache[id];
-    });
+    return _loaded.then((_) => _recipesCache[id]);
   }
   return new Future.value(_recipesCache[id]);
 }
