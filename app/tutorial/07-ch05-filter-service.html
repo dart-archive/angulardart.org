@@ -274,16 +274,15 @@ call(valueToFilter, optArg1, ..., optArgN);
       <p>Here is the call method from our <code>CategoryFilter</code>:</p>
 
 <script type="template/dart">
-call(recipeList, filterMap) {
-  if (recipeList is List && filterMap is Map) {
-    // If there is nothing checked, treat it as "everything is checked"
-    bool nothingChecked = filterMap.values.every((isChecked) => !isChecked);
-    if (nothingChecked) {
-      return recipeList.toList();
+  List call(recipeList, filterMap) {
+    if (recipeList is Iterable && filterMap is Map) {
+      // If there is nothing checked, treat it as "everything is checked"
+      bool nothingChecked = filterMap.values.every((isChecked) => !isChecked);
+      return nothingChecked
+          ? recipeList.toList()
+          : recipeList.where((i) => filterMap[i.category] == true).toList();
     }
-    return recipeList.where((i) => filterMap[i.category] == true).toList();
   }
-}
 </script>
 
       <p>The <code>filterMap</code> parameter deserves some further explanation.
@@ -295,6 +294,7 @@ call(recipeList, filterMap) {
 
 <script type="template/dart">
 @NgFilter(name: 'categoryfilter')
+class CategoryFilter { ... }
 </script>
 
       <p>Add the new class to the bootstrapping code:</p>
@@ -539,7 +539,7 @@ List<Recipe> recipes = [];
         <code>ng-cloak</code>:</p>
 
 <script type="template/dart">
-<body class=”ng-cloak”>
+<body class="ng-cloak">
 </script>
 
       or

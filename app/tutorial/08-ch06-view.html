@@ -223,81 +223,81 @@
         <div class="col-md-6">
           <h3>index.html (previous Chapter)</h3>
 
-<pre class="prettyprint">
-&lt;div recipe-book&gt;
+<script type="template/dart">
+<div recipe-book>
   ...
-  &lt;h3&gt;Recipe List&lt;/h3&gt;
+  <h3>Recipe List</h3>
 
-  <strong>&lt;div id="filters"&gt;
-    &lt;div&gt;
-      &lt;label for="name-filter"&gt;Filter ... &lt;/label&gt;
-      &lt;input id="name-filter" type="text"
-             ng-model="ctrl.nameFilterString"&gt;
-    &lt;/div&gt;
-    &lt;div&gt;
+  <strong><div id="filters">
+    <div>
+      <label for="name-filter">Filter ... </label>
+      <input id="name-filter" type="text"
+             ng-model="ctrl.nameFilterString">
+    </div>
+    <div>
       Filter recipes by category:
-      &lt;span ng-repeat="category in ctrl.categories"&gt;
-        &lt;label&gt;
-          &lt;input type="checkbox"
-           ng-model="ctrl.categoryFilterMap[category]"&gt;
+      <span ng-repeat="category in ctrl.categories">
+        <label>
+          <input type="checkbox"
+           ng-model="ctrl.categoryFilterMap[category]">
               {{category}}
-        &lt;/label&gt;
-      &lt;/span&gt;
-    &lt;/div&gt;
-    &lt;input type="button" value="Clear Filters"
-        ng-click="ctrl.clearFilters()"&gt;
-  &lt;/div&gt;</strong>
+        </label>
+      </span>
+    </div>
+    <input type="button" value="Clear Filters"
+        ng-click="ctrl.clearFilters()">
+  </div></strong>
 
-  &lt;div id="recipe-list"&gt;
+  <div id="recipe-list">
    ...
-  &lt;/div&gt;
+  </div>
 
-  &lt;div id="recipe-details"&gt;
-    &lt;h3&gt;Recipe Details&lt;/h3&gt;
+  <div id="recipe-details">
+    <h3>Recipe Details</h3>
     ...
-  &lt;/div&gt;
-&lt;/div&gt;
-</pre>
+  </div>
+</div>
+</script>
 
         </div><!-- /.col-md-6 -->
 
         <div class="col-md-6">
           <h3>index.html (revisited)</h3>
 
-<pre class="prettyprint">
-&lt;div recipe-book&gt; ...
-  &lt;h3&gt;Recipe List&lt;/h3&gt; ...
-    <strong>&lt;search-recipe
+<script type="template/dart">
+<div recipe-book> ...
+  <h3>Recipe List</h3> ...
+    <strong><search-recipe
         name-filter-string="ctrl.nameFilter"
-        category-filter-map="ctrl.categoryFilterMap"&gt;
-    &lt;/search-recipe&gt;</strong> ...
-    &lt;div id="recipe-list"&gt;...&lt;/div&gt; ...
-  &lt;section id="details"&gt;
-    &lt;ng-view&gt;&lt;/ng-view&gt;
-  &lt;/section&gt;
-&lt;/div&gt;
-</pre>
+        category-filter-map="ctrl.categoryFilterMap">
+    </search-recipe></strong> ...
+    <div id="recipe-list">...</div> ...
+  <section id="details">
+    <ng-view></ng-view>
+  </section>
+</div>
+</script>
 
           <h3>search_recipe_component.html</h3>
 
-<pre class="prettyprint">
-&lt;div id="filters"&gt;
-  &lt;div&gt;
-    &lt;label for="name-filter"&gt;Filter ...&lt;/label&gt;
-    &lt;input id="name-filter" type="text"
-           ng-model="ctrl.nameFilterString"&gt;
-  &lt;/div&gt;
-  &lt;div&gt;
+<script type="template/dart">
+<div id="filters">
+  <div>
+    <label for="name-filter">Filter ...</label>
+    <input id="name-filter" type="text"
+           ng-model="ctrl.nameFilterString">
+  </div>
+  <div>
     Filter recipes by category:
-    &lt;span ng-repeat="category in ctrl.categories"&gt;
-      &lt;label&gt;
-        &lt;input type="checkbox" ... &gt;{{category}}
-      &lt;/label&gt;
-    &lt;/span&gt;
-  &lt;/div&gt;
-  &lt;input type="button" value="Clear Filters"...&gt;
-&lt;/div&gt;
-</pre>
+    <span ng-repeat="category in ctrl.categories">
+      <label>
+        <input type="checkbox" ... >{{category}}
+      </label>
+    </span>
+  </div>
+  <input type="button" value="Clear Filters"...>
+</div>
+</script>
 
         </div><!-- /.col-md-6 -->
       </div><!-- /.rows -->
@@ -323,28 +323,26 @@
         <code>SearchRecipeComponent</code>’s HTML template (shown as the lower
         right excerpt in the table above).</p>
 
-<pre class="prettyprint">
+<script type="template/dart">
 @NgComponent(
     selector: 'search-recipe',
     templateUrl: 'packages/angular_dart_demo/component/search_recipe_component.html',
-    publishAs: 'ctrl')
+    publishAs: 'cmp')
 class SearchRecipeComponent {
   @NgTwoWay('name-filter-string')
   String nameFilterString = "";
 
   @NgTwoWay('category-filter-map')
-  Map&lt;String, bool&gt; categoryFilterMap;
+  Map<String, bool> categoryFilterMap;
 
-  List&lt;String&gt; get categories {
-    return categoryFilterMap.keys.toList();
-  }
+  List<String> get categories => categoryFilterMap.keys.toList();
 
   void clearFilters() {
     categoryFilterMap.keys.forEach((f) => categoryFilterMap[f] = false);
     nameFilterString = "";
   }
 }
-</pre>
+</script>
 
       <hr class="spacer" />
 
@@ -374,26 +372,26 @@ class SearchRecipeComponent {
           <code>ViewFactory</code></a>, both of which are created by the
         routing framework for you.</p>
 
-<pre class="prettyprint">
+<script type="template/dart">
 recipeBookRouteInitializer(Router router, ViewFactory views) {
   // ...
 }
-</pre>
+</script>
 
       <p>All you need to do to set up routing is to implement a function,
         and then make the <code>RouteInitializerFn</code> available in the
         your app’s module configuration:</p>
 
-<pre class="prettyprint">
+<script type="template/dart">
 value(RouteInitializerFn, recipeBookRouteInitializer);
-</pre>
+</script>
 
       <p>You configure the router by calling <code>ViewFactory.configure()</code>
         where you pass a <code>Map</code> of your routes. Keys of that map are route
         names, and values are <code>NgRouteCfg</code> objects that can be constructed
         using the provided  <code>ngRoute()</code> function. Here is a simple route configuration.</p>
 
-<pre class="prettyprint">
+<script type="template/dart">
 void recipeBookRouteInitializer(Router router, ViewFactory views) {
   views.configure({
     'add': ngRoute(
@@ -404,7 +402,7 @@ void recipeBookRouteInitializer(Router router, ViewFactory views) {
         mount: // ...
   });
 }
-</pre>
+</script>
 
       <p>Let’s examine the call to <code>ngRoute</code>, and all of its parameters
         in detail:</p>
@@ -417,10 +415,10 @@ void recipeBookRouteInitializer(Router router, ViewFactory views) {
         to debug your routing configuration, import Dart’s logging library and
         add this magic to your <code>main()</code>:</p>
 
-<pre class="prettyprint">
+<script type="template/dart">
 Logger.root.level = Level.FINEST;
 Logger.root.onRecord.listen((LogRecord r) { print(r.message); });
-</pre>
+</script>
 
       <h5 id="view"><code>view</code></h5>
       <p>URL of the template to be loaded into <code>ng-view</code> when the route
@@ -461,14 +459,14 @@ Logger.root.onRecord.listen((LogRecord r) { print(r.message); });
         the history, so going back doesn’t cause your users to go through an
         invalid route.</p>
 
-<pre class="prettyprint">
+<script type="template/dart">
 'view_default': ngRoute(
     defaultRoute: true,
     enter: (RouteEnterEvent e) =>
         router.go('view', {},
             startingFrom: router.root.getRoute('recipe'),
             replace: true))
-</pre>
+</script>
 
       <hr class="spacer" />
 
@@ -477,7 +475,7 @@ Logger.root.onRecord.listen((LogRecord r) { print(r.message); });
         The URL for each nested route is created by appending it’s path to its
         ancestors’ paths. Here is an example of nested paths in our app:</p>
 
-<pre class="prettyprint">
+<script type="template/dart">
 'recipe': ngRoute(
     path: '/recipe/:recipeId',
     mount: {
@@ -486,7 +484,7 @@ Logger.root.onRecord.listen((LogRecord r) { print(r.message); });
           view: 'view/viewRecipe.html'),
       // ...
     })
-</pre>
+</script>
 
       <p>Our app’s nested paths are a little more complicated, because they also
         add a parameter to the path. In the example above, the all the routes
@@ -496,12 +494,12 @@ Logger.root.onRecord.listen((LogRecord r) { print(r.message); });
       <p>Here is how our routing configuration will build the paths we’ve
         defined:</p>
 
-<pre class="prettyprint lang-html">
+<script class="prettyprint">
 ...#
 ...#/add
 ...#/recipe/6/view
 ...#/recipe/6/edit
-</pre>
+</script>
 
       <hr class="spacer" />
 
@@ -512,11 +510,11 @@ Logger.root.onRecord.listen((LogRecord r) { print(r.message); });
         file and look at the details section. It contains only an
         <code>ng-view</code> directive.</p>
 
-<pre class="prettyprint">
-&lt;section id="details"&gt;
-    &lt;ng-view&gt;&lt;/ng-view&gt;
-&lt;/section&gt;
-</pre>
+<script type="template/dart">
+<section id="details">
+    <ng-view></ng-view>
+</section>
+</script>
 
       <p>The <code>ng-view</code> directive causes the rendered template of the
         current route to be included into the layout where the
@@ -532,11 +530,11 @@ Logger.root.onRecord.listen((LogRecord r) { print(r.message); });
         extract the parameters for the current route. In our case, we extract
         the <code>recipeId</code> to look up the recipe being viewed:</p>
 
-<pre class="prettyprint">
+<script type="template/dart">
 ViewRecipeComponent(RouteProvider routeProvider) {
   _recipeId = routeProvider.parameters['recipeId'];
 }
-</pre>
+</script>
 
       <hr class="spacer" />
 
@@ -565,11 +563,11 @@ ViewRecipeComponent(RouteProvider routeProvider) {
         data is loaded by using Future chaining. Let’s look at the
         <code>QueryService</code> constructor:</p>
 
-<pre class="prettyprint">
+<script type="template/dart">
 QueryService(Http this._http) {
   _loaded = Future.wait([_loadRecipes(), _loadCategories()]);
 }
-</pre>
+</script>
 
       <p>It wraps the calls to <code>_loadRecipes</code> and
         <code>_loadCategories</code> in a call to
@@ -588,14 +586,13 @@ QueryService(Http this._http) {
 
       <p>Here’s an example:</p>
 
-<pre class="prettyprint">
-Future&lt;Recipe&gt; getRecipeById(String id) {
-  if (_recipesCache == null) {
-    return _loaded.then((_) => _recipesCache[id]);
-  }
-  return new Future.value(_recipesCache[id]);
+<script type="template/dart">
+Future<Recipe> getRecipeById(String id) {
+  return _recipesCache == null
+      ? _loaded.then((_) => _recipesCache[id])
+      : new Future.value(_recipesCache[id]);
 }
-</pre>
+</script>
 
       <hr class="spacer" />
 
@@ -650,6 +647,7 @@ Future&lt;Recipe&gt; getRecipeById(String id) {
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="../js/code.js"></script>
     <script src="../google-code-prettify/prettify.min.js"></script>
     <link href="../google-code-prettify/prettify.css" type="text/css" rel="stylesheet">
     <script>
