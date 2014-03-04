@@ -224,9 +224,9 @@
         create and use a model property directly in the view, with code patterns
         like this:</p>
 
-<pre class="prettyprint">
-&lt;input type="text" ng-model="name"&gt;
-</pre>
+<script type="template/dart">
+<input type="text" ng-model="name">
+</script>
 
       <p>Properties created in this way are created in the root scope, and hence
         not in the scope of any controller. These properties are available in
@@ -267,11 +267,11 @@
       <p>In the Recipe Book example, we see this annotation on the
         <code>RecipeBookController</code> class:</p>
 
-<pre class="prettyprint">
+<script type="template/dart">
 @NgController(
   selector: '[recipe-book]',
   publishAs: 'ctrl')
-</pre>
+</script>
 
       <p>This annotation tells Angular that the class
         <code>RecipeBookController</code> is an Angular controller. When the
@@ -294,11 +294,11 @@
         public methods can be invoked from the view using the
         <code>publishAs</code> name. Here is an example:</p>
 
-<pre class="prettyprint">
-&lt;div>&lt;strong&gt;Name: &lt;/strong&gt;{{ctrl.selectedRecipe.name}}&lt;/div&gt;
+<script type="template/dart">
+<div><strong>Name: </strong>{{ctrl.selectedRecipe.name}}</div>
 
-&lt;li ng-click="ctrl.selectRecipe(recipe)"&gt;{{recipe.name}}&lt;/li&gt;
-</pre>
+<li ng-click="ctrl.selectRecipe(recipe)">{{recipe.name}}</li>
+</script>
 
       <p>Here we also see how to tell the Angular bootstrapping code about our
         custom types. Angular uses dependency injection to instantiate the
@@ -311,7 +311,7 @@
         built in services and directives. Your app’s module is added to the
         list of modules that Angular loads.</p>
 
-<pre class="prettyprint">
+<script type="template/dart">
 class MyAppModule extends Module {
   MyAppModule() {
     type(RecipeBookController);
@@ -321,7 +321,7 @@ class MyAppModule extends Module {
 main() {
   ngBootstrap(module: new MyAppModule());
 }
-</pre>
+</script>
 
       <p>Including your controller class in the module allows Angular to
         instantiate the controller we just created.</p>
@@ -330,11 +330,11 @@ main() {
         to the element which will trigger the CSS selector declared on the
         controller:</p>
 
-<pre class="prettyprint">
-&lt;div recipe-book&gt;
+<script type="template/dart">
+<div recipe-book>
   ...
-&lt;/div&gt;
-</pre>
+</div>
+</script>
 
       <p>Anything within the containing element has access to the controller’s
         scope.</p>
@@ -352,13 +352,13 @@ main() {
         them further by describing what’s going on behind the scenes with the
         <code>ng-repeat</code> tag.</p>
 
-<pre class="prettyprint">
-&lt;ul&gt;
-  &lt;li class="pointer"
+<script type="template/dart">
+<ul>
+  <li class="pointer"
       ng-repeat="recipe in ctrl.recipes"
-      ng-click="ctrl.selectRecipe(recipe)"&gt;{{recipe.name}}&lt;/li&gt;
-&lt;/ul&gt;
-</pre>
+      ng-click="ctrl.selectRecipe(recipe)">{{recipe.name}}</li>
+</ul>
+</script>
 
       <p>The <code>ng-repeat</code> directive on the li element causes Angular
         to iterate over the model (the recipes property in the
@@ -411,6 +411,7 @@ main() {
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="../js/code.js"></script>
     <script src="../google-code-prettify/prettify.min.js"></script>
     <link href="../google-code-prettify/prettify.css" type="text/css" rel="stylesheet">
     <script>

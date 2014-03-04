@@ -208,12 +208,12 @@
         <strong>pubspec.yaml</strong> file. Here’s the minimal pubspec.yaml
         file for this sample:</p>
 
-<pre class="prettyprint">
+<script type="template/dart">
 name: angular_dart_demo
 version: 0.0.1
 dependencies:
 angular: any
-</pre>
+</script>
 
       <p>To use AngularDart in any app, include <code>angular</code> as
         a dependency.</p>
@@ -256,9 +256,9 @@ angular: any
         of the <code>ng-app</code> directive to the <code>&lt;html&gt;</code>
         element:</p>
 
-<pre class="prettyprint">
-&lt;html ng-app&gt;
-</pre>
+<script type="template/dart">
+<html ng-app>
+</script>
 
       <p>The <code>ng-app</code> directive tells Angular which element is the
         root element of the application. Anything inside of this element is
@@ -270,11 +270,11 @@ angular: any
 
       <p>Next, let’s look at the two script tags at the end.</p>
 
-<pre class="prettyprint">
-&lt;script src="packages/shadow_dom/shadow_dom.min.js"&gt;&lt;/script&gt;
-&lt;script type="application/dart" src="main.dart"&gt;&lt;/script&gt;
-&lt;script type="text/javascript" src="packages/browser/dart.js"&gt;&lt;/script&gt;
-</pre>
+<script type="template/dart">
+<script src="packages/shadow_dom/shadow_dom.min.js"></script>
+<script type="application/dart" src="main.dart"></script>
+<script type="text/javascript" src="packages/browser/dart.js"></script>
+</script>
 
       <p>This code should be familiar if you’ve ever written a Dart web app.
         The first script tag turns on the Shadow DOM (a new web platform feature)
@@ -292,12 +292,12 @@ angular: any
 
       <p>Now let’s look at <strong>main.dart</strong>:</p>
 
-<pre class="prettyprint">
+<script type="template/dart">
 import 'package:angular/angular.dart';
   void main() {
     ngBootstrap();
   }
-</pre>
+</script>
 
       <p>That code is minimal because our app is so simple. The only thing we
         see is some code that imports Angular and bootstraps your app. For
@@ -325,10 +325,10 @@ import 'package:angular/angular.dart';
         appears in two places in the view: where it’s set (in the input element)
         and where it’s displayed (in the curly braces, or “mustache”).</p>
 
-<pre class="prettyprint">
-&lt;h3&gt;Hello {{name}}!&lt;/h3&gt;
-Name: &lt;input type="text" ng-model="name"&gt;
-</pre>
+<script type="template/dart">
+<h3>Hello {{name}}!</h3>
+Name: <input type="text" ng-model="name">
+</script>
 
       <p>The term <em>scope</em> means the portion of the model that you want to
         expose to a view. We’ll go into more detail about scopes in later
@@ -359,15 +359,15 @@ Name: &lt;input type="text" ng-model="name"&gt;
       </ul>
 
       <p>Here’s an example of a simple expression:
-<pre class="prettyprint">
+<script type="template/dart">
 {{ 1 + 2 }}
-</pre>
+</script>
       </p>
 
       <p>Here’s another:
-<pre class="prettyprint">
+<script type="template/dart">
 {{ 'foo' + 'bar'}}
-</pre>
+</script>
         These expressions would display as <strong>3</strong> and
         <strong>foobar</strong>, respectively.</p>
 
@@ -379,10 +379,10 @@ Name: &lt;input type="text" ng-model="name"&gt;
       <p>Here’s how the Hello World app uses the mustache syntax to bind to
         the model (“name”) and display the model in the view.</p>
 
-<pre class="prettyprint">
-&lt;h3&gt;Hello {{name}}!&lt;/h3&gt;
-Name: &lt;input type="text" ng-model="name"&gt;
-</pre>
+<script type="template/dart">
+<h3>Hello {{name}}!</h3>
+Name: <input type="text" ng-model="name">
+</script>
 
       <p>Notice that the input element has the
         <a href="https://docs.angulardart.org/#angular/angular.NgModel">
@@ -443,6 +443,7 @@ Name: &lt;input type="text" ng-model="name"&gt;
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="../js/code.js"></script>
     <script src="../google-code-prettify/prettify.min.js"></script>
     <link href="../google-code-prettify/prettify.css" type="text/css" rel="stylesheet">
     <script>

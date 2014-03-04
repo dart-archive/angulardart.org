@@ -217,29 +217,29 @@
         As the user types into the text input box, it updates the model object’s
         <code>nameFilterString</code> property.
 
-<pre class="prettyprint">
-&lt;input id="name-filter" type="text"
-       ng-model="ctrl.nameFilterString"&gt;
-</pre>
+<script type="template/dart">
+<input id="name-filter" type="text"
+       ng-model="ctrl.nameFilterString">
+</script>
 
       <p>Next, we pipe the <code>ng-repeat</code> criteria through the filter,
         and tell the filter to use <code>ctrl.nameFilterString</code> as the
         property to filter against.
 
-<pre class="prettyprint">
-&lt;ul&gt;
-    &lt;li class="pointer"
-        ng-repeat="recipe in ctrl.recipes | filter:{name:ctrl.nameFilterString}"&gt;
+<script type="template/dart">
+<ul>
+    <li class="pointer"
+        ng-repeat="recipe in ctrl.recipes | filter:{name:ctrl.nameFilterString}">
     ...
-    &lt;/li&gt;
-&lt;/ul&gt;
-</pre>
+    </li>
+</ul>
+</script>
 
       <p>Lastly, we create a property on our <code>RecipeBookController</code>
         to store the <code>nameFilterString</code> property for the input.
-<pre class="prettyprint">
+<script type="template/dart">
 String nameFilterString = "";
-</pre>
+</script>
 
       <p>That’s all you need to start filtering your results.</p>
 
@@ -254,9 +254,9 @@ String nameFilterString = "";
       <p>A custom filter in Angular is simply a Dart class that declares a
         <code>call</code> method with at least one argument:</p>
 
-<pre class="prettyprint">
+<script type="template/dart">
 call(valueToFilter, optArg1, ..., optArgN);
-</pre>
+</script>
 
       <p>The first argument is the incoming model object to be filtered; in our
         case, it will be the recipe list. The remaining (0 or more) optional
@@ -273,18 +273,18 @@ call(valueToFilter, optArg1, ..., optArgN);
 
       <p>Here is the call method from our <code>CategoryFilter</code>:</p>
 
-<pre class="prettyprint">
+<script type="template/dart">
 call(recipeList, filterMap) {
-  if (recipeList is List &amp;&amp; filterMap is Map) {
+  if (recipeList is List && filterMap is Map) {
     // If there is nothing checked, treat it as "everything is checked"
-    bool nothingChecked = filterMap.values.every((isChecked) =&gt; !isChecked);
+    bool nothingChecked = filterMap.values.every((isChecked) => !isChecked);
     if (nothingChecked) {
       return recipeList.toList();
     }
-    return recipeList.where((i) =&gt; filterMap[i.category] == true).toList();
+    return recipeList.where((i) => filterMap[i.category] == true).toList();
   }
 }
-</pre>
+</script>
 
       <p>The <code>filterMap</code> parameter deserves some further explanation.
         It’s the data that comes in off of the checkbox inputs. We will talk a
@@ -293,13 +293,13 @@ call(recipeList, filterMap) {
 
       <p>Next, annotate the class to publish it as a filter:
 
-<pre class="prettyprint">
+<script type="template/dart">
 @NgFilter(name: 'categoryfilter')
-</pre>
+</script>
 
       <p>Add the new class to the bootstrapping code:</p>
 
-<pre class="prettyprint">
+<script type="template/dart">
 class MyAppModule extends Module {
   MyAppModule() {
     ...
@@ -307,20 +307,20 @@ class MyAppModule extends Module {
     ...
   }
 }
-</pre>
+</script>
 
       <p>and then use it from the view:</p>
 
-<pre class="prettyprint">
-&lt;div&gt;
-    &lt;label>Filter recipes by category
-        &lt;span ng-repeat="category in ctrl.categories"&gt;
-          &lt;input type="checkbox"
+<script type="template/dart">
+<div>
+    <label>Filter recipes by category
+        <span ng-repeat="category in ctrl.categories">
+          <input type="checkbox"
                  ng-model="ctrl.categoryFilterMap[category]">{{category}}
-        &lt;/span&gt;
-    &lt;/label&gt;
-&lt;/div&gt;
-</pre>
+        </span>
+    </label>
+</div>
+</script>
 
       <p>Our view creates a checkbox input and label for each category. Angular
         stores each checkbox value as a boolean - true if checked, or false if
@@ -337,10 +337,10 @@ class MyAppModule extends Module {
 
       <p>Next, we plug the custom filter in the same way we would plug in a built in filter:
 
-<pre class="prettyprint">
-&lt;li class="pointer"
-    ng-repeat="recipe in ctrl.recipes | categoryfilter:ctrl.categoryFilterMap"&gt;
-</pre>
+<script type="template/dart">
+<li class="pointer"
+    ng-repeat="recipe in ctrl.recipes | categoryfilter:ctrl.categoryFilterMap">
+</script>
 
     <hr class="spacer" />
       <h4 id="filter-chaining">Filter chaining</h4>
@@ -350,10 +350,10 @@ class MyAppModule extends Module {
         This is how Angular applies multiple filters to a single
         <code>ng-repeat</code>.</p>
 
-<pre class="prettyprint">
-&lt;li class="pointer"
-    ng-repeat="recipe in ctrl.recipes | orderBy:'name' | filter:{name:ctrl.nameFilterString} | categoryfilter:ctrl.categoryFilterMap"&gt;
-</pre>
+<script type="template/dart">
+<li class="pointer"
+    ng-repeat="recipe in ctrl.recipes | orderBy:'name' | filter:{name:ctrl.nameFilterString} | categoryfilter:ctrl.categoryFilterMap">
+</script>
 
 
     <hr class="spacer" />
@@ -363,8 +363,8 @@ class MyAppModule extends Module {
 
       <p>Our last example had the data hard coded in the app. In reality, you’d
         request data from a server. Angular provides a built in
-        service called the 
-	<code><a href="https://docs.angulardart.org/#angular/angular.Http">Http</a></code> 
+        service called the
+	<code><a href="https://docs.angulardart.org/#angular/angular.Http">Http</a></code>
 	Service that handles making HTTP
         requests to the server. First let’s look at the two new files we’ve
         added to the project: <strong>recipes.json</strong> and
@@ -388,7 +388,7 @@ class MyAppModule extends Module {
         which contains injection rules for all of Angular’s core features,
         including the <code>Http</code> service.</p>
 
-<pre class="prettyprint">
+<script type="template/dart">
 class RecipeBookController {
   Http _http;
   ...
@@ -397,9 +397,9 @@ class RecipeBookController {
   }
   ...
 }
-</pre>
+</script>
 
-<pre class="prettyprint">
+<script type="template/dart">
 class MyAppModule extends Module {
   MyAppModule() {
     ...
@@ -411,14 +411,14 @@ class MyAppModule extends Module {
 void main() {
   ngBootstrap(module: new MyAppModule());
 }
-</pre>
+</script>
 
-      <p>Next, let’s look at how to use the 
+      <p>Next, let’s look at how to use the
         <code><a href="https://docs.angulardart.org/#angular/angular.Http">Http</a></code> service to fetch
         data from the server. Look at the changes we made to the
         <code>_loadData</code> method. Here is the new code:</p>
 
-<pre class="prettyprint">
+<script type="template/dart">
 void _loadData() {
   recipesLoaded = false;
   ...
@@ -435,11 +435,11 @@ void _loadData() {
     });
   ...
 }
-</pre>
+</script>
 
       <p>Let’s look more closely at the call to the <code>Http</code> service:</p>
 
-<pre class="prettyprint">
+<script type="template/dart">
 _http.get(URL)
   .then((value) {
     // use value
@@ -447,7 +447,7 @@ _http.get(URL)
   .catchError((e) {
     // handle error
   });
-</pre>
+</script>
 
       <p>The <code>Http</code> <code>get</code> method returns a
         <a href="http://api.dartlang.org/docs/releases/latest/dart_async/Future.html">
@@ -469,10 +469,10 @@ _http.get(URL)
         returned. The view should be prepared for this. In our case, we need two
         pieces of data before the app is useful:</p>
 
-<pre class="prettyprint">
+<script type="template/dart">
 List categories = [];
-List&lt;Recipe&gt; recipes = [];
-</pre>
+List<Recipe> recipes = [];
+</script>
 
       <p>Until the future has returned, your recipe book contains an empty list
         of recipes and an empty list of categories. Any part of your view that
@@ -487,19 +487,19 @@ List&lt;Recipe&gt; recipes = [];
         conditional display logic, let&rsquo;s use an <code>ng-switch</code>
         directive instead.</p>
 
-<pre class="prettyprint">
-&lt;body recipe-book ng-cloak&gt;
-  &lt;div ng-switch="ctrl.recipesLoaded && ctrl.categoriesLoaded"&gt;
-    &lt;div ng-switch-when="false"&gt;
+<script type="template/dart">
+<body recipe-book ng-cloak>
+  <div ng-switch="ctrl.recipesLoaded && ctrl.categoriesLoaded">
+    <div ng-switch-when="false">
       {{ctrl.message}}
-    &lt;/div&gt;
-    &lt;div ng-switch-when="true"&gt;
-      &lt;h3&gt;Recipe List&lt;/h3&gt;
+    </div>
+    <div ng-switch-when="true">
+      <h3>Recipe List</h3>
       ...
-    &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/body&gt;
-</pre>
+    </div>
+  </div>
+</body>
+</script>
 
       <p>Note that we could replace one of the <code>ng-switch-when</code>
         directives above by <code>ng-switch-default</code>. Also, loosely speaking,
@@ -511,7 +511,7 @@ List&lt;Recipe&gt; recipes = [];
         <code>NgSwitchDirective</code> API documentation</a>.</p>
 
       <p>You can see the “Loading...” feature work by simulating a really slow
-        loading data source. Put a breakpoint inside one of the <code>then()</code> 
+        loading data source. Put a breakpoint inside one of the <code>then()</code>
 	closures in the <code>_loadData</code> method and
         load the app. Notice that while you’re stopped at the breakpoint, your
         app shows the  “Loading...” message. Now get out of the breakpoint and
@@ -538,23 +538,23 @@ List&lt;Recipe&gt; recipes = [];
         DOM, you can hide the page (or sections of it) by using
         <code>ng-cloak</code>:</p>
 
-<pre class="prettyprint">
-&lt;body class=”ng-cloak”&gt;
-</pre>
+<script type="template/dart">
+<body class=”ng-cloak”>
+</script>
 
       or
 
-<pre class="prettyprint">
-&lt;body ng-cloak&gt;
-</pre>
+<script type="template/dart">
+<body ng-cloak>
+</script>
 
       The CSS rule causes the view to be hidden:
 
-<pre class="prettyprint">
+<script type="template/dart">
 [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
    display: none !important;
 }
-</pre>
+</script>
 
       <p>Once Angular is finished compiling the DOM, it secretly removes the
         <code>ng-cloak</code> class or directive from the DOM and allows your
@@ -630,6 +630,7 @@ List&lt;Recipe&gt; recipes = [];
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="../js/code.js"></script>
     <script src="../google-code-prettify/prettify.min.js"></script>
     <link href="../google-code-prettify/prettify.css" type="text/css" rel="stylesheet">
     <script>
