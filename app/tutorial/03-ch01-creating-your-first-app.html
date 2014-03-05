@@ -270,11 +270,12 @@ dependencies:
 
       <p>Next, let’s look at the two script tags at the end.</p>
 
-<script type="template/dart">
-<script src="packages/shadow_dom/shadow_dom.min.js"></script>
-<script type="application/dart" src="main.dart"></script>
-<script type="text/javascript" src="packages/browser/dart.js"></script>
-</script>
+<!-- Can not use a script tag here because of nested script tags -->
+<pre class="prettyprint">
+&lt;script src="packages/shadow_dom/shadow_dom.min.js"&gt;&lt;/script&gt;
+&lt;script type="application/dart" src="main.dart"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="packages/browser/dart.js"&gt;&lt;/script&gt;
+</pre>
 
       <p>This code should be familiar if you’ve ever written a Dart web app.
         The first script tag turns on the Shadow DOM (a new web platform feature)

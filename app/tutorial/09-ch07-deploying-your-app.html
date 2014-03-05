@@ -513,15 +513,17 @@ class FooDirective {
 
       <p>Include the script tag before any other script tags:</p>
 
-<script type="template/dart">
-<script src="packages/shadow_dom/shadow_dom.min.js"></script>
-</script>
+<!-- Can not use a script tag here because of nested script tags -->
+<pre class="prettyprint">
+&lt;script src="packages/shadow_dom/shadow_dom.min.js"&gt;&lt;/script&gt;
+</pre>
 
       <p>or the debug version:</p>
 
-<script type="template/dart">
-<script src="packages/shadow_dom/shadow_dom.debug.js"></script>
-</script>
+<!-- Can not use a script tag here because of nested script tags -->
+<pre class="prettyprint">
+&lt;script src="packages/shadow_dom/shadow_dom.debug.js"&gt;&lt;/script&gt;
+</pre>
 
       <p><strong>NOTE:</strong> Using the polyfill has
         <a href="https://github.com/polymer/ShadowDOM#known-limitations">
