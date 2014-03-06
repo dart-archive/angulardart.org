@@ -213,7 +213,7 @@
         HTML attributes. Here is how our Recipe Book app uses the rating
         component.</p>
 
-<script type="template/dart">
+<script type="template/code">
 <rating max-rating="5" rating="ctrl.selectedRecipe.rating"></rating>
 </script>
 
@@ -224,7 +224,7 @@
         component, simply create a class and add the <code>NgComponent</code>
         annotation. Here is the annotation for our rating component:</p>
 
-<script type="template/dart">
+<script type="template/code">
 @NgComponent(
     selector: 'rating',
     templateUrl: 'packages/angular_dart_demo/rating/rating_component.html',
@@ -249,7 +249,7 @@ class RatingComponent {...}
         in the HTML template.</p>
 
       <!-- PENDING: The following code is a little weird. Make it a table? -->
-<script type="template/dart">
+<script type="template/code">
 @NgComponent(
     selector: 'rating',
     ...)
@@ -281,7 +281,7 @@ class RatingComponent {...}
 
       <p>Let’s look at our component’s HTML template:</p>
 
-<script type="template/dart">
+<script type="template/code">
 <span class="stars"
       ng-if="cmp.rating != null"
       ng-repeat="star in cmp.stars"
@@ -304,7 +304,7 @@ class RatingComponent {...}
 
       <p>Recall how our Recipe Book app uses the rating component:</p>
 
-<script type="template/dart">
+<script type="template/code">
 <rating max-rating="5" rating="ctrl.selectedRecipe.rating"></rating>
 </script>
 
@@ -312,7 +312,7 @@ class RatingComponent {...}
         component, the <code>RatingComponent</code> class uses annotations like the
         following:</p>
 
-<script type="template/dart">
+<script type="template/code">
 @NgTwoWay(‘rating’)
   int rating;
 

@@ -7,7 +7,7 @@
   var scripts = document.getElementsByTagName("script");
   var length = scripts.length;
   for (var i = 0; i < length; ++i) {
-    if (scripts[i].type == "template/dart") {
+    if (scripts[i].type == "template/code") {
       var code = document.createElement("pre");
       code.className = "prettyprint";
       code.textContent = scripts[i].textContent.replace(/^\s+|\s+$/g, '');

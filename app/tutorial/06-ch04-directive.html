@@ -172,7 +172,7 @@
       <p>This chapter defines a directive called <em>tooltip</em>. HTML code can
         use the tooltip directive in a span or any other element:</p>
 
-<script type="template/dart">
+<script type="template/code">
 <span tooltip="ctrl.tooltipForRecipe(recipe)">
   ...
 </span>
@@ -228,7 +228,7 @@
       <p>The <code>@NgDirective</code> and <code>@NgOneWay</code> annotations
         specify the tooltip API:</p>
 
-<script type="template/dart">
+<script type="template/code">
 ...
 import 'package:angular/angular.dart';
 
@@ -255,7 +255,7 @@ class Tooltip {
 
       <p>Consider the following HTML:</p>
 
-<script type="template/dart">
+<script type="template/code">
 <span tooltip="ctrl.tooltipForRecipe(recipe)">
 </script>
 
@@ -268,7 +268,7 @@ class Tooltip {
       <p>In general, when you want to implement a directive as an attribute that
         takes a value, do it like this:</p>
 
-<script type="template/dart">
+<script type="template/code">
 @NgDirective(
   selector: '[attributeName]')
 class MyDirective {
@@ -293,7 +293,7 @@ class MyDirective {
         (<code>tooltipElem</code>) whenever the user mouses over an element that
         has a tooltip:</p>
 
-<script type="template/dart">
+<script type="template/code">
 import 'dart:html' as dom;
 ...
 // In an onMouseEnter handler:
@@ -331,7 +331,7 @@ dom.document.body.append(tooltipElem);
       <p>The implementation of the <code>TooltipModel</code> class is trivial.
       The class just encapsulates data that the tooltip needs:</p>
 
-<script type="template/dart">
+<script type="template/code">
 class TooltipModel {
   String imgUrl;
   String text;
@@ -349,7 +349,7 @@ class TooltipModel {
       <p>Remember that we want the HTML to be able to use a tooltip directive
         like this:</p>
 
-<script type="template/dart">
+<script type="template/code">
 <span tooltip="ctrl.tooltipForRecipe(recipe)">
 </script>
 
@@ -358,7 +358,7 @@ class TooltipModel {
         TooltipModel argument, so that’s the type that
         <code>tooltipForRecipe()</code> returns.</p>
 
-<script type="template/dart">
+<script type="template/code">
 class RecipeBookController {
   ...
   static final tooltip = new Expando<TooltipModel>();

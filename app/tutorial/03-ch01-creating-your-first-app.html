@@ -208,7 +208,7 @@
         <strong>pubspec.yaml</strong> file. Here’s the minimal pubspec.yaml
         file for this sample:</p>
 
-<script type="template/dart">
+<script type="template/code">
 name: angular_dart_demo
 version: 0.0.1
 dependencies:
@@ -256,7 +256,7 @@ dependencies:
         of the <code>ng-app</code> directive to the <code>&lt;html&gt;</code>
         element:</p>
 
-<script type="template/dart">
+<script type="template/code">
 <html ng-app>
 </script>
 
@@ -293,7 +293,7 @@ dependencies:
 
       <p>Now let’s look at <strong>main.dart</strong>:</p>
 
-<script type="template/dart">
+<script type="template/code">
 import 'package:angular/angular.dart';
   void main() {
     ngBootstrap();
@@ -326,7 +326,7 @@ import 'package:angular/angular.dart';
         appears in two places in the view: where it’s set (in the input element)
         and where it’s displayed (in the curly braces, or “mustache”).</p>
 
-<script type="template/dart">
+<script type="template/code">
 <h3>Hello {{name}}!</h3>
 Name: <input type="text" ng-model="name">
 </script>
@@ -360,12 +360,12 @@ Name: <input type="text" ng-model="name">
       </ul>
 
       <p>Here’s an example of a simple expression:</p>
-<script type="template/dart">
+<script type="template/code">
 {{ 1 + 2 }}
 </script>
 
       <p>Here’s another:</p>
-<script type="template/dart">
+<script type="template/code">
 {{ 'foo' + 'bar'}}
 </script>
 
@@ -380,7 +380,7 @@ Name: <input type="text" ng-model="name">
       <p>Here’s how the Hello World app uses the mustache syntax to bind to
         the model (“name”) and display the model in the view.</p>
 
-<script type="template/dart">
+<script type="template/code">
 <h3>Hello {{name}}!</h3>
 Name: <input type="text" ng-model="name">
 </script>

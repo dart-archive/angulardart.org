@@ -217,7 +217,7 @@
         As the user types into the text input box, it updates the model object’s
         <code>nameFilterString</code> property.</p>
 
-<script type="template/dart">
+<script type="template/code">
 <input id="name-filter" type="text"
        ng-model="ctrl.nameFilterString">
 </script>
@@ -226,7 +226,7 @@
         and tell the filter to use <code>ctrl.nameFilterString</code> as the
         property to filter against.</p>
 
-<script type="template/dart">
+<script type="template/code">
 <ul>
     <li class="pointer"
         ng-repeat="recipe in ctrl.recipes | filter:{name:ctrl.nameFilterString}">
@@ -238,7 +238,7 @@
       <p>Lastly, we create a property on our <code>RecipeBookController</code>
         to store the <code>nameFilterString</code> property for the input.</p>
 
-<script type="template/dart">
+<script type="template/code">
 String nameFilterString = "";
 </script>
 
@@ -255,7 +255,7 @@ String nameFilterString = "";
       <p>A custom filter in Angular is simply a Dart class that declares a
         <code>call</code> method with at least one argument:</p>
 
-<script type="template/dart">
+<script type="template/code">
 call(valueToFilter, optArg1, ..., optArgN);
 </script>
 
@@ -274,7 +274,7 @@ call(valueToFilter, optArg1, ..., optArgN);
 
       <p>Here is the call method from our <code>CategoryFilter</code>:</p>
 
-<script type="template/dart">
+<script type="template/code">
   List call(recipeList, filterMap) {
     if (recipeList is Iterable && filterMap is Map) {
       // If there is nothing checked, treat it as "everything is checked"
@@ -293,14 +293,14 @@ call(valueToFilter, optArg1, ..., optArgN);
 
       <p>Next, annotate the class to publish it as a filter:
 
-<script type="template/dart">
+<script type="template/code">
 @NgFilter(name: 'categoryfilter')
 class CategoryFilter { ... }
 </script>
 
       <p>Add the new class to the bootstrapping code:</p>
 
-<script type="template/dart">
+<script type="template/code">
 class MyAppModule extends Module {
   MyAppModule() {
     ...
@@ -312,7 +312,7 @@ class MyAppModule extends Module {
 
       <p>and then use it from the view:</p>
 
-<script type="template/dart">
+<script type="template/code">
 <div>
     <label>Filter recipes by category
         <span ng-repeat="category in ctrl.categories">
@@ -339,7 +339,7 @@ class MyAppModule extends Module {
       <p>Next, we plug the custom filter in the same way we would plug in a built
         in filter:</p>
 
-<script type="template/dart">
+<script type="template/code">
 <li class="pointer"
     ng-repeat="recipe in ctrl.recipes | categoryfilter:ctrl.categoryFilterMap">
 </script>
@@ -352,7 +352,7 @@ class MyAppModule extends Module {
         This is how Angular applies multiple filters to a single
         <code>ng-repeat</code>.</p>
 
-<script type="template/dart">
+<script type="template/code">
 <li class="pointer"
     ng-repeat="recipe in ctrl.recipes | orderBy:'name' | filter:{name:ctrl.nameFilterString} | categoryfilter:ctrl.categoryFilterMap">
 </script>
@@ -390,7 +390,7 @@ class MyAppModule extends Module {
         which contains injection rules for all of Angular’s core features,
         including the <code>Http</code> service.</p>
 
-<script type="template/dart">
+<script type="template/code">
 class RecipeBookController {
   Http _http;
   ...
@@ -401,7 +401,7 @@ class RecipeBookController {
 }
 </script>
 
-<script type="template/dart">
+<script type="template/code">
 class MyAppModule extends Module {
   MyAppModule() {
     ...
@@ -420,7 +420,7 @@ void main() {
         data from the server. Look at the changes we made to the
         <code>_loadData</code> method. Here is the new code:</p>
 
-<script type="template/dart">
+<script type="template/code">
 void _loadData() {
   recipesLoaded = false;
   ...
@@ -441,7 +441,7 @@ void _loadData() {
 
       <p>Let’s look more closely at the call to the <code>Http</code> service:</p>
 
-<script type="template/dart">
+<script type="template/code">
 _http.get(URL)
   .then((value) {
     // use value
@@ -471,7 +471,7 @@ _http.get(URL)
         returned. The view should be prepared for this. In our case, we need two
         pieces of data before the app is useful:</p>
 
-<script type="template/dart">
+<script type="template/code">
 List categories = [];
 List<Recipe> recipes = [];
 </script>
@@ -489,7 +489,7 @@ List<Recipe> recipes = [];
         conditional display logic, let&rsquo;s use an <code>ng-switch</code>
         directive instead.</p>
 
-<script type="template/dart">
+<script type="template/code">
 <body recipe-book ng-cloak>
   <div ng-switch="ctrl.recipesLoaded && ctrl.categoriesLoaded">
     <div ng-switch-when="false">
@@ -540,19 +540,19 @@ List<Recipe> recipes = [];
         DOM, you can hide the page (or sections of it) by using
         <code>ng-cloak</code>:</p>
 
-<script type="template/dart">
+<script type="template/code">
 <body class="ng-cloak">
 </script>
 
       <p>or</p>
 
-<script type="template/dart">
+<script type="template/code">
 <body ng-cloak>
 </script>
 
       <p>The CSS rule causes the view to be hidden:</p>
 
-<script type="template/dart">
+<script type="template/code">
 [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
    display: none !important;
 }

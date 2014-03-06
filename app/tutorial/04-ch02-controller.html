@@ -224,7 +224,7 @@
         create and use a model property directly in the view, with code patterns
         like this:</p>
 
-<script type="template/dart">
+<script type="template/code">
 <input type="text" ng-model="name">
 </script>
 
@@ -267,7 +267,7 @@
       <p>In the Recipe Book example, we see this annotation on the
         <code>RecipeBookController</code> class:</p>
 
-<script type="template/dart">
+<script type="template/code">
 @NgController(
     selector: '[recipe-book]',
     publishAs: 'ctrl')
@@ -295,7 +295,7 @@ class RecipeBookController { ... }
         public methods can be invoked from the view using the
         <code>publishAs</code> name. Here is an example:</p>
 
-<script type="template/dart">
+<script type="template/code">
 <div><strong>Name: </strong>{{ctrl.selectedRecipe.name}}</div>
 
 <li ng-click="ctrl.selectRecipe(recipe)">{{recipe.name}}</li>
@@ -312,7 +312,7 @@ class RecipeBookController { ... }
         built in services and directives. Your app’s module is added to the
         list of modules that Angular loads.</p>
 
-<script type="template/dart">
+<script type="template/code">
 class MyAppModule extends Module {
   MyAppModule() {
     type(RecipeBookController);
@@ -331,7 +331,7 @@ main() {
         to the element which will trigger the CSS selector declared on the
         controller:</p>
 
-<script type="template/dart">
+<script type="template/code">
 <div recipe-book>
   ...
 </div>
@@ -353,7 +353,7 @@ main() {
         them further by describing what’s going on behind the scenes with the
         <code>ng-repeat</code> tag.</p>
 
-<script type="template/dart">
+<script type="template/code">
 <ul>
   <li class="pointer"
       ng-repeat="recipe in ctrl.recipes"

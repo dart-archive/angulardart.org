@@ -182,7 +182,7 @@
       <p>Before running the app, get the packages, temporarily set the DART_SDK
         environment variable, and run the code generator. For example:</p>
 
-<script type="template/dart">
+<script type="template/code">
 pub get
 export DART_SDK=/Applications/Dart/dart-sdk
 dart -c bin/generator.dart
@@ -256,7 +256,7 @@ dart -c bin/generator.dart
       <p>One way to minify is to run <code>pub build</code>, which has
         minification turned on by default:</p>
 
-<script type="template/dart">
+<script type="template/code">
 cd your_app
 pub build
 </script>
@@ -295,7 +295,7 @@ pub build
         generation (as we do in this chapter) and are using angular &gt;=0.9.5,
         your annotation could look like this:</p>
 
-<script type="template/dart">
+<script type="template/code">
 @MirrorsUsed(override: '*')
 import 'dart:mirrors';
 </script>
@@ -358,7 +358,7 @@ import 'dart:mirrors';
         which can be applied on a library definition with a list of types that
         the generator should process.</p>
 
-<script type="template/dart">
+<script type="template/code">
 @Injectables(const [
     MyService])
 library my_service_librarry;
@@ -377,7 +377,7 @@ class MyService {
 
       <p>You can define your own custom class annotations</p>
 
-<script type="template/dart">
+<script type="template/code">
 library injectable;
 
 /**
@@ -392,7 +392,7 @@ class InjectableService {
       <p>and apply them on classes that you need to be instantiated by the
         injector.</p>
 
-<script type="template/dart">
+<script type="template/code">
 @InjectableService()
 class QueryService {
   // ...
@@ -448,7 +448,7 @@ class QueryService {
         property on <code>NgDirective</code>/<code>NgComponent</code>
         annotation. Ex:</p>
 
-<script type="template/dart">
+<script type="template/code">
 @NgComponent(
     selector: 'foo'
     exportExpressionAttrs: 'bar')
@@ -470,7 +470,7 @@ class FooComponent implement NgAttachAware {
       <p>Similarly, if directive programmatically evaluates an expression it can
         tell expression extractor which expressions it evaluates:</p>
 
-<script type="template/dart">
+<script type="template/code">
 @NgDirective(
     selector: 'foo'
     exportExpressions: '1 + 3')

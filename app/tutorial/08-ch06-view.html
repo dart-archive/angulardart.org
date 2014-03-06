@@ -223,12 +223,12 @@
         <div class="col-md-6">
           <h3>index.html (previous Chapter)</h3>
 
-<script type="template/dart">
+<script type="template/code">
 <div recipe-book>
   ...
   <h3>Recipe List</h3>
 
-  <strong><div id="filters">
+  <div id="filters">
     <div>
       <label for="name-filter">Filter ... </label>
       <input id="name-filter" type="text"
@@ -246,7 +246,7 @@
     </div>
     <input type="button" value="Clear Filters"
         ng-click="ctrl.clearFilters()">
-  </div></strong>
+  </div>
 
   <div id="recipe-list">
    ...
@@ -264,13 +264,13 @@
         <div class="col-md-6">
           <h3>index.html (revisited)</h3>
 
-<script type="template/dart">
+<script type="template/code">
 <div recipe-book> ...
   <h3>Recipe List</h3> ...
-    <strong><search-recipe
+    <search-recipe
         name-filter-string="ctrl.nameFilter"
         category-filter-map="ctrl.categoryFilterMap">
-    </search-recipe></strong> ...
+    </search-recipe> ...
     <div id="recipe-list">...</div> ...
   <section id="details">
     <ng-view></ng-view>
@@ -280,7 +280,7 @@
 
           <h3>search_recipe_component.html</h3>
 
-<script type="template/dart">
+<script type="template/code">
 <div id="filters">
   <div>
     <label for="name-filter">Filter ...</label>
@@ -323,7 +323,7 @@
         <code>SearchRecipeComponent</code>’s HTML template (shown as the lower
         right excerpt in the table above).</p>
 
-<script type="template/dart">
+<script type="template/code">
 @NgComponent(
     selector: 'search-recipe',
     templateUrl: 'packages/angular_dart_demo/component/search_recipe_component.html',
@@ -372,7 +372,7 @@ class SearchRecipeComponent {
           <code>ViewFactory</code></a>, both of which are created by the
         routing framework for you.</p>
 
-<script type="template/dart">
+<script type="template/code">
 recipeBookRouteInitializer(Router router, ViewFactory views) {
   // ...
 }
@@ -382,7 +382,7 @@ recipeBookRouteInitializer(Router router, ViewFactory views) {
         and then make the <code>RouteInitializerFn</code> available in the
         your app’s module configuration:</p>
 
-<script type="template/dart">
+<script type="template/code">
 value(RouteInitializerFn, recipeBookRouteInitializer);
 </script>
 
@@ -392,7 +392,7 @@ value(RouteInitializerFn, recipeBookRouteInitializer);
         using the provided  <code>ngRoute()</code> function. Here is a simple route
         configuration.</p>
 
-<script type="template/dart">
+<script type="template/code">
 void recipeBookRouteInitializer(Router router, ViewFactory views) {
   views.configure({
     'add': ngRoute(
@@ -416,7 +416,7 @@ void recipeBookRouteInitializer(Router router, ViewFactory views) {
         to debug your routing configuration, import Dart’s logging library and
         add this magic to your <code>main()</code>:</p>
 
-<script type="template/dart">
+<script type="template/code">
 Logger.root.level = Level.FINEST;
 Logger.root.onRecord.listen((LogRecord r) { print(r.message); });
 </script>
@@ -460,7 +460,7 @@ Logger.root.onRecord.listen((LogRecord r) { print(r.message); });
         the history, so going back doesn’t cause your users to go through an
         invalid route.</p>
 
-<script type="template/dart">
+<script type="template/code">
 'view_default': ngRoute(
     defaultRoute: true,
     enter: (RouteEnterEvent e) =>
@@ -476,7 +476,7 @@ Logger.root.onRecord.listen((LogRecord r) { print(r.message); });
         The URL for each nested route is created by appending it’s path to its
         ancestors’ paths. Here is an example of nested paths in our app:</p>
 
-<script type="template/dart">
+<script type="template/code">
 'recipe': ngRoute(
     path: '/recipe/:recipeId',
     mount: {
@@ -495,7 +495,7 @@ Logger.root.onRecord.listen((LogRecord r) { print(r.message); });
       <p>Here is how our routing configuration will build the paths we’ve
         defined:</p>
 
-<script class="prettyprint">
+<script type="template/code">
 ...#
 ...#/add
 ...#/recipe/6/view
@@ -511,7 +511,7 @@ Logger.root.onRecord.listen((LogRecord r) { print(r.message); });
         file and look at the details section. It contains only an
         <code>ng-view</code> directive.</p>
 
-<script type="template/dart">
+<script type="template/code">
 <section id="details">
     <ng-view></ng-view>
 </section>
@@ -531,7 +531,7 @@ Logger.root.onRecord.listen((LogRecord r) { print(r.message); });
         extract the parameters for the current route. In our case, we extract
         the <code>recipeId</code> to look up the recipe being viewed:</p>
 
-<script type="template/dart">
+<script type="template/code">
 ViewRecipeComponent(RouteProvider routeProvider) {
   _recipeId = routeProvider.parameters['recipeId'];
 }
@@ -564,7 +564,7 @@ ViewRecipeComponent(RouteProvider routeProvider) {
         data is loaded by using Future chaining. Let’s look at the
         <code>QueryService</code> constructor:</p>
 
-<script type="template/dart">
+<script type="template/code">
 QueryService(Http this._http) {
   _loaded = Future.wait([_loadRecipes(), _loadCategories()]);
 }
@@ -587,7 +587,7 @@ QueryService(Http this._http) {
 
       <p>Here’s an example:</p>
 
-<script type="template/dart">
+<script type="template/code">
 Future<Recipe> getRecipeById(String id) {
   return _recipesCache == null
       ? _loaded.then((_) => _recipesCache[id])
