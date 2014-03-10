@@ -598,13 +598,38 @@ Future<Recipe> getRecipeById(String id) {
       <hr class="spacer" />
 
       <h3 id="now-its-your-turn">Now it's your turn</h3>
-      <p>We have set up a stub for adding and editing recipes. Try building the
-        view to edit an existing recipe and write it back  to the mock data
-        store (the JSON file). First you’ll need to create a view component for
-        editing a recipe. Next, you will need to create a method on the
-        <code>QueryService</code> to update the recipe data store, and then
-        reload the recipe cache from the data store.</p>
 
+      <p>The app features presented in this chapter make use of stubs for
+      adding and editing recipes.  The exercises below suggest that you
+      progressively replace the stubs with full implementations. For the first
+      two exercises, don’t worry about saving changes back to the mock data
+      store (i.e., the recipe JSON file); instead, just hold changes in the
+      model
+      property <span class="prettyprint"><code>_recipesCache</code></span>. The
+      last exercise explores writing to the mock data store.</p>
+
+      <ol>
+        <li>Add support for recipe editing. Doing so will require that you
+        create a view component for editing a recipe. You might want to first
+        allow editing of the recipe title only, and then progressively support
+        editing of the remaining recipe properties.</li>
+
+        <li>Replace the add recipe stub by a real implementation.</li>
+
+        <li>Once you have completed the previous exercises, add support for
+        writing new and edited recipes back to the
+        server-side <strong>recipe.json</strong> file, which is acting as a
+        mock data store. Do so by adding appropriate method(s) to
+        the <code>QueryService</code>. Since the web browser integrated with
+        the Dart Editor does not support saving resources, you will need to
+        test your solution to this exercise using the custom server provided
+        with this Chapter’s sources. Launch this custom server like any other
+        Dart command-line program. The server listens on port 3031 for PUT
+        requests, but otherwise acts like a typical HTTP server dispatching
+        static content from the app’s web folder. To run your app on this
+        server use the following
+        URL: <a href="http://127.0.0.1:3031/index.html">http://127.0.0.1:3031/index.html</a>.</li>
+      </ol>
       <hr class="spacer" />
       <h4 id="extra-credit">Extra challenge</h4>
       <p>Try to use the router <code>leave()</code> callback to prevent a user
