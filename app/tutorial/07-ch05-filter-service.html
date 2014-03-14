@@ -553,7 +553,7 @@ List<Recipe> recipes = [];
       <p>The CSS rule causes the view to be hidden:</p>
 
 <script type="template/code">
-[ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+[ng-cloak], .ng-cloak {
    display: none !important;
 }
 </script>
@@ -561,6 +561,11 @@ List<Recipe> recipes = [];
       <p>Once Angular is finished compiling the DOM, it secretly removes the
         <code>ng-cloak</code> class or directive from the DOM and allows your
         app to be visible.</p>
+
+      <p>The directive can be applied to the <code>&lt;body&gt;</code> element,
+        but the preferred usage is to apply multiple <code>ngCloak</code>
+        directives to small portions of the page to permit progressive rendering
+        of the browser view.</p>
 
       <hr class="spacer" />
 
