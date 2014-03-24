@@ -427,7 +427,7 @@ void _loadData() {
   _http.get('recipes.json')
     .then((HttpResponse response) {
       for (Map recipe in response.data) {
-        recipes.add(new Recipe.fromJsonMap(recipe));
+        recipes.add(new Recipe.fromJson(recipe));
       }
       recipesLoaded = true;
     })
