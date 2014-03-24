@@ -368,12 +368,12 @@ class SearchRecipeComponent {
         router and will use it to configure the routes.
         <code>RouteInitializerFn</code> takes two parameters, a <a href="https://docs.angulardart.org/#angular-routing.Router">
         <code>Router</code></a>, and a
-        <a href="https://docs.angulardart.org/#angular-routing.ViewFactory">
-          <code>ViewFactory</code></a>, both of which are created by the
+        <a href="https://docs.angulardart.org/#angular-routing.RouteViewFactory">
+          <code>RouteViewFactory</code></a>, both of which are created by the
         routing framework for you.</p>
 
 <script type="template/code">
-recipeBookRouteInitializer(Router router, ViewFactory views) {
+recipeBookRouteInitializer(Router router, RouteViewFactory views) {
   // ...
 }
 </script>
@@ -386,14 +386,14 @@ recipeBookRouteInitializer(Router router, ViewFactory views) {
 value(RouteInitializerFn, recipeBookRouteInitializer);
 </script>
 
-      <p>You configure the router by calling <code>ViewFactory.configure()</code>
+      <p>You configure the router by calling <code>RouteViewFactory.configure()</code>
         where you pass a <code>Map</code> of your routes. Keys of that map are route
         names, and values are <code>NgRouteCfg</code> objects that can be constructed
         using the provided  <code>ngRoute()</code> function. Here is a simple route
         configuration.</p>
 
 <script type="template/code">
-void recipeBookRouteInitializer(Router router, ViewFactory views) {
+void recipeBookRouteInitializer(Router router, RouteViewFactory views) {
   views.configure({
     'add': ngRoute(
         path: '/add',
@@ -465,7 +465,7 @@ Logger.root.onRecord.listen((LogRecord r) { print(r.message); });
     defaultRoute: true,
     enter: (RouteEnterEvent e) =>
         router.go('view', {},
-            startingFrom: router.root.getRoute('recipe'),
+            startingFrom: router.root.findRoute('recipe'),
             replace: true))
 </script>
 
