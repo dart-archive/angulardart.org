@@ -285,11 +285,11 @@
   <div>
     <label for="name-filter">Filter ...</label>
     <input id="name-filter" type="text"
-           ng-model="ctrl.nameFilterString">
+           ng-model="cmp.nameFilterString">
   </div>
   <div>
     Filter recipes by category:
-    <span ng-repeat="category in ctrl.categories">
+    <span ng-repeat="category in cmp.categories">
       <label>
         <input type="checkbox" ... >{{category}}
       </label>
@@ -329,16 +329,23 @@
     templateUrl: 'packages/angular_dart_demo/component/search_recipe_component.html',
     publishAs: 'cmp')
 class SearchRecipeComponent {
+  Map<String, bool> _categoryFilterMap;
+  List<String> _categories;
+
   @NgTwoWay('name-filter-string')
   String nameFilterString = "";
 
   @NgTwoWay('category-filter-map')
-  Map<String, bool> categoryFilterMap;
+  Map<String, bool> get categoryFilterMap => _categoryFilterMap;
+  void set categoryFilterMap(values) {
+    _categoryFilterMap = values;
+    _categories = categoryFilterMap.keys.toList();
+  }
 
-  List<String> get categories => categoryFilterMap.keys.toList();
+  List<String> get categories => _categories;
 
   void clearFilters() {
-    categoryFilterMap.keys.forEach((f) => categoryFilterMap[f] = false);
+    _categoryFilterMap.keys.forEach((f) => _categoryFilterMap[f] = false);
     nameFilterString = "";
   }
 }
@@ -623,7 +630,7 @@ Future<Recipe> getRecipeById(String id) {
         the <code>QueryService</code>. Since the web browser integrated with
         the Dart Editor does not support saving resources, you will need to
         test your solution to this exercise using the custom server provided
-        in the <code>bin</code> directory of this Chapter’s sources. 
+        in the <code>bin</code> directory of this Chapter’s sources.
         Launch this custom server like any other
         Dart command-line program. The server listens on port 3031 for PUT
         requests, but otherwise acts like a typical HTTP server dispatching
