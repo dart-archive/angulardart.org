@@ -283,6 +283,7 @@ call(valueToFilter, optArg1, ..., optArgN);
           ? recipeList.toList()
           : recipeList.where((i) => filterMap[i.category] == true).toList();
     }
+    return const [];
   }
 </script>
 
@@ -316,8 +317,10 @@ class MyAppModule extends Module {
 <div>
     <label>Filter recipes by category
         <span ng-repeat="category in ctrl.categories">
-          <input type="checkbox"
-                 ng-model="ctrl.categoryFilterMap[category]">{{category}}
+          <label>
+            <input type="checkbox"
+                   ng-model="ctrl.categoryFilterMap[category]">{{category}}
+          </label>
         </span>
     </label>
 </div>
@@ -392,7 +395,7 @@ class MyAppModule extends Module {
 
 <script type="template/code">
 class RecipeBookController {
-  Http _http;
+  final Http _http;
   ...
   RecipeBookController(this._http) {
     _loadData();
@@ -426,9 +429,7 @@ void _loadData() {
   ...
   _http.get('recipes.json')
     .then((HttpResponse response) {
-      for (Map recipe in response.data) {
-        recipes.add(new Recipe.fromJson(recipe));
-      }
+      recipes = response.data.map((d) => new Recipe.fromJson(d)).toList();
       recipesLoaded = true;
     })
     .catchError((e) {
