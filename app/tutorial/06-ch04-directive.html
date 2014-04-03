@@ -172,11 +172,11 @@
       <p>This chapter defines a directive called <em>tooltip</em>. HTML code can
         use the tooltip directive in a span or any other element:</p>
 
-<pre class="prettyprint">
-<code>&lt;span tooltip="ctrl.tooltipForRecipe(recipe)"&gt;
+<script type="template/code">
+<span tooltip="ctrl.tooltipForRecipe(recipe)">
   ...
-&lt;/span&gt;</code>
-</pre>
+</span>
+</script>
 
       <p><strong>Note:</strong> The <code>NgDirective</code> annotation can also
         be used to create structural directives, such as the built-in
@@ -209,10 +209,12 @@
         ways:</p>
 
       <ul>
-        <li>Adding two classes: Tooltip implements the directive, and
-          TooltipModel encapsulates its data.</li>
-        <li>Modifying the controller (RecipeBookController) so that it adds an
-          image for each recipe and creates tooltip models.</li>
+        <li>Adding <a href="https://github.com/angular/angular.dart.tutorial/blob/master/Chapter_04/lib/tooltip/tooltip_directive.dart">
+          two classes</a>: Tooltip implements the directive, and TooltipModel
+          encapsulates its data.</li>
+        <li>Modifying the controller (<a href="https://github.com/angular/angular.dart.tutorial/blob/master/Chapter_04/lib/recipe_book.dart">
+          RecipeBookController</a>) so that it adds an image for each recipe and
+          creates tooltip models.</li>
         <li>Modifying
           <a href="https://github.com/angular/angular.dart.tutorial/blob/master/Chapter_04/web/main.dart">
             web/main.dart</a> to register the Tooltip type.</li>
@@ -228,14 +230,14 @@
       <p>The <code>@NgDirective</code> and <code>@NgOneWay</code> annotations
         specify the tooltip API:</p>
 
-<pre class="prettyprint">
+<script type="template/code">
 ...
 import 'package:angular/angular.dart';
 
 @NgDirective(
   selector: '[tooltip]')
 class Tooltip {
-  dom.Element element;
+  final dom.Element element;
 
   @NgOneWay('tooltip')
   TooltipModel displayModel;
@@ -245,7 +247,7 @@ class Tooltip {
   }
   ...
 }
-</pre>
+</script>
 
       <p>The <strong>selector</strong> argument to the NgDirective constructor
         specifies when a Tooltip object should be instantiated: whenever an
@@ -255,9 +257,9 @@ class Tooltip {
 
       <p>Consider the following HTML:</p>
 
-<pre class="prettyprint">
-&lt;span tooltip="ctrl.tooltipForRecipe(recipe)"&gt;
-</pre>
+<script type="template/code">
+<span tooltip="ctrl.tooltipForRecipe(recipe)">
+</script>
 
       <p>Along with the preceding Dart code, this HTML tells AngularDart to
         create a Tooltip object and sets its <code>displayModel</code> field to
@@ -268,7 +270,7 @@ class Tooltip {
       <p>In general, when you want to implement a directive as an attribute that
         takes a value, do it like this:</p>
 
-<pre class="prettyprint">
+<script type="template/code">
 @NgDirective(
   selector: '[attributeName]')
 class MyDirective {
@@ -280,7 +282,7 @@ class MyDirective {
   }
   ...
 }
-</pre>
+</script>
 
       <p>AngularDart’s dependency injection system calls the constructor,
         supplying context-specific objects for whatever arguments the
@@ -293,18 +295,18 @@ class MyDirective {
         (<code>tooltipElem</code>) whenever the user mouses over an element that
         has a tooltip:</p>
 
-<pre class="prettyprint">
+<script type="template/code">
 import 'dart:html' as dom;
 ...
 // In an onMouseEnter handler:
 tooltipElem = new dom.DivElement();
 
 // ...Create children using info from displayModel...
-// ...Add the children to the &lt;div&gt;...
-// ...Style the &lt;div&gt;...
+// ...Add the children to the <div>...
+// ...Style the <div>...
 
 dom.document.body.append(tooltipElem);
-</pre>
+</script>
 
       <p><strong>Important:</strong> Because Angular expects to have full
         control of the DOM, be careful if you dynamically create HTML
@@ -331,7 +333,7 @@ dom.document.body.append(tooltipElem);
       <p>The implementation of the <code>TooltipModel</code> class is trivial.
       The class just encapsulates data that the tooltip needs:</p>
 
-<pre class="prettyprint">
+<script type="template/code">
 class TooltipModel {
   String imgUrl;
   String text;
@@ -339,7 +341,7 @@ class TooltipModel {
 
   TooltipModel(this.imgUrl, this.text, this.imgWidth);
 }
-</pre>
+</script>
 
       <hr class="spacer" />
 
@@ -349,19 +351,19 @@ class TooltipModel {
       <p>Remember that we want the HTML to be able to use a tooltip directive
         like this:</p>
 
-<pre class="prettyprint">
-&lt;span tooltip="ctrl.tooltipForRecipe(recipe)"&gt;
-</pre>
+<script type="template/code">
+<span tooltip="ctrl.tooltipForRecipe(recipe)">
+</script>
 
       <p>That means the controller needs to implement
         <code>tooltipForRecipe(Recipe)</code>. The tooltip directive expects a
         TooltipModel argument, so that’s the type that
         <code>tooltipForRecipe()</code> returns.</p>
 
-<pre class="prettyprint">
+<script type="template/code">
 class RecipeBookController {
   ...
-  static final tooltip = new Expando&lt;TooltipModel&gt;();
+  static final tooltip = new Expando<TooltipModel>();
   TooltipModel tooltipForRecipe(Recipe recipe) {
     if (tooltip[recipe] == null) {
       tooltip[recipe] = new TooltipModel(recipe.imgUrl,
@@ -371,7 +373,7 @@ class RecipeBookController {
     }
     return tooltip[recipe]; // recipe.tooltip
 }
-</pre>
+</script>
 
       <p>The use of <a href="https://api.dartlang.org/dart_core/Expando.html">
         Expando</a> is an implementation detail. An <code>Expando</code>code>
@@ -479,6 +481,7 @@ class RecipeBookController {
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="../js/code.js"></script>
     <script src="../google-code-prettify/prettify.min.js"></script>
     <link href="../google-code-prettify/prettify.css" type="text/css" rel="stylesheet">
     <script>

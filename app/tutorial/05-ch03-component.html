@@ -213,9 +213,9 @@
         HTML attributes. Here is how our Recipe Book app uses the rating
         component.</p>
 
-<pre class="prettyprint">
-&lt;rating max-rating="5" rating="ctrl.selectedRecipe.rating"&gt;&lt;/rating&gt;
-</pre>
+<script type="template/code">
+<rating max-rating="5" rating="ctrl.selectedRecipe.rating"></rating>
+</script>
 
       <hr class="spacer" />
 
@@ -224,14 +224,14 @@
         component, simply create a class and add the <code>NgComponent</code>
         annotation. Here is the annotation for our rating component:</p>
 
-<pre class="prettyprint">
+<script type="template/code">
 @NgComponent(
-  selector: 'rating',
-  templateUrl: 'packages/angular_dart_demo/rating/rating_component.html',
-  cssUrl: 'packages/angular_dart_demo/rating/rating_component.css',
-  publishAs: 'cmp')
+    selector: 'rating',
+    templateUrl: 'packages/angular_dart_demo/rating/rating_component.html',
+    cssUrl: 'packages/angular_dart_demo/rating/rating_component.css',
+    publishAs: 'cmp')
 class RatingComponent {...}
-</pre>
+</script>
 
       <p>Let’s look at those properties in more detail.</p>
 
@@ -249,21 +249,21 @@ class RatingComponent {...}
         in the HTML template.</p>
 
       <!-- PENDING: The following code is a little weird. Make it a table? -->
-<pre class="prettyprint">
+<script type="template/code">
 @NgComponent(
-  selector: 'rating',
-  ...)
+    selector: 'rating',
+    ...)
 
-&lt;rating&gt;&lt;/rating&gt;
+<rating></rating>
 
 @NgController(
-  selector: '[recipe-book]',
-  ...)
+    selector: '[recipe-book]',
+    ...)
 
-&lt;div recipe-book&gt;
+<div recipe-book>
     ...
-&lt;/div&gt;
-</pre>
+</div>
+</script>
 
       <h5 id="templateurl-and-cssurl"><code>templateUrl</code> and
         <code>cssUrl</code></h5>
@@ -281,15 +281,15 @@ class RatingComponent {...}
 
       <p>Let’s look at our component’s HTML template:</p>
 
-<pre class="prettyprint">
-&lt;span class="stars"
+<script type="template/code">
+<span class="stars"
       ng-if="cmp.rating != null"
       ng-repeat="star in cmp.stars"
       ng-click="cmp.handleClick(star)"
-      ng-class="cmp.starClass(star)"&gt;
+      ng-class="cmp.starClass(star)">
   {{cmp.starChar(star)}}
-&lt;/span&gt;
-</pre>
+</span>
+</script>
 
       <p><code>rating</code> here refers to the properties and methods on a
         RatingComponent object.</p>
@@ -304,21 +304,21 @@ class RatingComponent {...}
 
       <p>Recall how our Recipe Book app uses the rating component:</p>
 
-<pre class="prettyprint">
-&lt;rating max-rating="5" rating="ctrl.selectedRecipe.rating"&gt;&lt;/rating&gt;
-</pre>
+<script type="template/code">
+<rating max-rating="5" rating="ctrl.selectedRecipe.rating"></rating>
+</script>
 
       <p>To specify which HTML attributes correspond to which properties of the
         component, the <code>RatingComponent</code> class uses annotations like the
         following:</p>
 
-<pre class="prettyprint">
-@NgTwoWay(‘rating’)
+<script type="template/code">
+@NgTwoWay('rating')
   int rating;
 
 @NgAttr('max-rating')
   set maxRating(String value) {...}
-</pre>
+</script>
 
       <p>The argument to the annotation specifies the HTML attribute name—for
         example, “rating” or “max-rating”. Following HTML rules, the attribute
@@ -453,6 +453,7 @@ class RatingComponent {...}
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="../js/code.js"></script>
     <script src="../google-code-prettify/prettify.min.js"></script>
     <link href="../google-code-prettify/prettify.css" type="text/css" rel="stylesheet">
     <script>
