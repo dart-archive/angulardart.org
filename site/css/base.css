@@ -266,13 +266,9 @@
   Body
   ------------------------------------- */
 
-  .container {
+  .container[role='main'] {
     padding-top: 20px;
     overflow: hidden;
-  }
-
-  .container[role='main'] {
-    margin-top: 51px;
   }
 
   /* ---- Home Sections ---- */
