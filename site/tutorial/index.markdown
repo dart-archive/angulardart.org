@@ -2,11 +2,15 @@
 layout: default
 ---
 
-<div class="container tutorial" role="main" >
-  <ol class="breadcrumb">
-    <li><a href="/">Home</a></li>
-    <li class="active"><a href="/tutorial/index.html">Tutorial</a></li>
-  </ol>
+<div class="container tutorial page-0" role="main" >
+  <div class="breadcrumbs">
+    <div class="container">
+      <ol class="breadcrumb">
+        <li><a href="/">Home</a></li>
+        <li class="active"><a href="/tutorial/index.html">Tutorial</a></li>
+      </ol><!-- /.breadcrumb -->
+    </div><!-- /.container -->
+  </div><!-- /.breadcrumbs -->
 
   <h1 id="the-angulardart-tutorial">Welcome to the AngularDart Tutorial</h1>
 

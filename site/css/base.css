@@ -248,17 +248,17 @@
   }
 
   /* ---- Breadcrumbs ---- */
-  #header .breadcrumbs {
+  .breadcrumbs {
     margin: 50px 0 0;
     background: url('../img/grunge.png') bottom repeat-x;
     padding: 5px 0 0px;
   }
 
-  #header .breadcrumb {
+  .breadcrumb {
     background: transparent;
   }
 
-  #header .breadcrumb li.active a {
+  .breadcrumb li.active a {
     color: #444;
   }
 
