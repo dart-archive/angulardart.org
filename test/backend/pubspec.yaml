@@ -1,0 +1,9 @@
+name: backend
+dependencies:
+  angular:
+    git: git://github.com/angular/angular.dart.git #version: 0.9.11
+  firebase: any
+  angularfire:
+    git:
+      url: https://github.com/mhevery/angularFire
+      ref: dart
