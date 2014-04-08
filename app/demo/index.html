@@ -397,9 +397,10 @@
     </script>
     <script id="hello.dart" type="text/dart">
       import 'package:angular/angular.dart';
+      import 'package:angular/angular_dynamic.dart';
 
       main() {
-        ngBootstrap();
+        dynamicApplication().run();
       }
     </script>
     <script type="text/ng-template" id="hello.annotation">
@@ -421,6 +422,7 @@
     </style>
     <script id="todo.dart" type="text/dart">
       import 'package:angular/angular.dart';
+      import 'package:angular/angular_dynamic.dart';
 
       /* Use the NgController annotation to indicate that this class is an
        * Angular Directive. The compiler will instantiate the directive if
@@ -487,7 +489,9 @@
       }
 
       main() {
-        ngBootstrap(module: new TodoModule());
+        dynamicApplication()
+            .addModule(new TodoModule())
+            .run();
       }
     </script>
     <script type="text/ng-template" id="todo.html">
@@ -546,6 +550,7 @@
     <!-- ============== Classlist ============== -->
     <script id="backend.dart" type="text/dart">
 import 'package:angular/angular.dart';
+import 'package:angular/angular_dynamic.dart';
 import 'package:angular/routing/module.dart';
 import 'package:firebase/firebase.dart';
 import 'package:angularfire/angularfire.dart';
@@ -670,6 +675,11 @@ class NewEntryFormCtrl {
   }
 }
 
+main() {
+  dynamicApplication()
+      .addModule(new BackendAppModule())
+      .run();
+}
     </script>
     <script type="text/ng-template" id="index.html">
       <nav>
