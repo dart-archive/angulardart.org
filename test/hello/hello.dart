@@ -1,5 +1,6 @@
 import 'package:angular/angular.dart';
+import 'package:angular/angular_dynamic.dart';
  
 main() {
-  ngBootstrap();
+  dynamicApplication().run();
 }

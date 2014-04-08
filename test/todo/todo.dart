@@ -1,4 +1,5 @@
 import 'package:angular/angular.dart';
+import 'package:angular/angular_dynamic.dart';
  
 /* Use the NgController annotation to indicate that this class is an
  * Angular Directive. The compiler will instantiate the directive if
@@ -65,5 +66,7 @@ class TodoModule extends Module {
 }
  
 main() {
-  ngBootstrap(module: new TodoModule());
+  dynamicApplication()
+      .addModule(new TodoModule())
+      .run();
 }

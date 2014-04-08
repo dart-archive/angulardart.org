@@ -1,3 +1,4 @@
 name: todo
 dependencies:
-  angular: 0.9.10
+  angular: #0.9.11
+    git: git://github.com/angular/angular.dart.git

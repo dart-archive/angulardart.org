@@ -1,5 +1,5 @@
-
 import 'package:angular/angular.dart';
+import 'package:angular/angular_dynamic.dart';
 import 'package:angular/routing/module.dart';
 import 'package:firebase/firebase.dart';
 import 'package:angularfire/angularfire.dart';
@@ -122,4 +122,10 @@ class NewEntryFormCtrl {
     _results.add(entry.export());
     _router.gotoUrl('home');
   }
+}
+
+main() {
+  dynamicApplication()
+      .addModule(new BackendAppModule())
+      .run();
 }
