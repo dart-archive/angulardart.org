@@ -389,7 +389,7 @@ class MyAppModule extends Module {
           Dependency Injection</a>. In the main method, you set up the injector
         with your app’s module where you included the code to construct a
         <code>RecipeBookController</code>. The call to
-        <code>ngBootstrap()</code> includes the <code>AngularModule</code>,
+        <code>addModule()</code> includes the <code>AngularModule</code>,
         which contains injection rules for all of Angular’s core features,
         including the <code>Http</code> service.</p>
 
@@ -414,7 +414,9 @@ class MyAppModule extends Module {
 }
 
 void main() {
-  ngBootstrap(module: new MyAppModule());
+  dynamicApplication()
+      .addModule(new MyAppModule())
+      .run();
 }
 </script>
 
