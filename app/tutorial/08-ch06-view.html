@@ -547,7 +547,7 @@ ViewRecipeComponent(RouteProvider routeProvider) {
       <hr class="spacer" />
 
       <h3 id="more-on-futures">More on Futures</h3>
-      <p>In this version of our app, we also separated the query layer  from our
+      <p>In this version of our app, we also separated the query layer from our
         <code>RecipeBookController</code> by creating a
         <code>QueryService</code>. The <code>QueryService</code> does basically
         the same thing the old <code>_loadData</code> method did, but with a few
@@ -572,6 +572,7 @@ ViewRecipeComponent(RouteProvider routeProvider) {
         <code>QueryService</code> constructor:</p>
 
 <script type="template/code">
+@NgInjectableService()
 QueryService(Http this._http) {
   _loaded = Future.wait([_loadRecipes(), _loadCategories()]);
 }
@@ -582,7 +583,10 @@ QueryService(Http this._http) {
         <a href="https://api.dartlang.org/docs/channels/stable/latest/dart_async/Future.html#wait">
           <code>Future.wait</code></a>. <code>Future.wait</code> also returns a
         <code>Future</code> which completes only when all the Futures in the
-        list complete.</p>
+        list complete.
+	The <code>@NgInjectableService</code> annotation
+	publishes the class as a service.
+      </p>
 
       <p>The getters in the service (<code>getRecipeById</code>,
         <code>getAllRecipes</code>, and <code>getAllCategories</code>) first
