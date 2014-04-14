@@ -397,10 +397,10 @@
     </script>
     <script id="hello.dart" type="text/dart">
       import 'package:angular/angular.dart';
-      import 'package:angular/angular_dynamic.dart';
+      import 'package:angular/application_factory.dart';
 
       main() {
-        dynamicApplication().run();
+        applicationFactory().run();
       }
     </script>
     <script type="text/ng-template" id="hello.annotation">
@@ -422,9 +422,9 @@
     </style>
     <script id="todo.dart" type="text/dart">
       import 'package:angular/angular.dart';
-      import 'package:angular/angular_dynamic.dart';
+      import 'package:angular/application_factory.dart';
 
-      /* Use the NgController annotation to indicate that this class is an
+      /* Use the Controller annotation to indicate that this class is an
        * Angular Directive. The compiler will instantiate the directive if
        * it finds it in the DOM.
        *
@@ -438,7 +438,7 @@
        * The directive's public fields are available for data binding from the view.
        * Similarly, the directive's public methods can be invoked from the view.
        */
-      @NgController(
+      @Controller(
           selector: '[todo-list]',
           publishAs: 'TodoCtrl')
       class TodoController {
@@ -489,7 +489,7 @@
       }
 
       main() {
-        dynamicApplication()
+        applicationFactory()
             .addModule(new TodoModule())
             .run();
       }
@@ -550,7 +550,7 @@
     <!-- ============== Classlist ============== -->
     <script id="backend.dart" type="text/dart">
 import 'package:angular/angular.dart';
-import 'package:angular/angular_dynamic.dart';
+import 'package:angular/application_factory.dart';
 import 'package:angular/routing/module.dart';
 import 'package:firebase/firebase.dart';
 import 'package:angularfire/angularfire.dart';
@@ -577,7 +577,7 @@ void backendAppRouteInit(Router router, ViewFactory view) {
           enter: view('./list.html'));
 }
 
-@NgInjectableService()
+@Injectable()
 class FirebaseResultsAdapter {
   static const String BASE = 'https://angular-dart-homepage.firebaseio.com/';
   AngularFire _results;
@@ -590,7 +590,7 @@ class FirebaseResultsAdapter {
   AngularFire get results =>  _results;
 }
 
-@NgController(
+@Controller(
   selector: '[system-panel]',
   publishAs: 'panel')
 class SystemPanelCtrl {
@@ -635,7 +635,7 @@ class SystemEntry {
   };
 }
 
-@NgController(
+@Controller(
   selector: '[entry-form-ctrl]',
   publishAs: 'form')
 class NewEntryFormCtrl {
@@ -676,7 +676,7 @@ class NewEntryFormCtrl {
 }
 
 main() {
-  dynamicApplication()
+  applicationFactory()
       .addModule(new BackendAppModule())
       .run();
 }

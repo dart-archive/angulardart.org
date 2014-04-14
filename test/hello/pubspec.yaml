@@ -1,5 +1,7 @@
 name: hello
 dependencies:
   angular: #0.9.11
-    git: git://github.com/angular/angular.dart.git
+    git:
+      ref: ngdynamic
+      url: git://github.com/naomiblack/angular.dart.git
     

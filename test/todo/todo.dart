@@ -1,5 +1,5 @@
 import 'package:angular/angular.dart';
-import 'package:angular/angular_dynamic.dart';
+import 'package:angular/application_factory.dart';
  
 /* Use the NgController annotation to indicate that this class is an
  * Angular Directive. The compiler will instantiate the directive if
@@ -15,7 +15,7 @@ import 'package:angular/angular_dynamic.dart';
  * The directive's public fields are available for data binding from the view.
  * Similarly, the directive's public methods can be invoked from the view.
  */
-@NgController(
+@Controller(
     selector: '[todo-list]',
     publishAs: 'TodoCtrl')
 class TodoController {
@@ -66,7 +66,7 @@ class TodoModule extends Module {
 }
  
 main() {
-  dynamicApplication()
+  applicationFactory()
       .addModule(new TodoModule())
       .run();
 }

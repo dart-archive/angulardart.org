@@ -1,6 +1,6 @@
 import 'package:angular/angular.dart';
-import 'package:angular/angular_dynamic.dart';
+import 'package:angular/application_factory.dart';
  
 main() {
-  dynamicApplication().run();
+  applicationFactory().run();
 }
