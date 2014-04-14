@@ -212,7 +212,7 @@
 name: angular_dart_demo
 version: 0.0.1
 dependencies:
-  angular: 0.9.10
+  angular: 0.9.11
 </script>
 
       <p>To use AngularDart in any app, include <code>angular</code> as
@@ -295,9 +295,11 @@ dependencies:
 
 <script type="template/code">
 import 'package:angular/angular.dart';
-  void main() {
-    ngBootstrap();
-  }
+import 'package:angular/application_factory.dart';
+
+void main() {
+  applicationFactory().run();
+}
 </script>
 
       <p>That code is minimal because our app is so simple. The only thing we
