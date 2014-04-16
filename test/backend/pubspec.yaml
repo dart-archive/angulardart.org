@@ -9,3 +9,5 @@ dependencies:
     git:
       url: https://github.com/mhevery/angularFire
       ref: dart
+transformers:
+  - angular

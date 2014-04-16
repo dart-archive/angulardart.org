@@ -4,4 +4,5 @@ dependencies:
     git:
       ref: rename
       url: git://github.com/angular/angular.dart.git
-    
+transformers:
+  - angular
