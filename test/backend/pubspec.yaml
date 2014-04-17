@@ -1,9 +1,6 @@
 name: backend
 dependencies:
-  angular: #0.10.0
-    git:
-      ref: rename
-      url: git://github.com/angular/angular.dart.git
+  angular: 0.10.0
   firebase: any
   angularfire:
     git:
