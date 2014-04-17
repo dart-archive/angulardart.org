@@ -156,9 +156,8 @@
       <hr />
 
       <h3 id="what-you-will-learn">What you will learn</h3>
-      <p>In this tutorial, you will learn more about how Angular does MVC.
-        Specifically, you will learn about controllers, which you will implement
-        with something called an <em>Angular controller</em>. You will also
+      <p>In this tutorial, you will learn how to implement an
+        <em>Angular controller</em>. You will also
         learn more about the <em>model</em>, which Angular calls the
         <em>scope</em>.</p>
 
@@ -237,38 +236,20 @@
       <p>The usual way to create model members is to create a controller class
         and expose the controller to the view through a directive.</p>
 
-      <hr class="spacer" />
-
-      <h3 id="understanding-controllers">Understanding controllers</h3>
-      <p>Traditional MVC defines a controller as an object that contains all the
-        model data and methods necessary to control the view. Angular has three
-        kinds of MVC controllers: controllers, directives, and components. These
-        are implemented using plain old Dart classes. These plain old Dart
-        classes are annotated as either an
-        <a href="https://docs.angulardart.org/#angular/angular.NgController">
-          <code>@NgController</code></a>,
-        <a href="https://docs.angulardart.org/#angular/angular.NgDirective">
-          <code>@NgDirective</code></a>
-        or <a href="https://docs.angulardart.org/#angular/angular.NgComponent">
-        <code>@NgComponent</code></a>,
-        and the combination of the controller class and the annotation is
-        analogous to an MVC controller. <code>@NgController</code>s are the
-        simplest of the three types of controller, so we will cover them first.
-        We will cover directives and components in the next chapters.</p>
 
       <hr class="spacer" />
 
-      <h3 id="understanding-controller">Understanding <code>@NgController</code>
+      <h3 id="understanding-controller">Understanding <code>@Controller</code>
         controllers</h3>
       <p>The easiest way to create a controller is to put the
-        <code>@NgController</code> annotation on a controller class and then
-        declare the controller class as a type in the bootstrap module.</p>
+        <code>@Controller</code> annotation on a controller class and then
+        declare the controller class as a type in the app's Module object.</p>
 
       <p>In the Recipe Book example, we see this annotation on the
         <code>RecipeBookController</code> class:</p>
 
 <script type="template/code">
-@NgController(
+@Controller(
     selector: '[recipe-book]',
     publishAs: 'ctrl')
 class RecipeBookController { ... }
@@ -348,7 +329,7 @@ main() {
         directives: <code>ng-repeat</code> and <code>ng-click</code>.</p>
 
       <h4 id="ng-repeathttpciangularjsorgviewdartjobangulardart-masterjavadocangulardirectivengrepeatdirectivehtml">
-        <a href="https://docs.angulardart.org/#angular/angular.NgRepeatDirective">
+        <a href="https://docs.angulardart.org/#angular/angular.RepeatDirective">
           <code>ng-repeat</code></a></h4>
       <p>Now that you have a better understanding of scopes, let’s elaborate on
         them further by describing what’s going on behind the scenes with the
