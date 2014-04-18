@@ -197,14 +197,14 @@
       <h4 id="built-in-formatters">Built-in formatters</h4>
       <p>Angular has some built-in formatters that provide handy functionality.</p>
 
-      <p>These are pretty self explanatory. <a href="https://docs.angulardart.org/#angular/angular.Currency"><code>Currency</code></a>
-        formats numbers like money. <a href="https://docs.angulardart.org/#angular/angular.Date"><code>Date</code></a> formats dates.
-        <a href="https://docs.angulardart.org/#angular/angular.Uppercase"><code>Uppercase</code></a> and <a href="https://docs.angulardart.org/#angular/angular.Lowercase"><code>Lowercase</code></a> do
-        what you would expect. <a href="https://docs.angulardart.org/#angular/angular.LimitTo"><code>LimitTo</code></a> limits the number
+      <p>These are pretty self explanatory. <a href="https://docs.angulardart.org/#angular-formatter.Currency"><code>Currency</code></a>
+        formats numbers like money. <a href="https://docs.angulardart.org/#angular-formatter.Date"><code>Date</code></a> formats dates.
+        <a href="https://docs.angulardart.org/#angular-formatter.Uppercase"><code>Uppercase</code></a> and <a href="https://docs.angulardart.org/#angular-formatter.Lowercase"><code>Lowercase</code></a> do
+        what you would expect. <a href="https://docs.angulardart.org/#angular-formatter.LimitTo"><code>LimitTo</code></a> limits the number
         of results for a list model object that will appear in the view.</p>
 
       <p>In our app, we use the
-        <a href="https://docs.angulardart.org/#angular/angular.Filter">
+        <a href="https://docs.angulardart.org/#angular-formatter.Filter">
         <code>Filter</code></a> class. Like the <code>LimitTo</code> formatter,
         <code>Filter</code> also limits the number of list model
         objects that will appear in the view. It chooses which items to display
@@ -363,13 +363,12 @@ class MyAppModule extends Module {
 
     <hr class="spacer" />
       <h3 id="introducing-the-httphttpciangularjsorgviewdartjobangulardart-masterjavadocangularcoredomhttphtml-service">
-        Introducing the <a href="https://docs.angulardart.org/#angular/angular.Http">
-        <code>Http</code></a> service</h3>
+        Introducing the Http service</h3>
 
       <p>Our last example had the data hard coded in the app. In reality, you’d
         request data from a server. Angular provides a built-in
         service called the
-	<code><a href="https://docs.angulardart.org/#angular/angular.Http">Http</a></code>
+	<code><a href="https://docs.angulardart.org/#angular-core.Http">Http</a></code>
 	Service that handles making HTTP
         requests to the server. First let’s look at the two new files we’ve
         added to the project: <strong>recipes.json</strong> and
@@ -421,7 +420,7 @@ void main() {
 </script>
 
       <p>Next, let’s look at how to use the
-        <code><a href="https://docs.angulardart.org/#angular/angular.Http">Http</a></code> service to fetch
+        Http service to fetch
         data from the server. Look at the changes we made to the
         <code>_loadData</code> method. Here is the new code:</p>
 
@@ -530,7 +529,7 @@ List<Recipe> recipes = [];
       <hr class="spacer" />
 
       <h3 id="angular-features">Angular features</h3>
-      <h4><a href="https://docs.angulardart.org/#angular/angular.NgCloakDirective">
+      <h4><a href="https://docs.angulardart.org/#angular-directive.NgCloak">
         <code>ng-cloak</code></a></h4>
       <p>You probably noticed that in previous examples, when you first loaded
         your app, you briefly saw curly braces like <code>{{someVar}}</code>
