@@ -195,7 +195,8 @@
             <td><a href="03-ch01-creating-your-first-app.html">
                 1. Creating Your First Angular app</a></td>
             <td>A “Hello World” app</td>
-            <td><code>ng-app</code>, <code>ngBootstrap()</code>, MVC, mustache
+            <td>pubspec, <code>ng-app</code>, <code>applicationFactory()</code>,
+                MVC, mustache
                 syntax ( <code>{{...}}</code> ), Angular expressions, data
                 binding (<code>ng-model</code>)</td>
           </tr>
@@ -203,7 +204,8 @@
             <td><a href="04-ch02-controller.html">2. Something More than
                 “Hello World”</a></td>
             <td>A Recipe Book app</td>
-            <td>Scopes, models, controllers, <code>@NgController</code>, <code>type()</code>,
+            <td>Scopes, models, controllers, <code>@Controller</code>,
+                <code>type()</code>, <code>addModule()</code>, 
                 common properties (<code>selector</code>,
                 <code>publishAs</code>), <code>ng-repeat</code>,
                 <code>ng-click</code></td>
@@ -212,7 +214,7 @@
             <td><a href="05-ch03-component.html">3. Creating a Custom
                 Component</a></td>
             <td>A rating component for Recipe Book</td>
-            <td><code>@NgComponent</code>, properties (<code>selector</code> &amp;
+            <td><code>@Component</code>, properties (<code>selector</code> &amp;
                 <code>publishAs</code> again, <code>templateUrl</code>,
                 <code>cssUrl</code>), <code>@NgAttr</code>, <code>@NgOneWay</code>, <code>@NgTwoWay</code>, component
                 vs. controller, <code>ng-if</code>, <code>ng-class</code></td>
@@ -221,15 +223,15 @@
             <td><a href="06-ch04-directive.html">4. Creating a Custom
                 Directive</a></td>
             <td>Tooltips for Recipe Book</td>
-            <td><code>@NgDirective</code>, custom element attributes, DOM manipulation,
-                table comparing <code>@NgController</code> &amp; <code>@NgDirective</code> &amp;
-                <code>@NgComponent</code></td>
+            <td><code>@Decorator</code>, custom element attributes, DOM manipulation,
+                table comparing <code>@Controller</code> &amp; <code>@Decorator</code> &amp;
+                <code>@Component</code></td>
           </tr>
           <tr>
-            <td><a href="07-ch05-filter-service.html">5. Introducing Filters
+            <td><a href="07-ch05-filter-service.html">5. Introducing Formatters
                   and Services</a></td>
             <td>Filtering recipes by category, fetching data</td>
-            <td>Built-in and custom filters, the <code>Http</code> service (to
+            <td>Built-in and custom formatters, the <code>Http</code> service (to
                 load JSON data asynchronously), displaying a “Loading...”
                 message until data is
                 loaded, <code>ng-switch</code>, <code>ng-cloak</code></td>
@@ -244,8 +246,9 @@
           <tr>
             <td><a href="09-ch07-deploying-your-app.html">7. Deploying Your
                 App</a></td>
-            <td><em>(Draft version)</em></td>
-            <td>Minification, <code>@MirrorsUsed</code>, performance, code generation,
+            <td>Generating JavaScript</td>
+            <td>Transformers, <code>pub serve</code>, <code>pub build</code>,
+                minification, performance, code generation,
                 cross-browser support</td>
           </tr>
         </tbody>

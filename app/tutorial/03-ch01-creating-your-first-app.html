@@ -212,11 +212,19 @@
 name: angular_dart_demo
 version: 0.0.1
 dependencies:
-  angular: 0.9.10
+  angular: 0.10.0
+transformers:
+- angular
 </script>
 
       <p>To use AngularDart in any app, include <code>angular</code> as
-        a dependency.</p>
+        a dependency.
+        Also include the <code>angular</code> transformer,
+        which will be necessary later,
+        when you convert your app to JavaScript
+        (as described in
+        <a href="09-ch07-deploying-your-app.html">Deploying Your App</a>). 
+      </p>
 
       <p>Dart Editor automatically downloads the packages your app depends on,
         along with any packages that they, in turn, depend on. If this download
@@ -243,7 +251,7 @@ dependencies:
             main.dart</a>
           </dt>
           <dd>
-            <p>Defines a main() function that bootstraps Angular.</p>
+            <p>Defines a main() function that initializes and starts the app.</p>
         </dd>
       </dl>
 
@@ -295,17 +303,18 @@ dependencies:
 
 <script type="template/code">
 import 'package:angular/angular.dart';
-  void main() {
-    ngBootstrap();
-  }
+import 'package:angular/application_factory.dart';
+
+void main() {
+  applicationFactory().run();
+}
 </script>
 
       <p>That code is minimal because our app is so simple. The only thing we
-        see is some code that imports Angular and bootstraps your app. For
-        now, don’t worry about the details of bootstrapping. We’ll cover it
-        later.</p>
+        see is some code that imports Angular and starts your app.
+      </p>
 
-      <p>Once an application is bootstrapped, it’s ready to respond to incoming
+      <p>Once an Angular application starts up, it’s ready to respond to incoming
         browser events that might change the model (such as mouse clicks, key
         presses, or incoming HTTP responses). If changes are detected, Angular
         reflects them in the view by updating all of the affected bindings.</p>
@@ -386,7 +395,7 @@ Name: <input type="text" ng-model="name">
 </script>
 
       <p>Notice that the input element has the
-        <a href="https://docs.angulardart.org/#angular/angular.NgModel">
+        <a href="https://docs.angulardart.org/#angular-directive.NgModel">
           <code>ng-model</code></a>
         directive, which looks like an HTML attribute. The following chapters
         go into more detail about directives. For now, just be aware that

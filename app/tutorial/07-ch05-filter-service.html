@@ -13,7 +13,7 @@
 
     <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
 
-    <title>AngularDart Tutorial: Introducing Filters and Services</title>
+    <title>AngularDart Tutorial: Introducing Formatters and Services</title>
 
     <!-- Stylesheets -->
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css"
@@ -139,7 +139,7 @@
             <li><a href="/tutorial/index.html">Tutorial</a></li>
             <li class="active">
               <a href="07-ch05-filter-service.html">
-                Introducing Filters and Services</a>
+                Introducing Formatters and Services</a>
             </li>
           </ol><!-- /.breadcrumb -->
         </div><!-- /.container -->
@@ -149,13 +149,13 @@
 
     <div role="main" class="container tutorial page-7">
       <h1 id="angulardart-tutorial-introducing-filters-and-services">
-        Introducing Filters and Services</h1>
+        Introducing Formatters and Services</h1>
 
       <p>In this chapter, we will add two features to our app. First, we will
         get the recipe data from a service instead of hardcoding mock data into
-        the app. Second, we will look at another handy tool in Angular’s toolbox
-         - filters. When you’re finished, you will be able to use built in
-         filters as well as create your own custom filters. You will also be
+        the app. Second, we will look at another handy tool in Angular’s toolbox:
+        formatters. When you’re finished, you will be able to use built-in
+         formatters as well as create your own custom formatters. You will also be
          able to read data from a server-side service like a real app.</p>
 
       <hr />
@@ -176,7 +176,7 @@
 
       <p>Notice the text box and checkboxes at the top of the app. You can use
         these inputs to control which recipes are shown in the list. Start
-        typing into the filter box and watch the list of visible recipes shrink
+        typing into the text box and watch the list of visible recipes shrink
         to match your search criteria. Next, limit your results further by
         checking a few categories to limit to. Try using both filters together
         by typing in a search criteria and also limiting based on category.
@@ -185,32 +185,32 @@
 
       <hr class="spacer" />
 
-      <h3 id="introducing-filters">Introducing filters</h3>
-      <p>Filters let you change how your model data is displayed in the view
+      <h3 id="introducing-formatters">Introducing formatters</h3>
+      <p>Formatters let you change how your model data is displayed in the view
         without changing the model data itself. They do things like allow you to
         show parts of the model data, or display data in a particular format.
-        You can also use Angular’s custom filters feature to create your own
-        filters to do anything you want.</p>
+        You can also use Angular’s custom formatters feature to create your own
+        formatters to do anything you want.</p>
 
       <hr class="spacer" />
 
-      <h4 id="built-in-filters">Built in filters</h4>
-      <p>Angular has some built in filters that provide  handy functionality.</p>
+      <h4 id="built-in-formatters">Built-in formatters</h4>
+      <p>Angular has some built-in formatters that provide handy functionality.</p>
 
-      <p>These are pretty self explanatory. The <a href="https://docs.angulardart.org/#angular/angular.CurrencyFilter"><code>CurrencyFilter</code></a>
-        formats numbers like money. The <a href="https://docs.angulardart.org/#angular/angular.DateFilter"><code>DateFilter</code></a> formats dates.
-        The <a href="https://docs.angulardart.org/#angular/angular.UppercaseFilter"><code>UppercaseFilter</code></a> and <a href="https://docs.angulardart.org/#angular/angular.LowercaseFilter"><code>LowercaseFilter</code></a> filters do
-        what you would expect. The <a href="https://docs.angulardart.org/#angular/angular.LimitToFilter"><code>LimitToFilter</code></a> limits the number
+      <p>These are pretty self explanatory. <a href="https://docs.angulardart.org/#angular-formatter.Currency"><code>Currency</code></a>
+        formats numbers like money. <a href="https://docs.angulardart.org/#angular-formatter.Date"><code>Date</code></a> formats dates.
+        <a href="https://docs.angulardart.org/#angular-formatter.Uppercase"><code>Uppercase</code></a> and <a href="https://docs.angulardart.org/#angular-formatter.Lowercase"><code>Lowercase</code></a> do
+        what you would expect. <a href="https://docs.angulardart.org/#angular-formatter.LimitTo"><code>LimitTo</code></a> limits the number
         of results for a list model object that will appear in the view.</p>
 
       <p>In our app, we use the
-        <a href="https://docs.angulardart.org/#angular/angular.FilterFilter">
-          <code>FilterFilter</code></a>. Like the <code>LimitToFilter</code>,
-        the <code>FilterFilter</code> also limits the number of list model
+        <a href="https://docs.angulardart.org/#angular-formatter.Filter">
+        <code>Filter</code></a> class. Like the <code>LimitTo</code> formatter,
+        <code>Filter</code> also limits the number of list model
         objects that will appear in the view. It chooses which items to display
-        based on whether or not they satisfy the filter criteria.</p>
+        based on whether they satisfy the filter criteria.</p>
 
-      <p>Here is how we use the <code>FilterFilter</code>.</p>
+      <p>Here is how we use the <code>Filter</code> object.</p>
 
       <p>First, we create a text input box and bind it through
         <code>ng-model</code> to a property called <code>nameFilterString</code>.
@@ -218,12 +218,13 @@
         <code>nameFilterString</code> property.</p>
 
 <script type="template/code">
-<input id="name-filter" type="text"
+<input id="name-formatter" type="text"
        ng-model="ctrl.nameFilterString">
 </script>
 
-      <p>Next, we pipe the <code>ng-repeat</code> criteria through the filter,
-        and tell the filter to use <code>ctrl.nameFilterString</code> as the
+      <p>Next, we pipe the <code>ng-repeat</code> criteria through the formatter,
+        and tell the Filter formatter (published as <code>filter</code>)
+        to use <code>ctrl.nameFilterString</code> as the
         property to filter against.</p>
 
 <script type="template/code">
@@ -246,33 +247,33 @@ String nameFilterString = "";
 
       <hr class="spacer" />
 
-      <h4 id="custom-filters">Custom filters</h4>
-      <p>Built in filters are nice, but what if you want to do something more
+      <h4 id="custom-formatter">Custom formatters</h4>
+      <p>Built-in formatters are nice, but what if you want to do something more
         specific. In our app, we also want to be able to reduce the number of
         recipes shown, to those in a particular category. For this, we write a
-        custom filter called <code>CategoryFilter</code>.</p>
+        custom formatter called <code>CategoryFilter</code>.</p>
 
-      <p>A custom filter in Angular is simply a Dart class that declares a
+      <p>A custom formatter in Angular is simply a Dart class that declares a
         <code>call</code> method with at least one argument:</p>
 
 <script type="template/code">
-call(valueToFilter, optArg1, ..., optArgN);
+call(valueToFormat, optArg1, ..., optArgN);
 </script>
 
-      <p>The first argument is the incoming model object to be filtered; in our
+      <p>The first argument is the incoming model object to be formatted; in our
         case, it will be the recipe list. The remaining (0 or more) optional
         arguments (named <code>optArg</code> above)  serve as input from the
         view, and they will be applied in some way to the
-        <code>valueToFilter</code> to perform the filtering. In our case, as
+        <code>valueToFormat</code> to perform the formatting. In our case, as
         will be explained below, we need only one optional parameter to let us
         weed out recipes from the incoming list that we don’t want to
         display.</p>
 
-      <p>The <code>call</code> method should return the filtered value. In our
+      <p>The <code>call</code> method should return the formatted value. In our
         case, it is a new recipe list that is a subset of the incoming recipe
         list.</p>
 
-      <p>Here is the call method from our <code>CategoryFilter</code>:</p>
+      <p>Here is our call method from <code>CategoryFilter</code>:</p>
 
 <script type="template/code">
   List call(recipeList, filterMap) {
@@ -292,10 +293,10 @@ call(valueToFilter, optArg1, ..., optArgN);
         little bit more about how checkboxes work in Angular in the next
         section.</p>
 
-      <p>Next, annotate the class to publish it as a filter:
+      <p>Next, annotate the class to publish it as a formatter:
 
 <script type="template/code">
-@NgFilter(name: 'categoryfilter')
+@Formatter(name: 'categoryfilter')
 class CategoryFilter { ... }
 </script>
 
@@ -339,8 +340,7 @@ class MyAppModule extends Module {
         and the values are true or false depending on whether or not they’re
         checked.</p>
 
-      <p>Next, we plug the custom filter in the same way we would plug in a built
-        in filter:</p>
+      <p>Next, we plug the custom formatter in the same way we would plug in a built-in formatter:</p>
 
 <script type="template/code">
 <li class="pointer"
@@ -348,11 +348,11 @@ class MyAppModule extends Module {
 </script>
 
     <hr class="spacer" />
-      <h4 id="filter-chaining">Filter chaining</h4>
-      <p>Our app uses a feature called filter chaining to apply more than one
-        filter to the same view element. Below, we see the
-        <code>ng-repeat</code> directive has three filters separated by pipes.
-        This is how Angular applies multiple filters to a single
+      <h4 id="formatter-chaining">Formatter chaining</h4>
+      <p>Our app uses a feature called formatter chaining to apply more than one
+        formatter to the same view element. Below, we see the
+        <code>ng-repeat</code> directive has three formatters separated by pipes.
+        This is how Angular applies multiple formatters to a single
         <code>ng-repeat</code>.</p>
 
 <script type="template/code">
@@ -363,13 +363,12 @@ class MyAppModule extends Module {
 
     <hr class="spacer" />
       <h3 id="introducing-the-httphttpciangularjsorgviewdartjobangulardart-masterjavadocangularcoredomhttphtml-service">
-        Introducing the <a href="https://docs.angulardart.org/#angular/angular.Http">
-        <code>Http</code></a> service</h3>
+        Introducing the Http service</h3>
 
       <p>Our last example had the data hard coded in the app. In reality, you’d
-        request data from a server. Angular provides a built in
+        request data from a server. Angular provides a built-in
         service called the
-	<code><a href="https://docs.angulardart.org/#angular/angular.Http">Http</a></code>
+	<code><a href="https://docs.angulardart.org/#angular-core.Http">Http</a></code>
 	Service that handles making HTTP
         requests to the server. First let’s look at the two new files we’ve
         added to the project: <strong>recipes.json</strong> and
@@ -389,7 +388,7 @@ class MyAppModule extends Module {
           Dependency Injection</a>. In the main method, you set up the injector
         with your app’s module where you included the code to construct a
         <code>RecipeBookController</code>. The call to
-        <code>ngBootstrap()</code> includes the <code>AngularModule</code>,
+        <code>addModule()</code> includes the <code>AngularModule</code>,
         which contains injection rules for all of Angular’s core features,
         including the <code>Http</code> service.</p>
 
@@ -414,12 +413,14 @@ class MyAppModule extends Module {
 }
 
 void main() {
-  ngBootstrap(module: new MyAppModule());
+  applicationFactory()
+      .addModule(new MyAppModule())
+      .run();
 }
 </script>
 
       <p>Next, let’s look at how to use the
-        <code><a href="https://docs.angulardart.org/#angular/angular.Http">Http</a></code> service to fetch
+        Http service to fetch
         data from the server. Look at the changes we made to the
         <code>_loadData</code> method. Here is the new code:</p>
 
@@ -528,7 +529,7 @@ List<Recipe> recipes = [];
       <hr class="spacer" />
 
       <h3 id="angular-features">Angular features</h3>
-      <h4><a href="https://docs.angulardart.org/#angular/angular.NgCloakDirective">
+      <h4><a href="https://docs.angulardart.org/#angular-directive.NgCloak">
         <code>ng-cloak</code></a></h4>
       <p>You probably noticed that in previous examples, when you first loaded
         your app, you briefly saw curly braces like <code>{{someVar}}</code>
@@ -575,32 +576,32 @@ List<Recipe> recipes = [];
         version described in this chapter.</p>
 
       <ol>
-        <li>Write a simple <code>String</code> filter to replace all the
+        <li>Write a simple <code>String</code> formatter to replace all the
           occurrences of “sugar” and “powdered sugar” by “maple syrup”, and
           apply it to both the ingredients and the recipe directions.
           <strong>Hint</strong>: Dart has a <code>String</code> function named
           <code>replaceAll()</code> that could be handy in this case.</li>
-        <li>Write a filter to convert <em>degrees Fahrenheit</em> (F) into
+        <li>Write a formatter to convert <em>degrees Fahrenheit</em> (F) into
           <em>degrees Celsius</em> (C) in the recipe directions. Round the
           resulting degrees Celsius to the nearest multiple of 5: e.g., 300
           degrees F would become  150 C. <strong>Hint</strong>: Dart
           <a href="https://api.dartlang.org/apidocs/channels/stable/#dart:core.RegExp">
             regular expressions</a> are likely to be useful.</li>
         <li>Assume that you are cooking for a large party.
-          Create a filter that will multiply all the amounts in the recipes.
+          Create a formatter that will multiply all the amounts in the recipes.
           <strong>Hint:</strong> You’ll have to change the recipe model to
           include a more full featured “Ingredient” field that contains an
           amount, and then possibly a unit, and finally, an item name. Next, add
           a “multiplier” input that will allow the user to double, triple, or
-          quadruple the recipe. Lastly, write a custom filter that multiplies
+          quadruple the recipe. Lastly, write a custom formatter that multiplies
           each amount by the number specified in the multiplier input.
           <strong>Note</strong>: If your code fails with the error “5 $digest()
           iterations reached”, then read <a href="http://stackoverflow.com/questions/21322969/angulardart-custom-filter-call-method-required-to-be-idempotent">
             this explanation on StackOverflow</a>.
           Also note the suggested workaround of piping  ingredient values into a
-          (custom) <code>toString()</code> filter.</li>
+          (custom) <code>toString()</code> formatter.</li>
         <li>Finally, if you have not done so already, adapt your solutions to
-	  the first two problems above so that application of each filter is
+	  the first two problems above so that application of each formatter is
 	  controlled by a checkbox.</li>
       </ol>
 

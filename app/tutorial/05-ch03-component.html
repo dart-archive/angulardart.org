@@ -197,8 +197,8 @@
 
       <h3 id="angular-components">Angular components</h3>
       <p>The rating feature is an Angular component, implemented using the
-        <a href="https://docs.angulardart.org/#angular/angular.NgComponent">
-          NgComponent</a> annotation. Components are lightweight, reusable,
+        <a href="https://docs.angulardart.org/#angular-core-annotation.Component">
+          Component</a> annotation. Components are lightweight, reusable,
         self-contained UI components that have a single specific purpose. The
         rating component is a great example of a small, simple, re-usable
         component. It can be used anywhere in your app as many times as you
@@ -221,11 +221,11 @@
 
       <h4 id="creating-components">Creating components</h4>
       <p>Creating a component is similar to creating a controller. To create a
-        component, simply create a class and add the <code>NgComponent</code>
+        component, simply create a class and add the <code>Component</code>
         annotation. Here is the annotation for our rating component:</p>
 
 <script type="template/code">
-@NgComponent(
+@Component(
     selector: 'rating',
     templateUrl: 'packages/angular_dart_demo/rating/rating_component.html',
     cssUrl: 'packages/angular_dart_demo/rating/rating_component.css',
@@ -236,7 +236,7 @@ class RatingComponent {...}
       <p>Let’s look at those properties in more detail.</p>
 
       <h5 id="selector"><code>selector</code></h5>
-      <p>The <code>selector</code> property of NgComponent serves the same
+      <p>The <code>selector</code> property of Component serves the same
         purpose as the selector property in a controller. It tells Angular which
         CSS selector should trigger the component. By convention, selectors for
         components are element names, not attributes (notice the lack of []
@@ -250,13 +250,13 @@ class RatingComponent {...}
 
       <!-- PENDING: The following code is a little weird. Make it a table? -->
 <script type="template/code">
-@NgComponent(
+@Component(
     selector: 'rating',
     ...)
 
 <rating></rating>
 
-@NgController(
+@Controller(
     selector: '[recipe-book]',
     ...)
 
@@ -328,7 +328,7 @@ class RatingComponent {...}
         to be evaluated:</p>
 
       <dl>
-        <dt> <a href="https://docs.angulardart.org/#angular/angular.NgAttr">NgAttr</a> </dt>
+        <dt> <a href="https://docs.angulardart.org/#angular-core-annotation.NgAttr">NgAttr</a> </dt>
           <dd>
             <p>Sets the property to the value of the attribute, interpolating
               if it contains {{}} . Our example had this:
@@ -344,7 +344,7 @@ class RatingComponent {...}
           </dd>
 
         <dt>
-          <a href="https://docs.angulardart.org/#angular/angular.NgOneWay">
+          <a href="https://docs.angulardart.org/#angular-core-annotation.NgOneWay">
             NgOneWay</a></dt>
 
         <dd>
@@ -359,7 +359,7 @@ class RatingComponent {...}
         </dd>
 
         <dt>
-          <a href="https://docs.angulardart.org/#angular/angular.NgTwoWay">
+          <a href="https://docs.angulardart.org/#angular-core-annotation.NgTwoWay">
             NgTwoWay</a></dt>
 
         <dd>
@@ -397,11 +397,11 @@ class RatingComponent {...}
       <hr class="spacer" />
 
       <h3 id="angular-features">Angular features</h3>
-      <p>This chapter introduced you to two more built in Angular directives:
+      <p>This chapter introduced you to two more built-in Angular directives:
         <code>ng-if</code> and <code>ng-class</code>.</p>
 
       <h4 id="ng-ifhttpciangularjsorgviewdartjobangulardart-masterjavadocangulardirectivengifdirectivehtml">
-        <a href="https://docs.angulardart.org/#angular/angular.NgIfDirective">
+        <a href="https://docs.angulardart.org/#angular-directive.NgIf">
           <code>ng-if</code></a></h4>
       <p>The <code>ng-if</code> directive allows you to evaluate sections of the
         DOM conditionally. The <code>ng-if</code> directive takes an expression.
@@ -410,7 +410,7 @@ class RatingComponent {...}
         DOM element. It removes it.</p>
 
       <h4 id="ng-classhttpciangularjsorgviewdartjobangulardart-masterjavadocangulardirectivengclassdirectivehtml">
-        <a href="https://docs.angulardart.org/#angular/angular.NgClassDirective">
+        <a href="https://docs.angulardart.org/#angular-directive.NgClass">
           <code>ng-class</code></a></h4>
       <p>The <code>ng-class</code> directive allows you to set CSS classes on an
         element dynamically using an expression that evaluates to the classes to

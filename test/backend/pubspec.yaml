@@ -1,0 +1,10 @@
+name: backend
+dependencies:
+  angular: 0.10.0
+  firebase: any
+  angularfire:
+    git:
+      url: https://github.com/mhevery/angularFire
+      ref: dart
+transformers:
+  - angular

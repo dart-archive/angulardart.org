@@ -13,7 +13,7 @@
 
     <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
 
-    <title>AngularDart Tutorial: Creating a Custom Directive</title>
+    <title>AngularDart Tutorial: Creating a Custom Decorator</title>
 
     <!-- Stylesheets -->
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css"
@@ -138,7 +138,7 @@
             <li><a href="/">Home</a></li>
             <li><a href="/tutorial/index.html">Tutorial</a></li>
             <li class="active">
-              <a href="06-ch04-directive.html">Creating a Custom Directive</a>
+              <a href="06-ch04-directive.html">Creating a Custom Decorator</a>
             </li>
           </ol><!-- /.breadcrumb -->
         </div><!-- /.container -->
@@ -147,41 +147,36 @@
     </div><!-- /#header -->
 
     <div role="main" class="container tutorial page-6">
-      <h1 id="angulardart-tutorial-creating-a-custom-directive">Creating a Custom Directive</h1>
+      <h1 id="angulardart-tutorial-creating-a-custom-decorator">Creating a Custom Decorator</h1>
 
       <p>In previous chapters, you learned how to use the
-        <a href="https://docs.angulardart.org/#angular/angular.NgController">
-          NgController</a> and
-        <a href="https://docs.angulardart.org/#angular/angular.NgComponent">
-          NgComponent</a> annotations to create custom controllers and
+        <a href="https://docs.angulardart.org/#angular-core-annotation.Controller">
+          Controller</a> and
+        <a href="https://docs.angulardart.org/#angular-core-annotation.Component">
+          Component</a> annotations to create custom controllers and
         components. We will now learn how to add behavior to any element, using
-        <em>directives</em>
-        (<a href="https://docs.angulardart.org/#angular/angular.NgDirective">
-          NgDirective</a>).</p>
+        <em>decorators</em>
+        (<a href="https://docs.angulardart.org/#angular-core-annotation.Decorator">
+          Decorator</a>).</p>
 
       <hr />
 
-      <p>Directives offer a way to define behavior that can be triggered using
+      <p>Decorators offer a way to define behavior that can be triggered using
         CSS selectors—most commonly, element attributes. Each element can have
-        multiple directives, just as it can have multiple HTML attributes. If
+        multiple decorators, just as it can have multiple HTML attributes. If
         you are familiar with the
         <a href="http://en.wikipedia.org/wiki/Decorator_pattern">
-          decorator design pattern</a>, then you can think of a directive as an
+          decorator design pattern</a>, then you can think of a decorator as an
         <em>HTML element decorator</em>.</p>
 
-      <p>This chapter defines a directive called <em>tooltip</em>. HTML code can
-        use the tooltip directive in a span or any other element:</p>
+      <p>This chapter defines a decorator called <em>tooltip</em>. HTML code can
+        use the tooltip decorator in a span or any other element:</p>
 
 <script type="template/code">
 <span tooltip="ctrl.tooltipForRecipe(recipe)">
   ...
 </span>
 </script>
-
-      <p><strong>Note:</strong> The <code>NgDirective</code> annotation can also
-        be used to create structural directives, such as the built-in
-        <code>ng-if</code> and <code>ng-repeat</code> directives. This is an
-        advanced usage case, and we don’t cover it.</p>
 
       <hr class="spacer" />
 
@@ -203,14 +198,14 @@
 
       <hr class="spacer" />
 
-      <h3 id="custom-directives">Custom directives</h3>
+      <h3 id="custom-decorators">Custom decorators</h3>
 
       <p>Implementing the tooltip required changing the code in the following
         ways:</p>
 
       <ul>
-        <li>Adding <a href="https://github.com/angular/angular.dart.tutorial/blob/master/Chapter_04/lib/tooltip/tooltip_directive.dart">
-          two classes</a>: Tooltip implements the directive, and TooltipModel
+        <li>Adding <a href="https://github.com/angular/angular.dart.tutorial/blob/master/Chapter_04/lib/tooltip/tooltip.dart">
+          two classes</a>: Tooltip implements the decorator, and TooltipModel
           encapsulates its data.</li>
         <li>Modifying the controller (<a href="https://github.com/angular/angular.dart.tutorial/blob/master/Chapter_04/lib/recipe_book.dart">
           RecipeBookController</a>) so that it adds an image for each recipe and
@@ -220,21 +215,21 @@
             web/main.dart</a> to register the Tooltip type.</li>
         <li>Modifying
           <a href="https://github.com/angular/angular.dart.tutorial/blob/master/Chapter_04/web/index.html">
-            web/index.html</a> to use the tooltip directive.</li>
+            web/index.html</a> to use the tooltip decorator.</li>
       </ul>
 
       <hr class="spacer" />
 
-      <h3 id="implementing-a-directive">Implementing a directive</h3>
+      <h3 id="implementing-a-decorator">Implementing a decorator</h3>
 
-      <p>The <code>@NgDirective</code> and <code>@NgOneWay</code> annotations
+      <p>The <code>@Decorator</code> and <code>@NgOneWay</code> annotations
         specify the tooltip API:</p>
 
 <script type="template/code">
 ...
 import 'package:angular/angular.dart';
 
-@NgDirective(
+@Decorator(
   selector: '[tooltip]')
 class Tooltip {
   final dom.Element element;
@@ -249,7 +244,7 @@ class Tooltip {
 }
 </script>
 
-      <p>The <strong>selector</strong> argument to the NgDirective constructor
+      <p>The <strong>selector</strong> argument to the Decorator constructor
         specifies when a Tooltip object should be instantiated: whenever an
         element has an attribute named “tooltip”. The <code>@NgOneWay</code>
         annotation specifies that the value of the tooltip attribute is bound to
@@ -267,17 +262,17 @@ class Tooltip {
         Tooltip constructor is passed a single argument, an Element representing
         the <code>&lt;span&gt;</code>.</p>
 
-      <p>In general, when you want to implement a directive as an attribute that
+      <p>In general, when you want to implement a decorator as an attribute that
         takes a value, do it like this:</p>
 
 <script type="template/code">
-@NgDirective(
+@Decorator(
   selector: '[attributeName]')
-class MyDirective {
+class MyDecorator {
   @NgOneWay('attributeName')
   Model model;
   ...
-  MyDirective(/* Optional arguments */) {
+  MyDecorator(/* Optional arguments */) {
     ...
   }
   ...
@@ -312,11 +307,11 @@ dom.document.body.append(tooltipElem);
         control of the DOM, be careful if you dynamically create HTML
         elements.</p>
 
-      <p>Here are the rules for manipulating DOM elements in directives:</p>
+      <p>Here are the rules for manipulating DOM elements in decorators:</p>
 
       <ul>
         <li>If changing the DOM structure (adding/removing/moving nodes), do so
-          only <em>outside</em> of the directive’s constructor. (Modifying node
+          only <em>outside</em> of the decorator’s constructor. (Modifying node
           properties, on the other hand, is OK inside the constructor or at any
           other time.)</li>
         <li>Don’t destroy elements that AngularDart is managing.</li>
@@ -327,8 +322,8 @@ dom.document.body.append(tooltipElem);
         <code>&lt;body&gt;</code> and (2) is added outside the constructor.</p>
 
       <p>You can see all the code to create, position, and destroy tooltips in
-      <a href="https://github.com/angular/angular.dart.tutorial/blob/master/Chapter_04/lib/tooltip/tooltip_directive.dart">
-      lib/tooltip/tooltip_directive.dart</a>.</p>
+      <a href="https://github.com/angular/angular.dart.tutorial/blob/master/Chapter_04/lib/tooltip/tooltip.dart">
+      lib/tooltip/tooltip.dart</a>.</p>
 
       <p>The implementation of the <code>TooltipModel</code> class is trivial.
       The class just encapsulates data that the tooltip needs:</p>
@@ -348,7 +343,7 @@ class TooltipModel {
       <h3 id="modifying-the-controller-to-provide-the-model">Modifying the
         controller to provide the model</h3>
 
-      <p>Remember that we want the HTML to be able to use a tooltip directive
+      <p>Remember that we want the HTML to be able to use a tooltip decorator
         like this:</p>
 
 <script type="template/code">
@@ -356,7 +351,7 @@ class TooltipModel {
 </script>
 
       <p>That means the controller needs to implement
-        <code>tooltipForRecipe(Recipe)</code>. The tooltip directive expects a
+        <code>tooltipForRecipe(Recipe)</code>. The tooltip decorator expects a
         TooltipModel argument, so that’s the type that
         <code>tooltipForRecipe()</code> returns.</p>
 
@@ -376,7 +371,7 @@ class RecipeBookController {
 </script>
 
       <p>The use of <a href="https://api.dartlang.org/dart_core/Expando.html">
-        Expando</a> is an implementation detail. An <code>Expando</code>code>
+        Expando</a> is an implementation detail. An <code>Expando</code>
         is just a way to associate a property (in this case, a TooltipModel)
         with an existing object (a recipe). Instead of an Expando, the code
         could use a mixin, a TooltipModel subclass, or a map.</p>
@@ -398,7 +393,7 @@ class RecipeBookController {
           <th>Annotation</th> <th>Usual usage</th> <th>New scope?</th>
         </tr>
         <tr>
-          <td><code>@NgController</code></td>
+          <td><code>@Controller</code></td>
           <td> <b>Application-specific logic</b>
             <p>
               Example: recipe-book
@@ -411,27 +406,27 @@ class RecipeBookController {
           <td> Yes </td>
         </tr>
         <tr>
-          <td><code>@NgDirective</code></td>
+          <td><code>@Decorator</code></td>
           <td> <b>Decorator</b> that adds to existing elements
             <p>
               Examples: tooltip, ng-class
             </p>
             <p>
-              Directives add to existing elements.
-              A single element can have multiple directives.
+              Decorators add to existing elements.
+              A single element can have multiple decorators.
             </p>
           </td>
           <td> No </td>
         </tr>
         <tr>
-          <td><code>@NgComponent</code></td>
+          <td><code>@Component</code></td>
           <td> <b>Custom elements</b>
             <p>
               Example: rating
             </p>
             <p>
               Although custom elements can contain other elements,
-              custom elements (unlike directives) can’t be combined into
+              custom elements (unlike decorators) can’t be combined into
               a single element.
             </p>
           </td>
