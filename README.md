@@ -2,7 +2,7 @@
 
 To build the site locally, do the following:
 
-1. If `which bundle` returns something, you have the prequisites. Otherwise:
+1. If `which bundle` returns something, you have the prerequisites. Otherwise:
   1. Download rubygems [PENDING: say from where]
   2. Install bundler [PENDING: say from where]
 2. Run `bundle install` from within the directory that contains the `Gemfile`
