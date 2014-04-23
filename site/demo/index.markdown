@@ -19,7 +19,7 @@ title: AngularDart Demo
         <input type="text" ng-model="yourName"
                placeholder="Enter a name here">
         <hr>
-        <h1 ng-cloak>Hello {{yourName}}!</h1>
+        <h1 ng-cloak>Hello {% raw %}{{yourName}}{% endraw %}!</h1>
       </div><!-- /#hello-app -->
     </div><!-- .well -->
   </div><!-- .col-md-4 -->
@@ -69,12 +69,12 @@ title: AngularDart Demo
     <div class="well" ng-non-bindable>
       <h2>Todo</h2>
       <div class="angular-dart-example" todo-list id="todo-app" ng-cloak>
-        <span>{{TodoCtrl.remaining()}} of {{TodoCtrl.todos.length}} remaining</span>
+        <span>{% raw %}{{TodoCtrl.remaining()}}{% endraw %} of {% raw %}{{TodoCtrl.todos.length}}{% endraw %} remaining</span>
         [ <a href="" ng-click="TodoCtrl.archive()">archive</a> ]
         <ul class="unstyled">
           <li ng-repeat="todo in TodoCtrl.todos">
             <input type="checkbox" ng-model="todo.done">
-            <span class="done-{{todo.done}}">{{todo.text}}</span>
+            <span class="done-{% raw %}{{todo.done}}{% endraw %}">{% raw %}{{todo.text}}{% endraw %}</span>
           </li>
         </ul>
         <form ng-submit="TodoCtrl.addTodo()">
@@ -215,7 +215,7 @@ title: AngularDart Demo
         <input type="text" ng-model="yourName"
                placeholder="Enter a name here">
         <hr>
-        <h1 ng-cloak>Hello {{yourName}}!</h1>
+        <h1 ng-cloak>Hello {% raw %}{{yourName}}{% endraw %}!</h1>
     </div>
 </script>
 <script id="hello.dart" type="text/dart">
@@ -230,7 +230,7 @@ main() {
 { "hello.html":
 { "ng-app": "Tells AngularDart to be active in this portion of the page. In this case the entire document."
 , "ng-model": "This links the form and the model. This means that any changes to the control update the data in your model, and when you change the model it updates the control. Try it! Type in the control and see it update below."
-, "{{yourName}}": "The <code>{{ }}</code> are a declarative way of specifying data binding locations in the HTML. AngularDart will automatically update this text whenever the <code>yourName</code> property changes."
+, "{% raw %}{{yourName}}{% endraw %}": "The <code>{% raw %}{{ }}{% endraw %}</code> are a declarative way of specifying data binding locations in the HTML. AngularDart will automatically update this text whenever the <code>yourName</code> property changes."
 }
 }
 </script>
@@ -321,13 +321,13 @@ main() {
   <h2>Todo</h2>
   <div todo-list ng-cloak>
   <span>
-    {{TodoCtrl.remaining()}} of {{TodoCtrl.todos.length}} remaining
+    {% raw %}{{TodoCtrl.remaining()}}{% endraw %} of {% raw %}{{TodoCtrl.todos.length}}{% endraw %} remaining
   </span>
       [ <a href="" ng-click="TodoCtrl.archive()">archive</a> ]
       <ul class="unstyled">
           <li ng-repeat="todo in TodoCtrl.todos">
               <input type="checkbox" ng-model="todo.done">
-              <span class="done-{{todo.done}}">{{todo.text}}</span>
+              <span class="done-{% raw %}{{todo.done}}{% endraw %}">{% raw %}{{todo.text}}{% endraw %}</span>
           </li>
       </ul>
       <form ng-submit="TodoCtrl.addTodo()">
@@ -343,11 +343,11 @@ main() {
   , "angular.min.js": "Load AngularJS."
   , "todo.js": "Your behavior lives in JavaScript controllers."
   , "ng-controller": "The behavior of content under this element will be managed using the <code>TodoCtrl</code> class defined in <code>todo.js</code>."
-  , "{{remaining()}}": "The <code>{{ }}</code> are a declarative way of specifying data binding locations in the HTML. AngularDart will automatically update this text whenever the <code>remaining()</code> function return value changes."
+  , "{% raw %}{{remaining()}}{% endraw %}": "The <code>{% raw %}{{ }}{% endraw %}</code> are a declarative way of specifying data binding locations in the HTML. AngularDart will automatically update this text whenever the <code>remaining()</code> function return value changes."
   , "ng-click": "Instead of registering event-handlers, you declare which method on the controller to call. Here clicking the link will call <code>archive()</code> method."
   , "ng-repeat": "Use <code>ng-repeat</code> to unroll a collection. Here, for every object in <code>todos</code>, AngularDart will create new copy of the <code>&lt;li&gt;</code> element. When objects are added to the <code>todos</code> collection the <code>ng-repeat</code> automatically adds new <code>&lt;li&gt;</code> elements into the DOM. Similarly when the objects are removed from <code>todos</code> then the corresponding <code>&lt;li&gt;</code> element is removed as well. This is one of the most versatile directives in AngularDart."
   , "ng-model": "This links the form and the model. This means that any changes to the control update the data in your model, and when you change the model it updates the control. AngularDart automatically copies the state of the checkbox into <code>todo.done</code>. Conversely, if you update <code>todo.done</code> you will see the checkbox respond accordingly."
-  , "{{todo.done}}": "To show strikethroughs for completed tasks we have created a CSS class <code>done-true</code>. When the <code>todo.done</code> is <code>true</code> the resulting CSS selector is <code>done-true</code> which then applies the strikethrough."
+  , "{% raw %}{{todo.done}}{% endraw %}": "To show strikethroughs for completed tasks we have created a CSS class <code>done-true</code>. When the <code>todo.done</code> is <code>true</code> the resulting CSS selector is <code>done-true</code> which then applies the strikethrough."
   , "ng-submit": "Intercepts form submission and instead calls <code>addTodo()</code>. Inside this method we read the <code>todoText</code> property and insert it into the <code>todos</code> collection."
   }
 
@@ -515,7 +515,7 @@ main() {
       <div system-panel ng-cloak>
         <h2>Website Uptime Status</h2>
         <div ng-repeat="entry in panel.results">
-          {{ $index + 1 }}: {{ entry.$value.topic }} - {{ entry.$value.status }}
+          {% raw %}{{ $index + 1 }}{% endraw %}: {% raw %}{{ entry.$value.topic }}{% endraw %} - {% raw %}{{ entry.$value.status }}{% endraw %}
         </div>
       </div>
     </script>
@@ -525,16 +525,16 @@ main() {
   <div class="field">
     <label>Topic:</label>
     <select required ng-model="form.topicKey" required>
-      <option ng-repeat="result in form.topics" value="{{ result['value'] }}">
-        {{ result['title'] }}</option>
+      <option ng-repeat="result in form.topics" value="{% raw %}{{ result['value'] }}{% endraw %}">
+        {% raw %}{{ result['title'] }}{% endraw %}</option>
     </select>
   </div>
 
   <div class="field">
     <label>Status:</label>
     <select required ng-model="form.statusKey" required>
-      <option ng-repeat="result in form.statuses" value="{{ result['value'] }}">
-        {{ result['title'] }}</option>
+      <option ng-repeat="result in form.statuses" value="{% raw %}{{ result['value'] }}{% endraw %}">
+        {% raw %}{{ result['title'] }}{% endraw %}</option>
     </select>
   </div>
 
@@ -610,7 +610,7 @@ main() {
           '<div class="tabbable">' +
             '<ul class="nav nav-tabs">' +
               '<li ng-repeat="pane in panes" ng-class="{active:pane.selected}" ng-cloak>'+
-                '<a href="" ng-click="select(pane)">{{pane.title}}</a>' +
+                '<a href="" ng-click="select(pane)">{% raw %}{{pane.title}}{% endraw %}</a>' +
               '</li>' +
             '</ul>' +
             '<div class="tab-content" ng-transclude></div>' +
@@ -663,9 +663,9 @@ main() {
 <script type="text/ng-template" id="tabs.html">
     <tabs>
         <pane title="Localization" ng-cloak>
-            Date: {{ '2012-04-01' | date:'fullDate' }} <br>
-            Currency: {{ 123456 | currency }} <br>
-            Number: {{ 98765.4321 | number }} <br>
+            Date: {% raw %}{{ '2012-04-01' | date:'fullDate' }}{% endraw %} <br>
+            Currency: {% raw %}{{ 123456 | currency }}{% endraw %} <br>
+            Number: {% raw %}{{ 98765.4321 | number }}{% endraw %} <br>
         </pane>
         <pane title="Pluralization">
             <div ng-controller="BeerCounter">
