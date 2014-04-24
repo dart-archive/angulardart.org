@@ -1,7 +1,7 @@
 ---
 layout: tutorial
 title: Before You Begin
-previous: index.html
+previous: /tutorial/
 next: 02-welcome-to-angular.html
 ---
 
