@@ -69,7 +69,8 @@ file for this sample:</p>
 name: angular_dart_demo
 version: 0.0.1
 dependencies:
-angular: 0.10.0
+  angular: 0.10.0
+  shadow_dom: any
 transformers:
 - angular
 </script>
