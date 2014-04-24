@@ -121,9 +121,9 @@ accordance with
 of the <code>ng-app</code> directive to the <code>&lt;html&gt;</code>
 element:</p>
 
-<pre class="prettyprint">
-&lt;html ng-app>
-</pre>
+<script type="template/code">
+<html ng-app>
+</script>
 
 <p>The <code>ng-app</code> directive tells Angular which element is the
 root element of the application. Anything inside of this element is
@@ -158,14 +158,14 @@ with the root of the application DOM being the element on which the
 
 <p>Now let’s look at <strong>main.dart</strong>:</p>
 
-<pre class="prettify">
+<script type="template/code">
 import 'package:angular/angular.dart';
 import 'package:angular/application_factory.dart';
 
 void main() {
   applicationFactory().run();
 }
-</pre>
+</script>
 
 <p>That code is minimal because our app is so simple. The only thing we
 see is some code that imports Angular and starts your app.
@@ -193,7 +193,7 @@ appears in two places in the view: where it’s set (in the input element)
 and where it’s displayed (in the curly braces, or “mustache”).</p>
 
 <script type="template/code">
-<h3>Hello {{name}}!</h3>
+<h3>Hello {% raw %}{{name}}{% endraw %}!</h3>
 Name: <input type="text" ng-model="name">
 </script>
 
@@ -211,7 +211,7 @@ controllers.</p>
 
 <h3 id="mustache-syntax-interpolation-and-angular-expressions">Mustache
 syntax (interpolation) and Angular expressions</h3>
-<p>Angular uses double curly braces <code>{{ ... }}</code> to contain
+<p>Angular uses double curly braces <code>{% raw %}{{ ... }}{% endraw %}</code> to contain
 Angular expressions. Anything inside the braces is evaluated as a
 Dart-like expression. The braces tell Angular to evaluate the expression
 and put the result into the DOM. Expressions are “Dart-like” because the
@@ -227,12 +227,12 @@ differ from Dart in the following ways:</p>
 
 <p>Here’s an example of a simple expression:</p>
 <script type="template/code">
-{{ 1 + 2 }}
+{% raw %}{{ 1 + 2 }}{% endraw %}
 </script>
 
 <p>Here’s another:</p>
 <script type="template/code">
-{{ 'foo' + 'bar'}}
+{% raw %}{{ 'foo' + 'bar'}}{% endraw %}
 </script>
 
 <p>These expressions would display as <strong>3</strong> and
@@ -247,7 +247,7 @@ and data binding in Hello World</h3>
 the model (“name”) and display the model in the view.</p>
 
 <script type="template/code">
-<h3>Hello {{name}}!</h3>
+<h3>Hello {% raw %}{{name}}{% endraw %}!</h3>
 Name: <input type="text" ng-model="name">
 </script>
 
@@ -266,7 +266,7 @@ value. If not, Angular creates the property in the scope and then sets
 the value from the input.</p>
 
 <p>The view displays the value of the model object using the Angular
-expression <code>{{name}}</code>. Notice how the view updates in real
+expression <code>{% raw %}{{name}}{% endraw %}</code>. Notice how the view updates in real
 time whenever the model changes. This is called <em>two-way data
 binding</em>. Angular listens for changes to the model and updates
 the view to reflect those changes.</p>

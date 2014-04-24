@@ -144,9 +144,9 @@ public methods can be invoked from the view using the
 <code>publishAs</code> name. Here is an example:</p>
 
 <script type="template/code">
-<div><strong>Name: </strong>{{ctrl.selectedRecipe.name}}</div>
+<div><strong>Name: </strong>{% raw %}{{ctrl.selectedRecipe.name}}{% endraw %}</div>
 
-<li ng-click="ctrl.selectRecipe(recipe)">{{recipe.name}}</li>
+<li ng-click="ctrl.selectRecipe(recipe)">{% raw %}{{recipe.name}}{% endraw %}</li>
 </script>
 
 <p>Here we also see how to tell the Angular bootstrapping code about our
@@ -204,7 +204,7 @@ them further by describing what’s going on behind the scenes with the
 <ul>
   <li class="pointer"
       ng-repeat="recipe in ctrl.recipes"
-      ng-click="ctrl.selectRecipe(recipe)">{{recipe.name}}</li>
+      ng-click="ctrl.selectRecipe(recipe)">{% raw %}{{recipe.name}}{% endraw %}</li>
 </ul>
 </script>
 

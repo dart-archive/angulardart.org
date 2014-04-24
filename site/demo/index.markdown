@@ -723,8 +723,8 @@ main() {
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-<script src="../google-code-prettify/prettify.min.js"></script>
-<link href="../google-code-prettify/prettify.css" type="text/css" rel="stylesheet">
+<script src="/google-code-prettify/prettify.min.js"></script>
+<link href="/google-code-prettify/prettify.css" type="text/css" rel="stylesheet">
 
 <script>
     $().dropdown();

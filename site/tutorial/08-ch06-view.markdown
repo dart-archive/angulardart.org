@@ -98,7 +98,7 @@ in the <code>view</code> directory.</p>
         <label>
           <input type="checkbox"
            ng-model="ctrl.categoryFilterMap[category]">
-              {{category}}
+              {% raw %}{{category}}{% endraw %}
         </label>
       </span>
     </div>
@@ -147,7 +147,7 @@ in the <code>view</code> directory.</p>
     Filter recipes by category:
     <span ng-repeat="category in cmp.categories">
       <label>
-        <input type="checkbox" ... >{{category}}
+        <input type="checkbox" ... >{% raw %}{{category}}{% endraw %}
       </label>
     </span>
   </div>

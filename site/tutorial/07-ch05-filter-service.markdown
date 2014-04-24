@@ -177,7 +177,7 @@ class MyAppModule extends Module {
         <span ng-repeat="category in ctrl.categories">
           <label>
             <input type="checkbox"
-                   ng-model="ctrl.categoryFilterMap[category]">{{category}}
+                   ng-model="ctrl.categoryFilterMap[category]">{% raw %}{{category}}{% endraw %}
           </label>
         </span>
     </label>
@@ -352,7 +352,7 @@ directive instead.</p>
 <body recipe-book ng-cloak>
   <div ng-switch="ctrl.recipesLoaded && ctrl.categoriesLoaded">
     <div ng-switch-when="false">
-      {{ctrl.message}}
+      {% raw %}{{ctrl.message}}{% endraw %}
     </div>
     <div ng-switch-when="true">
       <h3>Recipe List</h3>
@@ -389,7 +389,7 @@ the state of the Future.</p>
 <h4><a href="https://docs.angulardart.org/#angular-directive.NgCloak">
 <code>ng-cloak</code></a></h4>
 <p>You probably noticed that in previous examples, when you first loaded
-your app, you briefly saw curly braces like <code>{{someVar}}</code>
+your app, you briefly saw curly braces like <code>{% raw %}{{someVar}}{% endraw %}</code>
 before your app “popped” into place, and the correct values appeared.
 The <code>ng-cloak</code> directive combined with some CSS rules that
 you add to your app’s main CSS file allow you to avoid this blink. The
@@ -409,7 +409,7 @@ DOM, you can hide the page (or sections of it) by using
 <body ng-cloak>
 </script>
 
-      <p>The CSS rule causes the view to be hidden:</p>
+<p>The CSS rule causes the view to be hidden:</p>
 
 <script type="template/code">
 [ng-cloak], .ng-cloak {

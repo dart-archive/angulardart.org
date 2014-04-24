@@ -144,7 +144,7 @@ the component.</p>
       ng-repeat="star in cmp.stars"
       ng-click="cmp.handleClick(star)"
       ng-class="cmp.starClass(star)">
-  {{cmp.starChar(star)}}
+  {% raw %}{{cmp.starChar(star)}}{% endraw %}
 </span>
 </script>
 
@@ -198,10 +198,10 @@ to be evaluated:</p>
 <dt> <a href="https://docs.angulardart.org/#angular-core-annotation.NgAttr">NgAttr</a> </dt>
   <dd>
     <p>Sets the property to the value of the attribute, interpolating
-      if it contains {{}} . Our example had this:
+      if it contains {% raw %}{{}}{% endraw %} . Our example had this:
       <code>max-rating="5"</code>. You could also get the value from the
       controller by doing something like
-      <code>max-rating="{{ctrl.someProperty}}"</code>.</p>
+      <code>max-rating="{% raw %}{{ctrl.someProperty}}{% endraw %}"</code>.</p>
 
     <p>
       <code>NgAttr</code> attributes are unidirectional. A copy of the attribute is
