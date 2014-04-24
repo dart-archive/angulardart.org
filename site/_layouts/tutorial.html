@@ -1,6 +1,5 @@
-{% include header.html %}
+{% include header-start.html %}
 
-<div class="container tutorial" role="main">
   <div class="breadcrumbs">
     <div class="container">
       <ol class="breadcrumb">
@@ -14,6 +13,9 @@
       </ol>
     </div>
   </div>
+</div> <!-- header -->
+
+<div class="container tutorial" role="main">
   {{content}}
   <ul class="pager">
   {% if page.previous %}
