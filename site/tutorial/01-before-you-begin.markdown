@@ -1,13 +1,13 @@
 ---
 layout: tutorial
-title: Before you Begin
-previous: the-previous-thing
-next: the-next-thing
-breadcrumb_link: breadcrumb_link
-breadcrumb_text: breadcrumb text
+title: Before You Begin
+previous: /tutorial/
+next: 02-welcome-to-angular.html
 ---
 
 # {{page.title}}
+
+<hr />
 
 This tutorial assumes that you have some knowledge of the Dart
 programming language and development environment. It assumes you have

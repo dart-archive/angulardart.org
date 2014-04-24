@@ -1,22 +1,30 @@
-{% include header.html %}
+{% include header-start.html %}
 
-<div class="container tutorial" role="main">
   <div class="breadcrumbs">
     <div class="container">
       <ol class="breadcrumb">
         <li><a href="/">Home</a></li>
-        <li><a href="/tutorial/index.html">Tutorial</a></li>
-        <li class="active"><a href="{{page.breadcrumb_link}}">
-          {{page.breadcrumb_text}}</a>
-        </li>
-       </ol>
-     </div>
-   </div>
+        {% if page.previous %}
+        <li><a href="/tutorial/">Tutorial</a></li>
+        <li class="active">{{page.title}}</li>
+        {% else %}
+        <li class="active">Tutorial</li>
+        {% endif %}
+      </ol>
+    </div>
+  </div>
+</div> <!-- header -->
+
+<div class="container tutorial" role="main">
   {{content}}
   <ul class="pager">
+  {% if page.previous %}
     <li class="previous"><a href="{{page.previous}}">&laquo; Previous</a></li>
-    <li><a href="../index.html">Tutorial Overview</a></li>
+    <li><a href="/tutorial/index.html">Tutorial Overview</a></li>
+  {% endif %}
+  {% if page.next %}
     <li class="next"><a href="{{page.next}}">Next &raquo;</a></li>
+  {% endif %}
   </ul>
 </div>
 

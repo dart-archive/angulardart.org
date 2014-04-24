@@ -1,8 +1,7 @@
 ---
-layout: default
+layout: nofrills
 ---
 
-<div class="container" role="main">
   <div class="jumbotron">
       <h1>AngularDart</h1>
       <h3><span class="inner">A Web Framework for
@@ -15,8 +14,9 @@ layout: default
       <p>Not what you're looking for? Learn more about
         <a href="http://www.angularjs.org" target="_blank">AngularJS &raquo;</a>  </p>
   </div><!-- /.jumbotron -->
+</div><!-- header -->
 
-  <div role="main">
+  <div role="main" class="container">
     <div class="row">
       <div class="col-md-4 col-sm-4 primary" id="why-angulardart">
         <h2>Why AngularDart?</h2>
@@ -35,28 +35,9 @@ layout: default
       </div>
     </div><!-- /.row -->
 
-    <hr class="shield"/>
-
-   <!-- <div class="row">
-      <div class="col-md-6 col-sm-6 secondary" id="getting-started">
-        <h3>Getting Started</h3>
-        <p>Lorem vestibulum. Donec ac ante nulla. Aenean interdum hendrerit
-           enim vel cursus. Vestibulum fermentum sed erat sed ornare. Sed id
-           sagittis ipsuma, vel eleifend ligula. Donec rhoncus sapien vitae
-           pretium fermentum.</p>
-        <a href="#" class="more">Let's Get Started &raquo;</a>
-      </div>
-      <div class="col-md-6 col-sm-6 secondary" id="documentation">
-        <h3>Documentation</h3>
-        <p>Lorem vestibulum. Donec ac ante nulla. Aenean interdum hendrerit
-           enim vel cursus. Vestibulum fermentum sed erat sed ornare. Sed id
-           sagittis ipsuma, vel eleifend ligula. Donec rhoncus sapien vitae
-           pretium fermentum.</p>
-        <a href="#" class="more">See the Documentation &raquo;</a>
-      </div>
-    </div>
-    <!-- /.row -->
-    <!-- <hr /> -->
+{% comment %}
+<!-- Removing news, for now, since it's old news and the images are broken. -->
+<!--    <hr class="shield"/>
 
     <div class="row">
       <div class="col-md-12" id="news">
@@ -101,6 +82,7 @@ layout: default
             </li>
         </ul>
       </div>
-    </div><!-- /.row -->
-  </div><!-- /main -->
+    </div> -->
+{% endcomment %}
+  </div>
 </div>
