@@ -1,6 +1,16 @@
 {% include header.html %}
 
+<div class="container" role="main">
+  <div class="breadcrumbs">
+    <div class="container">
+      <ol class="breadcrumb">
+        <li><a href="/">Home</a></li>
+        <li class="active">{{page.title}}</li>
+      </ol>
+    </div>
+  </div>
   {{content}}
+</div>
 
 {% include footer.html %}
 
