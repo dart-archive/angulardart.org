@@ -14,5 +14,40 @@
 </div>
 
 {% include footer.html %}
+{% include demo-code.html %}
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+<script src="/google-code-prettify/prettify.min.js"></script>
+<link href="/google-code-prettify/prettify.css" type="text/css" rel="stylesheet"></script>
+<script>$().dropdown();</script>
+<script src="../js/homepage.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular-resource.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular-route.min.js"></script>
+
+<script src="https://cdn.firebase.com/v0/firebase.js"></script>
+<script src="http://firebase.github.io/angularFire/angularFire.js"></script>
+<script src="http://code.angularjs.org/1.2.4/i18n/angular-locale_sk.js"></script>
+<script src="http://code.angularjs.org/1.2.4/i18n/angular-locale_en-us.js"></script>
+<script>
+    angular.module('ngLocal.sk', [])._invokeQueue.push(angular.module('ngLocale')._invokeQueue[0]);
+    angular.module('ngLocal.us', [])._invokeQueue.push(angular.module('ngLocale')._invokeQueue[0]);
+    angular.bootstrap(document, ['ngRoute', 'homepage', 'ngLocal.us']);
+</script>
+
+<script type="text/javascript" src="https://apis.google.com/js/platform.js"></script>
+
+<script src="https://platform.twitter.com/widgets.js"></script>
+
+<script type="application/dart" src="../dart/examples.dart"></script>
+<script type="text/javascript" src="../dart/packages/browser/dart.js"></script>
+<script type="text/javascript" src="../dart/packages/browser/interop.js"></script>
+
+{% include analytics-script.html %}
+{% include pagespeed-script.html %}
+
+<script src="/js/code.js"></script>
+
+  </body>
+</html>
 
