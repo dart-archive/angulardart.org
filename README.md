@@ -13,4 +13,5 @@ To build the site locally, do the following:
     `xcode-select --install`
 3. Run `cd site`.
 4. Run `jekyll serve --watch`. This runs the dev server.
+   If you get a horrible set of messages, **make sure you're in site/.**
 5. View the site at `localhost:4000`.
