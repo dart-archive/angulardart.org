@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/Product">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta itemprop="description" name="Description" content="AngularDart is a framework for building web-apps in Dart.
+                 Declarative templates with data-binding, MVW, MVVM, MVC,
+                 dependency injection and great testability story!">
+    <meta itemprop="image" content="https://angulardart.org/img/logo.png">
+    <meta itemprop="name" content="AngularDart: Superheroic MVW Framework for Dart">
+
+    <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+
+    <title>Creating a Custom Component | AngularDart — Superheroic MVW Framework for Dart</title>
+
+    <!-- Stylesheets -->
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/base.css">
+
+
+    <!--<base href="/">--><base href=".">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.min.js"></script>
+  </head>
+
+  <body>
+    <div id="header">
+      <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">AngularDart</a>
+          </div>
+
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+            <!--
+            <form class="navbar-form navbar-right" role="search">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Search">
+              </div>
+            </form>
+            -->
+
+            <ul class="nav navbar-nav navbar-right">
+              <li class="active"><a href="/">Home</a></li>
+              <li><a href="/demo/">Demo</a></li>
+
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  Learn <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a href="/demo/">Intro to AngularDart</a>
+                  </li>
+                  <li>
+                    <a href="/tutorial/">Tutorial</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/shailen/angulardart-samples/tree/master/mini_samples#angulardart-mini-samples">
+                      Examples</a>
+                  </li>
+                  <li>
+                    <a href="https://www.dartlang.org/events/2014/flight-school/">
+                      Find a Flight School Event</a>
+                  </li>
+                </ul>
+              </li>
+
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  Develop <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a href="https://docs.angulardart.org/">
+                      API Reference</a>
+                  </li>
+                  <li>
+                    <a href="http://stackoverflow.com/questions/tagged/angular-dart">
+                      Q&amp;A (Stack Overflow)</a>
+                  </li>
+                </ul>
+              </li>
+
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  Discuss<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a href="http://blog.angulardart.org">Blog</a>
+                  </li>
+                  <li>
+                    <a href="http://groups.google.com/group/angular-dart">
+                      Mailing List</a>
+                  </li>
+                  <li>
+                    <a href="https://twitter.com/#!/angulardart">Twitter</a>
+                  </li>
+                  <li>
+                    <a href="https://plus.google.com/117340875933142003564">
+                      Google+</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/angular/angular.dart">GitHub</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/angular/angular.dart/issues">
+                      Issue Tracker</a>
+                  </li>
+                </ul>
+              </li>
+            </ul><!-- /.nav -->
+          </div><!-- /.navbar-collapse -->
+        </div><!-- /.container -->
+      </nav><!-- /.navbar -->
+
+
+  <div class="breadcrumbs">
+    <div class="container">
+      <ol class="breadcrumb">
+        <li><a href="/">Home</a></li>
+        
+        <li><a href="/tutorial/">Tutorial</a></li>
+        <li class="active">Creating a Custom Component</li>
+        
+      </ol>
+    </div>
+  </div>
+</div> <!-- header -->
+
+<div class="container tutorial" role="main">
+  <h1>Creating a Custom Component</h1>
+
+<p>In the last chapter, we created a basic Recipe Book app. In this
+chapter, we will add to the app by creating a feature that will allow
+users to rate each recipe.</p>
+
+<hr />
+
+<h3 id="what-you-will-learn">What you will learn</h3>
+
+<p>Previously, you learned about how Angular implements MVC controllers
+through controllers. In this chapter, we will introduce you to
+components, which are a second way Angular implements MVC controllers.
+When you’re finished, you will understand the similarities and
+differences between controllers and components, and you will understand
+when to use controllers and when to use components.</p>
+
+<hr class="spacer" />
+
+<h3 id="running-the-sample-app">Running the sample app</h3>
+
+<p>The code for this chapter is in the
+<em><a href="https://github.com/angular/angular.dart.tutorial/tree/master/Chapter_03">
+  Chapter_03</a></em> directory of the
+<a href="https://github.com/angular/angular.dart.tutorial/archive/master.zip">
+  angular.dart.tutorial download</a>.
+View it in Dart Editor by using
+<strong>File &gt; Open Existing Folder...</strong> to open the
+<strong>Chapter_03</strong> directory. </p>
+
+<p>Now run the app. In Dart Editor’s Files view, select
+<strong>Chapter_03/web/index.html</strong>, right-click, and choose
+<strong>Run in Dartium</strong>.</p>
+
+<p>You’ll notice that the rating, which used to be displayed as a boring
+number, has now become a not-so-boring cluster of stars. Play around
+with the star ratings by changing the rating on each recipe. Click any
+of the recipes to display its details, and notice there is also a star
+rating component in the recipe details section. Change the recipe rating
+in the details section; the rating in the recipe list section also
+changes.</p>
+
+<!--
+PENDING: We should add screenshots here.
+![TEXT GOES HERE](img/ch03-1.png) &nbsp; &nbsp; &nbsp; ![TEXT GOES HERE](img/ch03-2.png)
+-->
+
+<hr class="spacer" />
+
+<h3 id="angular-components">Angular components</h3>
+
+<p>The rating feature is an Angular component, implemented using the
+<a href="https://docs.angulardart.org/#angular-core-annotation.Component">
+  Component</a> annotation. Components are lightweight, reusable,
+self-contained UI components that have a single specific purpose. The
+rating component is a great example of a small, simple, re-usable
+component. It can be used anywhere in your app as many times as you
+want. Nothing about the rating component is intrinsically tied to our
+Recipe Book. We could use this component in any app to rate anything.</p>
+
+<hr class="spacer" />
+
+<h4 id="using-components-from-your-app">Using components from your app</h4>
+
+<p>Using a component from your app is simple. Just create an HTML element
+with the name of the component, and pass any required properties in as
+HTML attributes. Here is how our Recipe Book app uses the rating
+component.</p>
+
+<script type="template/code">
+<rating max-rating="5" rating="ctrl.selectedRecipe.rating"></rating>
+</script>
+
+<hr class="spacer" />
+
+<h4 id="creating-components">Creating components</h4>
+
+<p>Creating a component is similar to creating a controller. To create a
+component, simply create a class and add the <code>Component</code>
+annotation. Here is the annotation for our rating component:</p>
+
+<script type="template/code">
+@Component(
+    selector: 'rating',
+    templateUrl: 'packages/angular_dart_demo/rating/rating_component.html',
+    cssUrl: 'packages/angular_dart_demo/rating/rating_component.css',
+    publishAs: 'cmp')
+class RatingComponent {...}
+</script>
+
+<p>Let’s look at those properties in more detail.</p>
+
+<h5 id="selector"><code>selector</code></h5>
+
+<p>The <code>selector</code> property of Component serves the same
+purpose as the selector property in a controller. It tells Angular which
+CSS selector should trigger the component. By convention, selectors for
+components are element names, not attributes (notice the lack of []
+chars around the selector). This is because you can only specify one
+component on any html element. By contrast, you can specify more than
+one controller on an element.</p>
+
+<p>The following code snippet shows the basic differences between how
+controllers and components selectors are declared, and how they’re used
+in the HTML template.</p>
+
+<!-- PENDING: The following code is a little weird. Make it a table? -->
+
+<script type="template/code">
+@Component(
+    selector: 'rating',
+    ...)
+
+<rating></rating>
+
+@Controller(
+    selector: '[recipe-book]',
+    ...)
+
+<div recipe-book>
+    ...
+</div>
+</script>
+
+<h5 id="templateurl-and-cssurl"><code>templateUrl</code> and
+<code>cssUrl</code></h5>
+
+<p>Since components are self contained, they need to know what HTML
+template and CSS to use for their view. Components do not use the HTML
+of your app. They have their own.</p>
+
+<h5 id="publishas"><code>publishAs</code></h5>
+
+<p>The <code>publishAs</code> property serves the same purpose as the
+<code>publishAs</code> property in a controller. It defines the name
+that the view should use to reference the component. Note that the
+<code>publishAs</code> name is only visible to the component’s view, not
+your app’s view. Your app has no direct visibility into the internals of
+the component.</p>
+
+<p>Let’s look at our component’s HTML template:</p>
+
+<script type="template/code">
+<span class="stars"
+      ng-if="cmp.rating != null"
+      ng-repeat="star in cmp.stars"
+      ng-click="cmp.handleClick(star)"
+      ng-class="cmp.starClass(star)">
+  {{cmp.starChar(star)}}
+</span>
+</script>
+
+<p><code>rating</code> here refers to the properties and methods on a
+RatingComponent object.</p>
+
+<p>A few other properties can be set on a component annotation, but these
+are the most important. We will cover some of the less common ones in
+later chapters.</p>
+
+<hr class="spacer" />
+
+<h4 id="defining-attributes">Defining attributes</h4>
+
+<p>Recall how our Recipe Book app uses the rating component:</p>
+
+<script type="template/code">
+<rating max-rating="5" rating="ctrl.selectedRecipe.rating"></rating>
+</script>
+
+<p>To specify which HTML attributes correspond to which properties of the
+component, the <code>RatingComponent</code> class uses annotations like the
+following:</p>
+
+<script type="template/code">
+@NgTwoWay('rating')
+  int rating;
+
+@NgAttr('max-rating')
+  set maxRating(String value) {...}
+</script>
+
+<p><aside class="alert alert-info">
+<b>Note:</b>
+NgTwoWay and NgAttr,
+along with similar classes,
+are deprecated but not yet replaced.
+You can view issues related to this effort under the milestone
+<a href="https://github.com/angular/angular.dart/issues?milestone=21">bind-*
+syntax</a>.
+</aside></p>
+
+<p>The argument to the annotation specifies the HTML attribute name—for
+example, “rating” or “max-rating”. Following HTML rules, the attribute
+name is case insensitive, with dashes to separate words.</p>
+
+<p>Which annotation you should use depends on how you want the attribute
+to be evaluated:</p>
+
+<dl>
+<dt> <a href="https://docs.angulardart.org/#angular-core-annotation.NgAttr">NgAttr</a> </dt>
+  <dd>
+    <p>Sets the property to the value of the attribute, interpolating
+      if it contains {{}} . Our example had this:
+      <code>max-rating="5"</code>. You could also get the value from the
+      controller by doing something like
+      <code>max-rating="{{ctrl.someProperty}}"</code>.</p>
+
+    <p>
+      <code>NgAttr</code> attributes are unidirectional. A copy of the attribute is
+      passed to the component, and each instance of the component has
+      its own copy. The component can change its local value of the
+      property without changing the value outside the component.</p>
+  </dd>
+
+<dt>
+  <a href="https://docs.angulardart.org/#angular-core-annotation.NgOneWay">
+    NgOneWay</a></dt>
+
+<dd>
+  <p>Evaluates the attribute's value as an expression and passes the
+    result to the component. You can use any valid expression—for
+    example, <code>"foo + bar"</code> would pass the result of
+    <code>foo + bar</code> to the component.</p>
+
+  <p><code>NgOneWay</code> attributes are unidirectional. The component's property
+    changes if the expression's value changes, but changing the
+    component's property has no effect outside the component.</p>
+</dd>
+
+<dt>
+  <a href="https://docs.angulardart.org/#angular-core-annotation.NgTwoWay">
+    NgTwoWay</a></dt>
+
+<dd>
+  <p>Evaluates the expression, passes the result to the component, and
+    keeps the expression and property value in sync. Our example set an
+    <code>NgTwoWay</code> attribute using this code:
+    <code>rating="ctrl.selectedRecipe.rating"</code></p>
+
+  <p><code>NgTwoWay</code> is bidirectional. When a component changes the value of an
+    NgTwoWay-annotated property, the value outside of the component
+    changes, as well. In this way, components can change model objects
+    in your app. In our example, the rating component changes the rating
+    on your RecipeBook’s model objects.</p>
+</dd>
+</dl>
+
+<hr class="spacer" />
+
+<h4 id="how-is-a-component-different-from-a-controller">How is a component
+different from a controller?</h4>
+
+<p>The key difference between components and controllers is that the inner
+structure of components are isolated from their surroundings and can be
+thought of as black boxes.</p>
+
+<p>Components create their own scope hierarchy that is invisible from the
+outside world. They don’t have direct access to the app’s scope, nor
+does the app have direct access to a component’s scope.</p>
+
+<p>Components isolate their views from their surroundings by creating a
+<a href="http://www.google.com/url?q=http%3A%2F%2Fwww.w3.org%2FTR%2Fshadow-dom%2F&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNF9dpDWirbbvI2JasCRd9Qs1jUg9A">
+  shadow DOM</a>. Using a shadow DOM allows components to be used
+anywhere without suffering from things like CSS name collisions.</p>
+
+<hr class="spacer" />
+
+<h3 id="angular-features">Angular features</h3>
+
+<p>This chapter introduced you to two more built-in Angular directives:
+<code>ng-if</code> and <code>ng-class</code>.</p>
+
+<h4 id="ng-ifhttpciangularjsorgviewdartjobangulardart-masterjavadocangulardirectivengifdirectivehtml">
+<a href="https://docs.angulardart.org/#angular-directive.NgIf">
+  <code>ng-if</code></a></h4>
+
+<p>The <code>ng-if</code> directive allows you to evaluate sections of the
+DOM conditionally. The <code>ng-if</code> directive takes an expression.
+If the expression is false, then the portion of the DOM underneath the
+if is removed. <code>ng-if</code> does not change the visibility of the
+DOM element. It removes it.</p>
+
+<h4 id="ng-classhttpciangularjsorgviewdartjobangulardart-masterjavadocangulardirectivengclassdirectivehtml">
+<a href="https://docs.angulardart.org/#angular-directive.NgClass">
+  <code>ng-class</code></a></h4>
+
+<p>The <code>ng-class</code> directive allows you to set CSS classes on an
+element dynamically using an expression that evaluates to the classes to
+be added.</p>
+
+  <ul class="pager">
+  
+    <li class="previous"><a href="04-ch02-controller.html">&laquo; Previous</a></li>
+    <li><a href="/tutorial/index.html">Tutorial Overview</a></li>
+  
+  
+    <li class="next"><a href="06-ch04-directive.html">Next &raquo;</a></li>
+  
+  </ul>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-sm-8">
+        <p>Super-powered by Google ©2010-2014<br/>Code licensed under
+          <a href="https://github.com/angular/angular.js/blob/master/LICENSE" target="_blank">
+            The MIT License</a>. Documentation licensed under
+          <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.
+        </p>
+      </div>
+      <div class="col-md-4 col-sm-4 align-right">
+        <a href="https://plus.google.com/117340875933142003564">
+          <i class="fa fa-google-plus"></i></a>
+        <a href="https://twitter.com/#!/angulardart">
+          <i class="fa fa-twitter"></i></a>
+        <a href="https://github.com/angular/angular.dart">
+          <i class="fa fa-github"></i></a>
+        <a href="http://blog.angulardart.org">
+          <i class="fa fa-rss"></i></a>
+      </div>
+    </div><!-- /.row -->
+  </div><!-- /.container -->
+</footer>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+
+      <script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create','UA-8594346-12','angulardart.org');ga('send','pageview');</script><!-- /Analytics-->
+
+    <script pagespeed_no_defer="">(function(){var e=encodeURIComponent,f=window,h=document,m="width",n="documentElement",p="height",q="length",r="prototype",s="body",t="&",u="&ci=",w="&n=",x="&rd=",y=",",z="?",A="Content-Type",B="Microsoft.XMLHTTP",C="Msxml2.XMLHTTP",D="POST",E="application/x-www-form-urlencoded",F="img",G="input",H="load",I="oh=",J="on",K="pagespeed_url_hash",L="url=",M=function(a,c,d){if(a.addEventListener)a.addEventListener(c,d,!1);else if(a.attachEvent)a.attachEvent(J+c,d);else{var b=a[J+c];a[J+c]=function(){d.call(this);b&&b.call(this)}}};f.pagespeed=f.pagespeed||{};var N=f.pagespeed,O=function(a,c,d,b,g){this.d=a;this.f=c;this.g=d;this.a=g;this.c={height:f.innerHeight||h[n].clientHeight||h[s].clientHeight,width:f.innerWidth||h[n].clientWidth||h[s].clientWidth};this.e=b;this.b={}};O[r].j=function(a){a=a.getBoundingClientRect();return{top:a.top+(void 0!==f.pageYOffset?f.pageYOffset:(h[n]||h[s].parentNode||h[s]).scrollTop),left:a.left+(void 0!==f.pageXOffset?f.pageXOffset:(h[n]||h[s].parentNode||h[s]).scrollLeft)}};O[r].i=function(a){if(0>=a.offsetWidth&&0>=a.offsetHeight)return!1;a=this.j(a);var c=a.top.toString()+y+a.left.toString();if(this.b.hasOwnProperty(c))return!1;this.b[c]=!0;return a.top<=this.c[p]&&a.left<=this.c[m]};O[r].l=function(){for(var a=[F,G],c=[],d={},b=0;b<a[q];++b)for(var g=h.getElementsByTagName(a[b]),k=0;k<g[q];++k){var v=g[k].getAttribute(K);v&&g[k].getBoundingClientRect&&this.i(g[k])&&!(v in d)&&(c.push(v),d[v]=!0)}b=!1;a=I+this.g;this.a&&(a+=w+this.a);if(0!=c[q]){a+=u+e(c[0]);for(b=1;b<c[q];++b){d=y+e(c[b]);if(131072<a[q]+d[q])break;a+=d}b=!0}this.e&&(d=x+e(JSON.stringify(this.h())),131072>=a[q]+d[q]&&(a+=d),b=!0);N.criticalImagesBeaconData=a;if(b){var c=this.d,b=this.f,l;if(f.XMLHttpRequest)l=new XMLHttpRequest;else if(f.ActiveXObject)try{l=new ActiveXObject(C)}catch(P){try{l=new ActiveXObject(B)}catch(Q){}}l&&(l.open(D,c+(-1==c.indexOf(z)?z:t)+L+e(b)),l.setRequestHeader(A,E),l.send(a))}};O[r].h=function(){for(var a={},c=h.getElementsByTagName(F),d=0;d<c[q];++d){var b=c[d],g=b.getAttribute(K);if("undefined"==typeof b.naturalWidth||"undefined"==typeof b.naturalHeight||"undefined"==typeof g)break;if("undefined"==typeof a[b.src]&&0<b[m]&&0<b[p]&&0<b.naturalWidth&&0<b.naturalHeight||"undefined"!=typeof a[b.src]&&b[m]>=a[b.src].n&&b[p]>=a[b.src].m)a[g]={renderedWidth:b[m],renderedHeight:b[p],originalWidth:b.naturalWidth,originalHeight:b.naturalHeight}}return a};N.k=function(a,c,d,b,g){var k=new O(a,c,d,b,g);M(f,H,function(){f.setTimeout(function(){k.l()},0)})};N.criticalImagesBeaconInit=N.k;})();pagespeed.criticalImagesBeaconInit('/ngx_pagespeed_beacon','https://angulardart.org/','_cC5oOyMsy',false,'lX8vseUjkr0');</script>
+
+
+<script src="/js/code.js"></script>
+<script src="/google-code-prettify/prettify.min.js"></script>
+<link href="/google-code-prettify/prettify.css" type="text/css" rel="stylesheet"></script>
+
+
+  </body>
+</html>
