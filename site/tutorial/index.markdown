@@ -82,7 +82,7 @@ next: 01-before-you-begin.html
     </tr>
     <tr>
       <td><a href="06-ch04-directive.html">4. Creating a Custom
-          Directive</a></td>
+          Decorator</a></td>
       <td>Tooltips for Recipe Book</td>
       <td><code>@Decorator</code>, custom element attributes, DOM manipulation,
           table comparing <code>@Controller</code> &amp; <code>@Decorator</code> &amp;
