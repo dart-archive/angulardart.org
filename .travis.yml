@@ -8,8 +8,7 @@ before_install:
 - travis_retry gem install jekyll
 
 script: 
-- cd site
-- jekyll build
+- ./scripts/build.sh
 after_success: 
 - ./scripts/after_success.sh
 branches:
