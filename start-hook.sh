@@ -8,4 +8,4 @@ cd "$(dirname "$0")"
 #
 # See: https://github.com/Coreh/hookshot
 #
-hookshot -p 9000 "git fetch && git reset --hard origin/generated"
+hookshot -p 9000 "git fetch && git checkout -f origin/generated"
