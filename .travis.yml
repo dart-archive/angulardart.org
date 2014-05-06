@@ -1,0 +1,17 @@
+language: ruby
+
+env:
+  global:
+  - secure: "lwkbMco2nV8rc76V+Q0YpN88c9C+Y6HnRDpqyBpkdRJzAEmvm/KwUNRC3f2mdQn4QPg6T+qzVsDrTK7Qq7pnxOTfZk5iT92DevTVSLW8+xyj7f7azm9G3as3j/d5CbYd4v0qo792AAw0w9l+CzR+oYA8vsyYX81Ca2x7aYe1Q6Y="
+
+before_install:
+- travis_retry gem install jekyll
+
+script: 
+- cd site
+- jekyll build
+after_success: 
+- ./scripts/after_success.sh
+branches:
+  except:
+    - generated
