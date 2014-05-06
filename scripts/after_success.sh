@@ -9,7 +9,7 @@ SHA=`git rev-parse HEAD`
 
 echo Cloning
 rm -rf generated
-git clone . -b generated generated
+git clone https://github.com/angular/angulardart.org.git -b generated generated
 cd generated
 
 echo Copying generated sity
@@ -27,6 +27,4 @@ git add .
 git commit -m "Automated push of generated docs from SHA: https://github.com/angular/angulardart.org/commit/$SHA"
 
 echo Pushing to github
-git remote rm origin
-git remote add origin https://github.com/angular/angulardart.org.git
 git push origin HEAD:generated
