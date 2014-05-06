@@ -1,0 +1,10 @@
+language: ruby
+
+before_install:
+- travis_retry gem install jekyll
+
+script: jekyll build
+after_success: 
+branches:
+  only:
+    - master

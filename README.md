@@ -3,8 +3,9 @@
 To build the site locally, do the following:
 
 1. If `which bundle` returns something, you have the prerequisites. Otherwise:
-  1. Download rubygems [PENDING: say from where]
-  2. Install bundler [PENDING: say from where]
+  1. Download rubygems from http://rubygems.org/pages/download
+  2. Install rubygems with `ruby setup.rb`
+  3. Install bundler with `gem install bundler`
 2. Run `bundle install` from within the directory that contains the `Gemfile`
   * If you have issues installing posix-spawn
     (messages like "posix-spawn.c:6:19: error: errno.h: No such file or directory")
