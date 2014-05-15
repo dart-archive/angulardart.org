@@ -1,6 +1,11 @@
 # Angulardart.org
 
-To build the site locally, do the following:
+Your changes to the master branch of angular/angulardart.org should become
+visible on angulardart.org in 5-10 minutes.
+
+If you're making a change that isn't simple, please build the site locally
+before you commit the changes.
+Here's how:
 
 1. If `which bundle` returns something, you have the prerequisites. Otherwise:
   1. Download rubygems from http://rubygems.org/pages/download
