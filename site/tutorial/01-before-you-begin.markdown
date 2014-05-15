@@ -28,22 +28,22 @@ The easiest way to get started with AngularDart is to install Dart Editor:
 When you download Dart Editor, you also get the Dart SDK (which
 includes Dart command-line tools) and Dartium—a build of Chromium with
 the Dart VM. For more information about Dart tools, see
-[https://www.dartlang.org/tools/](www.dartlang.org/tools/).
+[www.dartlang.org/tools/](https://www.dartlang.org/tools/).
 
 ### Get the tutorial sample code
 
 All of the code in this tutorial is visible at
-[https://github.com/angular/angular.dart.tutorial](github.com/angular/angular.dart.tutorial).
+[github.com/angular/angular.dart.tutorial](https://github.com/angular/angular.dart.tutorial).
 We recommend that you get a local copy, either by cloning the repo or
 by downloading the
-[https://github.com/angular/angular.dart.tutorial/archive/master.zip](ZIP file).
+[ZIP file](https://github.com/angular/angular.dart.tutorial/archive/master.zip).
 
 ### New to Dart?
 
 If you’re new to Dart, take some time to familiarize yourself with the
 basics of the Dart language and application structure. The Dart
 documentation lives at
-[https://www.dartlang.org/](www.dartlang.org). You can start with any of these:
+[www.dartlang.org](https://www.dartlang.org/). You can start with any of these:
 
 <dl>
   <dt><a href="https://www.dartlang.org/codelabs/darrrt/">Avast, Ye
