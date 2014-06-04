@@ -368,7 +368,7 @@ defined:</p>
 <hr class="spacer" />
 
 <h4 id="connecting-a-route-to-a-view">Connecting a route to a view</h4>
-<p>Now let’s look at the how the routes and views are connected in our
+<p>Now let’s look at how the routes and views are connected in our
 app. There are two pieces involved: the router configuration, and the
 <code>ng-view</code> directive. Open up the <strong>index.html</strong>
 file and look at the details section. It contains only an
