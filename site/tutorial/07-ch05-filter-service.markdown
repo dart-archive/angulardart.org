@@ -163,7 +163,7 @@ class CategoryFilter { ... }
 class MyAppModule extends Module {
   MyAppModule() {
     ...
-    type(CategoryFilter)
+    bind(CategoryFilter)
     ...
   }
 }
@@ -264,7 +264,7 @@ class RecipeBookController {
 class MyAppModule extends Module {
   MyAppModule() {
     ...
-    type(RecipeBookController);
+    bind(RecipeBookController);
     ...
   }
 }
