@@ -246,7 +246,7 @@ and then make the <code>RouteInitializerFn</code> available in the
 your app’s module configuration:</p>
 
 <script type="template/code">
-value(RouteInitializerFn, recipeBookRouteInitializer);
+bind(RouteInitializerFn, toValue: recipeBookRouteInitializer);
 </script>
 
 <p>You configure the router by calling <code>RouteViewFactory.configure()</code>
@@ -428,7 +428,7 @@ data is loaded by using Future chaining. Let’s look at the
 <code>QueryService</code> constructor:</p>
 
 <script type="template/code">
-@NgInjectableService()
+@Injectable()
 QueryService(Http this._http) {
   _loaded = Future.wait([_loadRecipes(), _loadCategories()]);
 }
