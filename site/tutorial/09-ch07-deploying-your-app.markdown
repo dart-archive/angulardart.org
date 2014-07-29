@@ -68,32 +68,24 @@ by copying the URL into them.
 <p>Angular components use  <a href="http://www.html5rocks.com/en/tutorials/webcomponents/shadowdom/">
   Shadow DOM</a>, but unfortunately it’s not natively supported in all
 modern browsers, so you need to use a
-<a href="http://pub.dartlang.org/packages/shadow_dom">polyfill</a>.</p>
+<a href="http://pub.dartlang.org/packages/web_components">polyfill</a>.</p>
 
 <p>
-First, make sure that your app's <code>pubspec.yaml</code> file
-contains a dependency on the <code>shadow_dom</code> package:
-</p>
-
-<script type="template/code">
-dependencies:
-  shadow_dom: any
-</script>
-
-<p>
-Then include the following script tag before any other script tags:
+First, include the following script tags in the HTML &lt;head&gt; before any other script tags:
 </p>
 
 <!-- Can not use a script tag here because of nested script tags -->
 <pre class="prettyprint">
-&lt;script src="packages/shadow_dom/shadow_dom.min.js"&gt;&lt;/script&gt;
+&lt;script src="packages/web_components/platform.js"&gt;&lt;/script&gt;
+&lt;script src="packages/web_components/dart_support.js"&gt;&lt;/script&gt;
 </pre>
 
 <p>Or use the debug version:</p>
 
 <!-- Can not use a script tag here because of nested script tags -->
 <pre class="prettyprint">
-&lt;script src="packages/shadow_dom/shadow_dom.debug.js"&gt;&lt;/script&gt;
+&lt;script src="packages/web_components/platform.concat.js"&gt;&lt;/script&gt;
+&lt;script src="packages/web_components/dart_support.js"&gt;&lt;/script&gt;
 </pre>
 
 <p><strong>Note:</strong> Using the polyfill has
