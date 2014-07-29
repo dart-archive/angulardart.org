@@ -161,7 +161,7 @@ list of modules that Angular loads.</p>
 <script type="template/code">
 class MyAppModule extends Module {
   MyAppModule() {
-    type(RecipeBookController);
+    bind(RecipeBookController);
   }
 }
 
