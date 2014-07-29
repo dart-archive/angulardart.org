@@ -67,10 +67,9 @@ file for this sample:</p>
 
 <script type="template/code">
 name: angular_dart_demo
-version: 0.0.1
+version: 0.0.2
 dependencies:
-  angular: 0.10.0
-  shadow_dom: any
+  angular: 0.13.0
 transformers:
 - angular
 </script>
@@ -138,7 +137,7 @@ when no <code>ng-app</code> directive is found on the page.</p>
 
 <!-- Can not use a script tag here because of nested script tags -->
 <pre class="prettyprint">
-&lt;script src="packages/shadow_dom/shadow_dom.min.js"&gt;&lt;/script&gt;
+&lt;script src="packages/web_components/platform.js"&gt;&lt;/script&gt;
 &lt;script type="application/dart" src="main.dart"&gt;&lt;/script&gt;
 &lt;script type="text/javascript" src="packages/browser/dart.js"&gt;&lt;/script&gt;
 </pre>
