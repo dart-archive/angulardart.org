@@ -67,10 +67,9 @@ file for this sample:</p>
 
 <script type="template/code">
 name: angular_dart_demo
-version: 0.0.1
+version: 0.0.2
 dependencies:
-  angular: 0.10.0
-  shadow_dom: any
+  angular: 0.13.0
 transformers:
 - angular
 </script>
@@ -134,18 +133,26 @@ for Angular to manage only part of the app, we recommend putting the
 because it is the outermost tag. This is also the default behavior
 when no <code>ng-app</code> directive is found on the page.</p>
 
+<p>Next, let’s look at the two script tags in the HTML &lt;head&gt;.</p>
+<!-- Can not use a script tag here because of nested script tags -->
+<pre class="prettyprint">
+&lt;script src="packages/web_components/platform.js"&gt;&lt;/script&gt;
+&lt;script src="packages/web_components/dart_support.js"&gt;&lt;/script&gt;
+</pre>
+
+These two script tag turns on the Shadow DOM (a new web platform feature)
+for older browsers.
+
 <p>Next, let’s look at the two script tags at the end.</p>
 
 <!-- Can not use a script tag here because of nested script tags -->
 <pre class="prettyprint">
-&lt;script src="packages/shadow_dom/shadow_dom.min.js"&gt;&lt;/script&gt;
 &lt;script type="application/dart" src="main.dart"&gt;&lt;/script&gt;
 &lt;script type="text/javascript" src="packages/browser/dart.js"&gt;&lt;/script&gt;
 </pre>
 
 <p>This code should be familiar if you’ve ever written a Dart web app.
-The first script tag turns on the Shadow DOM (a new web platform feature)
-for older browsers. The second script tag specifies the Dart file that
+The first script tag specifies the Dart file that
 contains the main() function of your app. The last one runs a script,
 <code>dart.js</code>, that determines whether the browser is capable of
 running Dart code natively. If so, it runs Dart. If not, it runs
