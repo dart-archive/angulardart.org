@@ -75,25 +75,24 @@ As the user types into the text input box, it updates the model object’s
 <code>nameFilterString</code> property.</p>
 
 <script type="template/code">
-<input id="name-formatter" type="text"
-       ng-model="ctrl.nameFilterString">
+<input id="name-formatter" type="text" ng-model="nameFilterString">
 </script>
 
 <p>Next, we pipe the <code>ng-repeat</code> criteria through the formatter,
-and tell the Filter formatter (published as <code>filter</code>)
-to use <code>ctrl.nameFilterString</code> as the
+and tell the Filter formatter (registered as <code>filter</code>)
+to use <code>nameFilterString</code> as the
 property to filter against.</p>
 
 <script type="template/code">
 <ul>
     <li class="pointer"
-        ng-repeat="recipe in ctrl.recipes | filter:{name:ctrl.nameFilterString}">
+        ng-repeat="recipe in recipes | filter:{name:nameFilterString}">
     ...
     </li>
 </ul>
 </script>
 
-<p>Lastly, we create a property on our <code>RecipeBookController</code>
+<p>Lastly, we create a property on our <code>RecipeBookComponent</code>
 to store the <code>nameFilterString</code> property for the input.</p>
 
 <script type="template/code">
@@ -114,7 +113,9 @@ custom formatter called <code>CategoryFilter</code>.</p>
 <code>call</code> method with at least one argument:</p>
 
 <script type="template/code">
-call(valueToFormat, optArg1, ..., optArgN);
+class MyFormatter {
+  call(valueToFormat, optArg1, ..., optArgN) { ... }
+}
 </script>
 
 <p>The first argument is the incoming model object to be formatted; in our
@@ -157,7 +158,7 @@ section.</p>
 class CategoryFilter { ... }
 </script>
 
-      <p>Add the new class to the bootstrapping code:</p>
+<p>Add the new class to the bootstrapping code:</p>
 
 <script type="template/code">
 class MyAppModule extends Module {
@@ -174,10 +175,10 @@ class MyAppModule extends Module {
 <script type="template/code">
 <div>
     <label>Filter recipes by category
-        <span ng-repeat="category in ctrl.categories">
+        <span ng-repeat="category in categories">
           <label>
             <input type="checkbox"
-                   ng-model="ctrl.categoryFilterMap[category]">{% raw %}{{category}}{% endraw %}
+                   ng-model="categoryFilterMap[category]">{% raw %}{{category}}{% endraw %}
           </label>
         </span>
     </label>
@@ -200,8 +201,7 @@ checked.</p>
 <p>Next, we plug the custom formatter in the same way we would plug in a built-in formatter:</p>
 
 <script type="template/code">
-<li class="pointer"
-    ng-repeat="recipe in ctrl.recipes | categoryfilter:ctrl.categoryFilterMap">
+<li class="pointer" ng-repeat="recipe in recipes | categoryfilter:categoryFilterMap">
 </script>
 
 <hr class="spacer" />
@@ -214,12 +214,12 @@ This is how Angular applies multiple formatters to a single
 
 <script type="template/code">
 <li class="pointer"
-    ng-repeat="recipe in ctrl.recipes | orderBy:'name' | filter:{name:ctrl.nameFilterString} | categoryfilter:ctrl.categoryFilterMap">
+    ng-repeat="recipe in recipes | orderBy:'name' | filter:{name:nameFilterString} | categoryfilter:categoryFilterMap">
 </script>
 
 
 <hr class="spacer" />
-<h3 id="introducing-the-httphttpciangularjsorgviewdartjobangulardart-masterjavadocangularcoredomhttphtml-service">
+<h3 id="introducing-the-http-service">
 Introducing the Http service</h3>
 
 <p>Our last example had the data hard coded in the app. In reality, you’d
@@ -234,23 +234,23 @@ serialized as a JSON string. We will use the <code>Http</code> service
 to make an HTTP request to the web server to fetch this data. Let’s look
 at how to do this.</p>
 
-<p>First, we declare a property on the <code>RecipeBookController</code>
+<p>First, we declare a property on the <code>RecipeBookComponent</code>
 class. Ours is called <code>_http</code>. The <code>Http</code> service
 is part of the core Angular package, so you don’t need to import
-anything new. Next, look at the <code>RecipeBookController</code>’s
+anything new. Next, look at the <code>RecipeBookComponent</code>’s
 constructor. We’ve added a parameter and assigned it to the
 <code>_http</code> property. Angular instantiates the
-<code>RecipeBookController</code> class using
+<code>RecipeBookComponent</code> class using
 <a href="http://en.wikipedia.org/wiki/Dependency_injection">
   Dependency Injection</a>. In the main method, you set up the injector
 with your app’s module where you included the code to construct a
-<code>RecipeBookController</code>. The call to
+<code>RecipeBookComponent</code>. The call to
 <code>addModule()</code> includes the <code>AngularModule</code>,
 which contains injection rules for all of Angular’s core features,
 including the <code>Http</code> service.</p>
 
 <script type="template/code">
-class RecipeBookController {
+class RecipeBookComponent {
   final Http _http;
   ...
   RecipeBookController(this._http) {
@@ -264,7 +264,7 @@ class RecipeBookController {
 class MyAppModule extends Module {
   MyAppModule() {
     ...
-    bind(RecipeBookController);
+    bind(RecipeBookComponent);
     ...
   }
 }
@@ -349,10 +349,9 @@ conditional display logic, let&rsquo;s use an <code>ng-switch</code>
 directive instead.</p>
 
 <script type="template/code">
-<body recipe-book ng-cloak>
-  <div ng-switch="ctrl.recipesLoaded && ctrl.categoriesLoaded">
+  <div ng-switch="recipesLoaded && ctrl.categoriesLoaded">
     <div ng-switch-when="false">
-      {% raw %}{{ctrl.message}}{% endraw %}
+      {% raw %}{{message}}{% endraw %}
     </div>
     <div ng-switch-when="true">
       <h3>Recipe List</h3>
@@ -417,6 +416,10 @@ DOM, you can hide the page (or sections of it) by using
 }
 </script>
 
+<p>A set of basic CSS rules are provided as part of Angular.Dart in the
+<a href="https://github.com/angular/angular.dart/blob/master/lib/css/angular.css">angular.dart/lib/css/angular.css</a>
+file</p>.
+
 <p>Once Angular is finished compiling the DOM, it secretly removes the
 <code>ng-cloak</code> class or directive from the DOM and allows your
 app to be visible.</p>
@@ -452,12 +455,7 @@ version described in this chapter.</p>
   a “multiplier” input that will allow the user to double, triple, or
   quadruple the recipe. Lastly, write a custom formatter that multiplies
   each amount by the number specified in the multiplier input.
-  <strong>Note</strong>: If your code fails with the error “5 $digest()
-  iterations reached”, then read <a href="http://stackoverflow.com/questions/21322969/angulardart-custom-filter-call-method-required-to-be-idempotent">
-    this explanation on StackOverflow</a>.
-  Also note the suggested workaround of piping  ingredient values into a
-  (custom) <code>toString()</code> formatter.</li>
 <li>Finally, if you have not done so already, adapt your solutions to
-the first two problems above so that application of each formatter is
-controlled by a checkbox.</li>
+  the first two problems above so that application of each formatter is
+  controlled by a checkbox.</li>
 </ol>
