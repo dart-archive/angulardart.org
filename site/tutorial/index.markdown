@@ -25,12 +25,7 @@ next: 01-before-you-begin.html
    <a href="https://github.com/nikgraf/exploring-angular.dart/blob/master/resources.md">list of resources</a>.</p>
 
 <div class="alert alert-warning">
-  <strong>Important:</strong> AngularDart is in beta,
-  and its API is subject to change.
-  Before AngularDart's 1.0 release, we expect to fix
-  <a href="https://github.com/angular/angular.dart/issues?milestone=12">these bugs</a>
-  (and more).
-  <strong>This version of the tutorial uses AngularDart version 0.10.0.</strong>
+  <strong>This version of the tutorial uses AngularDart version 1.x</strong>
 </div>
 
 <table id="tutorial-toc">
@@ -66,7 +61,7 @@ next: 01-before-you-begin.html
           “Hello World”</a></td>
       <td>A Recipe Book app</td>
       <td>Scopes, models, controllers, <code>@Controller</code>,
-          <code>type()</code>, <code>addModule()</code>, 
+          <code>type()</code>, <code>addModule()</code>,
           common properties (<code>selector</code>,
           <code>publishAs</code>), <code>ng-repeat</code>,
           <code>ng-click</code></td>
