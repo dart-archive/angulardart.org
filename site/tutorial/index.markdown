@@ -25,12 +25,7 @@ next: 01-before-you-begin.html
    <a href="https://github.com/nikgraf/exploring-angular.dart/blob/master/resources.md">list of resources</a>.</p>
 
 <div class="alert alert-warning">
-  <strong>Important:</strong> AngularDart is in beta,
-  and its API is subject to change.
-  Before AngularDart's 1.0 release, we expect to fix
-  <a href="https://github.com/angular/angular.dart/issues?milestone=12">these bugs</a>
-  (and more).
-  <strong>This version of the tutorial uses AngularDart version 0.10.0.</strong>
+  <strong>This version of the tutorial uses AngularDart version 1.x</strong>
 </div>
 
 <table id="tutorial-toc">
@@ -62,31 +57,30 @@ next: 01-before-you-begin.html
           binding (<code>ng-model</code>)</td>
     </tr>
     <tr>
-      <td><a href="04-ch02-controller.html">2. Something More than
+      <td><a href="04-ch02-component.html">2. Something More than
           “Hello World”</a></td>
       <td>A Recipe Book app</td>
-      <td>Scopes, models, controllers, <code>@Controller</code>,
-          <code>type()</code>, <code>addModule()</code>, 
+      <td>Scopes, models, components, <code>@Component</code>,
+          <code>type()</code>, <code>addModule()</code>,
           common properties (<code>selector</code>,
-          <code>publishAs</code>), <code>ng-repeat</code>,
+          <code>templateUrl</code>), <code>ng-repeat</code>,
           <code>ng-click</code></td>
     </tr>
     <tr>
-      <td><a href="05-ch03-component.html">3. Creating a Custom
-          Component</a></td>
+      <td><a href="05-ch03-component.html">3. More on
+          Components</a></td>
       <td>A rating component for Recipe Book</td>
       <td><code>@Component</code>, properties (<code>selector</code> &amp;
-          <code>publishAs</code> again, <code>templateUrl</code>,
-          <code>cssUrl</code>), <code>@NgAttr</code>, <code>@NgOneWay</code>, <code>@NgTwoWay</code>, component
-          vs. controller, <code>ng-if</code>, <code>ng-class</code></td>
+          <code>templateUrl</code> again, <code>map</code>, <code>useShadowDom</code>),
+          <code>@NgAttr</code>, <code>@NgOneWay</code>, <code>@NgTwoWay</code>,
+          <code>ng-if</code>, <code>ng-class</code></td>
     </tr>
     <tr>
       <td><a href="06-ch04-directive.html">4. Creating a Custom
           Decorator</a></td>
       <td>Tooltips for Recipe Book</td>
       <td><code>@Decorator</code>, custom element attributes, DOM manipulation,
-          table comparing <code>@Controller</code> &amp; <code>@Decorator</code> &amp;
-          <code>@Component</code></td>
+          table comparing<code>@Decorator</code> &amp; <code>@Component</code></td>
     </tr>
     <tr>
       <td><a href="07-ch05-filter-service.html">5. Introducing Formatters
@@ -101,7 +95,7 @@ next: 01-before-you-begin.html
       <td><a href="08-ch06-view.html">6. Creating Views</a></td>
       <td>Reorganizing the app, customizing URLs</td>
       <td>App structure, view-specific components, changing the app URL,
-          Router, RouteViewFactory, <code>addRoute()</code>,
+         <code>Router</code>, <code>RouteViewFactory</code>, <code>addRoute()</code>,
           <code>ng-view</code></td>
     </tr>
     <tr>

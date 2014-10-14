@@ -71,7 +71,7 @@ modern browsers, so you need to use a
 <a href="http://pub.dartlang.org/packages/web_components">polyfill</a>.</p>
 
 <p>
-First, include the following script tags in the HTML &lt;head&gt; before any other script tags:
+First, include the following script tags in the HTML <code>&lt;head&gt;</code> before any other script tags:
 </p>
 
 <!-- Can not use a script tag here because of nested script tags -->

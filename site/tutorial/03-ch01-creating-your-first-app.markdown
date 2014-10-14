@@ -2,7 +2,7 @@
 layout: tutorial
 title: Creating Your First Angular App
 previous: 02-welcome-to-angular.html
-next: 04-ch02-controller.html
+next: 04-ch02-component.html
 ---
 
 # {{page.title}}
@@ -66,10 +66,12 @@ libraries available to your app</h3>
 file for this sample:</p>
 
 <script type="template/code">
-name: angular_dart_demo
-version: 0.0.1
+name: tutorial
+version: 1.0.0
 dependencies:
-  angular: 0.13.0
+  angular: "1.0.0"
+  web_components: ">=0.8.0 <0.9.0"
+  browser: ">=0.10.0+2 <0.11.0"
 transformers:
 - angular
 </script>
@@ -80,7 +82,11 @@ Also include the <code>angular</code> transformer,
 which will be necessary later,
 when you convert your app to JavaScript
 (as described in
-<a href="09-ch07-deploying-your-app.html">Deploying Your App</a>). 
+<a href="09-ch07-deploying-your-app.html">Deploying Your App</a>).
+The <code>web_components</code> package provides polyfills for older web browsers that do
+not support <a href="http://www.w3.org/TR/shadow-dom/">Shadow DOM</a> natively.
+The <code>browser</code> package helps switching to the compiled JavaSript version of the
+application for browsers that do not support Dart natively.
 </p>
 
 <p>Dart Editor automatically downloads the packages your app depends on,
@@ -133,7 +139,7 @@ for Angular to manage only part of the app, we recommend putting the
 because it is the outermost tag. This is also the default behavior
 when no <code>ng-app</code> directive is found on the page.</p>
 
-<p>Next, let’s look at the two script tags in the HTML &lt;head&gt;.</p>
+<p>Next, let’s look at the two script tags in the HTML <code>&lt;head&gt;</code>.</p>
 <!-- Can not use a script tag here because of nested script tags -->
 <pre class="prettyprint">
 &lt;script src="packages/web_components/platform.js"&gt;&lt;/script&gt;
@@ -153,7 +159,7 @@ for older browsers.
 
 <p>This code should be familiar if you’ve ever written a Dart web app.
 The first script tag specifies the Dart file that
-contains the main() function of your app. The last one runs a script,
+contains the <code>main()</code> function of your app. The last one runs a script,
 <code>dart.js</code>, that determines whether the browser is capable of
 running Dart code natively. If so, it runs Dart. If not, it runs
 compiled JavaScript. It then registers a callback to be executed by the
@@ -167,16 +173,26 @@ with the root of the application DOM being the element on which the
 <p>Now let’s look at <strong>main.dart</strong>:</p>
 
 <script type="template/code">
-import 'package:angular/angular.dart';
 import 'package:angular/application_factory.dart';
+import 'package:di/annotations.dart';
+
+@Injectable()
+class Greeter {
+  String name;
+}
 
 void main() {
-  applicationFactory().run();
+  applicationFactory()
+      .rootContextType(Greeter)
+      .run();
 }
 </script>
 
-<p>That code is minimal because our app is so simple. The only thing we
-see is some code that imports Angular and starts your app.
+<p>That code is minimal because our app is so simple. We start by defining a <code>Greeter</code>
+class. As this class is set to be the root context type, the DI will create an instance of it
+to serve as the context for the application - that is the <code>“name”</code> expression will
+evaluate to the <code>name</code> property on the instance of <code>Greeter</code>.
+The <code>@Injectable()</code> annotation makes the class available in the DI container.
 </p>
 
 <p>Once an Angular application starts up, it’s ready to respond to incoming
@@ -196,7 +212,7 @@ template. This means that whenever the model changes, Angular updates
 the HTML template to reflect those changes.</p>
 
 <h4 id="model">Model</h4>
-<p>In our Hello World example, the “name” property is the model. It
+<p>In our Hello World example, the <code>“name”</code> property is the model. It
 appears in two places in the view: where it’s set (in the input element)
 and where it’s displayed (in the curly braces, or “mustache”).</p>
 
@@ -210,10 +226,10 @@ expose to a view. We’ll go into more detail about scopes in later
 chapters. For now, just go with the definition of “The model is the
 scope.”</p>
 
-<h4 id="controller">Controller</h4>
-<p>A really simple Angular app like this one doesn’t need a controller.
-Real apps, however, have controllers. The next chapter dives into
-controllers.</p>
+<h4 id="controller">Component</h4>
+<p>A really simple Angular app like this one doesn’t need components.
+Real apps, however, are built out of components. The next chapter dives into
+components.</p>
 
 <hr class="spacer" />
 
@@ -228,7 +244,7 @@ differ from Dart in the following ways:</p>
 
 <ul>
 <li>No control flow statements are allowed (no ifs or loops, for
-  example).</li>
+  example), but the ternary operator (?:) <em>is</em> allowed.</li>
 <li>Dereferencing chained objects is forgiving. For example, foo.bar.baz
   doesn’t blow up if one of the objects along the chain is null.</li>
 </ul>
@@ -267,11 +283,10 @@ go into more detail about directives. For now, just be aware that
 Angular has a construct called directives that extend HTML syntax and
 can control the view.</p>
 
-<p>The ng-model directive binds the input’s value attribute to the
-property “name” in the current scope. First, Angular checks whether
-the property exists in the scope. If it does exist, Angular sets its
-value. If not, Angular creates the property in the scope and then sets
-the value from the input.</p>
+<p>The <code>ng-model</code> directive binds the input’s value attribute to the
+property <code>name</code> in the current context (the instance of the <code>Greeter</code> class).
+Whenever the input value is updated, the directive copies its value to the
+<code>name</code> property.</p>
 
 <p>The view displays the value of the model object using the Angular
 expression <code>{% raw %}{{name}}{% endraw %}</code>. Notice how the view updates in real
