@@ -8,13 +8,8 @@ next: 07-ch05-filter-service.html
 # {{page.title}}
 
 
-<p>In previous chapters, you learned how to use the
-<a href="https://docs.angulardart.org/#angular-core-annotation.Controller">
-  Controller</a> and
-<a href="https://docs.angulardart.org/#angular-core-annotation.Component">
-  Component</a> annotations to create custom controllers and
-components. We will now learn how to add behavior to any element, using
-<em>decorators</em>
+<p>In previous chapters, you learned how to create custom controllers. We will
+now learn how to add behavior to any element, using <em>decorators</em>
 (<a href="https://docs.angulardart.org/#angular-core-annotation.Decorator">
   Decorator</a>).</p>
 
@@ -32,7 +27,7 @@ you are familiar with the
 use the tooltip decorator in a span or any other element:</p>
 
 <script type="template/code">
-<span tooltip="ctrl.tooltipForRecipe(recipe)">
+<span tooltip="tooltipForRecipe(recipe)">
   ...
 </span>
 </script>
@@ -66,12 +61,12 @@ ways:</p>
 <li>Adding <a href="https://github.com/angular/angular.dart.tutorial/blob/master/Chapter_04/lib/tooltip/tooltip.dart">
   two classes</a>: Tooltip implements the decorator, and TooltipModel
   encapsulates its data.</li>
-<li>Modifying the controller (<a href="https://github.com/angular/angular.dart.tutorial/blob/master/Chapter_04/lib/recipe_book.dart">
-  RecipeBookController</a>) so that it adds an image for each recipe and
+<li>Modifying the component (<a href="https://github.com/angular/angular.dart.tutorial/blob/master/Chapter_04/lib/component/recipe_book.dart">
+  RecipeBookComponent</a>) so that it adds an image for each recipe and
   creates tooltip models.</li>
 <li>Modifying
   <a href="https://github.com/angular/angular.dart.tutorial/blob/master/Chapter_04/web/main.dart">
-    web/main.dart</a> to register the Tooltip type.</li>
+    web/main.dart</a> to register the <code>Tooltip</code> type.</li>
 <li>Modifying
   <a href="https://github.com/angular/angular.dart.tutorial/blob/master/Chapter_04/web/index.html">
     web/index.html</a> to use the tooltip decorator.</li>
@@ -81,15 +76,14 @@ ways:</p>
 
 <h3 id="implementing-a-decorator">Implementing a decorator</h3>
 
-<p>The <code>@Decorator</code> and <code>@NgOneWay</code> annotations
-specify the tooltip API:</p>
+<p>The <code>@Decorator</code> annotation declares the decorator and
+the <code>@NgOneWay</code> describes its bindings:</p>
 
 <script type="template/code">
 ...
 import 'package:angular/angular.dart';
 
-@Decorator(
-  selector: '[tooltip]')
+@Decorator(selector: '[tooltip]')
 class Tooltip {
   final dom.Element element;
 
@@ -104,29 +98,28 @@ class Tooltip {
 </script>
 
 <p>The <strong>selector</strong> argument to the Decorator constructor
-specifies when a Tooltip object should be instantiated: whenever an
+specifies when a <code>Tooltip</code> object should be instantiated: whenever an
 element has an attribute named “tooltip”. The <code>@NgOneWay</code>
 annotation specifies that the value of the tooltip attribute is bound to
-the <code>displayModel</code> field in Tooltip.</p>
+the <code>displayModel</code> property in the <code>Tooltip</code> class.</p>
 
 <p>Consider the following HTML:</p>
 
 <script type="template/code">
-<span tooltip="ctrl.tooltipForRecipe(recipe)">
+<span tooltip="tooltipForRecipe(recipe)">
 </script>
 
 <p>Along with the preceding Dart code, this HTML tells AngularDart to
-create a Tooltip object and sets its <code>displayModel</code> field to
-the value returned by <code> ctrl.tooltipForRecipe(recipe)</code>. The
-Tooltip constructor is passed a single argument, an Element representing
-the <code>&lt;span&gt;</code>.</p>
+create a <code>Tooltip</code> object and sets its <code>displayModel</code>
+property to the value returned by <code>tooltipForRecipe(recipe)</code>. The
+<code>Tooltip</code> constructor is passed a single argument, an Element
+representing the <code>&lt;span&gt;</code>.</p>
 
 <p>In general, when you want to implement a decorator as an attribute that
 takes a value, do it like this:</p>
 
 <script type="template/code">
-@Decorator(
-  selector: '[attributeName]')
+@Decorator(selector: '[attributeName]')
 class MyDecorator {
   @NgOneWay('attributeName')
   Model model;
@@ -189,9 +182,9 @@ The class just encapsulates data that the tooltip needs:</p>
 
 <script type="template/code">
 class TooltipModel {
-  String imgUrl;
-  String text;
-  int imgWidth;
+  final String imgUrl;
+  final String text;
+  final int imgWidth;
 
   TooltipModel(this.imgUrl, this.text, this.imgWidth);
 }
@@ -199,23 +192,23 @@ class TooltipModel {
 
 <hr class="spacer" />
 
-<h3 id="modifying-the-controller-to-provide-the-model">Modifying the
-controller to provide the model</h3>
+<h3 id="modifying-the-component-to-provide-the-model">Modifying the
+component to provide the model</h3>
 
 <p>Remember that we want the HTML to be able to use a tooltip decorator
 like this:</p>
 
 <script type="template/code">
-<span tooltip="ctrl.tooltipForRecipe(recipe)">
+<span tooltip="tooltipForRecipe(recipe)">
 </script>
 
-<p>That means the controller needs to implement
+<p>That means the enclosing component needs to implement
 <code>tooltipForRecipe(Recipe)</code>. The tooltip decorator expects a
-TooltipModel argument, so that’s the type that
+<code>TooltipModel argument</code>, so that’s the type that
 <code>tooltipForRecipe()</code> returns.</p>
 
 <script type="template/code">
-class RecipeBookController {
+class RecipeBookComponent {
   ...
   static final tooltip = new Expando<TooltipModel>();
   TooltipModel tooltipForRecipe(Recipe recipe) {
@@ -232,37 +225,24 @@ class RecipeBookController {
 <p>The use of <a href="https://api.dartlang.org/dart_core/Expando.html">
 Expando</a> is an implementation detail. An <code>Expando</code>
 is just a way to associate a property (in this case, a TooltipModel)
-with an existing object (a recipe). Instead of an Expando, the code
-could use a mixin, a TooltipModel subclass, or a map.</p>
+with an existing object (a recipe) - a <a href="https://api.dartlang.org/apidocs/channels/stable/dartdoc-viewer/dart-core.Map">
+<code>Map</code></a> could be used as well</p>
 
 <p>The other changes to
-<a href="https://github.com/angular/angular.dart.tutorial/blob/master/Chapter_04/lib/recipe_book.dart">
+<a href="https://github.com/angular/angular.dart.tutorial/blob/master/Chapter_04/lib/component/recipe_book.dart">
 lib/recipe_book.dart</a>
 include adding an <code>imgUrl</code> field to the Recipe class.</p>
 
 <hr class="spacer" />
 
 <h3 id="table-angular-annotations">Table: Angular annotations</h3>
-<p>The Recipe Book app now uses all three of Angular’s annotation classes.
+<p>The Recipe Book app now uses all two of Angular’s directive classes.
 The following table summarizes how you typically use these annotations,
 and whether they create a new scope.</p>
 
 <table>
 <tr>
   <th>Annotation</th> <th>Usual usage</th> <th>New scope?</th>
-</tr>
-<tr>
-  <td><code>@Controller</code></td>
-  <td> <b>Application-specific logic</b>
-    <p>
-      Example: recipe-book
-    </p>
-    <p>
-      A controller should contain only the business logic needed for
-      a single app or view. It should not manipulate the DOM.
-    </p>
-  </td>
-  <td> Yes </td>
 </tr>
 <tr>
   <td><code>@Decorator</code></td>
