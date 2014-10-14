@@ -70,19 +70,13 @@ the view logic into the following components:</p>
 </ul>
 
 <p>These components are good examples of encapsulating view-specific
-functionality. The <code>RatingComponent</code>, which we introduced in
-Chapter 3, is different in that it is truly generic and can be used
-anywhere. For this reason, we left it in its own separate subdirectory
-(<code>rating</code>). Our two new components aren’t generic. They
-contain logic that is specific to the view they control and so they live
-in the <code>view</code> directory.</p>
+functionality.</p>
 
 <div class="row">
 <div class="col-md-6">
-  <h3>index.html (previous Chapter)</h3>
+  <h3>recipe_book.html (previous Chapter)</h3>
 
 <script type="template/code">
-<body recipe-book ng-cloak>
   ...
   <h3>Recipe List</h3>
 
@@ -90,20 +84,20 @@ in the <code>view</code> directory.</p>
     <div>
       <label for="name-filter">Filter ... </label>
       <input id="name-filter" type="text"
-             ng-model="ctrl.nameFilterString">
+             ng-model="nameFilterString">
     </div>
     <div>
       Filter recipes by category:
-      <span ng-repeat="category in ctrl.categories">
+      <span ng-repeat="category in categories">
         <label>
           <input type="checkbox"
-           ng-model="ctrl.categoryFilterMap[category]">
+                 ng-model="categoryFilterMap[category]">
               {% raw %}{{category}}{% endraw %}
         </label>
       </span>
     </div>
     <input type="button" value="Clear Filters"
-        ng-click="ctrl.clearFilters()">
+           ng-click="clearFilters()">
   </div>
 
   <div id="recipe-list">...</div>
@@ -112,40 +106,37 @@ in the <code>view</code> directory.</p>
     <h3>Recipe Details</h3>
     ...
   </div>
-</div>
 </script>
 
 </div><!-- /.col-md-6 -->
 
 <div class="col-md-6">
-  <h3>index.html (revisited)</h3>
+  <h3>recipe_book.html (revisited)</h3>
 
 <script type="template/code">
-<body recipe-book ng-cloak> ...
   <h3>Recipe List</h3> ...
     <search-recipe
-        name-filter-string="ctrl.nameFilter"
-        category-filter-map="ctrl.categoryFilterMap">
+        name-filter-string="nameFilter"
+        category-filter-map="categoryFilterMap">
     </search-recipe> ...
     <div id="recipe-list">...</div> ...
   <section id="details">
     <ng-view></ng-view>
   </section>
-</div>
 </script>
 
-<h3>search_recipe_component.html</h3>
+<h3>search_recipe.html</h3>
 
 <script type="template/code">
 <div id="filters">
   <div>
     <label for="name-filter">Filter ...</label>
     <input id="name-filter" type="text"
-           ng-model="cmp.nameFilterString">
+           ng-model="nameFilterString">
   </div>
   <div>
     Filter recipes by category:
-    <span ng-repeat="category in cmp.categories">
+    <span ng-repeat="category in categories">
       <label>
         <input type="checkbox" ... >{% raw %}{{category}}{% endraw %}
       </label>
@@ -172,9 +163,9 @@ component needs the &ldquo;return&rdquo; direction  because its
 <code>clearFilter()</code> method updates the search filters by
 resetting these two attributes.</p>
 
-<p>Now our app’s main <strong>index.html</strong> file is a lot simpler
-(see the table above). Instead of containing all of the markup to set up
-the search and filter views, it now just contains the a reference to the
+<p>Now the recipe book component template <strong>recipe_book.html</strong>
+file is a lot simpler (see the table above). Instead of containing all of the
+markup to set up the search and filter views, it now just contains the a reference to the
 component. The details of the view elements are hidden away in the
 <code>SearchRecipeComponent</code>’s HTML template (shown as the lower
 right excerpt in the table above).</p>
@@ -182,23 +173,21 @@ right excerpt in the table above).</p>
 <script type="template/code">
 @Component(
     selector: 'search-recipe',
-    templateUrl: 'packages/angular_dart_demo/component/search_recipe_component.html',
-    publishAs: 'cmp')
+    templateUrl: 'search_recipe.html')
 class SearchRecipeComponent {
   Map<String, bool> _categoryFilterMap;
   List<String> _categories;
+  List<String> get categories => _categories;
 
   @NgTwoWay('name-filter-string')
   String nameFilterString = "";
 
-  @NgTwoWay('category-filter-map')
+  @NgOneWay('category-filter-map')
   Map<String, bool> get categoryFilterMap => _categoryFilterMap;
   void set categoryFilterMap(values) {
     _categoryFilterMap = values;
     _categories = categoryFilterMap.keys.toList();
   }
-
-  List<String> get categories => _categories;
 
   void clearFilters() {
     _categoryFilterMap.keys.forEach((f) => _categoryFilterMap[f] = false);
@@ -288,24 +277,28 @@ Logger.root.onRecord.listen((LogRecord r) { print(r.message); });
 <p>URL of the template to be loaded into <code>ng-view</code> when the route
 is entered.</p>
 
-<h5 id="enter"><code>enter</code></h5>
-<p>A <code>RouteEnterEventHandler</code></a> that tells the router what to do when
-the route is entered.</p>
-
-<h5 id="enter"><code>preEnter</code></h5>
+<h5 id="pre-enter"><code>preEnter</code></h5>
 <p>A <code>RoutePreEnterEventHandler</code></a> that's invoked before the route
 is entered and before previous routes are left. The <code>RoutePreEnterEvent</code>
 is vetoable, so it can prevent current navigation. It can be used for route
 parameter validation, security and other purposes where you might want to
 prevent the route from being entered.</p>
 
-<h5 id="leave"><code>leave</code></h5>
-<p>A <code>RouteLeaveEventHandler</code> that tells the router what to do when
-the route is left. You can use this for a number of purposes. For
+<h5 id="enter"><code>enter</code></h5>
+<p>A <code>RouteEnterEventHandler</code></a> that tells the router what to do when
+the route is entered.</p>
+
+<h5 id="pre-leave"><code>preLeave</code></h5>
+<p>A <code>RoutePreLeaveEventHandler</code> that tells the router what to do
+before the route is left. You can use this for a number of purposes. For
 example, you can determine if a view is leavable, and what to do if it
 shouldn’t be left (for example, if there are unsaved changes on a view,
 you might want to prevent the route from leaving, or warn the user that
 their changes will be lost).</p>
+
+<h5 id="leave"><code>enter</code></h5>
+<p>A <code>RouteLeaveEventHandler</code></a> that tells the router what to do when
+the route is left.</p>
 
 <h5 id="defaultroute"><code>defaultRoute</code></h5>
 <p>Specifies whether this route is the default route.</p>
@@ -370,7 +363,7 @@ defined:</p>
 <h4 id="connecting-a-route-to-a-view">Connecting a route to a view</h4>
 <p>Now let’s look at how the routes and views are connected in our
 app. There are two pieces involved: the router configuration, and the
-<code>ng-view</code> directive. Open up the <strong>index.html</strong>
+<code>ng-view</code> directive. Open up the <strong>recipe_book.html</strong>
 file and look at the details section. It contains only an
 <code>ng-view</code> directive.</p>
 
@@ -404,7 +397,7 @@ ViewRecipeComponent(RouteProvider routeProvider) {
 
 <h3 id="more-on-futures">More on Futures</h3>
 <p>In this version of our app, we also separated the query layer from our
-<code>RecipeBookController</code> by creating a
+<code>RecipeBookComponent</code> by creating a
 <code>QueryService</code>. The <code>QueryService</code> does basically
 the same thing the old <code>_loadData</code> method did, but with a few
 enhancements.</p>
@@ -440,8 +433,7 @@ QueryService(Http this._http) {
   <code>Future.wait</code></a>. <code>Future.wait</code> also returns a
 <code>Future</code> which completes only when all the Futures in the
 list complete.
-The <code>@NgInjectableService</code> annotation
-publishes the class as a service.
+The <code>@Injectable</code> annotation publishes the class as a service.
 </p>
 
 <p>The getters in the service (<code>getRecipeById</code>,
@@ -500,5 +492,5 @@ URL: <a href="http://127.0.0.1:3031/index.html">http://127.0.0.1:3031/index.html
 </ol>
 <hr class="spacer" />
 <h4 id="extra-credit">Extra challenge</h4>
-<p>Try to use the router <code>leave()</code> callback to prevent a user
+<p>Try to use the router <code>preleave()</code> callback to prevent a user
 from leaving a page with unsaved edits.</p>
