@@ -15,23 +15,14 @@ app.</p>
 
 <h3 id="what-you-will-learn">What you will learn</h3>
 <p>In this tutorial, you will learn how to implement an
-<em>Angular controller</em>. You will also
+<em>Angular component</em>. You will also
 learn more about the <em>model</em>, which Angular calls the
 <em>scope</em>.</p>
 
 <p>When you’re finished, you will be able to write your own custom
-controller and use it to control the view. You will understand how to
-create data in the model, expose it through the controller, and access
+component and use it to control the view. You will understand how to
+create data in the model, expose it through the component, and access
 it from the view.</p>
-
-<aside class="alert alert-info">
-<b>Note:</b>
-This page uses the Controller class,
-which is deprecated but not yet replaced.
-You can view issues related to this effort under the milestone
-<a href="https://github.com/angular/angular.dart/issues?milestone=25">Controller
-is Context</a>.
-</aside>
 
 <hr class="spacer" />
 
@@ -78,6 +69,13 @@ map to the Model/Scope, and how it’s represented in the view.</p>
 
 <p><img src="img/scope_diagram.png" alt="scopes" /></p>
 
+<aside class="alert alert-info">
+<b>Note:</b>
+While this tutorial often refers to the scope as being the context to simplify
+things, the execution context is actually hold by the <code>context</code> property
+of the scope.
+</aside>
+
 <h3 id="understanding-the-model">Understanding the model</h3>
 <p>In the previous chapter, we gave a simplified definition of the model
 (i.e., the model <em>is</em> the scope). In this chapter, we will give a
@@ -94,60 +92,55 @@ like this:</p>
 <input type="text" ng-model="name">
 </script>
 
-<p>Properties created in this way are created in the root scope, and hence
-not in the scope of any controller. These properties are available in
-the view, but nowhere else. Creating model data in this way is useful
-for demonstrating basic concepts in tutorials, but in practice it is not
-recommended.</p>
+<p>Because the application from the previous chapter was very simple, there
+was no need to create a component and the properties were accessed on the
+root context (the instance of the <code>Greeter</code> class).</p>
 
-<p>The usual way to create model members is to create a controller class
-and expose the controller to the view through a directive.</p>
-
+<p>Thereafter you will see how the context is the instance of the
+enclosing component.</p>
 
 <hr class="spacer" />
 
-<h3 id="understanding-controller">Understanding <code>@Controller</code>
+<h3 id="understanding-controller">Understanding <code>@Component</code>
 controllers</h3>
-<p>The easiest way to create a controller is to put the
-<code>@Controller</code> annotation on a controller class and then
-declare the controller class as a type in the app's Module object.</p>
+<p>To create a component, you only need to add a <code>@Component</code>
+annotation on a component class. Before the application can use it, it
+needs to be registered in the DI container.</p>
 
 <p>In the Recipe Book example, we see this annotation on the
-<code>RecipeBookController</code> class:</p>
+<code>RecipeBookComponent</code> class:</p>
 
 <script type="template/code">
-@Controller(
-    selector: '[recipe-book]',
-    publishAs: 'ctrl')
-class RecipeBookController { ... }
+@Component(
+    selector: 'recipe-book',
+    templateUrl: 'recipe_book.html')
+class RecipeBookComponent {...}
 </script>
 
 <p>This annotation tells Angular that the class
-<code>RecipeBookController</code> is an Angular controller. When the
-compiler sees one of these in the DOM, it instantiates the controller
-class.</p>
+<code>RecipeBookComponent</code> is an Angular component. When the
+compiler encounters an element that matches the component's <code>selector</code>
+in the DOM, it instantiates the component class.</p>
 
-<p>Controllers are configured by setting properties on the annotation.
+<p>Components are configured by setting properties on the annotation.
 Here we describe the most common properties.</p>
 
 <h5 id="selector"><code>selector</code></h5>
 <p>The required <code>selector</code> field defines the CSS selector that
 will trigger the controller. It can be any valid CSS selector which does
-not cross element boundaries.</p>
+not cross element boundaries. A good practice is that the selectors for
+components are element names as there could be only a single component
+on any html element</p>
 
-<h5 id="publishas"><code>publishAs</code></h5>
-<p>The <code>publishAs</code> field specifies that the controller instance
-should be assigned to the current scope under the name specified. The
-controller’s public fields are available for data binding from the view
-through the <code>publishAs</code> name. Similarly, the controller’s
-public methods can be invoked from the view using the
-<code>publishAs</code> name. Here is an example:</p>
+<h5 id="templateurl-and-cssurl"><code>templateUrl</code> and
+<code>cssUrl</code></h5>
+<p>Since components are self contained, they need to know what HTML
+template and CSS to use for their view. Components do not use the HTML
+of your app. They have their own.</p>
 
-<script type="template/code">
-<div><strong>Name: </strong>{% raw %}{{ctrl.selectedRecipe.name}}{% endraw %}</div>
-
-<li ng-click="ctrl.selectRecipe(recipe)">{% raw %}{{recipe.name}}{% endraw %}</li>
-</script>
+<h5 id="template"><code>template</code></h5>
+<p>When the template for the component is light, <code>template</code> allows
+defining it inline instead refering to an external file.</p>
 
 <p>Here we also see how to tell the Angular bootstrapping code about our
 custom types. Angular uses dependency injection to instantiate the
@@ -161,7 +154,7 @@ list of modules that Angular loads.</p>
 <script type="template/code">
 class MyAppModule extends Module {
   MyAppModule() {
-    bind(RecipeBookController);
+    bind(RecipeBookComponent);
   }
 }
 
@@ -172,21 +165,18 @@ main() {
 }
 </script>
 
-<p>Including your controller class in the module allows Angular to
-instantiate the controller we just created.</p>
+<p>Including your component class in the module allows Angular to
+instantiate the component we just created.</p>
 
-<p>From the view, we can use the controller by adding a set of attributes
-to the element which will trigger the CSS selector declared on the
-controller:</p>
+<p>From the view, we can use the component by adding an element which
+will trigger the CSS selector declared on the component:</p>
 
 <script type="template/code">
-<div recipe-book>
-  ...
-</div>
+<recipe-book></recipe-book>
 </script>
 
-<p>Anything within the containing element has access to the controller’s
-scope.</p>
+<p>Any expressions inside the component template are evaluated against
+an instance of the component (the context is the instance of the component).</p>
 
 <hr class="spacer" />
 
@@ -194,7 +184,7 @@ scope.</p>
 <p>In this chapter, we introduced you to two more built-in Angular
 directives: <code>ng-repeat</code> and <code>ng-click</code>.</p>
 
-<h4 id="ng-repeathttpciangularjsorgviewdartjobangulardart-masterjavadocangulardirectivengrepeatdirectivehtml">
+<h4 id="ng-repeat">
 <code>ng-repeat</code></h4>
 <p>Now that you have a better understanding of scopes, let’s elaborate on
 them further by describing what’s going on behind the scenes with the
@@ -203,22 +193,24 @@ them further by describing what’s going on behind the scenes with the
 <script type="template/code">
 <ul>
   <li class="pointer"
-      ng-repeat="recipe in ctrl.recipes"
-      ng-click="ctrl.selectRecipe(recipe)">{% raw %}{{recipe.name}}{% endraw %}</li>
+      ng-repeat="recipe in recipes"
+      ng-click="selectRecipe(recipe)">
+    {% raw %}{{recipe.name}}{% endraw %}
+  </li>
 </ul>
 </script>
 
 <p>The <code>ng-repeat</code> directive on the li element causes Angular
-to iterate over the model (the recipes property in the
-RecipeBookController), and clone the li in the compiled DOM for each
+to iterate over the model (the <code>recipes</code> property of
+RecipeBookComponent), and clone the li in the compiled DOM for each
 recipe in the list. Each li is created with its own scope and its own
 instance of the recipe property. If the model changes (for example, if a
 recipe is added to or deleted from the model), the
-<code>ng-repeat</code> tag re-evaluates the model and updates the view
+<code>ng-repeat</code> directive re-evaluates the model and updates the view
 automatically.</p>
 
 <h4 id="ng-click"><code>ng-click</code></h4>
 <p><code>ng-click</code> is a built-in Angular directive that allows you
 to specify custom behavior when any element is clicked. In our example,
-it invokes the <code>selectRecipe()</code> method on the controller,
+it invokes the <code>selectRecipe()</code> method on the component,
 passing it the recipe property from the view.</p>

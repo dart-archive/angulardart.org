@@ -2,7 +2,7 @@
 layout: tutorial
 title: Creating Your First Angular App
 previous: 02-welcome-to-angular.html
-next: 04-ch02-controller.html
+next: 04-ch02-component.html
 ---
 
 # {{page.title}}

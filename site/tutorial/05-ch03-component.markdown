@@ -1,7 +1,7 @@
 ---
 layout: tutorial
 title: Creating a Custom Component
-previous: 04-ch02-controller.html
+previous: 04-ch02-component.html
 next: 06-ch04-directive.html
 ---
 

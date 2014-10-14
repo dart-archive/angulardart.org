@@ -57,7 +57,7 @@ next: 01-before-you-begin.html
           binding (<code>ng-model</code>)</td>
     </tr>
     <tr>
-      <td><a href="04-ch02-controller.html">2. Something More than
+      <td><a href="04-ch02-component.html">2. Something More than
           “Hello World”</a></td>
       <td>A Recipe Book app</td>
       <td>Scopes, models, controllers, <code>@Controller</code>,
