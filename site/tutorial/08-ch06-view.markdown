@@ -296,7 +296,7 @@ shouldn’t be left (for example, if there are unsaved changes on a view,
 you might want to prevent the route from leaving, or warn the user that
 their changes will be lost).</p>
 
-<h5 id="leave"><code>enter</code></h5>
+<h5 id="leave"><code>leave</code></h5>
 <p>A <code>RouteLeaveEventHandler</code></a> that tells the router what to do when
 the route is left.</p>
 

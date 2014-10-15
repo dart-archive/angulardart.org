@@ -140,20 +140,22 @@ because it is the outermost tag. This is also the default behavior
 when no <code>ng-app</code> directive is found on the page.</p>
 
 <p>Next, let’s look at the two script tags in the HTML <code>&lt;head&gt;</code>.</p>
-<script type="template/code">
+<!-- Can not use a script tag here because of nested script tags -->
+<pre class="prettyprint">
 &lt;script src="packages/web_components/platform.js"&gt;&lt;/script&gt;
 &lt;script src="packages/web_components/dart_support.js"&gt;&lt;/script&gt;
-</script>
+</pre>
 
 These two script tags enable the use of Shadow DOM (a new web platform feature)
 for older browsers.
 
 <p>Next, let’s look at the two script tags at the end.</p>
 
-<script type="template/code">
+<!-- Can not use a script tag here because of nested script tags -->
+<pre class="prettyprint">
 &lt;script type="application/dart" src="main.dart"&gt;&lt;/script&gt;
 &lt;script type="text/javascript" src="packages/browser/dart.js"&gt;&lt;/script&gt;
-</script>
+</pre>
 
 <p>This code should be familiar if you’ve ever written a Dart web app.
 The first script tag specifies the Dart file that
@@ -281,8 +283,8 @@ go into more detail about directives. For now, just be aware that
 Angular has a construct called directives that extend HTML syntax and
 can control the view.</p>
 
-<p>The <code>ng-modelw</code> directive binds the input’s value attribute to the
-property <code>name<code> in the current context (the instance of the <code>Greeter</code> class).
+<p>The <code>ng-model</code> directive binds the input’s value attribute to the
+property <code>name</code> in the current context (the instance of the <code>Greeter</code> class).
 Whenever the input value is updated, the directive will copy its value to the
 <code>name</code> property.</p>
 

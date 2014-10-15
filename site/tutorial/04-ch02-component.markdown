@@ -101,8 +101,7 @@ enclosing component.</p>
 
 <hr class="spacer" />
 
-<h3 id="understanding-controller">Understanding <code>@Component</code>
-controllers</h3>
+<h3 id="understanding-controller">Understanding <code>@Component</code></h3>
 <p>To create a component, you only need to add a <code>@Component</code>
 annotation on a component class. Before the application can use it, it
 needs to be registered in the DI container.</p>
