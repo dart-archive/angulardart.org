@@ -73,8 +73,8 @@ component.</p>
 <hr class="spacer" />
 
 <h4 id="creating-components">Declaring components</h4>
-<p>As seen in the previous chapter, the <code>@Component</code> is used to
-declare a component:</p>
+<p>As seen in the previous chapter, the <code>@Component</code> annotation
+is used to declare a component:</p>
 
 <script type="template/code">
 @Component(
@@ -96,9 +96,8 @@ for this component. In such a case the shadow DOM behavior is emulated so that
 the features stay the same.
 
 <h5 id="map"><code>map</code></h5>
-It can be used to described the bindings for the component. Later in this chapter
-fields annotations will be used to the bindings. Those are two ways to describe
-your bindings - some might find annotations more expressive.
+You can be use the <code>map</code> option to describe the bindings for the component.
+Later in this chapter you'll see another option for describing bindings: field annotations.
 
 <hr class="spacer" />
 
@@ -115,11 +114,11 @@ component, the <code>RatingComponent</code> class uses annotations like the
 following:</p>
 
 <script type="template/code">
-  @NgTwoWay('rating')
-  int rating;
+@NgTwoWay('rating')
+int rating;
 
-  @NgAttr('max-rating')
-  set maxRating(String value) {...}
+@NgAttr('max-rating')
+set maxRating(String value) {...}
 </script>
 
 <p>The argument to the annotation specifies the HTML attribute name—for
@@ -133,7 +132,7 @@ to be evaluated:</p>
 <dt> <a href="https://docs.angulardart.org/#angular-core-annotation.NgAttr">NgAttr</a> </dt>
   <dd>
     <p>Sets the property to the value of the attribute, interpolating
-      if it contains “{% raw %}{{}}{% endraw %}”. Our example had this:
+      if it contains {% raw %}{{}}{% endraw %}. Our example had this:
       <code>max-rating="5"</code>. You could also get the value from the
       model by doing something like
       <code>max-rating="{% raw %}{{someProperty}}{% endraw %}"</code>.</p>
@@ -180,7 +179,7 @@ to be evaluated:</p>
 
 <hr class="spacer" />
 
-<h4 id="how-components-work">How components work?</h4>
+<h4 id="how-do-components-work">How do components work?</h4>
 
 <p>Components inner structure of components are isolated from their surroundings
 and can be thought of as black boxes.</p>

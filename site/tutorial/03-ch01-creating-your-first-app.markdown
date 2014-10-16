@@ -244,7 +244,7 @@ differ from Dart in the following ways:</p>
 
 <ul>
 <li>No control flow statements are allowed (no ifs or loops, for
-  example - nevertheless the ternary operator is supported).</li>
+  example), but the ternary operator (?:) <em>is</em> allowed.</li>
 <li>Dereferencing chained objects is forgiving. For example, foo.bar.baz
   doesn’t blow up if one of the objects along the chain is null.</li>
 </ul>
@@ -285,7 +285,7 @@ can control the view.</p>
 
 <p>The <code>ng-model</code> directive binds the input’s value attribute to the
 property <code>name</code> in the current context (the instance of the <code>Greeter</code> class).
-Whenever the input value is updated, the directive will copy its value to the
+Whenever the input value is updated, the directive copies its value to the
 <code>name</code> property.</p>
 
 <p>The view displays the value of the model object using the Angular

@@ -165,7 +165,7 @@ resetting these two attributes.</p>
 
 <p>Now the recipe book component template <strong>recipe_book.html</strong>
 file is a lot simpler (see the table above). Instead of containing all of the
-markup to set up the search and filter views, it now just contains the a reference to the
+markup to set up the search and filter views, it now just contains a reference to the
 component. The details of the view elements are hidden away in the
 <code>SearchRecipeComponent</code>’s HTML template (shown as the lower
 right excerpt in the table above).</p>

@@ -72,7 +72,7 @@ map to the Model/Scope, and how it’s represented in the view.</p>
 <aside class="alert alert-info">
 <b>Note:</b>
 While this tutorial often refers to the scope as being the context to simplify
-things, the execution context is actually hold by the <code>context</code> property
+things, the execution context is actually held by the <code>context</code> property
 of the scope.
 </aside>
 
@@ -93,11 +93,8 @@ like this:</p>
 </script>
 
 <p>Because the application from the previous chapter was very simple, there
-was no need to create a component and the properties were accessed on the
+was no need to create a component, and the properties were accessed on the
 root context (the instance of the <code>Greeter</code> class).</p>
-
-<p>Thereafter you will see how the context is the instance of the
-enclosing component.</p>
 
 <hr class="spacer" />
 
@@ -128,8 +125,8 @@ Here we describe the most common properties.</p>
 <p>The required <code>selector</code> field defines the CSS selector that
 will trigger the controller. It can be any valid CSS selector which does
 not cross element boundaries. A good practice is that the selectors for
-components are element names as there could be only a single component
-on any html element</p>
+components are element names, as an HTML element can be associated with only
+one component.</p>
 
 <h5 id="templateurl-and-cssurl"><code>templateUrl</code> and
 <code>cssUrl</code></h5>
@@ -139,7 +136,7 @@ of your app. They have their own.</p>
 
 <h5 id="template"><code>template</code></h5>
 <p>When the template for the component is light, <code>template</code> allows
-defining it inline instead refering to an external file.</p>
+defining it inline instead of referring to an external file.</p>
 
 <p>Here we also see how to tell the Angular bootstrapping code about our
 custom types. Angular uses dependency injection to instantiate the

@@ -76,8 +76,8 @@ ways:</p>
 
 <h3 id="implementing-a-decorator">Implementing a decorator</h3>
 
-<p>The <code>@Decorator</code> annotation declares the decorator and
-the <code>@NgOneWay</code> describes its bindings:</p>
+<p>The <code>@Decorator</code> annotation declares the decorator, and
+the <code>@NgOneWay</code> annotation describes its bindings:</p>
 
 <script type="template/code">
 ...
@@ -225,8 +225,8 @@ class RecipeBookComponent {
 <p>The use of <a href="https://api.dartlang.org/dart_core/Expando.html">
 Expando</a> is an implementation detail. An <code>Expando</code>
 is just a way to associate a property (in this case, a TooltipModel)
-with an existing object (a recipe) - a <a href="https://api.dartlang.org/apidocs/channels/stable/dartdoc-viewer/dart-core.Map">
-<code>Map</code></a> could be used as well</p>
+with an existing object (a recipe). Instead of an Expando, the could use a <a href="https://api.dartlang.org/apidocs/channels/stable/dartdoc-viewer/dart-core.Map">
+<code>Map</code></a>.</p>
 
 <p>The other changes to
 <a href="https://github.com/angular/angular.dart.tutorial/blob/master/Chapter_04/lib/component/recipe_book.dart">
@@ -236,7 +236,7 @@ include adding an <code>imgUrl</code> field to the Recipe class.</p>
 <hr class="spacer" />
 
 <h3 id="table-angular-annotations">Table: Angular annotations</h3>
-<p>The Recipe Book app now uses all two of Angular’s directive classes.
+<p>The Recipe Book app now uses all both of Angular’s annotation classes.
 The following table summarizes how you typically use these annotations,
 and whether they create a new scope.</p>
 
