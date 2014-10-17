@@ -1,48 +1,37 @@
 library examples;
 
 import 'package:angular/angular.dart';
-import 'package:di/di.dart';
-import 'package:intl/intl.dart';
+import 'package:angular/application_factory.dart';
 import './backend-app.dart';
 
-@MirrorsUsed(targets: const[
-  'examples',
-  'backendapp'
-], override: '*')
-import 'dart:mirrors';
 
 // Hello example ///////////////////////////////////////////////////////////////
 
-// This example requires no code besides the import above and the main() below.
+@Injectable()
+class HelloContext {
+  String name;
+}
 
 // Todo example ////////////////////////////////////////////////////////////////
 
-@NgController(
-    selector: '[todo-list]',
-    publishAs: 'TodoCtrl')
-class TodoController {
-  List<Todo> todos;
+@Injectable()
+class TodoContext {
+  List<TodoItem> todos;
   String todoText;
 
-  TodoController() {
+  TodoContext() {
     todos = [
-        new Todo('learn angular', true),
-        new Todo('build an angular app', false)
+        new TodoItem('learn angular', true),
+        new TodoItem('build an angular app', false)
     ];
   }
 
   void addTodo() {
-    todos.add(new Todo(todoText, false));
+    todos.add(new TodoItem(todoText, false));
     todoText = '';
   }
 
-  int remaining() {
-    var count = 0;
-    for (var i = 0; i < todos.length; i++) {
-      count += todos[i].done ? 0 : 1;
-    }
-    return count;
-  }
+  int get remaining => todos.where((todo) => !todo.done).length;
 
   void archive() {
     var oldTodos = todos;
@@ -54,118 +43,29 @@ class TodoController {
   }
 }
 
-class Todo {
+class TodoItem {
   String text;
   bool done;
 
-  Todo(this.text, this.done);
+  TodoItem(this.text, this.done);
 }
-
-class TodoModule extends Module {
-  TodoModule() {
-    type(TodoController);
-  }
-}
-
-// Tabs example ////////////////////////////////////////////////////////////////
-
-@NgComponent(
-    selector: 'tabs',
-    templateUrl: 'tabs.html',
-    cssUrl: 'tabs.css',
-    publishAs: 'tabs',
-    visibility: NgDirective.DIRECT_CHILDREN_VISIBILITY)
-class TabsComponent {
-  final panes = <PaneComponent>[];
-
-  void select(var pane) {
-    for (var i = 0; i < panes.length; i++) {
-      panes[i].selected = false;
-    }
-    pane.selected = true;
-  }
-
-  void addPane(PaneComponent pane) {
-    if (panes.isEmpty) select(pane);
-    panes.add(pane);
-  }
-}
-
-@NgComponent(
-    selector: 'pane',
-    templateUrl: 'pane.html',
-    cssUrl: 'pane.css',
-    applyAuthorStyles: true,
-    publishAs: 'pane',
-    map: const {'title' : '@'})
-class PaneComponent {
-  String title = '';
-  bool selected = false;
-
-  PaneComponent(TabsComponent tabs) {
-    tabs.addPane(this);
-  }
-}
-
-@NgController(
-    selector: '[beer-counter]',
-    publishAs: 'beerCounter')
-class BeerCounter {
-  final beerCounts = <int>[0, 1, 2, 3, 4, 5, 6];
-  Function getMessage;
-
-  BeerCounter() {
-    if (Intl.defaultLocale.toString() == 'sk_SK') {
-      getMessage = (beer_count) => Intl.plural(
-          beer_count,
-          zero: '\u017Eiadne pivo',
-          one: '$beer_count pivo',
-          few: '$beer_count piv\u00E1',
-          other: '$beer_count p\u00EDv');
-    } else {
-      getMessage = (beer_count) => Intl.plural(
-          beer_count,
-          zero: 'no beers',
-          one: '$beer_count beer',
-          few: '$beer_count beers',
-          other: '$beer_count beers');
-    }
-  }
-
-}
-
-class TabsModule extends Module {
-  TabsModule() {
-    type(TabsComponent);
-    type(PaneComponent);
-    type(BeerCounter);
-  }
-}
-
-// Forms and Backend example ////////////////////////////////////////////////////////////////
-
-
-@NgController(
-    selector: '[classlist-controller]',
-    publishAs: 'ctrl')
-class ClasslistController {
-  final students = [
-      {'name': 'Jack Aubrey', 'selected': true},
-      {'name': 'Clarissa Oakes', 'selected': true},
-      {'name': 'Stephen Maturin', 'selected': false}
-  ];
-
-  List get selectedStudents {
-    return students.where((student) => student['selected']).toList();
-  }
-}
-
-
 
 // Example entry point /////////////////////////////////////////////////////////
 
 main() {
-  ngBootstrap(selector: '#hello-app');
-  ngBootstrap(module: new TodoModule(), selector: '#todo-app');
-  ngBootstrap(module: new BackendAppModule(), selector: '#backend-app' );
+  // Hello World app
+  applicationFactory()
+      ..selector('#hello-app')
+      ..rootContextType(HelloContext)
+      ..run();
+
+  // Todo app
+  applicationFactory()
+      ..selector('#todo-app')
+      ..rootContextType(TodoContext)
+      ..run();
+
+  // Backend app
+//  ngBootstrap(module: new BackendAppModule(), selector: '#backend-app' );
+
 }

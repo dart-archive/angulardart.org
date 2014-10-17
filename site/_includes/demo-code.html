@@ -13,15 +13,25 @@
 import 'package:angular/angular.dart';
 import 'package:angular/application_factory.dart';
 
-main() {
-  applicationFactory().run();
+@Injectable()
+class HelloContext {
+  String name;
 }
-</script>
+
+main() {
+  applicationFactory()
+      ..rootContextType(HelloContext)
+      ..run();
+}</script>
 <script type="text/ng-template" id="hello.annotation">
 { "hello.html":
 { "ng-app": "Tells AngularDart to be active in this portion of the page. In this case the entire document."
 , "ng-model": "This links the form and the model. This means that any changes to the control update the data in your model, and when you change the model it updates the control. Try it! Type in the control and see it update below."
 , "{% raw %}{{yourName}}{% endraw %}": "The <code>{% raw %}{{ }}{% endraw %}</code> are a declarative way of specifying data binding locations in the HTML. AngularDart will automatically update this text whenever the <code>yourName</code> property changes."
+}
+, "hello.dart":
+{ "@Injectable": "Registers the class into the DI container.",
+  "rootContextType": "Tells AngularDart set the root context to an instance of <code>HelloContext</code>"
 }
 }
 </script>
@@ -38,46 +48,24 @@ main() {
 import 'package:angular/angular.dart';
 import 'package:angular/application_factory.dart';
 
-/* Use the Controller annotation to indicate that this class is an
- * Angular Directive. The compiler will instantiate the directive if
- * it finds it in the DOM.
- *
- * The selector field defines the CSS selector that will trigger the
- * directive. It can be any valid CSS selector which does not cross
- * element boundaries.
- *
- * The publishAs field specifies that the directive instance should be
- * assigned to the current scope under the name specified.
- *
- * The directive's public fields are available for data binding from the view.
- * Similarly, the directive's public methods can be invoked from the view.
- */
-@Controller(
-    selector: '[todo-list]',
-    publishAs: 'TodoCtrl')
-class TodoController {
-  List<Todo> todos;
+@Injectable()
+class TodoContext {
+  List<TodoItem> todos;
   String todoText;
 
-  TodoController() {
+  TodoContext() {
     todos = [
-        new Todo('learn angular', true),
-        new Todo('build an angular app', false)
+        new TodoItem('learn angular', true),
+        new TodoItem('build an angular app', false)
     ];
   }
 
   void addTodo() {
-    todos.add(new Todo(todoText, false));
+    todos.add(new TodoItem(todoText, false));
     todoText = '';
   }
 
-  int remaining() {
-    var count = 0;
-    for (var i = 0; i < todos.length; i++) {
-      count += todos[i].done ? 0 : 1;
-    }
-    return count;
-  }
+  int get remaining => todos.where((todo) => !todo.done).length;
 
   void archive() {
     var oldTodos = todos;
@@ -89,22 +77,16 @@ class TodoController {
   }
 }
 
-class Todo {
+class TodoItem {
   String text;
   bool done;
 
-  Todo(this.text, this.done);
-}
-
-class TodoModule extends Module {
-  TodoModule() {
-    type(TodoController);
-  }
+  TodoItem(this.text, this.done);
 }
 
 main() {
   applicationFactory()
-      .addModule(new TodoModule())
+      .rootContextType(TodoContext)
       .run();
 }
 </script>
@@ -112,17 +94,17 @@ main() {
   <h2>Todo</h2>
   <div todo-list ng-cloak>
   <span>
-    {% raw %}{{TodoCtrl.remaining()}}{% endraw %} of {% raw %}{{TodoCtrl.todos.length}}{% endraw %} remaining
+    {% raw %}{{remaining}}{% endraw %} of {% raw %}{{todos.length}}{% endraw %} remaining
   </span>
-      [ <a href="" ng-click="TodoCtrl.archive()">archive</a> ]
+      [ <a href="" ng-click="archive()">archive</a> ]
       <ul class="unstyled">
-          <li ng-repeat="todo in TodoCtrl.todos">
+          <li ng-repeat="todo in todos">
               <input type="checkbox" ng-model="todo.done">
               <span class="done-{% raw %}{{todo.done}}{% endraw %}">{% raw %}{{todo.text}}{% endraw %}</span>
           </li>
       </ul>
-      <form ng-submit="TodoCtrl.addTodo()">
-          <input type="text" ng-model="TodoCtrl.todoText"  size="30"
+      <form ng-submit="addTodo()">
+          <input type="text" ng-model="todoText"  size="30"
                  placeholder="add new todo here">
           <input class="btn-primary" type="submit" value="add">
       </form>
@@ -131,8 +113,6 @@ main() {
 <script type="text/ng-template" id="todo.annotation">
   { "todo.html":
   { "ng-app": "Tells AngularDart to be active in this portion of the page. In this case the entire document."
-  , "angular.min.js": "Load AngularJS."
-  , "todo.js": "Your behavior lives in JavaScript controllers."
   , "ng-controller": "The behavior of content under this element will be managed using the <code>TodoCtrl</code> class defined in <code>todo.js</code>."
   , "{% raw %}{{remaining()}}{% endraw %}": "The <code>{% raw %}{{ }}{% endraw %}</code> are a declarative way of specifying data binding locations in the HTML. AngularDart will automatically update this text whenever the <code>remaining()</code> function return value changes."
   , "ng-click": "Instead of registering event-handlers, you declare which method on the controller to call. Here clicking the link will call <code>archive()</code> method."
@@ -144,18 +124,6 @@ main() {
 
   , "todo.css":
   { ".done-true": "Add strikethrough decoration when the task is done."
-  }
-
-  , "todo.js":
-  { "TodoCtrl": "The controller is the code behind the view. You can clearly see your application behavior because there is no DOM manipulation or framework specific boilerplate. Just simple, readable JavaScript."
-  , "$scope": "<code>$scope</code> contains your model data. It is the glue between the controller and the view. The <code>$scope</code> is just one of the services that can be injected into the controller."
-  , "todos": "We are creating the model with two initial todo items. Notice that a you simply assign your model to the <code>$scope</code> and AngularDart reflects the state in the UI automatically. The model data is a Plain-Old-JavaScript-Object no need to wrap it in proxy or accesses the property through special setter methods."
-  , "addTodo": "We are assigning the behavior into the <code>$scope</code> so that the <code>ng-click</code> can invoke it."
-  , "push": "This is unmodified <code>Array.push</code> method. Calling it updates the model, which then updates the view through data-binding. The <code>ng&ndash;repeat</code> is bound to this array. It automatically unrolls the array and adds the new DOM element into the view. (see <code>ng&ndash;repeat</code> in <code>index.html</code> tab.)"
-  , "todoText": "Because of  bi-directional data-binding, the model is always up to date. This means that we can simply read the state of the user input. No need for registering callbacks, event listeners or using framework dependent API."
-  , "''": "Writing to the form controls is just as easy. The data-binding will clear the control for us."
-  , "remaining": "This is a computed property. No need to define its dependencies or worry about when it needs to be updated."
-  , "[]": "You can replace the model with new instance at any time, without doing any special model listener registration."
   }
   }
 </script>
