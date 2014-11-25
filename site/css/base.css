@@ -342,11 +342,6 @@
       transition: background-position 0.1s linear;
   }
 
-  .ng-europe-logo {
-      float:left;
-      margin-right:50px;
-  }
-
   .about-container {
       padding:30px 0 50px;
   }
