@@ -583,13 +583,13 @@ the cached data.</p>
 
 <p>Here’s an example:</p>
 
-<p><script type="template/code">
+<script type="template/code">
 Future<Recipe> getRecipeById(String id) {
-  return <em>recipesCache == null
-      ? _loaded.then((</em>) =&gt; <em>recipesCache[id])
-      : new Future.value(</em>recipesCache[id]);
+  return _recipesCache == null
+      ? _loaded.then((_) => _recipesCache[id])
+      : new Future.value(_recipesCache[id]);
 }
-</script></p>
+</script>
 
 <p><hr class="spacer" /></p>
 

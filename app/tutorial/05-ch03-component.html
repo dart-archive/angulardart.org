@@ -207,9 +207,9 @@ with the name of the component, and pass any required properties in as
 HTML attributes. Here is how our Recipe Book app uses the rating
 component.</p>
 
-<p><script type="template/code">
+<script type="template/code">
 <rating max-rating="5" rating="selectedRecipe.rating"></rating>
-</script></p>
+</script>
 
 <p><hr class="spacer" /></p>
 
@@ -218,13 +218,13 @@ component.</p>
 <p>As seen in the previous chapter, the <code>@Component</code> annotation
 is used to declare a component:</p>
 
-<p><script type="template/code">
+<script type="template/code">
 @Component(
-    selector: &#39;rating&#39;,
-    templateUrl: &#39;rating.html&#39;,
-    cssUrl: &#39;rating.css&#39;)
+    selector: 'rating',
+    templateUrl: 'rating.html',
+    cssUrl: 'rating.css')
 class RatingComponent {...}
-</script></p>
+</script>
 
 <p>The <code>selector</code>, <code>templateUrl</code> and <code>cssUrl</code>
 options have been explained in the previous chapter. There are a few more
@@ -249,21 +249,21 @@ Later in this chapter you&#39;ll see another option for describing bindings: fie
 
 <p>Recall how our Recipe Book app uses the rating component:</p>
 
-<p><script type="template/code">
+<script type="template/code">
 <rating max-rating="5" rating="selectedRecipe.rating"></rating>
-</script></p>
+</script>
 
 <p>To specify which HTML attributes correspond to which properties of the
 component, the <code>RatingComponent</code> class uses annotations like the
 following:</p>
 
-<p><script type="template/code">
-@NgTwoWay(&#39;rating&#39;)
-int rating;</p>
+<script type="template/code">
+@NgTwoWay('rating')
+int rating;
 
-<p>@NgAttr(&#39;max-rating&#39;)
+@NgAttr('max-rating')
 set maxRating(String value) {...}
-</script></p>
+</script>
 
 <p>The argument to the annotation specifies the HTML attribute name—for
 example, “rating” or “max-rating”. Following HTML rules, the attribute

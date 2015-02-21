@@ -229,9 +229,9 @@ be created in a scope. In the previous example, we showed you how to
 create and use a model property directly in the view, with code patterns
 like this:</p>
 
-<p><script type="template/code">
+<script type="template/code">
 <input type="text" ng-model="name">
-</script></p>
+</script>
 
 <p>Because the application from the previous chapter was very simple, there
 was no need to create a component, and the properties were accessed on the
@@ -248,12 +248,12 @@ needs to be registered in the DI container.</p>
 <p>In the Recipe Book example, we see this annotation on the
 <code>RecipeBookComponent</code> class:</p>
 
-<p><script type="template/code">
+<script type="template/code">
 @Component(
-    selector: &#39;recipe-book&#39;,
-    templateUrl: &#39;recipe_book.html&#39;)
+    selector: 'recipe-book',
+    templateUrl: 'recipe_book.html')
 class RecipeBookComponent {...}
-</script></p>
+</script>
 
 <p>This annotation tells Angular that the class
 <code>RecipeBookComponent</code> is an Angular component. When the
@@ -292,19 +292,19 @@ is created. This module provides all of Angular’s
 built-in services and directives. Your app’s module is added to the
 list of modules that Angular loads.</p>
 
-<p><script type="template/code">
+<script type="template/code">
 class MyAppModule extends Module {
   MyAppModule() {
     bind(RecipeBookComponent);
   }
-}</p>
+}
 
-<p>main() {
+main() {
   applicationFactory()
       .addModule(new MyAppModule())
       .run();
 }
-</script></p>
+</script>
 
 <p>Including your component class in the module allows Angular to
 instantiate the component we just created.</p>
@@ -312,9 +312,9 @@ instantiate the component we just created.</p>
 <p>From the view, we can use the component by adding an element which
 will trigger the CSS selector declared on the component:</p>
 
-<p><script type="template/code">
+<script type="template/code">
 <recipe-book></recipe-book>
-</script></p>
+</script>
 
 <p>Any expressions inside the component template are evaluated against
 an instance of the component (the context is the instance of the component).</p>
@@ -333,7 +333,7 @@ directives: <code>ng-repeat</code> and <code>ng-click</code>.</p>
 them further by describing what’s going on behind the scenes with the
 <code>ng-repeat</code> tag.</p>
 
-<p><script type="template/code">
+<script type="template/code">
 <ul>
   <li class="pointer"
       ng-repeat="recipe in recipes"
@@ -341,7 +341,7 @@ them further by describing what’s going on behind the scenes with the
     {{recipe.name}}
   </li>
 </ul>
-</script></p>
+</script>
 
 <p>The <code>ng-repeat</code> directive on the li element causes Angular
 to iterate over the model (the <code>recipes</code> property of
