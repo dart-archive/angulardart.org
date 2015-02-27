@@ -186,7 +186,6 @@ class SearchRecipeComponent {
   Map<String, bool> get categoryFilterMap => _categoryFilterMap;
   void set categoryFilterMap(values) {
     _categoryFilterMap = values;
-    _categories = categoryFilterMap.keys.toList();
     _categories.addAll(categoryFilterMap.keys);
   }
 
