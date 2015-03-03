@@ -176,8 +176,8 @@ right excerpt in the table above).</p>
     templateUrl: 'search_recipe.html')
 class SearchRecipeComponent {
   Map<String, bool> _categoryFilterMap = {};
-  List<String> _categories = [];
-  List<String> get categories => _categories;
+  final List<String> categories = [];
+
 
   @NgTwoWay('name-filter-string')
   String nameFilterString = "";
@@ -186,7 +186,8 @@ class SearchRecipeComponent {
   Map<String, bool> get categoryFilterMap => _categoryFilterMap;
   void set categoryFilterMap(values) {
     _categoryFilterMap = values;
-    _categories.addAll(categoryFilterMap.keys);
+    categories.clear();
+    categories.addAll(categoryFilterMap.keys);
   }
 
   void clearFilters() {
