@@ -69,8 +69,8 @@ file for this sample:</p>
 name: tutorial
 version: 1.0.0
 dependencies:
-  angular: "1.0.0"
-  web_components: ">=0.8.0 <0.9.0"
+  angular: "1.1.0"
+  web_components: ">=0.10.0 <0.11.0"
   browser: ">=0.10.0+2 <0.11.0"
 transformers:
 - angular
@@ -142,12 +142,13 @@ when no <code>ng-app</code> directive is found on the page.</p>
 <p>Next, let’s look at the two script tags in the HTML <code>&lt;head&gt;</code>.</p>
 <!-- Can not use a script tag here because of nested script tags -->
 <pre class="prettyprint">
-&lt;script src="packages/web_components/platform.js"&gt;&lt;/script&gt;
+&lt;script src="packages/web_components/webcomponents.js"&gt;&lt;/script&gt;
 &lt;script src="packages/web_components/dart_support.js"&gt;&lt;/script&gt;
 </pre>
 
 These two script tags enable the use of Shadow DOM (a new web platform feature)
-for older browsers.
+for older browsers. When you deploy your app into production, you'll want to use
+the minified <code>webcomponents.min.js</code> instead of <code>webcomponents.js</code>.
 
 <p>Next, let’s look at the two script tags at the end.</p>
 
