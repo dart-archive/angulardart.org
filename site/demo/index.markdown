@@ -38,9 +38,9 @@ title: AngularDart Demo
     </p>
   </div>
   <div class="col-md-4">
-    <h3>Controllers</h3>
+    <h3>No more boilerplate</h3>
     <p>
-      In AngularDart, controller classes let you express application
+      In AngularDart, you express application
       behavior in a clean readable form without the usual boilerplate of
       updating the DOM, registering callbacks, or watching model changes.
     </p>
@@ -69,16 +69,16 @@ title: AngularDart Demo
     <div class="well" ng-non-bindable>
       <h2>Todo</h2>
       <div class="angular-dart-example" todo-list id="todo-app" ng-cloak>
-        <span>{% raw %}{{TodoCtrl.remaining()}}{% endraw %} of {% raw %}{{TodoCtrl.todos.length}}{% endraw %} remaining</span>
-        [ <a href="" ng-click="TodoCtrl.archive()">archive</a> ]
+        <span>{% raw %}{{remaining}}{% endraw %} of {% raw %}{{todos.length}}{% endraw %} remaining</span>
+        [ <a href="" ng-click="archive()">archive</a> ]
         <ul class="unstyled">
-          <li ng-repeat="todo in TodoCtrl.todos">
+          <li ng-repeat="todo in todos">
             <input type="checkbox" ng-model="todo.done">
             <span class="done-{% raw %}{{todo.done}}{% endraw %}">{% raw %}{{todo.text}}{% endraw %}</span>
           </li>
         </ul>
-        <form ng-submit="TodoCtrl.addTodo()">
-          <input type="text" ng-model="TodoCtrl.todoText"  size="30"
+        <form ng-submit="addTodo()">
+          <input type="text" ng-model="todoText"  size="30"
                  placeholder="add new todo here">
           <input class="btn btn-primary btn-small" type="submit" value="add">
         </form>
