@@ -76,15 +76,15 @@ First, include the following script tags in the HTML <code>&lt;head&gt;</code> b
 
 <!-- Can not use a script tag here because of nested script tags -->
 <pre class="prettyprint">
-&lt;script src="packages/web_components/platform.js"&gt;&lt;/script&gt;
+&lt;script src="packages/web_components/webcomponents.min.js"&gt;&lt;/script&gt;
 &lt;script src="packages/web_components/dart_support.js"&gt;&lt;/script&gt;
 </pre>
 
-<p>Or use the debug version:</p>
+<p>You can also use an unminified version for development:</p>
 
 <!-- Can not use a script tag here because of nested script tags -->
 <pre class="prettyprint">
-&lt;script src="packages/web_components/platform.concat.js"&gt;&lt;/script&gt;
+&lt;script src="packages/web_components/webcomponents.js"&gt;&lt;/script&gt;
 &lt;script src="packages/web_components/dart_support.js"&gt;&lt;/script&gt;
 </pre>
 
