@@ -215,13 +215,14 @@ application, and keeps them in sync.</p>
 <p>Let’s look at <strong>recipe_book_router.dart</strong>. There we define
 all of our app’s routes and map them to views. To take advantage of
 routing, just create a function that implements the
-<a href="https://docs.angulardart.org/#angular-routing.RouteInitializerFn">
+<a href="https://docs.angulardart.org/#angular/angular-routing.RouteInitializerFn">
   <code>RouteInitializerFn</code></a> typedef. Angular will look for a
 <code>RouteInitializerFn</code> when it instantiates the
 router and will use it to configure the routes.
-<code>RouteInitializerFn</code> takes two parameters, a <a href="https://docs.angulardart.org/#route-client.Router">
+<code>RouteInitializerFn</code> takes two parameters, a
+<a href="https://docs.angulardart.org/#angular/angular-routing.NgRoutingHelper@id_router">
 <code>Router</code></a>, and a
-<a href="https://docs.angulardart.org/#angular-routing.RouteViewFactory">
+<a href="https://docs.angulardart.org/#angular/angular-routing.RouteViewFactory">
   <code>RouteViewFactory</code></a>, both of which are created by the
 routing framework for you.</p>
 
@@ -383,7 +384,7 @@ current route to be included into the layout where the
 our <code>ViewRecipeComponent</code>.</p>
 
 <p>We’ve added a parameter for the
-<a href="https://docs.angulardart.org/#angular-routing.RouteProvider">
+<a href="https://docs.angulardart.org/#angular/angular-routing.RouteProvider">
   <code>RouteProvider</code></a> to its constructor, which we use to
 extract the parameters for the current route. In our case, we extract
 the <code>recipeId</code> to look up the recipe being viewed:</p>

@@ -50,8 +50,8 @@ PENDING: We should add screenshots here.
 
 <h3 id="angular-components">Angular components</h3>
 <p>The rating feature is an Angular component, implemented using the
-<a href="https://docs.angulardart.org/#angular-core-annotation.Component">
-  Component</a> annotation. Components are lightweight, reusable,
+<a href="https://docs.angulardart.org/#angular/angular-core-annotation.Component">
+  <code>@Component</code></a> annotation. Components are lightweight, reusable,
 self-contained UI components that have a single specific purpose. The
 rating component is a great example of a small, simple, re-usable
 component. It can be used anywhere in your app as many times as you
@@ -129,7 +129,7 @@ name is case insensitive, with dashes to separate words.</p>
 to be evaluated:</p>
 
 <dl>
-<dt> <a href="https://docs.angulardart.org/#angular-core-annotation.NgAttr">NgAttr</a> </dt>
+<dt> <a href="https://docs.angulardart.org/#angular/angular-core-annotation.NgAttr">NgAttr</a> </dt>
   <dd>
     <p>Sets the property to the value of the attribute, interpolating
       if it contains {% raw %}{{}}{% endraw %}. Our example had this:
@@ -145,7 +145,7 @@ to be evaluated:</p>
   </dd>
 
 <dt>
-  <a href="https://docs.angulardart.org/#angular-core-annotation.NgOneWay">
+  <a href="https://docs.angulardart.org/#angular/angular-core-annotation.NgOneWay">
     NgOneWay</a></dt>
 
 <dd>
@@ -160,7 +160,7 @@ to be evaluated:</p>
 </dd>
 
 <dt>
-  <a href="https://docs.angulardart.org/#angular-core-annotation.NgTwoWay">
+  <a href="https://docs.angulardart.org/#angular/angular-core-annotation.NgTwoWay">
     NgTwoWay</a></dt>
 
 <dd>
@@ -200,7 +200,7 @@ like CSS name collisions.</p>
 <code>ng-if</code> and <code>ng-class</code>.</p>
 
 <h4 id="ng-if">
-<a href="https://docs.angulardart.org/#angular-directive.NgIf">
+<a href="https://docs.angulardart.org/#angular/angular-directive.NgIf">
   <code>ng-if</code></a></h4>
 <p>The <code>ng-if</code> directive allows you to evaluate sections of the
 DOM conditionally. The <code>ng-if</code> directive takes an expression.
@@ -209,7 +209,7 @@ if is removed. <code>ng-if</code> does not change the visibility of the
 DOM element. It removes it.</p>
 
 <h4 id="ng-class">
-<a href="https://docs.angulardart.org/#angular-directive.NgClass">
+<a href="https://docs.angulardart.org/#angular/angular-directive.NgClass">
   <code>ng-class</code></a></h4>
 <p>The <code>ng-class</code> directive allows you to set CSS classes on an
 element dynamically using an expression that evaluates to the classes to
