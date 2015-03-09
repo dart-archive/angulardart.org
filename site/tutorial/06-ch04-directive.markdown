@@ -10,7 +10,7 @@ next: 07-ch05-filter-service.html
 
 <p>In previous chapters, you learned how to create custom controllers. We will
 now learn how to add behavior to any element, using <em>decorators</em>
-(<a href="https://docs.angulardart.org/#angular-core-annotation.Decorator">
+(<a href="https://docs.angulardart.org/#angular/angular-core-annotation.Decorator">
   Decorator</a>).</p>
 
 <hr />

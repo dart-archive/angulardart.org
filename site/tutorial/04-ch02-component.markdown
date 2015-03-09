@@ -142,7 +142,7 @@ defining it inline instead of referring to an external file.</p>
 custom types. Angular uses dependency injection to instantiate the
 application classes you create. Inside the
 <code>addModule()</code></a> method, a new
-<a href="https://docs.angulardart.org/#di.Module">Module</a>
+<a href="https://docs.angulardart.org/#angular/di.Module"><code>Module</code></a>
 is created. This module provides all of Angular’s
 built-in services and directives. Your app’s module is added to the
 list of modules that Angular loads.</p>
