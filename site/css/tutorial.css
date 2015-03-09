@@ -1,0 +1,18 @@
+
+  /* ---- Links ---- */
+div[role="main"] a {
+    color: #a6120d;
+    text-decoration: underline;
+    transition: all .3s;
+    -moz-transition: all .3s;
+    -webkit-transition: all .3s;
+  }
+
+
+div[role="main"] ul.pager a {
+    color: #a6120d;
+    text-decoration: none;
+    transition: all .3s;
+    -moz-transition: all .3s;
+    -webkit-transition: all .3s;
+  }
