@@ -18,7 +18,9 @@
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/base.css">
-
+    
+    <link rel="stylesheet" href="/css/tutorial.css">
+    
 
     <!--<base href="/">--><base href=".">
 
@@ -151,7 +153,7 @@ formatters. When you’re finished, you will be able to use built-in
  formatters as well as create your own custom formatters. You will also be
  able to read data from a server-side service like a real app.</p>
 
-<p><hr /></p>
+<hr />
 
 <h3 id="running-the-sample-app">Running the sample app</h3>
 
@@ -177,7 +179,7 @@ by typing in a search criteria and also limiting based on category.
 Lastly, clear the filters by pressing the “Clear Filters” button, and
 watch all the recipes reappear.</p>
 
-<p><hr class="spacer" /></p>
+<hr class="spacer" />
 
 <h3 id="introducing-formatters">Introducing formatters</h3>
 
@@ -187,7 +189,7 @@ show parts of the model data, or display data in a particular format.
 You can also use Angular’s custom formatters feature to create your own
 formatters to do anything you want.</p>
 
-<p><hr class="spacer" /></p>
+<hr class="spacer" />
 
 <h4 id="built-in-formatters">Built-in formatters</h4>
 
@@ -240,7 +242,7 @@ String nameFilterString = "";
 
 <p>That’s all you need to start filtering your results.</p>
 
-<p><hr class="spacer" /></p>
+<hr class="spacer" />
 
 <h4 id="custom-formatter">Custom formatters</h4>
 
@@ -344,22 +346,25 @@ checked.</p>
 <li class="pointer" ng-repeat="recipe in recipes | categoryfilter:categoryFilterMap">
 </script>
 
-<p><hr class="spacer" />
+<hr class="spacer" />
+
 <h4 id="formatter-chaining">Formatter chaining</h4>
+
 <p>Our app uses a feature called formatter chaining to apply more than one
 formatter to the same view element. Below, we see the
 <code>ng-repeat</code> directive has three formatters separated by pipes.
 This is how Angular applies multiple formatters to a single
-<code>ng-repeat</code>.</p></p>
+<code>ng-repeat</code>.</p>
 
 <script type="template/code">
 <li class="pointer"
     ng-repeat="recipe in recipes | orderBy:'name' | filter:{name:nameFilterString} | categoryfilter:categoryFilterMap">
 </script>
 
-<p><hr class="spacer" />
+<hr class="spacer" />
+
 <h3 id="introducing-the-http-service">
-Introducing the Http service</h3></p>
+Introducing the Http service</h3>
 
 <p>Our last example had the data hard coded in the app. In reality, you’d
 request data from a server. Angular provides a built-in
@@ -521,7 +526,7 @@ argument). If we’d put it at the end of the <code>_loadData</code>
 method outside of the asynchronous call, it would evaluate regardless of
 the state of the Future.</p>
 
-<p><hr class="spacer" /></p>
+<hr class="spacer" />
 
 <h3 id="angular-features">Angular features</h3>
 
@@ -570,7 +575,7 @@ but the preferred usage is to apply multiple <code>ngCloak</code>
 directives to small portions of the page to permit progressive rendering
 of the browser view.</p>
 
-<p><hr class="spacer" /></p>
+<hr class="spacer" />
 
 <h3 id="explore-more">Try it yourself</h3>
 

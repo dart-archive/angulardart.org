@@ -18,7 +18,9 @@
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/base.css">
-
+    
+    <link rel="stylesheet" href="/css/tutorial.css">
+    
 
     <!--<base href="/">--><base href=".">
 
@@ -205,8 +207,8 @@ file for this sample:</p>
 name: tutorial
 version: 1.0.0
 dependencies:
-  angular: "1.0.0"
-  web_components: ">=0.8.0 <0.9.0"
+  angular: "1.1.0"
+  web_components: ">=0.10.0 <0.11.0"
   browser: ">=0.10.0+2 <0.11.0"
 transformers:
 - angular
@@ -278,12 +280,13 @@ when no <code>ng-app</code> directive is found on the page.</p>
 <p>Next, let’s look at the two script tags in the HTML <code>&lt;head&gt;</code>.</p>
 <!-- Can not use a script tag here because of nested script tags -->
 <pre class="prettyprint">
-&lt;script src="packages/web_components/platform.js"&gt;&lt;/script&gt;
+&lt;script src="packages/web_components/webcomponents.js"&gt;&lt;/script&gt;
 &lt;script src="packages/web_components/dart_support.js"&gt;&lt;/script&gt;
 </pre>
 
 These two script tags enable the use of Shadow DOM (a new web platform feature)
-for older browsers.
+for older browsers. When you deploy your app into production, you'll want to use
+the minified <code>webcomponents.min.js</code> instead of <code>webcomponents.js</code>.
 
 <p>Next, let’s look at the two script tags at the end.</p>
 
@@ -336,7 +339,7 @@ browser events that might change the model (such as mouse clicks, key
 presses, or incoming HTTP responses). If changes are detected, Angular
 reflects them in the view by updating all of the affected bindings.</p>
 
-<p><hr class="spacer" /></p>
+<hr class="spacer" />
 
 <h3 id="how-angular-does-mvc">How Angular does MVC</h3>
 
@@ -371,7 +374,7 @@ scope.”</p>
 Real apps, however, are built out of components. The next chapter dives into
 components.</p>
 
-<p><hr class="spacer" /></p>
+<hr class="spacer" />
 
 <h3 id="mustache-syntax-interpolation-and-angular-expressions">Mustache
 syntax (interpolation) and Angular expressions</h3>
@@ -405,7 +408,7 @@ differ from Dart in the following ways:</p>
 <p>These expressions would display as <strong>3</strong> and
 <strong>foobar</strong>, respectively.</p>
 
-<p><hr class="spacer" /></p>
+<hr class="spacer" />
 
 <h3 id="mustache-syntax-and-data-binding-in-hello-world">Mustache syntax
 and data binding in Hello World</h3>
