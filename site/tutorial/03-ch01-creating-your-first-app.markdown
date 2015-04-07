@@ -70,7 +70,7 @@ name: tutorial
 version: 1.0.0
 dependencies:
   angular: "1.1.0"
-  web_components: ">=0.10.0 <0.11.0"
+  web_components: "0.10.1"
   browser: ">=0.10.0+2 <0.11.0"
 transformers:
 - angular
@@ -88,6 +88,9 @@ not support <a href="http://www.w3.org/TR/shadow-dom/">Shadow DOM</a> natively.
 The <code>browser</code> package helps switching to the compiled JavaSript version of the
 application for browsers that do not support Dart natively.
 </p>
+<p><strong>Note</strong>: There's an <a href="https://github.com/angular/angular.dart/issues/1678">
+open issue</a> with AngularDart 1.1 that causes a dependency failure if
+you specify a version of the <code>web_components</code> package later than 0.10.1.</p>
 
 <p>Dart Editor automatically downloads the packages your app depends on,
 along with any packages that they, in turn, depend on. If this download
