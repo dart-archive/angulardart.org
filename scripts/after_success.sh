@@ -20,7 +20,8 @@ echo Setting up credentials
 git config credential.helper "store --file=.git/credentials"
 # travis encrypt GITHUB_TOKEN_ANGULARDART_ORG=??? --repo=angular/angulardart.org
 echo "https://${GITHUB_TOKEN_ANGULARDART_ORG}:@github.com" > .git/credentials
-git config user.name "travis@travis-ci.org"
+git config user.email "travis@travis-ci.org"
+git config user.name "Travis Bot"
 
 echo Committing changed files
 git add .
