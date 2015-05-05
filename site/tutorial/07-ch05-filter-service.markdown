@@ -285,16 +285,16 @@ data from the server. Look at the changes we made to the
 Future _loadData() async {
   recipesLoaded = false;
   ...
-try {
-      var response = await _http.get('recipes.json');
-      print(response);
-      recipes = response.data.map((d) => new Recipe.fromJson(d)).toList();
-      recipesLoaded = true;
-    } on Error catch (e) {
-        print(e);
-        recipesLoaded = false;
-        message = ERROR_MESSAGE;
-    };
+  try {
+    var response = await _http.get('recipes.json');
+
+    recipes = response.data.map((d) => new Recipe.fromJson(d)).toList();
+    recipesLoaded = true;
+  } on Error catch (e) {
+    print(e);
+    recipesLoaded = false;
+    message = ERROR_MESSAGE;
+  }
   ...
 }
 </script>
@@ -307,18 +307,20 @@ app could hang until the data is returned.</p>
 itself to be asynchronous by using the <code>async</code> modifier
 and immediately returning a 
 <a href="http://api.dartlang.org/docs/releases/latest/dart_async/Future.html">
-  Dart Future</a>. A Future is the promise of a value sometime in the future.
-It is at the core of
+Dart Future</a>. A <code>Future</code> is the promise of a value sometime
+in the future. It is at the core of
 <a href="https://www.dartlang.org/docs/dart-up-and-running/contents/ch03.html#ch03-asynchronous-programming">
-  asynchronous programming in Dart</a>. In its simplest form, an asynchronous
+asynchronous programming in Dart</a>. In its simplest form, an asynchronous
 method contains at least one <code>await</code> expression, which pauses execution
 of all subsequent expressions until the <code>await</code> expression completes.</p>
-<p>The <code>_loadData()</code> method starts by setting <code>recipesLoaded</code>
-to false. The next expression is an <code>await</code> expression, so the method
-pauses until the HTTP response is returned and successfully processed. Once the
-HTTP response is returned, the method loads the response into a
-<code>List&lt;Recipe&gt;</code>, which is published in the model as
-<code>recipes</code>:</p>
+
+<p>When the <code>_loadData()</code> method is called, it immediately returns
+a <code>Future</code>. Then it sets <code>recipesLoaded</code> to false. The next
+expression is an <code>await</code> expression, so the method pauses until the
+HTTP response is returned and successfully processed. Once the HTTP response is
+returned, the method loads the response into a <code>List&lt;Recipe&gt;</code>,
+which is published in the model as <code>recipes</code>:</p>
+
 <script type="template/code">
 List<Recipe> recipes = [];
 </script>

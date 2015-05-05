@@ -432,19 +432,17 @@ QueryService(Http this._http) {
 <p>It wraps the calls to <code>_loadRecipes</code> and
 <code>_loadCategories</code> in a call to
 <a href="https://api.dartlang.org/docs/channels/stable/latest/dart_async/Future.html#wait">
-  <code>Future.wait</code></a>. <code>Future.wait</code> also returns a
+<code>Future.wait</code></a>. <code>Future.wait</code> also returns a
 <code>Future</code> which completes only when all the Futures in the
-list complete.
-The <code>@Injectable</code> annotation publishes the class as a service.
-</p>
+list complete. The <code>@Injectable</code> annotation publishes the class
+as a service.</p>
 
 <p>The getters in the service (<code>getRecipeById</code>,
 <code>getAllRecipes</code>, and <code>getAllCategories</code>) first
-check to see if the cache has finished  loading. If not, they return a
-<code>Future</code> that will wait until <code>_loaded</code> is
-complete. If the cache has been populated, each getter still returns a
-<code>Future</code> &mdash; a new <code>Future</code> with the value of
-the cached data.</p>
+return an empty <code>Future</code>. Then they check to see if the cache
+has finished loading. If not, they wait until <code>_loaded</code> is complete.
+Once the cache has been populated, each returns a new <code>Future</code> with
+the value of the cached data.</p>
 
 <p>Here’s an example:</p>
 
