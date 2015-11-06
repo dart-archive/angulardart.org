@@ -68,8 +68,8 @@ ways:</p>
   <a href="https://github.com/angular/angular.dart.tutorial/blob/master/Chapter_04/web/main.dart">
     web/main.dart</a> to register the <code>Tooltip</code> type.</li>
 <li>Modifying
-  <a href="https://github.com/angular/angular.dart.tutorial/blob/master/Chapter_04/web/index.html">
-    web/index.html</a> to use the tooltip decorator.</li>
+  <a href="https://github.com/angular/angular.dart.tutorial/blob/master/Chapter_04/lib/component/recipe_book.html">
+    lib/component/recipe_book.html</a> to use the tooltip decorator.</li>
 </ul>
 
 <hr class="spacer" />
