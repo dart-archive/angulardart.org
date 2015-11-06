@@ -225,7 +225,7 @@ class RecipeBookComponent {
 <p>The use of <a href="https://api.dartlang.org/dart_core/Expando.html">
 Expando</a> is an implementation detail. An <code>Expando</code>
 is just a way to associate a property (in this case, a TooltipModel)
-with an existing object (a recipe). Instead of an Expando, the could use a <a href="https://api.dartlang.org/apidocs/channels/stable/dartdoc-viewer/dart-core.Map">
+with an existing object (a recipe). Instead of an Expando, you could use a <a href="https://api.dartlang.org/apidocs/channels/stable/dartdoc-viewer/dart-core.Map">
 <code>Map</code></a>.</p>
 
 <p>The other changes to
