@@ -279,71 +279,55 @@ void main() {
 <p>Next, let’s look at how to use the
 Http service to fetch
 data from the server. Look at the changes we made to the
-<code>_loadData</code> method. Here is the new code:</p>
+<code>_loadData()</code> method. Here is the new code:</p>
 
 <script type="template/code">
-void _loadData() {
+Future _loadData() async {
   recipesLoaded = false;
   ...
-  _http.get('recipes.json')
-    .then((HttpResponse response) {
-      recipes = response.data.map((d) => new Recipe.fromJson(d)).toList();
-      recipesLoaded = true;
-    })
-    .catchError((e) {
-      recipesLoaded = false;
-      message = ERROR_MESSAGE;
-    });
+  try {
+    var response = await _http.get('recipes.json');
+
+    recipes = response.data.map((d) => new Recipe.fromJson(d)).toList();
+    recipesLoaded = true;
+  } on Error catch (e) {
+    print(e);
+    recipesLoaded = false;
+    message = ERROR_MESSAGE;
+  }
   ...
 }
 </script>
 
-<p>Let’s look more closely at the call to the <code>Http</code> service:</p>
+<p>Using HTTP to fetch data from a server introduces a problem that's
+familiar in web-app development: if the HTTP connection is slow, the
+app could hang until the data is returned.</p>
 
-<script type="template/code">
-_http.get(URL)
-  .then((value) {
-    // use value
-  })
-  .catchError((e) {
-    // handle error
-  });
-</script>
-
-<p>The <code>Http</code> <code>get</code> method returns a
+<p>To avoid this problem, the <code>_loadData()</code> method declares
+itself to be asynchronous by using the <code>async</code> modifier
+and immediately returning a 
 <a href="http://api.dartlang.org/docs/releases/latest/dart_async/Future.html">
-  Dart Future</a>. A Future is the promise of a value sometime in the future.
-It is at the core of
+Dart Future</a>. A <code>Future</code> is the promise of a value sometime
+in the future. It is at the core of
 <a href="https://www.dartlang.org/docs/dart-up-and-running/contents/ch03.html#ch03-asynchronous-programming">
-  asynchronous programming in Dart</a>. In its simplest form, the
-<code>then()</code> method  takes a single function argument. This
-function is invoked when the Future completes with a value (i.e.,
-successfully), and is used to process the value returned from the
-Future. The <code>catchError()</code> method also takes a function
-argument. This function  will be invoked if an error is emitted by the
-Future.</p>
+asynchronous programming in Dart</a>. In its simplest form, an asynchronous
+method contains at least one <code>await</code> expression, which pauses execution
+of all subsequent expressions until the <code>await</code> expression completes.</p>
 
-<p>The important thing to understand from this example is that Futures are
-asynchronous. Your app code will proceed while the data is loading from
-the server side. If you are connecting to a very slow service, it is
-possible that the app will finish loading before the data has been
-returned. The view should be prepared for this. In our case, we need two
-pieces of data before the app is useful:</p>
+<p>When the <code>_loadData()</code> method is called, it immediately returns
+a <code>Future</code>. Then it sets <code>recipesLoaded</code> to false. The next
+expression is an <code>await</code> expression, so the method pauses until the
+HTTP response is returned and successfully processed. Once the HTTP response is
+returned, the method loads the response into a <code>List&lt;Recipe&gt;</code>,
+which is published in the model as <code>recipes</code>:</p>
 
 <script type="template/code">
-List categories = [];
 List<Recipe> recipes = [];
 </script>
 
-<p>Until the future has returned, your recipe book contains an empty list
-of recipes and an empty list of categories. Any part of your view that
-uses or displays recipes or categories will see an empty list. If you
-don’t want empty spots displaying on the app, you can surround portions
-of your view with statements that display a “Loading...” message until
-the data is ready.</p>
-
-<p>In our app, we keep track of the load state for recipes and
-categories, and conditionally display a “Loading...” message or the
+<p>Then, <code>loadData()</code> sets  <code>recipesLoaded</code> to true. Because
+<code>recipesLoaded</code> is available in the model, the component's template can
+conditionally display either a “Loading...” message or the
 whole app view. While we could use <code>ng-if</code> to implement the
 conditional display logic, let&rsquo;s use an <code>ng-switch</code>
 directive instead.</p>
@@ -371,16 +355,10 @@ details, see the
 <code>NgSwitchDirective</code></a> API documentation.</p>
 
 <p>You can see the “Loading...” feature work by simulating a really slow
-loading data source. Put a breakpoint inside one of the <code>then()</code>
-closures in the <code>_loadData</code> method and
-load the app. Notice that while you’re stopped at the breakpoint, your
+loading data source. Put a breakpoint at the await expression and load
+the app. Notice that while you’re stopped at the breakpoint, your
 app shows the  “Loading...” message. Now get out of the breakpoint and
-notice that your app’s real view pops into place. Also notice that we
-changed the loaded state from false to true inside the asynchronous part
-of <code>_loadData</code> (inside the <code>then()</code> call’s
-argument). If we’d put it at the end of the <code>_loadData</code>
-method outside of the asynchronous call, it would evaluate regardless of
-the state of the Future.</p>
+notice that your app’s real view pops into place. </p>
 
 <hr class="spacer" />
 

@@ -401,7 +401,7 @@ ViewRecipeComponent(RouteProvider routeProvider) {
 <p>In this version of our app, we also separated the query layer from our
 <code>RecipeBookComponent</code> by creating a
 <code>QueryService</code>. The <code>QueryService</code> does basically
-the same thing the old <code>_loadData</code> method did, but with a few
+the same thing the old <code>_loadData()</code> method did, but with a few
 enhancements.</p>
 
 <p><img src="img/ch06-1-QueryServiceOutline.png" alt="QueryService public API outline" /></p>
@@ -410,7 +410,7 @@ enhancements.</p>
 getters don’t return concrete objects. They return
 <a href="https://api.dartlang.org/docs/channels/stable/latest/dart_async/Future.html">
   Future</a>s. Our application code still has to plan for the possibility
-that the service will be slow, so our app’s <code>_loadData</code>
+that the service will be slow, so our app’s <code>_loadData()</code>
 method isn’t too different from the last version. It still determines if
 the data is loaded and sets appropriate view messages. It just delegates
 to the <code>QueryService</code> to do the actual query and JSON
@@ -432,27 +432,28 @@ QueryService(Http this._http) {
 <p>It wraps the calls to <code>_loadRecipes</code> and
 <code>_loadCategories</code> in a call to
 <a href="https://api.dartlang.org/docs/channels/stable/latest/dart_async/Future.html#wait">
-  <code>Future.wait</code></a>. <code>Future.wait</code> also returns a
+<code>Future.wait</code></a>. <code>Future.wait</code> also returns a
 <code>Future</code> which completes only when all the Futures in the
-list complete.
-The <code>@Injectable</code> annotation publishes the class as a service.
-</p>
+list complete. The <code>@Injectable</code> annotation publishes the class
+as a service.</p>
 
 <p>The getters in the service (<code>getRecipeById</code>,
 <code>getAllRecipes</code>, and <code>getAllCategories</code>) first
-check to see if the cache has finished  loading. If not, it returns a
-<code>Future</code> that will wait until <code>_loaded</code> is
-complete. If the cache has been populated, it still returns a
-<code>Future</code> &mdash; a new <code>Future</code> with the value of
-the cached data.</p>
+return an empty <code>Future</code>. Then they check to see if the cache
+has finished loading. If not, they wait until <code>_loaded</code> is complete.
+Once the cache has been populated, each returns a new <code>Future</code> with
+the value of the cached data.</p>
 
 <p>Here’s an example:</p>
 
 <script type="template/code">
-Future<Recipe> getRecipeById(String id) {
-  return _recipesCache == null
-      ? _loaded.then((_) => _recipesCache[id])
-      : new Future.value(_recipesCache[id]);
+Future<Recipe> getRecipeById(String id) async {
+  try {
+    if (_recipesCache == null) await _loaded;
+      return _recipesCache[id];
+  } on Error catch(e){
+    throw(e);
+  }
 }
 </script>
 
