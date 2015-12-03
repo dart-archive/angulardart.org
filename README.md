@@ -4,8 +4,17 @@ Your changes to the master branch of angular/angulardart.org should become
 visible on angulardart.org in 5-10 minutes.
 
 If you're making a change that isn't simple, please build the site locally
-before you commit the changes.
+before you commit the changes. 
 Here's how:
+
+## Automatic deploy (via Vagrant)
+
+1. Download [Vagrant](https://www.vagrantup.com/downloads.html).
+2. Open root folder of cloned repository.
+3. Run `vagrant up`. On subsequent runs execute `vagrant provision` after `vagrant up`.
+4. View the site at `10.0.0.2:4000` (10.0.0.2 address is from `Vagrantfile`, you can change it).
+
+## Manual deploy
 
 1. If `which bundle` returns something, you have the prerequisites. Otherwise:
   1. Download rubygems from http://rubygems.org/pages/download
