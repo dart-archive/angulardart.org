@@ -1,5 +1,0 @@
-name: hello
-dependencies:
-  angular: 0.10.0
-transformers:
-  - angular

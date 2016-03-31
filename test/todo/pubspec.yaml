@@ -1,5 +1,0 @@
-name: todo
-dependencies:
-  angular: 0.10.0
-transformers:
-  - angular
