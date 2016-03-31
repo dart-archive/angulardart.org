@@ -1,0 +1,14 @@
+{
+  "firebase": "angulardart-org",
+  "public": ".",
+  "ignore": [
+    "firebase.json",
+    "**/.*",
+    "**/node_modules/**"
+  ],
+  "redirects": [{
+    "source": "**",
+    "destination": "https://angular.io/dart",
+    "type": 301
+  }]
+}
