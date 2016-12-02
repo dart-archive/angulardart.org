@@ -8,7 +8,7 @@
   ],
   "redirects": [{
     "source": "**",
-    "destination": "https://angular.io/dart",
+    "destination": "https://webdev.dartlang.org/angular",
     "type": 301
   }]
 }
