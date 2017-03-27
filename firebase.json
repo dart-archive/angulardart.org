@@ -3,7 +3,7 @@
     "public": "public",
     "redirects": [{
       "source": "**",
-      "destination": "https://webdev.dartlang.org/angular",
+      "destination": "https://webdev.dartlang.org/angular?utm_campaign=dart_migration&utm_medium=redirect&utm_source=angulardart.org",
       "type": 301
     }]
   }
