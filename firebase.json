@@ -1,14 +1,10 @@
 {
-  "firebase": "angulardart-org",
-  "public": ".",
-  "ignore": [
-    "firebase.json",
-    "**/.*",
-    "**/node_modules/**"
-  ],
-  "redirects": [{
-    "source": "**",
-    "destination": "https://webdev.dartlang.org/angular",
-    "type": 301
-  }]
+  "hosting": {
+    "public": "public",
+    "redirects": [{
+      "source": "**",
+      "destination": "https://webdev.dartlang.org/angular",
+      "type": 301
+    }]
+  }
 }
